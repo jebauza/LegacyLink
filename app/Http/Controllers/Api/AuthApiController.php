@@ -1,6 +1,5 @@
 <?php
-
-namespace App\Domain\User\Http\Controllers\Api;
+namespace App\Http\Controllers\Api;
 
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -13,7 +12,7 @@ use Illuminate\Support\Facades\Auth;
  *     description="API Endpoints of Auth"
  * )
  */
-class UserAuthController extends Controller
+class AuthApiController extends Controller
 {
 
     /**
@@ -63,14 +62,14 @@ class UserAuthController extends Controller
 
         $credentials = $request->only('email', 'password');
 
-        if(!Auth::guard('user-api')->attempt($credentials)) {
+        if(!Auth::guard('api-user')->attempt($credentials)) {
             return response()->json([
                 'success' => false,
                 'message' => __('auth.failed'),
             ], 403);
         }
 
-        $user = Auth::guard('user-api')->user();
+        $user = Auth::guard('api-user')->user();
         $user->tokens()
                 ->where('revoked', false)
                 ->update(['revoked' => true]);
@@ -134,6 +133,8 @@ class UserAuthController extends Controller
      */
     public function user(Request $request)
     {
-        return $request->user();
+        $user = $request->user();
+
+        return $user;
     }
 }

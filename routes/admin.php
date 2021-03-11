@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\Auth\ForgotPasswordController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,9 +17,11 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return redirect()->route('login');
+    return view('app');
 });
 
-Route::name('web.')->group(function () {
+Auth::routes();
 
+Route::name('admin.')->group(function () {
+    Route::get('/home', [HomeController::class, 'index'])->name('home');
 });
