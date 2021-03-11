@@ -1,7 +1,7 @@
 /******/ (() => { // webpackBootstrap
 var __webpack_exports__ = {};
 /*!********************************************************************!*\
-  !*** ../demo1/src/js/pages/crud/forms/widgets/google-recaptcha.js ***!
+  !*** ../demo3/src/js/pages/crud/forms/widgets/google-recaptcha.js ***!
   \********************************************************************/
 // Class definition
 

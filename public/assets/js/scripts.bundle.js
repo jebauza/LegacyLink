@@ -1,9 +1,9 @@
 /******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
-/***/ "../demo1/src/js/components/app.js":
+/***/ "../demo3/src/js/components/app.js":
 /*!*****************************************!*\
-  !*** ../demo1/src/js/components/app.js ***!
+  !*** ../demo3/src/js/components/app.js ***!
   \*****************************************/
 /***/ ((module) => {
 
@@ -341,9 +341,9 @@ window.onload = function() {
 
 /***/ }),
 
-/***/ "../demo1/src/js/components/card.js":
+/***/ "../demo3/src/js/components/card.js":
 /*!******************************************!*\
-  !*** ../demo1/src/js/components/card.js ***!
+  !*** ../demo3/src/js/components/card.js ***!
   \******************************************/
 /***/ ((module) => {
 
@@ -789,9 +789,9 @@ if ( true && typeof module.exports !== 'undefined') {
 
 /***/ }),
 
-/***/ "../demo1/src/js/components/cookie.js":
+/***/ "../demo3/src/js/components/cookie.js":
 /*!********************************************!*\
-  !*** ../demo1/src/js/components/cookie.js ***!
+  !*** ../demo3/src/js/components/cookie.js ***!
   \********************************************/
 /***/ ((module) => {
 
@@ -855,9 +855,9 @@ if ( true && typeof module.exports !== 'undefined') {
 
 /***/ }),
 
-/***/ "../demo1/src/js/components/datatable/core.datatable.js":
+/***/ "../demo3/src/js/components/datatable/core.datatable.js":
 /*!**************************************************************!*\
-  !*** ../demo1/src/js/components/datatable/core.datatable.js ***!
+  !*** ../demo3/src/js/components/datatable/core.datatable.js ***!
   \**************************************************************/
 /***/ (() => {
 
@@ -4413,9 +4413,9 @@ if ( true && typeof module.exports !== 'undefined') {
 
 /***/ }),
 
-/***/ "../demo1/src/js/components/datatable/datatable.checkbox.js":
+/***/ "../demo3/src/js/components/datatable/datatable.checkbox.js":
 /*!******************************************************************!*\
-  !*** ../demo1/src/js/components/datatable/datatable.checkbox.js ***!
+  !*** ../demo3/src/js/components/datatable/datatable.checkbox.js ***!
   \******************************************************************/
 /***/ (() => {
 
@@ -4674,9 +4674,9 @@ if ( true && typeof module.exports !== 'undefined') {
 
 /***/ }),
 
-/***/ "../demo1/src/js/components/datatable/datatable.rtl.js":
+/***/ "../demo3/src/js/components/datatable/datatable.rtl.js":
 /*!*************************************************************!*\
-  !*** ../demo1/src/js/components/datatable/datatable.rtl.js ***!
+  !*** ../demo3/src/js/components/datatable/datatable.rtl.js ***!
   \*************************************************************/
 /***/ (() => {
 
@@ -4716,9 +4716,9 @@ $.extend(true, $.fn.KTDatatable.defaults, defaults);
 
 /***/ }),
 
-/***/ "../demo1/src/js/components/dialog.js":
+/***/ "../demo3/src/js/components/dialog.js":
 /*!********************************************!*\
-  !*** ../demo1/src/js/components/dialog.js ***!
+  !*** ../demo3/src/js/components/dialog.js ***!
   \********************************************/
 /***/ ((module) => {
 
@@ -4914,9 +4914,9 @@ if ( true && typeof module.exports !== 'undefined') {
 
 /***/ }),
 
-/***/ "../demo1/src/js/components/header.js":
+/***/ "../demo3/src/js/components/header.js":
 /*!********************************************!*\
-  !*** ../demo1/src/js/components/header.js ***!
+  !*** ../demo3/src/js/components/header.js ***!
   \********************************************/
 /***/ ((module) => {
 
@@ -5131,9 +5131,9 @@ if ( true && typeof module.exports !== 'undefined') {
 
 /***/ }),
 
-/***/ "../demo1/src/js/components/image-input.js":
+/***/ "../demo3/src/js/components/image-input.js":
 /*!*************************************************!*\
-  !*** ../demo1/src/js/components/image-input.js ***!
+  !*** ../demo3/src/js/components/image-input.js ***!
   \*************************************************/
 /***/ ((module) => {
 
@@ -5332,9 +5332,9 @@ if ( true && typeof module.exports !== 'undefined') {
 
 /***/ }),
 
-/***/ "../demo1/src/js/components/menu.js":
+/***/ "../demo3/src/js/components/menu.js":
 /*!******************************************!*\
-  !*** ../demo1/src/js/components/menu.js ***!
+  !*** ../demo3/src/js/components/menu.js ***!
   \******************************************/
 /***/ ((module) => {
 
@@ -6241,9 +6241,9 @@ document.addEventListener("click", function (e) {
 
 /***/ }),
 
-/***/ "../demo1/src/js/components/offcanvas.js":
+/***/ "../demo3/src/js/components/offcanvas.js":
 /*!***********************************************!*\
-  !*** ../demo1/src/js/components/offcanvas.js ***!
+  !*** ../demo3/src/js/components/offcanvas.js ***!
   \***********************************************/
 /***/ ((module) => {
 
@@ -6553,9 +6553,9 @@ if ( true && typeof module.exports !== 'undefined') {
 
 /***/ }),
 
-/***/ "../demo1/src/js/components/scrolltop.js":
+/***/ "../demo3/src/js/components/scrolltop.js":
 /*!***********************************************!*\
-  !*** ../demo1/src/js/components/scrolltop.js ***!
+  !*** ../demo3/src/js/components/scrolltop.js ***!
   \***********************************************/
 /***/ ((module) => {
 
@@ -6736,9 +6736,9 @@ if ( true && typeof module.exports !== 'undefined') {
 
 /***/ }),
 
-/***/ "../demo1/src/js/components/toggle.js":
+/***/ "../demo3/src/js/components/toggle.js":
 /*!********************************************!*\
-  !*** ../demo1/src/js/components/toggle.js ***!
+  !*** ../demo3/src/js/components/toggle.js ***!
   \********************************************/
 /***/ ((module) => {
 
@@ -6990,9 +6990,9 @@ if ( true && typeof module.exports !== 'undefined') {
 
 /***/ }),
 
-/***/ "../demo1/src/js/components/util.js":
+/***/ "../demo3/src/js/components/util.js":
 /*!******************************************!*\
-  !*** ../demo1/src/js/components/util.js ***!
+  !*** ../demo3/src/js/components/util.js ***!
   \******************************************/
 /***/ ((module) => {
 
@@ -8814,9 +8814,9 @@ KTUtil.ready(function() {
 
 /***/ }),
 
-/***/ "../demo1/src/js/components/wizard.js":
+/***/ "../demo3/src/js/components/wizard.js":
 /*!********************************************!*\
-  !*** ../demo1/src/js/components/wizard.js ***!
+  !*** ../demo3/src/js/components/wizard.js ***!
   \********************************************/
 /***/ ((module) => {
 
@@ -9271,9 +9271,9 @@ if ( true && typeof module.exports !== 'undefined') {
 
 /***/ }),
 
-/***/ "../demo1/src/js/layout/base/aside-menu.js":
+/***/ "../demo3/src/js/layout/base/aside-menu.js":
 /*!*************************************************!*\
-  !*** ../demo1/src/js/layout/base/aside-menu.js ***!
+  !*** ../demo3/src/js/layout/base/aside-menu.js ***!
   \*************************************************/
 /***/ ((module) => {
 
@@ -9282,39 +9282,15 @@ if ( true && typeof module.exports !== 'undefined') {
 
 var KTLayoutAsideMenu = function() {
     // Private properties
-    var _body;
     var _element;
     var _menuObject;
 
 	// Initialize
 	var _init = function() {
-		var menuDesktopMode = (KTUtil.attr(_element, 'data-menu-dropdown') === '1' ? 'dropdown' : 'accordion');
-        var scroll;
-
-		if (KTUtil.attr(_element, 'data-menu-scroll') === '1') {
-			scroll = {
-				rememberPosition: true, // remember position on page reload
-				height: function() { // calculate available scrollable area height
-					var height = parseInt(KTUtil.getViewPort().height);
-
-					if (KTUtil.isBreakpointUp('lg')) {
-						height = height - KTLayoutBrand.getHeight();
-					}
-
-					height = height - (parseInt(KTUtil.css(_element, 'marginBottom')) + parseInt(KTUtil.css(_element, 'marginTop')));
-
-					return height;
-				}
-			};
-		}
-
 		_menuObject = new KTMenu(_element, {
-			// Vertical scroll
-			scroll: scroll,
-
 			// Submenu setup
 			submenu: {
-				desktop: menuDesktopMode,
+				desktop: 'accordion',
 				tablet: 'accordion', // menu set to accordion in tablet mode
 				mobile: 'accordion' // menu set to accordion in mobile mode
 			},
@@ -9324,77 +9300,18 @@ var KTLayoutAsideMenu = function() {
 				expandAll: false // allow having multiple expanded accordions in the menu
 			}
 		});
-	}
 
-    var _initHover = function() {
-        // Handle Minimized Aside Hover
-		if (KTUtil.hasClass(_body, 'aside-fixed') && KTUtil.hasClass(_body, 'aside-minimize-hoverable')) {
-			var insideTm;
-			var outsideTm;
-
-            // Handle Aside Hover Mode
-			KTUtil.addEvent(_element, 'mouseenter', function(e) {
-				e.preventDefault();
-
-				if (KTUtil.isBreakpointUp('lg') === false) {
-					return;
-				}
-
-				if (outsideTm) {
-					clearTimeout(outsideTm);
-					outsideTm = null;
-				}
-
-                if (insideTm) {
-					clearTimeout(insideTm);
-					insideTm = null;
-				}
-
-				insideTm = setTimeout(function() {
-					if (KTUtil.hasClass(_body, 'aside-minimize') && KTUtil.isBreakpointUp('lg')) {
-						// Hover class
-						KTUtil.addClass(_body, 'aside-minimize-hover');
-
-						KTLayoutAsideMenu.getMenu().scrollUpdate();
-						KTLayoutAsideMenu.getMenu().scrollTop();
-					}
-				}, 50);
-			});
-
-			KTUtil.addEvent(KTLayoutAside.getElement(), 'mouseleave', function(e) {
-				e.preventDefault();
-
-				if (KTUtil.isBreakpointUp('lg') === false) {
-					return;
-				}
-
-				if (insideTm) {
-					clearTimeout(insideTm);
-					insideTm = null;
-				}
-
-                if (outsideTm) {
-					clearTimeout(outsideTm);
-					outsideTm = null;
-				}
-
-				outsideTm = setTimeout(function() {
-				    if (KTUtil.hasClass(_body, 'aside-minimize-hover') && KTUtil.isBreakpointUp('lg')) {
-					    KTUtil.removeClass(_body, 'aside-minimize-hover');
-
-						// Hover class
-                        KTLayoutAsideMenu.getMenu().scrollUpdate();
-						KTLayoutAsideMenu.getMenu().scrollTop();
-					}
-				}, 100);
-			});
-		}
+		 // Close aside offcanvas panel before page reload On tablet and mobile
+        _menuObject.on('linkClick', function(menu) {
+            if (KTUtil.isBreakpointDown('lg')) { // Tablet and mobile mode
+                KTLayoutAside.getOffcanvas().hide(); // Hide offcanvas after general link click
+            }
+        });
 	}
 
     // Public methods
 	return {
 		init: function(id) {
-            _body = KTUtil.getBody();
             _element = KTUtil.getById(id);
 
             if (!_element) {
@@ -9403,7 +9320,6 @@ var KTLayoutAsideMenu = function() {
 
             // Initialize menu
             _init();
-            _initHover();
 		},
 
 		getElement: function() {
@@ -9436,9 +9352,9 @@ if (true) {
 
 /***/ }),
 
-/***/ "../demo1/src/js/layout/base/aside-toggle.js":
+/***/ "../demo3/src/js/layout/base/aside-toggle.js":
 /*!***************************************************!*\
-  !*** ../demo1/src/js/layout/base/aside-toggle.js ***!
+  !*** ../demo3/src/js/layout/base/aside-toggle.js ***!
   \***************************************************/
 /***/ ((module) => {
 
@@ -9455,13 +9371,15 @@ var KTLayoutAsideToggle = function() {
 	var _init = function() {
 		_toggleObject = new KTToggle(_element, _body, {
 			targetState: 'aside-minimize',
-			toggleState: 'active'
+			toggleState: 'aside-toggle-active'
 		});
 
 		_toggleObject.on('toggle', function(toggle) {
             // Update sticky card
             if (typeof KTLayoutStickyCard !== 'undefined') {
-                KTLayoutStickyCard.update();
+                setTimeout(function() {
+                    KTLayoutStickyCard.update();
+                }, 500);
             }
 
             // Pause header menu dropdowns
@@ -9482,9 +9400,9 @@ var KTLayoutAsideToggle = function() {
 		});
 
 		_toggleObject.on('beforeToggle', function(toggle) {
-			if (KTUtil.hasClass(_body, 'aside-minimize') === false && KTUtil.hasClass(_body, 'aside-minimize-hover')) {
-				KTUtil.removeClass(_body, 'aside-minimize-hover');
-			}
+			//if (KTUtil.hasClass(_body, 'aside-minimize') === false && KTUtil.hasClass(_body, 'aside-minimize-hover')) {
+			//	KTUtil.removeClass(_body, 'aside-minimize-hover');
+			//}
 		});
 	}
 
@@ -9526,9 +9444,9 @@ if (true) {
 
 /***/ }),
 
-/***/ "../demo1/src/js/layout/base/aside.js":
+/***/ "../demo3/src/js/layout/base/aside.js":
 /*!********************************************!*\
-  !*** ../demo1/src/js/layout/base/aside.js ***!
+  !*** ../demo3/src/js/layout/base/aside.js ***!
   \********************************************/
 /***/ ((module) => {
 
@@ -9558,6 +9476,63 @@ var KTLayoutAside = function() {
 		});
 	}
 
+    var _initNav = function() {
+        var asideNav = KTUtil.find(_element, '.aside-primary .aside-nav');
+
+        if (!asideNav) {
+            return;
+        }
+
+        KTUtil.scrollInit(asideNav, {
+            disableForMobile: true,
+            resetHeightOnDestroy: true,
+            handleWindowResize: true,
+            height: function() {
+                var height = parseInt(KTUtil.getViewPort().height);
+                var asideBrand = KTUtil.find(_element, '.aside-primary .aside-brand');
+                var asideFooter = KTUtil.find(_element, '.aside-primary .aside-footer');
+
+                height = height - (parseInt(KTUtil.css(asideBrand, 'height')));
+                height = height - (parseInt(KTUtil.css(asideBrand, 'marginBottom')) + parseInt(KTUtil.css(asideBrand, 'marginTop')));
+
+                height = height - (parseInt(KTUtil.css(asideFooter, 'height')));
+                height = height - (parseInt(KTUtil.css(asideFooter, 'marginBottom')) + parseInt(KTUtil.css(asideFooter, 'marginTop')));
+
+                return height;
+            }
+        });
+    }
+
+    var _initWorkspace = function() {
+        var asideTabs = KTUtil.find(_element, '.aside-primary .aside-nav .nav');
+        var asideWorkspace = KTUtil.find(_element, '.aside-secondary .aside-workspace');
+
+        if (!asideWorkspace) {
+            return;
+        }
+
+        KTUtil.scrollInit(asideWorkspace, {
+            disableForMobile: true,
+            resetHeightOnDestroy: true,
+            handleWindowResize: true,
+            height: function() {
+                var height = parseInt(KTUtil.getViewPort().height);
+                var asideSecondary = KTUtil.find(_element, '.aside-secondary');
+
+                height = height - (parseInt(KTUtil.css(asideWorkspace, 'marginBottom')) + parseInt(KTUtil.css(asideWorkspace, 'marginTop')));
+                height = height - (parseInt(KTUtil.css(asideSecondary, 'paddingBottom')) + parseInt(KTUtil.css(asideSecondary, 'paddingTop')));
+
+                return height;
+            }
+        });
+
+        if (asideTabs) {
+            $(asideTabs).find('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+                KTUtil.scrollUpdate(asideWorkspace);
+            });
+        }
+    }
+
     // Public methods
 	return {
 		init: function(id) {
@@ -9570,6 +9545,8 @@ var KTLayoutAside = function() {
 
             // Initialize
             _init();
+            _initNav();
+            _initWorkspace();
         },
 
         getElement: function() {
@@ -9578,18 +9555,6 @@ var KTLayoutAside = function() {
 
         getOffcanvas: function() {
             return _offcanvasObject;
-        },
-
-        isFixed: function() {
-            return KTUtil.hasClass(_body, 'aside-fixed');
-        },
-
-        isMinimized: function() {
-            return (KTUtil.hasClass(_body, 'aside-fixed') && KTUtil.hasClass(_body, 'aside-minimize'));
-        },
-
-        isHoverable: function() {
-            return (KTUtil.hasClass(_body, 'aside-fixed') && KTUtil.hasClass(_body, 'aside-minimize-hoverable'));
         }
 	};
 }();
@@ -9602,61 +9567,9 @@ if (true) {
 
 /***/ }),
 
-/***/ "../demo1/src/js/layout/base/brand.js":
-/*!********************************************!*\
-  !*** ../demo1/src/js/layout/base/brand.js ***!
-  \********************************************/
-/***/ ((module) => {
-
-"use strict";
-
-
-var KTLayoutBrand = function() {
-    // Private properties
-    var _element;
-
-    // Private functions
-    var _getHeight = function() {
-        var height = 0;
-
-        if (_element) {
-            height = KTUtil.actualHeight(_element);
-        }
-
-        return height;
-    }
-
-    // Public methods
-	return {
-		init: function(id) {
-            _element = KTUtil.getById(id);
-
-            if (!_element) {
-                return;
-            }
-		},
-
-        getElement: function() {
-            return _element;
-        },
-
-        getHeight: function() {
-            return _getHeight();
-        }
-	};
-}();
-
-// Webpack support
-if (true) {
-	module.exports = KTLayoutBrand;
-}
-
-
-/***/ }),
-
-/***/ "../demo1/src/js/layout/base/content.js":
+/***/ "../demo3/src/js/layout/base/content.js":
 /*!**********************************************!*\
-  !*** ../demo1/src/js/layout/base/content.js ***!
+  !*** ../demo3/src/js/layout/base/content.js ***!
   \**********************************************/
 /***/ ((module) => {
 
@@ -9677,7 +9590,6 @@ var KTLayoutContent = function() {
             height = height - parseInt(KTUtil.css(_element, 'paddingTop')) - parseInt(KTUtil.css(_element, 'paddingBottom'));
         }
 
-        height = height - KTLayoutHeader.getHeight();
         height = height - KTLayoutSubheader.getHeight();
         height = height - KTLayoutFooter.getHeight();
 
@@ -9708,9 +9620,9 @@ if (true) {
 
 /***/ }),
 
-/***/ "../demo1/src/js/layout/base/footer.js":
+/***/ "../demo3/src/js/layout/base/footer.js":
 /*!*********************************************!*\
-  !*** ../demo1/src/js/layout/base/footer.js ***!
+  !*** ../demo3/src/js/layout/base/footer.js ***!
   \*********************************************/
 /***/ ((module) => {
 
@@ -9756,216 +9668,41 @@ if (true) {
 
 /***/ }),
 
-/***/ "../demo1/src/js/layout/base/header-menu.js":
-/*!**************************************************!*\
-  !*** ../demo1/src/js/layout/base/header-menu.js ***!
-  \**************************************************/
-/***/ ((module) => {
-
-"use strict";
-
-
-var KTLayoutHeaderMenu = function() {
-    // Private properties
-	var _menuElement;
-    var _menuObject;
-    var _offcanvasElement;
-    var _offcanvasObject;
-
-    // Private functions
-	var _init = function() {
-		_offcanvasObject = new KTOffcanvas(_offcanvasElement, {
-			overlay: true,
-			baseClass: 'header-menu-wrapper',
-			closeBy: 'kt_header_menu_mobile_close_btn',
-			toggleBy: {
-				target: 'kt_header_mobile_toggle',
-				state: 'mobile-toggle-active'
-			}
-		});
-		
-		_menuObject = new KTMenu(_menuElement, {
-			submenu: {
-				desktop: 'dropdown',
-				tablet: 'accordion',
-				mobile: 'accordion'
-			},
-			accordion: {
-				slideSpeed: 200, // accordion toggle slide speed in milliseconds
-				expandAll: false // allow having multiple expanded accordions in the menu
-			}
-		});
-
-		// Close aside offcanvas panel before page reload On tablet and mobile
-        _menuObject.on('linkClick', function(menu) {
-            if (KTUtil.isBreakpointDown('lg')) { // Tablet and mobile mode
-                _offcanvasObject.hide(); // Hide offcanvas after general link click
-            }
-        });
-	}
-
-    // Public methods
-	return {
-        init: function(menuId, offcanvasId) {
-            _menuElement = KTUtil.getById(menuId);
-            _offcanvasElement = KTUtil.getById(offcanvasId);
-
-            if (!_menuElement) {
-                return;
-            }
-
-            // Initialize menu
-            _init();
-		},
-
-		getMenuElement: function() {
-			return _menuElement;
-		},
-
-        getOffcanvasElement: function() {
-			return _offcanvasElement;
-		},
-
-        getMenu: function() {
-			return _menuObject;
-		},
-
-		pauseDropdownHover: function(time) {
-			if (_menuObject) {
-				_menuObject.pauseDropdownHover(time);
-			}
-		},
-
-        getOffcanvas: function() {
-			return _offcanvasObject;
-		},
-
-		closeMobileOffcanvas: function() {
-			if (_menuObject && KTUtil.isMobileDevice()) {
-				_offcanvasObject.hide();
-			}
-		}
-	};
-}();
-
-// Webpack support
-if (true) {
-	module.exports = KTLayoutHeaderMenu;
-}
-
-
-/***/ }),
-
-/***/ "../demo1/src/js/layout/base/header-topbar.js":
+/***/ "../demo3/src/js/layout/base/header-mobile.js":
 /*!****************************************************!*\
-  !*** ../demo1/src/js/layout/base/header-topbar.js ***!
+  !*** ../demo3/src/js/layout/base/header-mobile.js ***!
   \****************************************************/
 /***/ ((module) => {
 
 "use strict";
 
 
-var KTLayoutHeaderTopbar = function() {
+var KTLayoutHeaderMobile = function() {
     // Private properties
-	var _toggleElement;
-    var _toggleObject;
+    var _element;
+    var _object;
 
-    // Private functions
-    var _init = function() {
-        _toggleObject = new KTToggle(_toggleElement, KTUtil.getBody(), {
-            targetState: 'topbar-mobile-on',
-            toggleState: 'active',
-        });
+    // Get height
+    var _getHeight = function() {
+        var height;
+
+        height = KTUtil.actualHeight(_element);
+
+        return height;
     }
 
     // Public methods
 	return {
 		init: function(id) {
-            _toggleElement = KTUtil.getById(id);
-
-			if (!_toggleElement) {
-                return;
-            }
-
-            // Initialize
-            _init();
-		},
-
-        getToggleElement: function() {
-            return _toggleElement;
-        }
-	};
-}();
-
-// Webpack support
-if (true) {
-	module.exports = KTLayoutHeaderTopbar;
-}
-
-
-/***/ }),
-
-/***/ "../demo1/src/js/layout/base/header.js":
-/*!*********************************************!*\
-  !*** ../demo1/src/js/layout/base/header.js ***!
-  \*********************************************/
-/***/ ((module) => {
-
-"use strict";
-
-
-var KTLayoutHeader = function() {
-    // Private properties
-    var _element;
-    var _elementForMobile;
-    var _object;
-
-	// Private functions
-    // Get Height
-    var _getHeight = function() {
-        var height = 0;
-
-        if (_element) {
-            height = KTUtil.actualHeight(_element) + 1;
-        }
-
-        return height;
-    }
-
-    // Get Height
-    var _getHeightForMobile = function() {
-        var height;
-
-        height = KTUtil.actualHeight(_elementForMobile);
-
-        return height;
-    }
-
-    // Public Methods
-	return {
-		init: function(id, idForMobile) {
             _element = KTUtil.getById(id);
-            _elementForMobile = KTUtil.getById(idForMobile);
-
-            if (!_element) {
-                return;
-            }
 		},
 
         isFixed: function() {
-            return KTUtil.hasClass(KTUtil.getBody(), 'header-fixed')
-        },
-
-        isFixedForMobile: function() {
             return KTUtil.hasClass(KTUtil.getBody(), 'header-mobile-fixed')
         },
 
         getElement: function() {
             return _element;
-        },
-
-        getElementForMobile: function() {
-            return _elementForMobile;
         },
 
         getHeader: function() {
@@ -9974,25 +9711,21 @@ var KTLayoutHeader = function() {
 
         getHeight: function() {
             return _getHeight();
-        },
-
-        getHeightForMobile: function() {
-            return _getHeightForMobile();
         }
 	};
 }();
 
 // Webpack support
 if (true) {
-	module.exports = KTLayoutHeader;
+	module.exports = KTLayoutHeaderMobile;
 }
 
 
 /***/ }),
 
-/***/ "../demo1/src/js/layout/base/sticky-card.js":
+/***/ "../demo3/src/js/layout/base/sticky-card.js":
 /*!**************************************************!*\
-  !*** ../demo1/src/js/layout/base/sticky-card.js ***!
+  !*** ../demo3/src/js/layout/base/sticky-card.js ***!
   \**************************************************/
 /***/ ((module) => {
 
@@ -10091,9 +9824,9 @@ if (true) {
 
 /***/ }),
 
-/***/ "../demo1/src/js/layout/base/stretched-card.js":
+/***/ "../demo3/src/js/layout/base/stretched-card.js":
 /*!*****************************************************!*\
-  !*** ../demo1/src/js/layout/base/stretched-card.js ***!
+  !*** ../demo3/src/js/layout/base/stretched-card.js ***!
   \*****************************************************/
 /***/ ((module) => {
 
@@ -10157,9 +9890,9 @@ if (true) {
 
 /***/ }),
 
-/***/ "../demo1/src/js/layout/base/subheader.js":
+/***/ "../demo3/src/js/layout/base/subheader.js":
 /*!************************************************!*\
-  !*** ../demo1/src/js/layout/base/subheader.js ***!
+  !*** ../demo3/src/js/layout/base/subheader.js ***!
   \************************************************/
 /***/ ((module) => {
 
@@ -10213,9 +9946,9 @@ if (true) {
 
 /***/ }),
 
-/***/ "../demo1/src/js/layout/extended/chat.js":
+/***/ "../demo3/src/js/layout/extended/chat.js":
 /*!***********************************************!*\
-  !*** ../demo1/src/js/layout/extended/chat.js ***!
+  !*** ../demo3/src/js/layout/extended/chat.js ***!
   \***********************************************/
 /***/ ((module) => {
 
@@ -10394,9 +10127,9 @@ if (true) {
 
 /***/ }),
 
-/***/ "../demo1/src/js/layout/extended/demo-panel.js":
+/***/ "../demo3/src/js/layout/extended/demo-panel.js":
 /*!*****************************************************!*\
-  !*** ../demo1/src/js/layout/extended/demo-panel.js ***!
+  !*** ../demo3/src/js/layout/extended/demo-panel.js ***!
   \*****************************************************/
 /***/ ((module) => {
 
@@ -10511,9 +10244,9 @@ if (true) {
 
 /***/ }),
 
-/***/ "../demo1/src/js/layout/extended/examples.js":
+/***/ "../demo3/src/js/layout/extended/examples.js":
 /*!***************************************************!*\
-  !*** ../demo1/src/js/layout/extended/examples.js ***!
+  !*** ../demo3/src/js/layout/extended/examples.js ***!
   \***************************************************/
 /***/ ((module) => {
 
@@ -10639,9 +10372,9 @@ if ( true && typeof module.exports !== 'undefined') {
 
 /***/ }),
 
-/***/ "../demo1/src/js/layout/extended/quick-actions.js":
+/***/ "../demo3/src/js/layout/extended/quick-actions.js":
 /*!********************************************************!*\
-  !*** ../demo1/src/js/layout/extended/quick-actions.js ***!
+  !*** ../demo3/src/js/layout/extended/quick-actions.js ***!
   \********************************************************/
 /***/ ((module) => {
 
@@ -10721,9 +10454,9 @@ if (true) {
 
 /***/ }),
 
-/***/ "../demo1/src/js/layout/extended/quick-cart.js":
+/***/ "../demo3/src/js/layout/extended/quick-cart.js":
 /*!*****************************************************!*\
-  !*** ../demo1/src/js/layout/extended/quick-cart.js ***!
+  !*** ../demo3/src/js/layout/extended/quick-cart.js ***!
   \*****************************************************/
 /***/ ((module) => {
 
@@ -10812,9 +10545,9 @@ if (true) {
 
 /***/ }),
 
-/***/ "../demo1/src/js/layout/extended/quick-notifications.js":
+/***/ "../demo3/src/js/layout/extended/quick-notifications.js":
 /*!**************************************************************!*\
-  !*** ../demo1/src/js/layout/extended/quick-notifications.js ***!
+  !*** ../demo3/src/js/layout/extended/quick-notifications.js ***!
   \**************************************************************/
 /***/ ((module) => {
 
@@ -10894,9 +10627,9 @@ if (true) {
 
 /***/ }),
 
-/***/ "../demo1/src/js/layout/extended/quick-panel.js":
+/***/ "../demo3/src/js/layout/extended/quick-panel.js":
 /*!******************************************************!*\
-  !*** ../demo1/src/js/layout/extended/quick-panel.js ***!
+  !*** ../demo3/src/js/layout/extended/quick-panel.js ***!
   \******************************************************/
 /***/ ((module) => {
 
@@ -11016,9 +10749,9 @@ if (true) {
 
 /***/ }),
 
-/***/ "../demo1/src/js/layout/extended/quick-search.js":
+/***/ "../demo3/src/js/layout/extended/quick-search.js":
 /*!*******************************************************!*\
-  !*** ../demo1/src/js/layout/extended/quick-search.js ***!
+  !*** ../demo3/src/js/layout/extended/quick-search.js ***!
   \*******************************************************/
 /***/ ((module) => {
 
@@ -11109,9 +10842,9 @@ if (true) {
 
 /***/ }),
 
-/***/ "../demo1/src/js/layout/extended/quick-user.js":
+/***/ "../demo3/src/js/layout/extended/quick-user.js":
 /*!*****************************************************!*\
-  !*** ../demo1/src/js/layout/extended/quick-user.js ***!
+  !*** ../demo3/src/js/layout/extended/quick-user.js ***!
   \*****************************************************/
 /***/ ((module) => {
 
@@ -11191,9 +10924,9 @@ if (true) {
 
 /***/ }),
 
-/***/ "../demo1/src/js/layout/extended/scrolltop.js":
+/***/ "../demo3/src/js/layout/extended/scrolltop.js":
 /*!****************************************************!*\
-  !*** ../demo1/src/js/layout/extended/scrolltop.js ***!
+  !*** ../demo3/src/js/layout/extended/scrolltop.js ***!
   \****************************************************/
 /***/ ((module) => {
 
@@ -11240,9 +10973,9 @@ if (true) {
 
 /***/ }),
 
-/***/ "../demo1/src/js/layout/extended/search.js":
+/***/ "../demo3/src/js/layout/extended/search.js":
 /*!*************************************************!*\
-  !*** ../demo1/src/js/layout/extended/search.js ***!
+  !*** ../demo3/src/js/layout/extended/search.js ***!
   \*************************************************/
 /***/ ((module) => {
 
@@ -11428,9 +11161,9 @@ var KTLayoutSearchOffcanvas = KTLayoutSearch;
 
 /***/ }),
 
-/***/ "../demo1/src/js/layout/initialize.js":
+/***/ "../demo3/src/js/layout/initialize.js":
 /*!********************************************!*\
-  !*** ../demo1/src/js/layout/initialize.js ***!
+  !*** ../demo3/src/js/layout/initialize.js ***!
   \********************************************/
 /***/ (() => {
 
@@ -11602,53 +11335,50 @@ var __webpack_exports__ = {};
 // This entry need to be wrapped in an IIFE because it need to be isolated against other modules in the chunk.
 (() => {
 /*!**********************************!*\
-  !*** ./webpack/scripts.demo1.js ***!
+  !*** ./webpack/scripts.demo3.js ***!
   \**********************************/
 // Keenthemes' plugins
-window.KTUtil = __webpack_require__(/*! @/src/js/components/util.js */ "../demo1/src/js/components/util.js");
-window.KTApp = __webpack_require__(/*! @/src/js/components/app.js */ "../demo1/src/js/components/app.js");
-window.KTCard = __webpack_require__(/*! @/src/js/components/card.js */ "../demo1/src/js/components/card.js");
-window.KTCookie = __webpack_require__(/*! @/src/js/components/cookie.js */ "../demo1/src/js/components/cookie.js");
-window.KTDialog = __webpack_require__(/*! @/src/js/components/dialog.js */ "../demo1/src/js/components/dialog.js");
-window.KTHeader = __webpack_require__(/*! @/src/js/components/header.js */ "../demo1/src/js/components/header.js");
-window.KTImageInput = __webpack_require__(/*! @/src/js/components/image-input.js */ "../demo1/src/js/components/image-input.js");
-window.KTMenu = __webpack_require__(/*! @/src/js/components/menu.js */ "../demo1/src/js/components/menu.js");
-window.KTOffcanvas = __webpack_require__(/*! @/src/js/components/offcanvas.js */ "../demo1/src/js/components/offcanvas.js");
-window.KTScrolltop = __webpack_require__(/*! @/src/js/components/scrolltop.js */ "../demo1/src/js/components/scrolltop.js");
-window.KTToggle = __webpack_require__(/*! @/src/js/components/toggle.js */ "../demo1/src/js/components/toggle.js");
-window.KTWizard = __webpack_require__(/*! @/src/js/components/wizard.js */ "../demo1/src/js/components/wizard.js");
-__webpack_require__(/*! @/src/js/components/datatable/core.datatable.js */ "../demo1/src/js/components/datatable/core.datatable.js");
-__webpack_require__(/*! @/src/js/components/datatable/datatable.checkbox.js */ "../demo1/src/js/components/datatable/datatable.checkbox.js");
-__webpack_require__(/*! @/src/js/components/datatable/datatable.rtl.js */ "../demo1/src/js/components/datatable/datatable.rtl.js");
+window.KTUtil = __webpack_require__(/*! @/src/js/components/util.js */ "../demo3/src/js/components/util.js");
+window.KTApp = __webpack_require__(/*! @/src/js/components/app.js */ "../demo3/src/js/components/app.js");
+window.KTCard = __webpack_require__(/*! @/src/js/components/card.js */ "../demo3/src/js/components/card.js");
+window.KTCookie = __webpack_require__(/*! @/src/js/components/cookie.js */ "../demo3/src/js/components/cookie.js");
+window.KTDialog = __webpack_require__(/*! @/src/js/components/dialog.js */ "../demo3/src/js/components/dialog.js");
+window.KTHeader = __webpack_require__(/*! @/src/js/components/header.js */ "../demo3/src/js/components/header.js");
+window.KTImageInput = __webpack_require__(/*! @/src/js/components/image-input.js */ "../demo3/src/js/components/image-input.js");
+window.KTMenu = __webpack_require__(/*! @/src/js/components/menu.js */ "../demo3/src/js/components/menu.js");
+window.KTOffcanvas = __webpack_require__(/*! @/src/js/components/offcanvas.js */ "../demo3/src/js/components/offcanvas.js");
+window.KTScrolltop = __webpack_require__(/*! @/src/js/components/scrolltop.js */ "../demo3/src/js/components/scrolltop.js");
+window.KTToggle = __webpack_require__(/*! @/src/js/components/toggle.js */ "../demo3/src/js/components/toggle.js");
+window.KTWizard = __webpack_require__(/*! @/src/js/components/wizard.js */ "../demo3/src/js/components/wizard.js");
+__webpack_require__(/*! @/src/js/components/datatable/core.datatable.js */ "../demo3/src/js/components/datatable/core.datatable.js");
+__webpack_require__(/*! @/src/js/components/datatable/datatable.checkbox.js */ "../demo3/src/js/components/datatable/datatable.checkbox.js");
+__webpack_require__(/*! @/src/js/components/datatable/datatable.rtl.js */ "../demo3/src/js/components/datatable/datatable.rtl.js");
 
 // Metronic layout base js
-window.KTLayoutAside = __webpack_require__(/*! @/src/js/layout/base/aside.js */ "../demo1/src/js/layout/base/aside.js");
-window.KTLayoutAsideMenu = __webpack_require__(/*! @/src/js/layout/base/aside-menu.js */ "../demo1/src/js/layout/base/aside-menu.js");
-window.KTLayoutAsideToggle = __webpack_require__(/*! @/src/js/layout/base/aside-toggle.js */ "../demo1/src/js/layout/base/aside-toggle.js");
-window.KTLayoutBrand = __webpack_require__(/*! @/src/js/layout/base/brand.js */ "../demo1/src/js/layout/base/brand.js");
-window.KTLayoutContent = __webpack_require__(/*! @/src/js/layout/base/content.js */ "../demo1/src/js/layout/base/content.js");
-window.KTLayoutFooter = __webpack_require__(/*! @/src/js/layout/base/footer.js */ "../demo1/src/js/layout/base/footer.js");
-window.KTLayoutHeader = __webpack_require__(/*! @/src/js/layout/base/header.js */ "../demo1/src/js/layout/base/header.js");
-window.KTLayoutHeaderMenu = __webpack_require__(/*! @/src/js/layout/base/header-menu.js */ "../demo1/src/js/layout/base/header-menu.js");
-window.KTLayoutHeaderTopbar = __webpack_require__(/*! @/src/js/layout/base/header-topbar.js */ "../demo1/src/js/layout/base/header-topbar.js");
-window.KTLayoutStickyCard = __webpack_require__(/*! @/src/js/layout/base/sticky-card.js */ "../demo1/src/js/layout/base/sticky-card.js");
-window.KTLayoutStretchedCard = __webpack_require__(/*! @/src/js/layout/base/stretched-card.js */ "../demo1/src/js/layout/base/stretched-card.js");
-window.KTLayoutSubheader = __webpack_require__(/*! @/src/js/layout/base/subheader.js */ "../demo1/src/js/layout/base/subheader.js");
+window.KTLayoutAside = __webpack_require__(/*! @/src/js/layout/base/aside.js */ "../demo3/src/js/layout/base/aside.js");
+window.KTLayoutAsideMenu = __webpack_require__(/*! @/src/js/layout/base/aside-menu.js */ "../demo3/src/js/layout/base/aside-menu.js");
+window.KTLayoutAsideToggle = __webpack_require__(/*! @/src/js/layout/base/aside-toggle.js */ "../demo3/src/js/layout/base/aside-toggle.js");
+window.KTLayoutContent = __webpack_require__(/*! @/src/js/layout/base/content.js */ "../demo3/src/js/layout/base/content.js");
+window.KTLayoutFooter = __webpack_require__(/*! @/src/js/layout/base/footer.js */ "../demo3/src/js/layout/base/footer.js");
+window.KTLayoutHeaderMobile = __webpack_require__(/*! @/src/js/layout/base/header-mobile.js */ "../demo3/src/js/layout/base/header-mobile.js");
+window.KTLayoutStickyCard = __webpack_require__(/*! @/src/js/layout/base/sticky-card.js */ "../demo3/src/js/layout/base/sticky-card.js");
+window.KTLayoutStretchedCard = __webpack_require__(/*! @/src/js/layout/base/stretched-card.js */ "../demo3/src/js/layout/base/stretched-card.js");
+window.KTLayoutSubheader = __webpack_require__(/*! @/src/js/layout/base/subheader.js */ "../demo3/src/js/layout/base/subheader.js");
 
 // Metronic layout extended js
-window.KTLayoutChat = __webpack_require__(/*! @/src/js/layout/extended/chat.js */ "../demo1/src/js/layout/extended/chat.js");
-window.KTLayoutDemoPanel = __webpack_require__(/*! @/src/js/layout/extended/demo-panel.js */ "../demo1/src/js/layout/extended/demo-panel.js");
-window.KTLayoutExamples = __webpack_require__(/*! @/src/js/layout/extended/examples.js */ "../demo1/src/js/layout/extended/examples.js");
-window.KTLayoutQuickActions = __webpack_require__(/*! @/src/js/layout/extended/quick-actions.js */ "../demo1/src/js/layout/extended/quick-actions.js");
-window.KTLayoutQuickCartPanel = __webpack_require__(/*! @/src/js/layout/extended/quick-cart.js */ "../demo1/src/js/layout/extended/quick-cart.js");
-window.KTLayoutQuickNotifications = __webpack_require__(/*! @/src/js/layout/extended/quick-notifications.js */ "../demo1/src/js/layout/extended/quick-notifications.js");
-window.KTLayoutQuickPanel = __webpack_require__(/*! @/src/js/layout/extended/quick-panel.js */ "../demo1/src/js/layout/extended/quick-panel.js");
-window.KTLayoutQuickSearch = __webpack_require__(/*! @/src/js/layout/extended/quick-search.js */ "../demo1/src/js/layout/extended/quick-search.js");
-window.KTLayoutQuickUser = __webpack_require__(/*! @/src/js/layout/extended/quick-user.js */ "../demo1/src/js/layout/extended/quick-user.js");
-window.KTLayoutScrolltop = __webpack_require__(/*! @/src/js/layout/extended/scrolltop.js */ "../demo1/src/js/layout/extended/scrolltop.js");
-window.KTLayoutSearch = window.KTLayoutSearchOffcanvas = __webpack_require__(/*! @/src/js/layout/extended/search.js */ "../demo1/src/js/layout/extended/search.js");
+window.KTLayoutChat = __webpack_require__(/*! @/src/js/layout/extended/chat.js */ "../demo3/src/js/layout/extended/chat.js");
+window.KTLayoutDemoPanel = __webpack_require__(/*! @/src/js/layout/extended/demo-panel.js */ "../demo3/src/js/layout/extended/demo-panel.js");
+window.KTLayoutExamples = __webpack_require__(/*! @/src/js/layout/extended/examples.js */ "../demo3/src/js/layout/extended/examples.js");
+window.KTLayoutQuickActions = __webpack_require__(/*! @/src/js/layout/extended/quick-actions.js */ "../demo3/src/js/layout/extended/quick-actions.js");
+window.KTLayoutQuickCartPanel = __webpack_require__(/*! @/src/js/layout/extended/quick-cart.js */ "../demo3/src/js/layout/extended/quick-cart.js");
+window.KTLayoutQuickNotifications = __webpack_require__(/*! @/src/js/layout/extended/quick-notifications.js */ "../demo3/src/js/layout/extended/quick-notifications.js");
+window.KTLayoutQuickPanel = __webpack_require__(/*! @/src/js/layout/extended/quick-panel.js */ "../demo3/src/js/layout/extended/quick-panel.js");
+window.KTLayoutQuickSearch = __webpack_require__(/*! @/src/js/layout/extended/quick-search.js */ "../demo3/src/js/layout/extended/quick-search.js");
+window.KTLayoutQuickUser = __webpack_require__(/*! @/src/js/layout/extended/quick-user.js */ "../demo3/src/js/layout/extended/quick-user.js");
+window.KTLayoutScrolltop = __webpack_require__(/*! @/src/js/layout/extended/scrolltop.js */ "../demo3/src/js/layout/extended/scrolltop.js");
+window.KTLayoutSearch = window.KTLayoutSearchOffcanvas = __webpack_require__(/*! @/src/js/layout/extended/search.js */ "../demo3/src/js/layout/extended/search.js");
 
-__webpack_require__(/*! @/src/js/layout/initialize.js */ "../demo1/src/js/layout/initialize.js");
+__webpack_require__(/*! @/src/js/layout/initialize.js */ "../demo3/src/js/layout/initialize.js");
 
 })();
 

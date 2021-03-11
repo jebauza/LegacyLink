@@ -2,7 +2,7 @@
 /******/ 	"use strict";
 var __webpack_exports__ = {};
 /*!******************************************************************************!*\
-  !*** ../demo1/src/js/pages/crud/datatables/data-sources/ajax-client-side.js ***!
+  !*** ../demo3/src/js/pages/crud/datatables/data-sources/ajax-client-side.js ***!
   \******************************************************************************/
 
 var KTDatatablesDataSourceAjaxClient = function() {

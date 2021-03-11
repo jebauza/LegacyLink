@@ -2,7 +2,7 @@
 /******/ 	"use strict";
 var __webpack_exports__ = {};
 /*!**********************************************************************!*\
-  !*** ../demo1/src/js/pages/crud/datatables/advanced/row-grouping.js ***!
+  !*** ../demo3/src/js/pages/crud/datatables/advanced/row-grouping.js ***!
   \**********************************************************************/
 
 var KTDatatablesAdvancedRowGrouping = function() {

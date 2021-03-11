@@ -2,9 +2,9 @@
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
-/***/ "../demo1/src/js/pages/widgets.js":
+/***/ "../demo3/src/js/pages/widgets.js":
 /*!****************************************!*\
-  !*** ../demo1/src/js/pages/widgets.js ***!
+  !*** ../demo3/src/js/pages/widgets.js ***!
   \****************************************/
 /***/ ((module) => {
 
@@ -4748,7 +4748,7 @@ jQuery(document).ready(function () {
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module is referenced by other modules so it can't be inlined
-/******/ 	var __webpack_exports__ = __webpack_require__("../demo1/src/js/pages/widgets.js");
+/******/ 	var __webpack_exports__ = __webpack_require__("../demo3/src/js/pages/widgets.js");
 /******/ 	
 /******/ })()
 ;

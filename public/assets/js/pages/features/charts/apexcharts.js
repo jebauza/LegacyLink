@@ -2,7 +2,7 @@
 /******/ 	"use strict";
 var __webpack_exports__ = {};
 /*!***********************************************************!*\
-  !*** ../demo1/src/js/pages/features/charts/apexcharts.js ***!
+  !*** ../demo3/src/js/pages/features/charts/apexcharts.js ***!
   \***********************************************************/
 
 
