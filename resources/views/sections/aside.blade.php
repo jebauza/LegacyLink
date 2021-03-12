@@ -1,26 +1,35 @@
 <!--begin::Aside-->
 <div class="aside aside-left d-flex aside-fixed" id="kt_aside">
+
     <!--begin::Primary-->
     <div class="aside-primary d-flex flex-column align-items-center flex-row-auto">
+
         <!--begin::Brand-->
         <div class="aside-brand d-flex flex-column align-items-center flex-column-auto py-5 py-lg-12">
+
             <!--begin::Logo-->
             <a href="index.html">
                 <img alt="Logo" src="assets/media/logos/logo-letter-2.png" class="max-h-30px" />
             </a>
+
             <!--end::Logo-->
         </div>
+
         <!--end::Brand-->
+
         <!--begin::Nav Wrapper-->
         <div class="aside-nav d-flex flex-column align-items-center flex-column-fluid py-5 scroll scroll-pull">
+
             <!--begin::Nav-->
             <ul class="nav flex-column" role="tablist">
+
                 <!--begin::Item-->
                 <li class="nav-item mb-3" data-toggle="tooltip" data-placement="right" data-container="body"
                     data-boundary="window" title="Latest Projects">
                     <a href="#" class="nav-link btn btn-icon btn-clean btn-lg active" data-toggle="tab"
                         data-target="#kt_aside_tab_1" role="tab">
                         <span class="svg-icon svg-icon-xl">
+
                             <!--begin::Svg Icon | path:assets/media/svg/icons/Layout/Layout-4-blocks.svg-->
                             <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
                                 width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
@@ -32,17 +41,21 @@
                                         fill="#000000" opacity="0.3" />
                                 </g>
                             </svg>
+
                             <!--end::Svg Icon-->
                         </span>
                     </a>
                 </li>
+
                 <!--end::Item-->
+
                 <!--begin::Item-->
                 <li class="nav-item mb-3" data-toggle="tooltip" data-placement="right" data-container="body"
                     data-boundary="window" title="Metronic Features">
                     <a href="#" class="nav-link btn btn-icon btn-clean btn-lg" data-toggle="tab"
                         data-target="#kt_aside_tab_2" role="tab">
                         <span class="svg-icon svg-icon-xl">
+
                             <!--begin::Svg Icon | path:assets/media/svg/icons/Communication/Group.svg-->
                             <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
                                 width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
@@ -56,17 +69,21 @@
                                         fill="#000000" fill-rule="nonzero" />
                                 </g>
                             </svg>
+
                             <!--end::Svg Icon-->
                         </span>
                     </a>
                 </li>
+
                 <!--end::Item-->
+
                 <!--begin::Item-->
                 <li class="nav-item mb-3" data-toggle="tooltip" data-placement="right" data-container="body"
                     data-boundary="window" title="Latest Reports">
                     <a href="#" class="nav-link btn btn-icon btn-clean btn-lg" data-toggle="tab"
                         data-target="#kt_aside_tab_3" role="tab">
                         <span class="svg-icon svg-icon-xl">
+
                             <!--begin::Svg Icon | path:assets/media/svg/icons/Media/Equalizer.svg-->
                             <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
                                 width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
@@ -78,17 +95,21 @@
                                     <rect fill="#000000" x="3" y="13" width="3" height="7" rx="1.5" />
                                 </g>
                             </svg>
+
                             <!--end::Svg Icon-->
                         </span>
                     </a>
                 </li>
+
                 <!--end::Item-->
+
                 <!--begin::Item-->
                 <li class="nav-item mb-3" data-toggle="tooltip" data-placement="right" data-container="body"
                     data-boundary="window" title="Project Management">
                     <a href="#" class="nav-link btn btn-icon btn-clean btn-lg" data-toggle="tab"
                         data-target="#kt_aside_tab_4" role="tab">
                         <span class="svg-icon svg-icon-xl">
+
                             <!--begin::Svg Icon | path:assets/media/svg/icons/General/Shield-check.svg-->
                             <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
                                 width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
@@ -102,17 +123,21 @@
                                         fill="#000000" />
                                 </g>
                             </svg>
+
                             <!--end::Svg Icon-->
                         </span>
                     </a>
                 </li>
+
                 <!--end::Item-->
+
                 <!--begin::Item-->
                 <li class="nav-item mb-3" data-toggle="tooltip" data-placement="right" data-container="body"
                     data-boundary="window" title="User Management">
                     <a href="#" class="nav-link btn btn-icon btn-clean btn-lg" data-toggle="tab"
                         data-target="#kt_aside_tab_5" role="tab">
                         <span class="svg-icon svg-icon-xl">
+
                             <!--begin::Svg Icon | path:assets/media/svg/icons/Home/Library.svg-->
                             <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
                                 width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
@@ -126,17 +151,21 @@
                                         x="16.3255682" y="2.94551858" width="3" height="18" rx="1" />
                                 </g>
                             </svg>
+
                             <!--end::Svg Icon-->
                         </span>
                     </a>
                 </li>
+
                 <!--end::Item-->
+
                 <!--begin::Item-->
                 <li class="nav-item mb-3" data-toggle="tooltip" data-placement="right" data-container="body"
                     data-boundary="window" title="Finance &amp; Accounting">
                     <a href="#" class="nav-link btn btn-icon btn-clean btn-lg" data-toggle="tab"
                         data-target="#kt_aside_tab_6" role="tab">
                         <span class="svg-icon svg-icon-xl">
+
                             <!--begin::Svg Icon | path:assets/media/svg/icons/Files/File-plus.svg-->
                             <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
                                 width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
@@ -150,28 +179,37 @@
                                         fill="#000000" />
                                 </g>
                             </svg>
+
                             <!--end::Svg Icon-->
                         </span>
                     </a>
                 </li>
+
                 <!--end::Item-->
             </ul>
+
             <!--end::Nav-->
         </div>
+
         <!--end::Nav Wrapper-->
+
         <!--begin::Footer-->
         <div class="aside-footer d-flex flex-column align-items-center flex-column-auto py-4 py-lg-10">
+
             <!--begin::Aside Toggle-->
             <span class="aside-toggle btn btn-icon btn-primary btn-hover-primary shadow-sm" id="kt_aside_toggle"
                 data-toggle="tooltip" data-placement="right" data-container="body" data-boundary="window"
                 title="Toggle Aside">
                 <i class="ki ki-bold-arrow-back icon-sm"></i>
             </span>
+
             <!--end::Aside Toggle-->
+
             <!--begin::Quick Actions-->
             <a href="#" class="btn btn-icon btn-clean btn-lg mb-1" id="kt_quick_actions_toggle" data-toggle="tooltip"
                 data-placement="right" data-container="body" data-boundary="window" title="Quick Actions">
                 <span class="svg-icon svg-icon-xl">
+
                     <!--begin::Svg Icon | path:assets/media/svg/icons/Media/Equalizer.svg-->
                     <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px"
                         height="24px" viewBox="0 0 24 24" version="1.1">
@@ -183,15 +221,19 @@
                             <rect fill="#000000" x="3" y="13" width="3" height="7" rx="1.5" />
                         </g>
                     </svg>
+
                     <!--end::Svg Icon-->
                 </span>
             </a>
+
             <!--end::Quick Actions-->
+
             <!--begin::Quick Panel-->
             <a href="#" class="btn btn-icon btn-clean btn-lg mb-1 position-relative" id="kt_quick_panel_toggle"
                 data-toggle="tooltip" data-placement="right" data-container="body" data-boundary="window"
                 title="Quick Panel">
                 <span class="svg-icon svg-icon-xl">
+
                     <!--begin::Svg Icon | path:assets/media/svg/icons/Layout/Layout-4-blocks.svg-->
                     <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px"
                         height="24px" viewBox="0 0 24 24" version="1.1">
@@ -203,18 +245,22 @@
                                 fill="#000000" opacity="0.3" />
                         </g>
                     </svg>
+
                     <!--end::Svg Icon-->
                 </span>
                 <span
                     class="label label-sm label-light-danger label-rounded font-weight-bolder position-absolute top-0 right-0 mt-1 mr-1">3</span>
             </a>
+
             <!--end::Quick Panel-->
+
             <!--begin::User-->
             <a href="#" class="btn btn-icon btn-clean btn-lg w-40px h-40px" id="kt_quick_user_toggle"
                 data-toggle="tooltip" data-placement="right" data-container="body" data-boundary="window"
                 title="User Profile">
                 <span class="symbol symbol-30 symbol-lg-40">
                     <span class="svg-icon svg-icon-xl">
+
                         <!--begin::Svg Icon | path:assets/media/svg/icons/General/User.svg-->
                         <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px"
                             height="24px" viewBox="0 0 24 24" version="1.1">
@@ -228,24 +274,34 @@
                                     fill="#000000" fill-rule="nonzero" />
                             </g>
                         </svg>
+
                         <!--end::Svg Icon-->
                     </span>
+
                     <!--<span class="symbol-label font-size-h5 font-weight-bold">S</span>-->
                 </span>
             </a>
+
             <!--end::User-->
         </div>
+
         <!--end::Footer-->
     </div>
+
     <!--end::Primary-->
+
     <!--begin::Secondary-->
     <div class="aside-secondary d-flex flex-row-fluid">
+
         <!--begin::Workspace-->
         <div class="aside-workspace scroll scroll-push my-2">
+
             <!--begin::Tab Content-->
             <div class="tab-content">
+
                 <!--begin::Tab Pane-->
                 <div class="tab-pane p-3 px-lg-7 py-lg-5 fade show active" id="kt_aside_tab_1">
+
                     <!--begin::Form-->
                     <form class="p-2 p-lg-3">
                         <div class="d-flex">
@@ -254,6 +310,7 @@
                                     placeholder="Search..." id="generalSearch" />
                                 <span>
                                     <span class="svg-icon svg-icon-lg">
+
                                         <!--begin::Svg Icon | path:assets/media/svg/icons/General/Search.svg-->
                                         <svg xmlns="http://www.w3.org/2000/svg"
                                             xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px"
@@ -268,6 +325,7 @@
                                                     fill="#000000" fill-rule="nonzero" />
                                             </g>
                                         </svg>
+
                                         <!--end::Svg Icon-->
                                     </span>
                                 </span>
@@ -277,6 +335,7 @@
                                     class="btn btn-icon btn-default btn-hover-primary ml-2 h-40px w-40px flex-shrink-0"
                                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <span class="svg-icon svg-icon-lg">
+
                                         <!--begin::Svg Icon | path:assets/media/svg/icons/Code/Compiling.svg-->
                                         <svg xmlns="http://www.w3.org/2000/svg"
                                             xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px"
@@ -291,10 +350,14 @@
                                                     fill="#000000" />
                                             </g>
                                         </svg>
+
                                         <!--end::Svg Icon-->
                                     </span>
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-md dropdown-menu-right">
+
+                                    <!--[html-partial:begin:{"id":"demo1/dist/inc/view/partials/content/dropdowns/dropdown-4","page":"index"}]/-->
+
                                     <!--begin::Navigation-->
                                     <ul class="navi navi-hover py-5">
                                         <li class="navi-item">
@@ -363,59 +426,75 @@
                                             </a>
                                         </li>
                                     </ul>
+
                                     <!--end::Navigation-->
+
+                                    <!--[html-partial:end:{"id":"demo1/dist/inc/view/partials/content/dropdowns/dropdown-4","page":"index"}]/-->
                                 </div>
                             </div>
                         </div>
                     </form>
+
                     <!--end::Form-->
                     <h3 class="p-2 p-lg-3 my-1 my-lg-3">Projects</h3>
+
                     <!--begin::List-->
                     <div class="list list-hover">
+
                         <!--begin::Item-->
                         <div class="list-item hoverable p-2 p-lg-3 mb-2">
                             <div class="d-flex align-items-center">
+
                                 <!--begin::Symbol-->
                                 <div class="symbol symbol-40 symbol-light mr-4">
                                     <span class="symbol-label bg-hover-white">
                                         <img src="assets/media/svg/misc/006-plurk.svg" class="h-50 align-self-center" />
                                     </span>
                                 </div>
+
                                 <!--end::Symbol-->
+
                                 <!--begin::Text-->
                                 <div class="d-flex flex-column flex-grow-1 mr-2">
-                                    <span class="text-dark-75 font-size-h6 mb-0">Bravio
-                                        Application</span>
-                                    <a href="#" class="text-muted text-hover-primary font-weight-bold">By
-                                        James</a>
+                                    <span class="text-dark-75 font-size-h6 mb-0">Bravio Application</span>
+                                    <a href="#" class="text-muted text-hover-primary font-weight-bold">By James</a>
                                 </div>
+
                                 <!--begin::End-->
                             </div>
                         </div>
+
                         <!--end::Item-->
+
                         <!--begin::Item-->
                         <div class="list-item hoverable p-2 p-lg-3 mb-2">
                             <div class="d-flex align-items-center">
+
                                 <!--begin::Symbol-->
                                 <div class="symbol symbol-40 symbol-light mr-4">
                                     <span class="symbol-label bg-hover-white">
                                         <img src="assets/media/svg/misc/010-vimeo.svg" class="h-50 align-self-center" />
                                     </span>
                                 </div>
+
                                 <!--end::Symbol-->
+
                                 <!--begin::Text-->
                                 <div class="d-flex flex-column flex-grow-1 mr-2">
                                     <span class="text-dark-75 font-size-h6 mb-0">Quick Reports</span>
-                                    <a href="#" class="text-muted text-hover-primary font-weight-bold">By
-                                        Ana</a>
+                                    <a href="#" class="text-muted text-hover-primary font-weight-bold">By Ana</a>
                                 </div>
+
                                 <!--begin::End-->
                             </div>
                         </div>
+
                         <!--end::Item-->
+
                         <!--begin::Item-->
                         <div class="list-item hoverable p-2 p-lg-3 mb-2">
                             <div class="d-flex align-items-center">
+
                                 <!--begin::Symbol-->
                                 <div class="symbol symbol-40 symbol-light mr-4">
                                     <span class="symbol-label bg-hover-white">
@@ -423,21 +502,25 @@
                                             class="h-50 align-self-center" />
                                     </span>
                                 </div>
+
                                 <!--end::Symbol-->
+
                                 <!--begin::Text-->
                                 <div class="d-flex flex-column flex-grow-1 mr-2">
-                                    <span class="text-dark-75 font-size-h6 mb-0">CRM Reporting
-                                        Tool</span>
-                                    <a href="#" class="text-muted text-hover-primary font-weight-bold">By
-                                        Adam</a>
+                                    <span class="text-dark-75 font-size-h6 mb-0">CRM Reporting Tool</span>
+                                    <a href="#" class="text-muted text-hover-primary font-weight-bold">By Adam</a>
                                 </div>
+
                                 <!--begin::End-->
                             </div>
                         </div>
+
                         <!--end::Item-->
+
                         <!--begin::Item-->
                         <div class="list-item hoverable p-2 p-lg-3 mb-2">
                             <div class="d-flex align-items-center">
+
                                 <!--begin::Symbol-->
                                 <div class="symbol symbol-40 symbol-light mr-4">
                                     <span class="symbol-label bg-hover-white">
@@ -445,20 +528,25 @@
                                             class="h-50 align-self-center" />
                                     </span>
                                 </div>
+
                                 <!--end::Symbol-->
+
                                 <!--begin::Text-->
                                 <div class="d-flex flex-column flex-grow-1 mr-2">
                                     <span class="text-dark-75 font-size-h6 mb-0">DB Management</span>
-                                    <a href="#" class="text-muted text-hover-primary font-weight-bold">By CRA
-                                        Team</a>
+                                    <a href="#" class="text-muted text-hover-primary font-weight-bold">By CRA Team</a>
                                 </div>
+
                                 <!--begin::End-->
                             </div>
                         </div>
+
                         <!--end::Item-->
+
                         <!--begin::Item-->
                         <div class="list-item hoverable p-2 p-lg-3 mb-2">
                             <div class="d-flex align-items-center">
+
                                 <!--begin::Symbol-->
                                 <div class="symbol symbol-40 symbol-light mr-4">
                                     <span class="symbol-label bg-hover-white">
@@ -466,20 +554,25 @@
                                             class="h-50 align-self-center" />
                                     </span>
                                 </div>
+
                                 <!--end::Symbol-->
+
                                 <!--begin::Text-->
                                 <div class="d-flex flex-column flex-grow-1 mr-2">
                                     <span class="text-dark-75 font-size-h6 mb-0">Cloud Service</span>
-                                    <a href="#" class="text-muted text-hover-primary font-weight-bold">By iC
-                                        Team</a>
+                                    <a href="#" class="text-muted text-hover-primary font-weight-bold">By iC Team</a>
                                 </div>
+
                                 <!--begin::End-->
                             </div>
                         </div>
+
                         <!--end::Item-->
+
                         <!--begin::Item-->
                         <div class="list-item hoverable p-2 p-lg-3 mb-2">
                             <div class="d-flex align-items-center">
+
                                 <!--begin::Symbol-->
                                 <div class="symbol symbol-40 symbol-light mr-4">
                                     <span class="symbol-label bg-hover-white">
@@ -487,53 +580,69 @@
                                             class="h-50 align-self-center" />
                                     </span>
                                 </div>
+
                                 <!--end::Symbol-->
+
                                 <!--begin::Text-->
                                 <div class="d-flex flex-column flex-grow-1 mr-2">
                                     <span class="text-dark-75 font-size-h6 mb-0">Disqus Project</span>
-                                    <a href="#" class="text-muted text-hover-primary font-weight-bold">By PV
-                                        Inc.</a>
+                                    <a href="#" class="text-muted text-hover-primary font-weight-bold">By PV Inc.</a>
                                 </div>
+
                                 <!--begin::End-->
                             </div>
                         </div>
+
                         <!--end::Item-->
+
                         <!--begin::Item-->
                         <div class="list-item hoverable p-2 p-lg-3 mb-2">
                             <div class="d-flex align-items-center">
+
                                 <!--begin::Symbol-->
                                 <div class="symbol symbol-40 symbol-light mr-4">
                                     <span class="symbol-label bg-hover-white">
                                         <img src="assets/media/svg/misc/006-plurk.svg" class="h-50 align-self-center" />
                                     </span>
                                 </div>
+
                                 <!--end::Symbol-->
+
                                 <!--begin::Text-->
                                 <div class="d-flex flex-column flex-grow-1 mr-2">
                                     <span class="text-dark-75 font-size-h6 mb-0">Plurk Meeting</span>
                                     <a href="#" class="text-muted text-hover-primary font-weight-bold">By Plurk
                                         Team.</a>
                                 </div>
+
                                 <!--begin::End-->
                             </div>
                         </div>
+
                         <!--end::Item-->
                     </div>
+
                     <!--end::List-->
                 </div>
+
                 <!--end::Tab Pane-->
+
                 <!--begin::Tab Pane-->
                 <div class="tab-pane fade" id="kt_aside_tab_2">
+
                     <!--begin::Aside Menu-->
                     <div class="aside-menu-wrapper flex-column-fluid px-3 px-lg-10 py-5" id="kt_aside_menu_wrapper">
+
                         <!--begin::Menu Container-->
                         <div id="kt_aside_menu" class="aside-menu min-h-lg-800px" data-menu-vertical="1"
                             data-menu-scroll="1">
+
                             <!--begin::Menu Nav-->
                             <ul class="menu-nav">
                                 <li class="menu-item menu-item-active" aria-haspopup="true">
                                     <a href="index.html" class="menu-link">
                                         <span class="svg-icon menu-icon">
+
                                             <!--begin::Svg Icon | path:assets/media/svg/icons/Design/Layers.svg-->
                                             <svg xmlns="http://www.w3.org/2000/svg"
                                                 xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px"
@@ -548,6 +657,7 @@
                                                         fill="#000000" opacity="0.3" />
                                                 </g>
                                             </svg>
+
                                             <!--end::Svg Icon-->
                                         </span>
                                         <span class="menu-text">Dashboard</span>
@@ -560,6 +670,7 @@
                                 <li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover">
                                     <a href="javascript:;" class="menu-link menu-toggle">
                                         <span class="svg-icon menu-icon">
+
                                             <!--begin::Svg Icon | path:assets/media/svg/icons/Layout/Layout-4-blocks.svg-->
                                             <svg xmlns="http://www.w3.org/2000/svg"
                                                 xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px"
@@ -572,6 +683,7 @@
                                                         fill="#000000" opacity="0.3" />
                                                 </g>
                                             </svg>
+
                                             <!--end::Svg Icon-->
                                         </span>
                                         <span class="menu-text">Applications</span>
@@ -606,8 +718,7 @@
                                                                 <i class="menu-bullet menu-bullet-dot">
                                                                     <span></span>
                                                                 </i>
-                                                                <span class="menu-text">List -
-                                                                    Default</span>
+                                                                <span class="menu-text">List - Default</span>
                                                             </a>
                                                         </li>
                                                         <li class="menu-item" aria-haspopup="true">
@@ -616,8 +727,7 @@
                                                                 <i class="menu-bullet menu-bullet-dot">
                                                                     <span></span>
                                                                 </i>
-                                                                <span class="menu-text">List -
-                                                                    Datatable</span>
+                                                                <span class="menu-text">List - Datatable</span>
                                                             </a>
                                                         </li>
                                                         <li class="menu-item" aria-haspopup="true">
@@ -626,8 +736,7 @@
                                                                 <i class="menu-bullet menu-bullet-dot">
                                                                     <span></span>
                                                                 </i>
-                                                                <span class="menu-text">List - Columns
-                                                                    1</span>
+                                                                <span class="menu-text">List - Columns 1</span>
                                                             </a>
                                                         </li>
                                                         <li class="menu-item" aria-haspopup="true">
@@ -636,8 +745,7 @@
                                                                 <i class="menu-bullet menu-bullet-dot">
                                                                     <span></span>
                                                                 </i>
-                                                                <span class="menu-text">List - Columns
-                                                                    2</span>
+                                                                <span class="menu-text">List - Columns 2</span>
                                                             </a>
                                                         </li>
                                                         <li class="menu-item" aria-haspopup="true">
@@ -783,8 +891,7 @@
                                                                 <i class="menu-bullet menu-bullet-dot">
                                                                     <span></span>
                                                                 </i>
-                                                                <span class="menu-text">List -
-                                                                    Columns</span>
+                                                                <span class="menu-text">List - Columns</span>
                                                             </a>
                                                         </li>
                                                         <li class="menu-item" aria-haspopup="true">
@@ -793,8 +900,7 @@
                                                                 <i class="menu-bullet menu-bullet-dot">
                                                                     <span></span>
                                                                 </i>
-                                                                <span class="menu-text">List -
-                                                                    Datatable</span>
+                                                                <span class="menu-text">List - Datatable</span>
                                                             </a>
                                                         </li>
                                                         <li class="menu-item" aria-haspopup="true">
@@ -803,8 +909,7 @@
                                                                 <i class="menu-bullet menu-bullet-dot">
                                                                     <span></span>
                                                                 </i>
-                                                                <span class="menu-text">View
-                                                                    Contact</span>
+                                                                <span class="menu-text">View Contact</span>
                                                             </a>
                                                         </li>
                                                         <li class="menu-item" aria-haspopup="true">
@@ -813,8 +918,7 @@
                                                                 <i class="menu-bullet menu-bullet-dot">
                                                                     <span></span>
                                                                 </i>
-                                                                <span class="menu-text">Add
-                                                                    Contact</span>
+                                                                <span class="menu-text">Add Contact</span>
                                                             </a>
                                                         </li>
                                                         <li class="menu-item" aria-haspopup="true">
@@ -823,8 +927,7 @@
                                                                 <i class="menu-bullet menu-bullet-dot">
                                                                     <span></span>
                                                                 </i>
-                                                                <span class="menu-text">Edit
-                                                                    Contact</span>
+                                                                <span class="menu-text">Edit Contact</span>
                                                             </a>
                                                         </li>
                                                     </ul>
@@ -848,8 +951,7 @@
                                                                 <i class="menu-bullet menu-bullet-dot">
                                                                     <span></span>
                                                                 </i>
-                                                                <span class="menu-text">List - Columns
-                                                                    1</span>
+                                                                <span class="menu-text">List - Columns 1</span>
                                                             </a>
                                                         </li>
                                                         <li class="menu-item" aria-haspopup="true">
@@ -858,8 +960,7 @@
                                                                 <i class="menu-bullet menu-bullet-dot">
                                                                     <span></span>
                                                                 </i>
-                                                                <span class="menu-text">List - Columns
-                                                                    2</span>
+                                                                <span class="menu-text">List - Columns 2</span>
                                                             </a>
                                                         </li>
                                                         <li class="menu-item" aria-haspopup="true">
@@ -868,8 +969,7 @@
                                                                 <i class="menu-bullet menu-bullet-dot">
                                                                     <span></span>
                                                                 </i>
-                                                                <span class="menu-text">List - Columns
-                                                                    3</span>
+                                                                <span class="menu-text">List - Columns 3</span>
                                                             </a>
                                                         </li>
                                                         <li class="menu-item" aria-haspopup="true">
@@ -878,8 +978,7 @@
                                                                 <i class="menu-bullet menu-bullet-dot">
                                                                     <span></span>
                                                                 </i>
-                                                                <span class="menu-text">List - Columns
-                                                                    4</span>
+                                                                <span class="menu-text">List - Columns 4</span>
                                                             </a>
                                                         </li>
                                                         <li class="menu-item" aria-haspopup="true">
@@ -888,8 +987,7 @@
                                                                 <i class="menu-bullet menu-bullet-dot">
                                                                     <span></span>
                                                                 </i>
-                                                                <span class="menu-text">List -
-                                                                    Datatable</span>
+                                                                <span class="menu-text">List - Datatable</span>
                                                             </a>
                                                         </li>
                                                         <li class="menu-item" aria-haspopup="true">
@@ -898,8 +996,7 @@
                                                                 <i class="menu-bullet menu-bullet-dot">
                                                                     <span></span>
                                                                 </i>
-                                                                <span class="menu-text">View
-                                                                    Project</span>
+                                                                <span class="menu-text">View Project</span>
                                                             </a>
                                                         </li>
                                                         <li class="menu-item" aria-haspopup="true">
@@ -908,8 +1005,7 @@
                                                                 <i class="menu-bullet menu-bullet-dot">
                                                                     <span></span>
                                                                 </i>
-                                                                <span class="menu-text">Add
-                                                                    Project</span>
+                                                                <span class="menu-text">Add Project</span>
                                                             </a>
                                                         </li>
                                                         <li class="menu-item" aria-haspopup="true">
@@ -918,8 +1014,7 @@
                                                                 <i class="menu-bullet menu-bullet-dot">
                                                                     <span></span>
                                                                 </i>
-                                                                <span class="menu-text">Edit
-                                                                    Project</span>
+                                                                <span class="menu-text">Edit Project</span>
                                                             </a>
                                                         </li>
                                                     </ul>
@@ -1243,8 +1338,7 @@
                                                                 <i class="menu-bullet menu-bullet-dot">
                                                                     <span></span>
                                                                 </i>
-                                                                <span class="menu-text">Dashboard
-                                                                    1</span>
+                                                                <span class="menu-text">Dashboard 1</span>
                                                             </a>
                                                         </li>
                                                         <li class="menu-item" aria-haspopup="true">
@@ -1253,8 +1347,7 @@
                                                                 <i class="menu-bullet menu-bullet-dot">
                                                                     <span></span>
                                                                 </i>
-                                                                <span class="menu-text">Dashboard
-                                                                    2</span>
+                                                                <span class="menu-text">Dashboard 2</span>
                                                             </a>
                                                         </li>
                                                         <li class="menu-item" aria-haspopup="true">
@@ -1263,8 +1356,7 @@
                                                                 <i class="menu-bullet menu-bullet-dot">
                                                                     <span></span>
                                                                 </i>
-                                                                <span class="menu-text">Dashboard
-                                                                    3</span>
+                                                                <span class="menu-text">Dashboard 3</span>
                                                             </a>
                                                         </li>
                                                         <li class="menu-item" aria-haspopup="true">
@@ -1309,8 +1401,7 @@
                                                                 <i class="menu-bullet menu-bullet-dot">
                                                                     <span></span>
                                                                 </i>
-                                                                <span class="menu-text">Order
-                                                                    Details</span>
+                                                                <span class="menu-text">Order Details</span>
                                                             </a>
                                                         </li>
                                                         <li class="menu-item" aria-haspopup="true">
@@ -1319,8 +1410,7 @@
                                                                 <i class="menu-bullet menu-bullet-dot">
                                                                     <span></span>
                                                                 </i>
-                                                                <span class="menu-text">Shopping
-                                                                    Cart</span>
+                                                                <span class="menu-text">Shopping Cart</span>
                                                             </a>
                                                         </li>
                                                         <li class="menu-item" aria-haspopup="true">
@@ -1352,6 +1442,7 @@
                                 <li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover">
                                     <a href="javascript:;" class="menu-link menu-toggle">
                                         <span class="svg-icon menu-icon">
+
                                             <!--begin::Svg Icon | path:assets/media/svg/icons/Shopping/Barcode-read.svg-->
                                             <svg xmlns="http://www.w3.org/2000/svg"
                                                 xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px"
@@ -1365,6 +1456,7 @@
                                                         fill="#000000" fill-rule="nonzero" />
                                                 </g>
                                             </svg>
+
                                             <!--end::Svg Icon-->
                                         </span>
                                         <span class="menu-text">Pages</span>
@@ -1428,8 +1520,7 @@
                                                                             <i class="menu-bullet menu-bullet-dot">
                                                                                 <span></span>
                                                                             </i>
-                                                                            <span class="menu-text">Sign
-                                                                                Up</span>
+                                                                            <span class="menu-text">Sign Up</span>
                                                                         </a>
                                                                     </li>
                                                                     <li class="menu-item" aria-haspopup="true">
@@ -1438,8 +1529,7 @@
                                                                             <i class="menu-bullet menu-bullet-dot">
                                                                                 <span></span>
                                                                             </i>
-                                                                            <span class="menu-text">Sign
-                                                                                In</span>
+                                                                            <span class="menu-text">Sign In</span>
                                                                         </a>
                                                                     </li>
                                                                     <li class="menu-item" aria-haspopup="true">
@@ -1477,8 +1567,7 @@
                                                                             <i class="menu-bullet menu-bullet-dot">
                                                                                 <span></span>
                                                                             </i>
-                                                                            <span class="menu-text">Sign
-                                                                                Up</span>
+                                                                            <span class="menu-text">Sign Up</span>
                                                                         </a>
                                                                     </li>
                                                                     <li class="menu-item" aria-haspopup="true">
@@ -1487,8 +1576,7 @@
                                                                             <i class="menu-bullet menu-bullet-dot">
                                                                                 <span></span>
                                                                             </i>
-                                                                            <span class="menu-text">Sign
-                                                                                In</span>
+                                                                            <span class="menu-text">Sign In</span>
                                                                         </a>
                                                                     </li>
                                                                     <li class="menu-item" aria-haspopup="true">
@@ -1522,8 +1610,7 @@
                                                                             <i class="menu-bullet menu-bullet-dot">
                                                                                 <span></span>
                                                                             </i>
-                                                                            <span class="menu-text">Login
-                                                                                1</span>
+                                                                            <span class="menu-text">Login 1</span>
                                                                         </a>
                                                                     </li>
                                                                     <li class="menu-item" aria-haspopup="true">
@@ -1532,8 +1619,7 @@
                                                                             <i class="menu-bullet menu-bullet-dot">
                                                                                 <span></span>
                                                                             </i>
-                                                                            <span class="menu-text">Login
-                                                                                2</span>
+                                                                            <span class="menu-text">Login 2</span>
                                                                         </a>
                                                                     </li>
                                                                     <li class="menu-item" aria-haspopup="true">
@@ -1542,8 +1628,7 @@
                                                                             <i class="menu-bullet menu-bullet-dot">
                                                                                 <span></span>
                                                                             </i>
-                                                                            <span class="menu-text">Login
-                                                                                3</span>
+                                                                            <span class="menu-text">Login 3</span>
                                                                         </a>
                                                                     </li>
                                                                     <li class="menu-item" aria-haspopup="true">
@@ -1552,8 +1637,7 @@
                                                                             <i class="menu-bullet menu-bullet-dot">
                                                                                 <span></span>
                                                                             </i>
-                                                                            <span class="menu-text">Login
-                                                                                4</span>
+                                                                            <span class="menu-text">Login 4</span>
                                                                         </a>
                                                                     </li>
                                                                     <li class="menu-item" aria-haspopup="true">
@@ -1562,8 +1646,7 @@
                                                                             <i class="menu-bullet menu-bullet-dot">
                                                                                 <span></span>
                                                                             </i>
-                                                                            <span class="menu-text">Login
-                                                                                5</span>
+                                                                            <span class="menu-text">Login 5</span>
                                                                         </a>
                                                                     </li>
                                                                     <li class="menu-item" aria-haspopup="true">
@@ -1572,8 +1655,7 @@
                                                                             <i class="menu-bullet menu-bullet-dot">
                                                                                 <span></span>
                                                                             </i>
-                                                                            <span class="menu-text">Login
-                                                                                6</span>
+                                                                            <span class="menu-text">Login 6</span>
                                                                         </a>
                                                                     </li>
                                                                 </ul>
@@ -1669,8 +1751,7 @@
                                                                 <i class="menu-bullet menu-bullet-dot">
                                                                     <span></span>
                                                                 </i>
-                                                                <span class="menu-text">Pricing Tables
-                                                                    1</span>
+                                                                <span class="menu-text">Pricing Tables 1</span>
                                                             </a>
                                                         </li>
                                                         <li class="menu-item" aria-haspopup="true">
@@ -1679,8 +1760,7 @@
                                                                 <i class="menu-bullet menu-bullet-dot">
                                                                     <span></span>
                                                                 </i>
-                                                                <span class="menu-text">Pricing Tables
-                                                                    2</span>
+                                                                <span class="menu-text">Pricing Tables 2</span>
                                                             </a>
                                                         </li>
                                                         <li class="menu-item" aria-haspopup="true">
@@ -1689,8 +1769,7 @@
                                                                 <i class="menu-bullet menu-bullet-dot">
                                                                     <span></span>
                                                                 </i>
-                                                                <span class="menu-text">Pricing Tables
-                                                                    3</span>
+                                                                <span class="menu-text">Pricing Tables 3</span>
                                                             </a>
                                                         </li>
                                                         <li class="menu-item" aria-haspopup="true">
@@ -1699,8 +1778,7 @@
                                                                 <i class="menu-bullet menu-bullet-dot">
                                                                     <span></span>
                                                                 </i>
-                                                                <span class="menu-text">Pricing Tables
-                                                                    4</span>
+                                                                <span class="menu-text">Pricing Tables 4</span>
                                                             </a>
                                                         </li>
                                                     </ul>
@@ -1849,6 +1927,7 @@
                                     <a target="_blank" href="https://preview.keenthemes.com/metronic/demo3/builder.html"
                                         class="menu-link">
                                         <span class="svg-icon menu-icon">
+
                                             <!--begin::Svg Icon | path:assets/media/svg/icons/Home/Library.svg-->
                                             <svg xmlns="http://www.w3.org/2000/svg"
                                                 xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px"
@@ -1863,6 +1942,7 @@
                                                         x="16.3255682" y="2.94551858" width="3" height="18" rx="1" />
                                                 </g>
                                             </svg>
+
                                             <!--end::Svg Icon-->
                                         </span>
                                         <span class="menu-text">Builder</span>
@@ -1875,6 +1955,7 @@
                                 <li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover">
                                     <a href="javascript:;" class="menu-link menu-toggle">
                                         <span class="svg-icon menu-icon">
+
                                             <!--begin::Svg Icon | path:assets/media/svg/icons/Design/PenAndRuller.svg-->
                                             <svg xmlns="http://www.w3.org/2000/svg"
                                                 xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px"
@@ -1889,6 +1970,7 @@
                                                         fill="#000000" />
                                                 </g>
                                             </svg>
+
                                             <!--end::Svg Icon-->
                                         </span>
                                         <span class="menu-text">Forms</span>
@@ -1919,8 +2001,7 @@
                                                                 <i class="menu-bullet menu-bullet-dot">
                                                                     <span></span>
                                                                 </i>
-                                                                <span class="menu-text">Base
-                                                                    Inputs</span>
+                                                                <span class="menu-text">Base Inputs</span>
                                                             </a>
                                                         </li>
                                                         <li class="menu-item" aria-haspopup="true">
@@ -1929,8 +2010,7 @@
                                                                 <i class="menu-bullet menu-bullet-dot">
                                                                     <span></span>
                                                                 </i>
-                                                                <span class="menu-text">Input
-                                                                    Groups</span>
+                                                                <span class="menu-text">Input Groups</span>
                                                             </a>
                                                         </li>
                                                         <li class="menu-item" aria-haspopup="true">
@@ -1963,8 +2043,7 @@
                                                                 <i class="menu-bullet menu-bullet-dot">
                                                                     <span></span>
                                                                 </i>
-                                                                <span class="menu-text">Mega
-                                                                    Options</span>
+                                                                <span class="menu-text">Mega Options</span>
                                                             </a>
                                                         </li>
                                                     </ul>
@@ -2059,8 +2138,7 @@
                                                                 <i class="menu-bullet menu-bullet-dot">
                                                                     <span></span>
                                                                 </i>
-                                                                <span class="menu-text">Multiple Select
-                                                                    Splitter</span>
+                                                                <span class="menu-text">Multiple Select Splitter</span>
                                                             </a>
                                                         </li>
                                                         <li class="menu-item" aria-haspopup="true">
@@ -2069,8 +2147,7 @@
                                                                 <i class="menu-bullet menu-bullet-dot">
                                                                     <span></span>
                                                                 </i>
-                                                                <span class="menu-text">Bootstrap
-                                                                    Select</span>
+                                                                <span class="menu-text">Bootstrap Select</span>
                                                             </a>
                                                         </li>
                                                         <li class="menu-item" aria-haspopup="true">
@@ -2105,8 +2182,7 @@
                                                                 <i class="menu-bullet menu-bullet-dot">
                                                                     <span></span>
                                                                 </i>
-                                                                <span class="menu-text">Form
-                                                                    Repeater</span>
+                                                                <span class="menu-text">Form Repeater</span>
                                                             </a>
                                                         </li>
                                                         <li class="menu-item" aria-haspopup="true">
@@ -2115,8 +2191,7 @@
                                                                 <i class="menu-bullet menu-bullet-dot">
                                                                     <span></span>
                                                                 </i>
-                                                                <span class="menu-text">Ion Range
-                                                                    Slider</span>
+                                                                <span class="menu-text">Ion Range Slider</span>
                                                             </a>
                                                         </li>
                                                         <li class="menu-item" aria-haspopup="true">
@@ -2125,8 +2200,7 @@
                                                                 <i class="menu-bullet menu-bullet-dot">
                                                                     <span></span>
                                                                 </i>
-                                                                <span class="menu-text">Input
-                                                                    Masks</span>
+                                                                <span class="menu-text">Input Masks</span>
                                                             </a>
                                                         </li>
                                                         <li class="menu-item" aria-haspopup="true">
@@ -2135,8 +2209,7 @@
                                                                 <i class="menu-bullet menu-bullet-dot">
                                                                     <span></span>
                                                                 </i>
-                                                                <span class="menu-text">jQuery
-                                                                    Mask</span>
+                                                                <span class="menu-text">jQuery Mask</span>
                                                             </a>
                                                         </li>
                                                         <li class="menu-item" aria-haspopup="true">
@@ -2163,8 +2236,7 @@
                                                                 <i class="menu-bullet menu-bullet-dot">
                                                                     <span></span>
                                                                 </i>
-                                                                <span class="menu-text">Google
-                                                                    reCaptcha</span>
+                                                                <span class="menu-text">Google reCaptcha</span>
                                                             </a>
                                                         </li>
                                                     </ul>
@@ -2238,8 +2310,8 @@
                                                                             <i class="menu-bullet menu-bullet-line">
                                                                                 <span></span>
                                                                             </i>
-                                                                            <span class="menu-text">CKEditor
-                                                                                Balloon Block</span>
+                                                                            <span class="menu-text">CKEditor Balloon
+                                                                                Block</span>
                                                                         </a>
                                                                     </li>
                                                                     <li class="menu-item" aria-haspopup="true">
@@ -2260,8 +2332,7 @@
                                                                 <i class="menu-bullet menu-bullet-dot">
                                                                     <span></span>
                                                                 </i>
-                                                                <span class="menu-text">Quill Text
-                                                                    Editor</span>
+                                                                <span class="menu-text">Quill Text Editor</span>
                                                             </a>
                                                         </li>
                                                         <li class="menu-item" aria-haspopup="true">
@@ -2270,8 +2341,7 @@
                                                                 <i class="menu-bullet menu-bullet-dot">
                                                                     <span></span>
                                                                 </i>
-                                                                <span class="menu-text">Summernote
-                                                                    WYSIWYG</span>
+                                                                <span class="menu-text">Summernote WYSIWYG</span>
                                                             </a>
                                                         </li>
                                                         <li class="menu-item" aria-haspopup="true">
@@ -2280,8 +2350,7 @@
                                                                 <i class="menu-bullet menu-bullet-dot">
                                                                     <span></span>
                                                                 </i>
-                                                                <span class="menu-text">Markdown
-                                                                    Editor</span>
+                                                                <span class="menu-text">Markdown Editor</span>
                                                             </a>
                                                         </li>
                                                     </ul>
@@ -2305,8 +2374,7 @@
                                                                 <i class="menu-bullet menu-bullet-dot">
                                                                     <span></span>
                                                                 </i>
-                                                                <span class="menu-text">Default
-                                                                    Forms</span>
+                                                                <span class="menu-text">Default Forms</span>
                                                             </a>
                                                         </li>
                                                         <li class="menu-item" aria-haspopup="true">
@@ -2315,8 +2383,7 @@
                                                                 <i class="menu-bullet menu-bullet-dot">
                                                                     <span></span>
                                                                 </i>
-                                                                <span class="menu-text">Multi Column
-                                                                    Forms</span>
+                                                                <span class="menu-text">Multi Column Forms</span>
                                                             </a>
                                                         </li>
                                                         <li class="menu-item" aria-haspopup="true">
@@ -2325,8 +2392,7 @@
                                                                 <i class="menu-bullet menu-bullet-dot">
                                                                     <span></span>
                                                                 </i>
-                                                                <span class="menu-text">Basic Action
-                                                                    Bars</span>
+                                                                <span class="menu-text">Basic Action Bars</span>
                                                             </a>
                                                         </li>
                                                         <li class="menu-item" aria-haspopup="true">
@@ -2335,8 +2401,7 @@
                                                                 <i class="menu-bullet menu-bullet-dot">
                                                                     <span></span>
                                                                 </i>
-                                                                <span class="menu-text">Sticky Action
-                                                                    Bar</span>
+                                                                <span class="menu-text">Sticky Action Bar</span>
                                                             </a>
                                                         </li>
                                                     </ul>
@@ -2360,8 +2425,7 @@
                                                                 <i class="menu-bullet menu-bullet-dot">
                                                                     <span></span>
                                                                 </i>
-                                                                <span class="menu-text">Validation
-                                                                    States</span>
+                                                                <span class="menu-text">Validation States</span>
                                                             </a>
                                                         </li>
                                                         <li class="menu-item" aria-haspopup="true">
@@ -2370,8 +2434,7 @@
                                                                 <i class="menu-bullet menu-bullet-dot">
                                                                     <span></span>
                                                                 </i>
-                                                                <span class="menu-text">Form
-                                                                    Controls</span>
+                                                                <span class="menu-text">Form Controls</span>
                                                             </a>
                                                         </li>
                                                         <li class="menu-item" aria-haspopup="true">
@@ -2380,8 +2443,7 @@
                                                                 <i class="menu-bullet menu-bullet-dot">
                                                                     <span></span>
                                                                 </i>
-                                                                <span class="menu-text">Form
-                                                                    Widgets</span>
+                                                                <span class="menu-text">Form Widgets</span>
                                                             </a>
                                                         </li>
                                                     </ul>
@@ -2393,6 +2455,7 @@
                                 <li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover">
                                     <a href="javascript:;" class="menu-link menu-toggle">
                                         <span class="svg-icon menu-icon">
+
                                             <!--begin::Svg Icon | path:assets/media/svg/icons/Layout/Layout-left-panel-2.svg-->
                                             <svg xmlns="http://www.w3.org/2000/svg"
                                                 xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px"
@@ -2406,6 +2469,7 @@
                                                         rx="1" />
                                                 </g>
                                             </svg>
+
                                             <!--end::Svg Icon-->
                                         </span>
                                         <span class="menu-text">KTDatatable</span>
@@ -2437,8 +2501,7 @@
                                                                 <i class="menu-bullet menu-bullet-dot">
                                                                     <span></span>
                                                                 </i>
-                                                                <span class="menu-text">Local
-                                                                    Data</span>
+                                                                <span class="menu-text">Local Data</span>
                                                             </a>
                                                         </li>
                                                         <li class="menu-item" aria-haspopup="true">
@@ -2465,8 +2528,7 @@
                                                                 <i class="menu-bullet menu-bullet-dot">
                                                                     <span></span>
                                                                 </i>
-                                                                <span class="menu-text">HTML
-                                                                    Table</span>
+                                                                <span class="menu-text">HTML Table</span>
                                                             </a>
                                                         </li>
                                                         <li class="menu-item" aria-haspopup="true">
@@ -2475,8 +2537,7 @@
                                                                 <i class="menu-bullet menu-bullet-dot">
                                                                     <span></span>
                                                                 </i>
-                                                                <span class="menu-text">Local
-                                                                    Sort</span>
+                                                                <span class="menu-text">Local Sort</span>
                                                             </a>
                                                         </li>
                                                         <li class="menu-item" aria-haspopup="true">
@@ -2509,8 +2570,7 @@
                                                                 <i class="menu-bullet menu-bullet-dot">
                                                                     <span></span>
                                                                 </i>
-                                                                <span class="menu-text">Record
-                                                                    Selection</span>
+                                                                <span class="menu-text">Record Selection</span>
                                                             </a>
                                                         </li>
                                                         <li class="menu-item" aria-haspopup="true">
@@ -2519,8 +2579,7 @@
                                                                 <i class="menu-bullet menu-bullet-dot">
                                                                     <span></span>
                                                                 </i>
-                                                                <span class="menu-text">Row
-                                                                    Details</span>
+                                                                <span class="menu-text">Row Details</span>
                                                             </a>
                                                         </li>
                                                         <li class="menu-item" aria-haspopup="true">
@@ -2529,8 +2588,7 @@
                                                                 <i class="menu-bullet menu-bullet-dot">
                                                                     <span></span>
                                                                 </i>
-                                                                <span class="menu-text">Modal
-                                                                    Examples</span>
+                                                                <span class="menu-text">Modal Examples</span>
                                                             </a>
                                                         </li>
                                                         <li class="menu-item" aria-haspopup="true">
@@ -2539,8 +2597,7 @@
                                                                 <i class="menu-bullet menu-bullet-dot">
                                                                     <span></span>
                                                                 </i>
-                                                                <span class="menu-text">Column
-                                                                    Rendering</span>
+                                                                <span class="menu-text">Column Rendering</span>
                                                             </a>
                                                         </li>
                                                         <li class="menu-item" aria-haspopup="true">
@@ -2549,8 +2606,7 @@
                                                                 <i class="menu-bullet menu-bullet-dot">
                                                                     <span></span>
                                                                 </i>
-                                                                <span class="menu-text">Column
-                                                                    Width</span>
+                                                                <span class="menu-text">Column Width</span>
                                                             </a>
                                                         </li>
                                                         <li class="menu-item" aria-haspopup="true">
@@ -2559,8 +2615,7 @@
                                                                 <i class="menu-bullet menu-bullet-dot">
                                                                     <span></span>
                                                                 </i>
-                                                                <span class="menu-text">Vertical
-                                                                    Scrolling</span>
+                                                                <span class="menu-text">Vertical Scrolling</span>
                                                             </a>
                                                         </li>
                                                     </ul>
@@ -2584,8 +2639,7 @@
                                                                 <i class="menu-bullet menu-bullet-dot">
                                                                     <span></span>
                                                                 </i>
-                                                                <span class="menu-text">Local
-                                                                    Data</span>
+                                                                <span class="menu-text">Local Data</span>
                                                             </a>
                                                         </li>
                                                         <li class="menu-item" aria-haspopup="true">
@@ -2594,8 +2648,7 @@
                                                                 <i class="menu-bullet menu-bullet-dot">
                                                                     <span></span>
                                                                 </i>
-                                                                <span class="menu-text">Remote
-                                                                    Data</span>
+                                                                <span class="menu-text">Remote Data</span>
                                                             </a>
                                                         </li>
                                                     </ul>
@@ -2619,8 +2672,7 @@
                                                                 <i class="menu-bullet menu-bullet-dot">
                                                                     <span></span>
                                                                 </i>
-                                                                <span class="menu-text">API
-                                                                    Methods</span>
+                                                                <span class="menu-text">API Methods</span>
                                                             </a>
                                                         </li>
                                                         <li class="menu-item" aria-haspopup="true">
@@ -2641,6 +2693,7 @@
                                 <li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover">
                                     <a href="javascript:;" class="menu-link menu-toggle">
                                         <span class="svg-icon menu-icon">
+
                                             <!--begin::Svg Icon | path:assets/media/svg/icons/Layout/Layout-horizontal.svg-->
                                             <svg xmlns="http://www.w3.org/2000/svg"
                                                 xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px"
@@ -2652,6 +2705,7 @@
                                                     <rect fill="#000000" x="4" y="13" width="16" height="6" rx="1.5" />
                                                 </g>
                                             </svg>
+
                                             <!--end::Svg Icon-->
                                         </span>
                                         <span class="menu-text">Datatables.net</span>
@@ -2683,8 +2737,7 @@
                                                                 <i class="menu-bullet menu-bullet-dot">
                                                                     <span></span>
                                                                 </i>
-                                                                <span class="menu-text">Basic
-                                                                    Tables</span>
+                                                                <span class="menu-text">Basic Tables</span>
                                                             </a>
                                                         </li>
                                                         <li class="menu-item" aria-haspopup="true">
@@ -2693,8 +2746,7 @@
                                                                 <i class="menu-bullet menu-bullet-dot">
                                                                     <span></span>
                                                                 </i>
-                                                                <span class="menu-text">Scrollable
-                                                                    Tables</span>
+                                                                <span class="menu-text">Scrollable Tables</span>
                                                             </a>
                                                         </li>
                                                         <li class="menu-item" aria-haspopup="true">
@@ -2703,8 +2755,7 @@
                                                                 <i class="menu-bullet menu-bullet-dot">
                                                                     <span></span>
                                                                 </i>
-                                                                <span class="menu-text">Complex
-                                                                    Headers</span>
+                                                                <span class="menu-text">Complex Headers</span>
                                                             </a>
                                                         </li>
                                                         <li class="menu-item" aria-haspopup="true">
@@ -2713,8 +2764,7 @@
                                                                 <i class="menu-bullet menu-bullet-dot">
                                                                     <span></span>
                                                                 </i>
-                                                                <span class="menu-text">Pagination
-                                                                    Options</span>
+                                                                <span class="menu-text">Pagination Options</span>
                                                             </a>
                                                         </li>
                                                     </ul>
@@ -2738,8 +2788,7 @@
                                                                 <i class="menu-bullet menu-bullet-dot">
                                                                     <span></span>
                                                                 </i>
-                                                                <span class="menu-text">Column
-                                                                    Rendering</span>
+                                                                <span class="menu-text">Column Rendering</span>
                                                             </a>
                                                         </li>
                                                         <li class="menu-item" aria-haspopup="true">
@@ -2748,8 +2797,7 @@
                                                                 <i class="menu-bullet menu-bullet-dot">
                                                                     <span></span>
                                                                 </i>
-                                                                <span class="menu-text">Multiple
-                                                                    Controls</span>
+                                                                <span class="menu-text">Multiple Controls</span>
                                                             </a>
                                                         </li>
                                                         <li class="menu-item" aria-haspopup="true">
@@ -2758,8 +2806,7 @@
                                                                 <i class="menu-bullet menu-bullet-dot">
                                                                     <span></span>
                                                                 </i>
-                                                                <span class="menu-text">Column
-                                                                    Visibility</span>
+                                                                <span class="menu-text">Column Visibility</span>
                                                             </a>
                                                         </li>
                                                         <li class="menu-item" aria-haspopup="true">
@@ -2768,8 +2815,7 @@
                                                                 <i class="menu-bullet menu-bullet-dot">
                                                                     <span></span>
                                                                 </i>
-                                                                <span class="menu-text">Row
-                                                                    Callback</span>
+                                                                <span class="menu-text">Row Callback</span>
                                                             </a>
                                                         </li>
                                                         <li class="menu-item" aria-haspopup="true">
@@ -2778,8 +2824,7 @@
                                                                 <i class="menu-bullet menu-bullet-dot">
                                                                     <span></span>
                                                                 </i>
-                                                                <span class="menu-text">Row
-                                                                    Grouping</span>
+                                                                <span class="menu-text">Row Grouping</span>
                                                             </a>
                                                         </li>
                                                         <li class="menu-item" aria-haspopup="true">
@@ -2788,8 +2833,7 @@
                                                                 <i class="menu-bullet menu-bullet-dot">
                                                                     <span></span>
                                                                 </i>
-                                                                <span class="menu-text">Footer
-                                                                    Callback</span>
+                                                                <span class="menu-text">Footer Callback</span>
                                                             </a>
                                                         </li>
                                                     </ul>
@@ -2831,8 +2875,7 @@
                                                                 <i class="menu-bullet menu-bullet-dot">
                                                                     <span></span>
                                                                 </i>
-                                                                <span class="menu-text">Ajax
-                                                                    Client-side</span>
+                                                                <span class="menu-text">Ajax Client-side</span>
                                                             </a>
                                                         </li>
                                                         <li class="menu-item" aria-haspopup="true">
@@ -2841,8 +2884,7 @@
                                                                 <i class="menu-bullet menu-bullet-dot">
                                                                     <span></span>
                                                                 </i>
-                                                                <span class="menu-text">Ajax
-                                                                    Server-side</span>
+                                                                <span class="menu-text">Ajax Server-side</span>
                                                             </a>
                                                         </li>
                                                     </ul>
@@ -2866,8 +2908,7 @@
                                                                 <i class="menu-bullet menu-bullet-dot">
                                                                     <span></span>
                                                                 </i>
-                                                                <span class="menu-text">Column
-                                                                    Search</span>
+                                                                <span class="menu-text">Column Search</span>
                                                             </a>
                                                         </li>
                                                         <li class="menu-item" aria-haspopup="true">
@@ -2876,8 +2917,7 @@
                                                                 <i class="menu-bullet menu-bullet-dot">
                                                                     <span></span>
                                                                 </i>
-                                                                <span class="menu-text">Advanced
-                                                                    Search</span>
+                                                                <span class="menu-text">Advanced Search</span>
                                                             </a>
                                                         </li>
                                                     </ul>
@@ -2976,6 +3016,7 @@
                                 <li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover">
                                     <a href="javascript:;" class="menu-link menu-toggle">
                                         <span class="svg-icon menu-icon">
+
                                             <!--begin::Svg Icon | path:assets/media/svg/icons/Files/Upload.svg-->
                                             <svg xmlns="http://www.w3.org/2000/svg"
                                                 xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px"
@@ -2992,6 +3033,7 @@
                                                         fill="#000000" fill-rule="nonzero" />
                                                 </g>
                                             </svg>
+
                                             <!--end::Svg Icon-->
                                         </span>
                                         <span class="menu-text">File Upload</span>
@@ -3037,6 +3079,7 @@
                                 <li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover">
                                     <a href="javascript:;" class="menu-link menu-toggle">
                                         <span class="svg-icon menu-icon">
+
                                             <!--begin::Svg Icon | path:assets/media/svg/icons/Shopping/Box2.svg-->
                                             <svg xmlns="http://www.w3.org/2000/svg"
                                                 xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px"
@@ -3051,6 +3094,7 @@
                                                         fill="#000000" opacity="0.3" />
                                                 </g>
                                             </svg>
+
                                             <!--end::Svg Icon-->
                                         </span>
                                         <span class="menu-text">Bootstrap</span>
@@ -3158,6 +3202,7 @@
                                 <li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover">
                                     <a href="javascript:;" class="menu-link menu-toggle">
                                         <span class="svg-icon menu-icon">
+
                                             <!--begin::Svg Icon | path:assets/media/svg/icons/Files/Pictures1.svg-->
                                             <svg xmlns="http://www.w3.org/2000/svg"
                                                 xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px"
@@ -3174,6 +3219,7 @@
                                                         fill="#000000" opacity="0.3" />
                                                 </g>
                                             </svg>
+
                                             <!--end::Svg Icon-->
                                         </span>
                                         <span class="menu-text">Custom</span>
@@ -3305,6 +3351,7 @@
                                 <li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover">
                                     <a href="javascript:;" class="menu-link menu-toggle">
                                         <span class="svg-icon menu-icon">
+
                                             <!--begin::Svg Icon | path:assets/media/svg/icons/Layout/Layout-arrange.svg-->
                                             <svg xmlns="http://www.w3.org/2000/svg"
                                                 xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px"
@@ -3319,6 +3366,7 @@
                                                         fill="#000000" opacity="0.3" />
                                                 </g>
                                             </svg>
+
                                             <!--end::Svg Icon-->
                                         </span>
                                         <span class="menu-text">Cards</span>
@@ -3394,6 +3442,7 @@
                                 <li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover">
                                     <a href="javascript:;" class="menu-link menu-toggle">
                                         <span class="svg-icon menu-icon">
+
                                             <!--begin::Svg Icon | path:assets/media/svg/icons/Devices/Diagnostics.svg-->
                                             <svg xmlns="http://www.w3.org/2000/svg"
                                                 xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px"
@@ -3408,6 +3457,7 @@
                                                     <circle fill="#000000" opacity="0.3" cx="19" cy="6" r="1" />
                                                 </g>
                                             </svg>
+
                                             <!--end::Svg Icon-->
                                         </span>
                                         <span class="menu-text">Widgets</span>
@@ -3507,6 +3557,7 @@
                                 <li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover">
                                     <a href="javascript:;" class="menu-link menu-toggle">
                                         <span class="svg-icon menu-icon">
+
                                             <!--begin::Svg Icon | path:assets/media/svg/icons/General/Attachment2.svg-->
                                             <svg xmlns="http://www.w3.org/2000/svg"
                                                 xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px"
@@ -3531,6 +3582,7 @@
                                                         transform="translate(18.035534, 17.863961) scale(1, -1) rotate(45.000000) translate(-18.035534, -17.863961)" />
                                                 </g>
                                             </svg>
+
                                             <!--end::Svg Icon-->
                                         </span>
                                         <span class="menu-text">Icons</span>
@@ -3593,6 +3645,7 @@
                                 <li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover">
                                     <a href="javascript:;" class="menu-link menu-toggle">
                                         <span class="svg-icon menu-icon">
+
                                             <!--begin::Svg Icon | path:assets/media/svg/icons/Design/Select.svg-->
                                             <svg xmlns="http://www.w3.org/2000/svg"
                                                 xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px"
@@ -3607,6 +3660,7 @@
                                                         fill="#000000" />
                                                 </g>
                                             </svg>
+
                                             <!--end::Svg Icon-->
                                         </span>
                                         <span class="menu-text">Calendar</span>
@@ -3666,6 +3720,7 @@
                                 <li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover">
                                     <a href="javascript:;" class="menu-link menu-toggle">
                                         <span class="svg-icon menu-icon">
+
                                             <!--begin::Svg Icon | path:assets/media/svg/icons/Media/Equalizer.svg-->
                                             <svg xmlns="http://www.w3.org/2000/svg"
                                                 xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px"
@@ -3679,6 +3734,7 @@
                                                     <rect fill="#000000" x="3" y="13" width="3" height="7" rx="1.5" />
                                                 </g>
                                             </svg>
+
                                             <!--end::Svg Icon-->
                                         </span>
                                         <span class="menu-text">Charts</span>
@@ -3718,8 +3774,7 @@
                                                                 <i class="menu-bullet menu-bullet-dot">
                                                                     <span></span>
                                                                 </i>
-                                                                <span class="menu-text">amCharts
-                                                                    Charts</span>
+                                                                <span class="menu-text">amCharts Charts</span>
                                                             </a>
                                                         </li>
                                                         <li class="menu-item" aria-haspopup="true">
@@ -3728,8 +3783,7 @@
                                                                 <i class="menu-bullet menu-bullet-dot">
                                                                     <span></span>
                                                                 </i>
-                                                                <span class="menu-text">amCharts Stock
-                                                                    Charts</span>
+                                                                <span class="menu-text">amCharts Stock Charts</span>
                                                             </a>
                                                         </li>
                                                         <li class="menu-item" aria-haspopup="true">
@@ -3738,8 +3792,7 @@
                                                                 <i class="menu-bullet menu-bullet-dot">
                                                                     <span></span>
                                                                 </i>
-                                                                <span class="menu-text">amCharts
-                                                                    Maps</span>
+                                                                <span class="menu-text">amCharts Maps</span>
                                                             </a>
                                                         </li>
                                                     </ul>
@@ -3767,6 +3820,7 @@
                                 <li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover">
                                     <a href="javascript:;" class="menu-link menu-toggle">
                                         <span class="svg-icon menu-icon">
+
                                             <!--begin::Svg Icon | path:assets/media/svg/icons/Home/Book-open.svg-->
                                             <svg xmlns="http://www.w3.org/2000/svg"
                                                 xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px"
@@ -3781,6 +3835,7 @@
                                                         fill="#000000" opacity="0.3" />
                                                 </g>
                                             </svg>
+
                                             <!--end::Svg Icon-->
                                         </span>
                                         <span class="menu-text">Maps</span>
@@ -3824,6 +3879,7 @@
                                 <li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover">
                                     <a href="javascript:;" class="menu-link menu-toggle">
                                         <span class="svg-icon menu-icon">
+
                                             <!--begin::Svg Icon | path:assets/media/svg/icons/Home/Mirror.svg-->
                                             <svg xmlns="http://www.w3.org/2000/svg"
                                                 xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px"
@@ -3838,6 +3894,7 @@
                                                         fill="#000000" opacity="0.3" />
                                                 </g>
                                             </svg>
+
                                             <!--end::Svg Icon-->
                                         </span>
                                         <span class="menu-text">Miscellaneous</span>
@@ -3953,18 +4010,26 @@
                                     </div>
                                 </li>
                             </ul>
+
                             <!--end::Menu Nav-->
                         </div>
+
                         <!--end::Menu Container-->
                     </div>
+
                     <!--end::Aside Menu-->
                 </div>
+
                 <!--end::Tab Pane-->
             </div>
+
             <!--end::Tab Content-->
         </div>
+
         <!--end::Workspace-->
     </div>
+
     <!--end::Secondary-->
 </div>
+
 <!--end::Aside-->
