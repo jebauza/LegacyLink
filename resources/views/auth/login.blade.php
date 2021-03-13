@@ -10,7 +10,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>{{ config('app.name', 'Laravel') }}1</title>
     <!--begin::Fonts-->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" />
     <!--end::Fonts-->
@@ -64,118 +64,128 @@
                     </div>
                     @endif
 
-                    <!--begin::Login Sign in form-->
-                    <div class="login-signin">
-                        <div class="mb-20">
-                            <h3>Sign In To Admin</h3>
-                            <div class="text-muted font-weight-bold">Enter your details to login to your account:</div>
-                        </div>
+                    {{-- @if($errors->has('email'))
+                    <div class="error">{{ $errors->first('email') }}
+                </div>
+                @endif
 
-                        <form class="form" id="kt_login_signin_form" method="POST" action="{{ route('admin.login') }}">
-                            @csrf
+                @isset($errors)
+                {{ dd($errors) }}
+                @endisset --}}
 
-                            <div class="form-group mb-5">
-                                <input
-                                    class="form-control h-auto form-control-solid py-4 px-8  @error('email') is-invalid @enderror"
-                                    type="email" placeholder="{{ __('E-Mail Address') }}" name="email"
-                                    value="{{ old('email') }}" required autocomplete="off" autofocus />
 
-                                @error('email')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                                @enderror
-                            </div>
 
-                            <div class="form-group mb-5">
-                                <input
-                                    class="form-control h-auto form-control-solid py-4 px-8 @error('password') is-invalid @enderror"
-                                    type="password" placeholder="{{ __('Password') }}" name="password" required
-                                    autocomplete="current-password" />
-
-                                @error('password')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                                @enderror
-                            </div>
-
-                            <div class="form-group d-flex flex-wrap justify-content-between align-items-center">
-                                <div class="checkbox-inline">
-                                    <label class="checkbox m-0 text-muted">
-                                        <input type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }} />
-                                        <span></span>{{ __('Remember Me') }}</label>
-                                </div>
-                                <a href="javascript:;" id="kt_login_forgot" class="text-muted text-hover-primary">Forget
-                                    Password ?</a>
-                            </div>
-                            <button id="kt_login_signin_submit"
-                                class="btn btn-primary font-weight-bold px-9 py-4 my-3 mx-4">Sign In</button>
-                        </form>
-                        <div class="mt-10">
-                            <span class="opacity-70 mr-4">Don't have an account yet?</span>
-                            <a href="javascript:;" id="kt_login_signup"
-                                class="text-muted text-hover-primary font-weight-bold">Sign Up!</a>
-                        </div>
+                <!--begin::Login Sign in form-->
+                <div class="login-signin">
+                    <div class="mb-20">
+                        <h3>Sign In To Admin</h3>
+                        <div class="text-muted font-weight-bold">Enter your details to login to your account:</div>
                     </div>
-                    <!--end::Login Sign in form-->
 
-                    <!--begin::Login Sign up form-->
-                    <div class="login-signup">
-                        <div class="mb-20">
-                            <h3>Sign Up</h3>
-                            <div class="text-muted font-weight-bold">Enter your details to create your account</div>
+                    <form class="form" id="kt_login_signin_form" method="POST" action="{{ route('admin.login') }}">
+                        @csrf
+
+                        <div class="form-group mb-5">
+                            <input
+                                class="form-control h-auto form-control-solid py-4 px-8  @error('email') is-invalid @enderror"
+                                type="email" placeholder="{{ __('E-Mail Address') }}" name="email"
+                                value="{{ old('email') }}" required autocomplete="off" autofocus />
+
+                            @error('email')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
                         </div>
-                        <form class="form" id="kt_login_signup_form" method="POST"
-                            action="{{ route('admin.register') }}">
-                            @csrf
 
-                            <div class="form-group mb-5">
-                                <input
-                                    class="form-control h-auto form-control-solid py-4 px-8 @error('name') is-invalid @enderror"
-                                    type="text" placeholder="{{ __('Name') }}" name="name" value="{{ old('name') }}"
-                                    required autocomplete="off" autofocus />
+                        <div class="form-group mb-5">
+                            <input
+                                class="form-control h-auto form-control-solid py-4 px-8 @error('password') is-invalid @enderror"
+                                type="password" placeholder="{{ __('Password') }}" name="password" required
+                                autocomplete="current-password" />
 
-                                @error('name')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                                @enderror
+                            @error('password')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
+                        </div>
+
+                        <div class="form-group d-flex flex-wrap justify-content-between align-items-center">
+                            <div class="checkbox-inline">
+                                <label class="checkbox m-0 text-muted">
+                                    <input type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }} />
+                                    <span></span>{{ __('Remember Me') }}</label>
                             </div>
+                            <a href="javascript:;" id="kt_login_forgot" class="text-muted text-hover-primary">Forget
+                                Password ?</a>
+                        </div>
+                        <button id="kt_login_signin_submit"
+                            class="btn btn-primary font-weight-bold px-9 py-4 my-3 mx-4">Sign In</button>
+                    </form>
+                    <div class="mt-10">
+                        <span class="opacity-70 mr-4">Don't have an account yet?</span>
+                        <a href="javascript:;" id="kt_login_signup"
+                            class="text-muted text-hover-primary font-weight-bold">Sign Up!</a>
+                    </div>
+                </div>
+                <!--end::Login Sign in form-->
 
-                            <div class="form-group mb-5">
-                                <input
-                                    class="form-control h-auto form-control-solid py-4 px-8 @error('signup_email') is-invalid @enderror"
-                                    type="text" placeholder="{{ __('E-Mail Address') }}" name="signup_email"
-                                    value="{{ old('signup_email') }}" required autocomplete="off" />
+                <!--begin::Login Sign up form-->
+                <div class="login-signup">
+                    <div class="mb-20">
+                        <h3>Sign Up</h3>
+                        <div class="text-muted font-weight-bold">Enter your details to create your account</div>
+                    </div>
+                    <form class="form" id="kt_login_signup_form" method="POST" action="{{ route('admin.register') }}">
+                        @csrf
 
-                                @error('signup_email')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                                @enderror
-                            </div>
+                        <div class="form-group mb-5">
+                            <input
+                                class="form-control h-auto form-control-solid py-4 px-8 @error('name') is-invalid @enderror"
+                                type="text" placeholder="{{ __('Name') }}" name="name" value="{{ old('name') }}"
+                                required autocomplete="off" autofocus />
 
-                            <div class="form-group mb-5">
-                                <input
-                                    class="form-control h-auto form-control-solid py-4 px-8 @error('signup_password') is-invalid @enderror"
-                                    type="password" placeholder="{{ __('Password') }}" name="signup_password" required
-                                    autocomplete="off" />
+                            @error('name')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
+                        </div>
 
-                                @error('signup_password')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                                @enderror
-                            </div>
+                        <div class="form-group mb-5">
+                            <input
+                                class="form-control h-auto form-control-solid py-4 px-8 @error('signup_email') is-invalid @enderror"
+                                type="text" placeholder="{{ __('E-Mail Address') }}" name="signup_email"
+                                value="{{ old('signup_email') }}" required autocomplete="off" />
 
-                            <div class="form-group mb-5">
-                                <input class="form-control h-auto form-control-solid py-4 px-8" type="password"
-                                    placeholder="{{ __('Confirm Password') }}" name="signup_password_confirmation"
-                                    required autocomplete="new-password" />
-                            </div>
+                            @error('signup_email')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
+                        </div>
 
-                            {{-- <div class="form-group mb-5 text-left">
+                        <div class="form-group mb-5">
+                            <input
+                                class="form-control h-auto form-control-solid py-4 px-8 @error('signup_password') is-invalid @enderror"
+                                type="password" placeholder="{{ __('Password') }}" name="signup_password" required
+                                autocomplete="off" />
+
+                            @error('signup_password')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
+                        </div>
+
+                        <div class="form-group mb-5">
+                            <input class="form-control h-auto form-control-solid py-4 px-8" type="password"
+                                placeholder="{{ __('Confirm Password') }}" name="signup_password_confirmation" required
+                                autocomplete="new-password" />
+                        </div>
+
+                        {{-- <div class="form-group mb-5 text-left">
                                 <div class="checkbox-inline">
                                     <label class="checkbox m-0">
                                         <input type="checkbox" name="agree" />
@@ -185,53 +195,53 @@
                                 <div class="form-text text-muted text-center"></div>
                             </div> --}}
 
-                            <div class="form-group d-flex flex-wrap flex-center mt-10">
-                                <button id="kt_login_signup_submit"
-                                    class="btn btn-primary font-weight-bold px-9 py-4 my-3 mx-2">Sign Up</button>
-                                <button id="kt_login_signup_cancel"
-                                    class="btn btn-light-primary font-weight-bold px-9 py-4 my-3 mx-2">Cancel</button>
-                            </div>
-                        </form>
-                    </div>
-                    <!--end::Login Sign up form-->
-
-                    <!--begin::Login forgot password form-->
-                    <div class="login-forgot">
-                        <div class="mb-20">
-                            <h3>Forgotten Password ?</h3>
-                            <div class="text-muted font-weight-bold">Enter your email to reset your password</div>
+                        <div class="form-group d-flex flex-wrap flex-center mt-10">
+                            <button id="kt_login_signup_submit"
+                                class="btn btn-primary font-weight-bold px-9 py-4 my-3 mx-2">Sign Up</button>
+                            <button id="kt_login_signup_cancel"
+                                class="btn btn-light-primary font-weight-bold px-9 py-4 my-3 mx-2">Cancel</button>
                         </div>
-                        <form class="form" id="kt_login_forgot_form" method="POST"
-                            action="{{ route('admin.forget-password') }}">
-                            @csrf
-
-                            <div class="form-group mb-10">
-                                <input
-                                    class="form-control form-control-solid h-auto py-4 px-8 @error('email') is-invalid @enderror"
-                                    type="email" placeholder="Email" name="forgot_email"
-                                    value="{{ old('forgot_email') }}" autocomplete="off" />
-
-                                @error('forgot_email')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                                @enderror
-                            </div>
-
-                            <div class="form-group d-flex flex-wrap flex-center mt-10">
-                                <button id="kt_login_forgot_submit"
-                                    class="btn btn-primary font-weight-bold px-9 py-4 my-3 mx-2">Request</button>
-                                <button id="kt_login_forgot_cancel"
-                                    class="btn btn-light-primary font-weight-bold px-9 py-4 my-3 mx-2">Cancel</button>
-                            </div>
-                        </form>
-                    </div>
-                    <!--end::Login forgot password form-->
-
+                    </form>
                 </div>
+                <!--end::Login Sign up form-->
+
+                <!--begin::Login forgot password form-->
+                <div class="login-forgot">
+                    <div class="mb-20">
+                        <h3>Forgotten Password ?</h3>
+                        <div class="text-muted font-weight-bold">Enter your email to reset your password</div>
+                    </div>
+                    <form class="form" id="kt_login_forgot_form" method="POST"
+                        action="{{ route('admin.forget-password') }}">
+                        @csrf
+
+                        <div class="form-group mb-10">
+                            <input
+                                class="form-control form-control-solid h-auto py-4 px-8 @error('email') is-invalid @enderror"
+                                type="email" placeholder="Email" name="forgot_email" value="{{ old('forgot_email') }}"
+                                autocomplete="off" />
+
+                            @error('forgot_email')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
+                        </div>
+
+                        <div class="form-group d-flex flex-wrap flex-center mt-10">
+                            <button id="kt_login_forgot_submit"
+                                class="btn btn-primary font-weight-bold px-9 py-4 my-3 mx-2">Request</button>
+                            <button id="kt_login_forgot_cancel"
+                                class="btn btn-light-primary font-weight-bold px-9 py-4 my-3 mx-2">Cancel</button>
+                        </div>
+                    </form>
+                </div>
+                <!--end::Login forgot password form-->
+
             </div>
         </div>
-        <!--end::Login-->
+    </div>
+    <!--end::Login-->
     </div>
     <!--end::Main-->
     <!-- JQuery, Bootstrap, VueJS -->

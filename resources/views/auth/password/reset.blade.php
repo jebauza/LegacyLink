@@ -1,9 +1,6 @@
 @extends('layouts.app')
 @section('content')
 
-@isset($error)
-{{ dd($error) }}
-@endisset
 
 <div class="container">
     <div class="row justify-content-center">
