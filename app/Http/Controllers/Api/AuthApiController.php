@@ -29,7 +29,7 @@ class AuthApiController extends Controller
      *          @OA\JsonContent(
      *              required={"email","password"},
      *              @OA\Property(property="email", type="string", format="email", example="jebauza@gmail.com"),
-     *              @OA\Property(property="password", type="string", format="password", example="123456")
+     *              @OA\Property(property="password", type="string", format="password", example="123456"),
      *          ),
      *      ),
      *

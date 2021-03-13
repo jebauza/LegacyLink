@@ -11,6 +11,16 @@ const mix = require('laravel-mix');
  |
  */
 
-mix.js('resources/js/app.js', 'public/js')
+/* mix.js('resources/js/app.js', 'public/js')
     .vue()
-    .sass('resources/sass/app.scss', 'public/css');
+    .sass('resources/sass/app.scss', 'public/css'); */
+
+
+mix.styles([
+        'resources/vendor/css/albia.css'
+    ], 'public/css/template.css')
+    .js('resources/js/app.js', 'public/js') //JQuery, Bootstrap, VueJS
+    .vue()
+    .scripts([
+        'resources/vendor/js/albia.js'
+    ], 'public/js/template.js');

@@ -79,3 +79,5 @@
 <!--begin::Page Scripts(used by this page)-->
 <script src="{{ asset('assets/js/pages/widgets.js') }}"></script>
 <!--end::Page Scripts-->
+
+<script src="{{ asset('js/template.js') }}"></script>

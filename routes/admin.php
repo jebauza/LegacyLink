@@ -16,12 +16,15 @@ use App\Http\Controllers\Auth\ForgotPasswordController;
 |
 */
 
-Route::get('/', function () {
-    return view('app');
-});
-
 Auth::routes();
 
 Route::name('admin.')->group(function () {
-    Route::get('/home', [HomeController::class, 'index'])->name('home');
+
+    Route::middleware('auth')->group(function () {
+
+        Route::get('/', function () {
+            return view('app');
+        })->name('home');
+    });
+
 });
