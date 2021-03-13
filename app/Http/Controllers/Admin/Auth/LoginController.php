@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin\Auth;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Office;
 use Illuminate\Support\Facades\Auth;
 
 
@@ -26,7 +27,9 @@ class LoginController extends Controller
         $remember = $request->remember ? true : false;
 
         if (Auth::attempt($credentials, $remember)) {
-            // Authentication passed...
+
+            $office = auth()->user()->currentOffice();
+            session(['currentOffice' => $office]);
             return redirect()->intended('admin/home');
         }
 
