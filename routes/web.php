@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Web\AuthController;
 
@@ -15,14 +16,6 @@ use App\Http\Controllers\Web\AuthController;
 */
 
 Route::get('/', function () {
-    return redirect()->route('login');
-});
-
-Route::name('web.')->group(function () {
-
-    Route::get('login', function () {
-        return view('login');
-    })->name('login');
-
-    Route::post('login', [AuthController::class, 'login']);
+    //return redirect()->route('login');
+    return view('welcome');
 });

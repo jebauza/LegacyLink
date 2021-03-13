@@ -17,10 +17,7 @@ const mix = require('laravel-mix');
 
 
 mix.styles([
-        'resources/vendor/css/albia.css'
+        'resources/css/app.css'
     ], 'public/css/template.css')
     .js('resources/js/app.js', 'public/js') //JQuery, Bootstrap, VueJS
-    .vue()
-    .scripts([
-        'resources/vendor/js/albia.js'
-    ], 'public/js/template.js');
+    .vue();

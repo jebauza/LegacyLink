@@ -49,11 +49,11 @@
                             <span class="navi-text text-muted text-hover-primary">jm@softplus.com</span>
                         </span>
                     </a>
-                    <a href="{{ route('logout') }}"
+                    <a href="{{ route('admin.logout') }}"
                         onclick="event.preventDefault();document.getElementById('logout-form').submit();"
                         class="btn btn-sm btn-light-primary font-weight-bolder py-2 px-5">{{ __('Logout') }}</a>
 
-                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                    <form id="logout-form" action="{{ route('admin.logout') }}" method="POST" class="d-none">
                         @csrf
                     </form>
                 </div>
