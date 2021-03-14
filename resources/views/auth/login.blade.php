@@ -24,7 +24,7 @@
     <!--end::Global Theme Styles-->
     <!--begin::Layout Themes(used by all pages)-->
     <!--end::Layout Themes-->
-    <link rel="shortcut icon" href="{{ asset('media/logos/favicon.ico') }}" />
+    <link rel="shortcut icon" href="{{ asset('media/logos/logo-albia-rgb.jpg') }}" />
 </head>
 <!--end::Head-->
 <!--begin::Body-->
@@ -47,7 +47,7 @@
                     <!--begin::Login Header-->
                     <div class="d-flex flex-center mb-15">
                         <a href="#">
-                            <img src="assets/media/logos/logo-letter-13.png" class="max-h-75px" alt="" />
+                            <img src="{{ asset('media/logos/logo-albia-rgb.jpg') }}" class="max-h-150px" alt="" />
                         </a>
                     </div>
                     <!--end::Login Header-->

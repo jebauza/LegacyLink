@@ -20,5 +20,5 @@
 
     <link rel="stylesheet" href="{{ asset('css/template.css') }}">
 
-    <link rel="shortcut icon" href="{{ asset('media/logos/favicon.ico') }}" />
+    <link rel="shortcut icon" href="{{ asset('media/logos/logo-albia-rgb.jpg') }}" />
 </head>

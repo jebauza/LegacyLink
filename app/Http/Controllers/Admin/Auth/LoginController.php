@@ -12,11 +12,19 @@ class LoginController extends Controller
 {
     public function login()
     {
-      return view('auth.login');
+        if (Auth::check()) {
+            return redirect()->route('admin.home');
+        }
+
+        return view('auth.login');
     }
 
     public function authenticate(Request $request)
     {
+        if (Auth::check()) {
+            return redirect()->route('admin.home');
+        }
+
         $request->validate([
             'email' => 'required|string|email',
             'password' => 'required|string'

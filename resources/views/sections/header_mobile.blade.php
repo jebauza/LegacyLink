@@ -3,7 +3,8 @@
 
     <!--begin::Logo-->
     <a href="index.html">
-        <img alt="Logo" src="assets/media/logos/logo-letter-2.png" class="logo-default max-h-30px" />
+        <img alt="Logo" src="{{ asset('media/logos/logotipo-horizontal-pantones.png') }}"
+            class="logo-default max-h-30px" />
     </a>
 
     <!--end::Logo-->

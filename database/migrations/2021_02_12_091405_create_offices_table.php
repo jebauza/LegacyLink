@@ -17,19 +17,19 @@ class CreateOfficesTable extends Migration
             $table->id();
             $table->string('code', 100);
             $table->string('name', 255);
-            $table->string('cif', 100);
+            $table->string('cif', 100)->nullable();
             $table->string('address', 255);
             $table->string('extra_address', 255)->nullable();
-            $table->string('city', 255);
+            $table->string('city', 255)->nullable();
             $table->string('cp', 255)->nullable()->comment('Postal Code');
-            $table->string('province', 255);
-            $table->string('country', 255);
-            $table->string('time_zone', 255);
-            $table->string('phone', 20);
+            $table->string('province', 255)->nullable();
+            $table->string('country', 255)->nullable();
+            $table->string('time_zone', 255)->nullable();
+            $table->string('phone', 20)->nullable();
             $table->string('contact_person', 255)->nullable();
-            $table->string('email', 100);
-            $table->decimal('latitude', 10, 8);
-            $table->decimal('longitude', 11, 8);
+            $table->string('email', 100)->nullable();
+            $table->decimal('latitude', 10, 8)->nullable();
+            $table->decimal('longitude', 11, 8)->nullable();
             $table->boolean('is_active')->default(true);
 
             $table->timestamps();
