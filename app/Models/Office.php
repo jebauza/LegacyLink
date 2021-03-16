@@ -12,6 +12,8 @@ class Office extends Model
 
     protected $table = 'offices';
 
+    protected $fillable = ['code','name','cif','address','extra_address','city','cp','province','country','timezone','phone','contact_person','email','latitude','longitude'];
+
     /**
      * The roles that belong to the Office
      *
@@ -21,5 +23,15 @@ class Office extends Model
     {
         return $this->belongsToMany(Employee::class, 'office_employee', 'office_id', 'employee_id')
                     ->withPivot('office_id','employee_id','default')->withTimestamps();
+    }
+
+    /**
+     * Get all of the comments for the Employee
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function employee_sections()
+    {
+        return $this->hasMany(OfficeEmployee::class, 'office_id', 'id');
     }
 }

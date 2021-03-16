@@ -2,8 +2,16 @@
 
 namespace App\Http\Controllers\Admin\Office;
 
-use App\Http\Controllers\Controller;
+use App\Models\Office;
+use App\Models\Employee;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use App\Models\OfficeEmployee;
+use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Hash;
+use App\Http\Resources\OfficeResource;
+use App\Http\Requests\OfficeStoreUpdateRequest;
 
 class OfficeController extends Controller
 {
@@ -18,13 +26,28 @@ class OfficeController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function index()
     {
-        //
+        $offices = Office::orderBy('name')->get();
+
+        return $this->sendResponse(null, OfficeResource::collection($offices));
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function paginate()
+    {
+        $officesPaginate = Office::orderBy('name')->paginate();
+        $officesPaginate->setCollection(OfficeResource::collection($officesPaginate->getCollection())->collection);
+
+        return $this->sendResponse(null, $officesPaginate);
     }
 
     /**
@@ -33,9 +56,23 @@ class OfficeController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(OfficeStoreUpdateRequest $request)
     {
-        //
+        try {
+            DB::beginTransaction();
+            $newOffice = new Office($request->all());
+            // $newOffice->is_active = $request->is_active ? true : false;
+            $newOffice->created_by = auth()->user()->id;
+            $newOffice->updated_by = auth()->user()->id;
+            $newOffice->save();
+
+            DB::commit();
+            return $this->sendResponse("Save successfully", (new OfficeResource($newOffice)), 201);
+
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return $this->sendError500($e->getMessage());
+        }
     }
 
     /**
@@ -46,18 +83,11 @@ class OfficeController extends Controller
      */
     public function show($id)
     {
-        //
-    }
+        if(!$office = Office::find($id)) {
+            return $this->sendError404();
+        }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
+        return $this->sendResponse(null, (new OfficeResource($office)));
     }
 
     /**
@@ -67,9 +97,26 @@ class OfficeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(OfficeStoreUpdateRequest $request, $id)
     {
-        //
+        if(!$office = Office::find($id)) {
+            return $this->sendError404();
+        }
+
+        try {
+            DB::beginTransaction();
+            $office->fill($request->all());
+            $office->is_active = $request->is_active ? true : false;
+            $office->updated_by = auth()->user()->id;
+            $office->save();
+
+            DB::commit();
+            return $this->sendResponse('Update successfully', (new OfficeResource($office)));
+
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return $this->sendError500($e->getMessage());
+        }
     }
 
     /**
@@ -80,6 +127,20 @@ class OfficeController extends Controller
      */
     public function destroy($id)
     {
-        //
+        if(!$office = Office::find($id)) {
+            return $this->sendError404();
+        }
+
+        try {
+            DB::beginTransaction();
+            $office->delete();
+
+            DB::commit();
+            return $this->sendResponse('Deleted successfully', (new OfficeResource($office)));
+
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return $this->sendError500($e->getMessage());
+        }
     }
 }

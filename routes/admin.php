@@ -31,11 +31,20 @@ Route::name('admin.')->group(function () {
         Route::get('home', [HomeController::class, 'home'])->name('home');
         Route::post('logout', [LoginController::class, 'logout'])->name('logout');
 
-        Route::get('offices', [OfficeController::class, 'indexView'])->name('office.indexView');
+        Route::get('offices', [OfficeController::class, 'indexView'])->name('offices.indexView');
 
-        Route::name('ajax.')->middleware('ajax')->group(function () {
+        Route::prefix('ajax')->name('ajax.')->middleware('ajax')->group(function () {
 
+            Route::prefix('offices')->name('offices.')->group(function () {
 
+                Route::get('/', [OfficeController::class, 'index'])->name('index');
+                Route::get('/paginate', [OfficeController::class, 'paginate'])->name('paginate');
+                Route::post('store', [OfficeController::class, 'store'])->name('store');
+                Route::get('show', [OfficeController::class, 'show'])->name('show');
+                Route::put('/{office_id}/update', [OfficeController::class, 'update'])->name('update');
+                Route::delete('/{office_id}/destroy', [OfficeController::class, 'destroy'])->name('destroy');
+
+            });
 
         });
 
