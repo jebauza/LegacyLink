@@ -106,7 +106,7 @@ class OfficeController extends Controller
         try {
             DB::beginTransaction();
             $office->fill($request->all());
-            $office->is_active = $request->is_active ? true : false;
+            //$office->is_active = $request->is_active ? true : false;
             $office->updated_by = auth()->user()->id;
             $office->save();
 

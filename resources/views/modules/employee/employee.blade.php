@@ -2,7 +2,7 @@
 
 @section('content')
 
-<office></office>
+<employee></employee>
 
 @endsection
 

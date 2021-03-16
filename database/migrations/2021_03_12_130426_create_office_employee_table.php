@@ -22,8 +22,6 @@ class CreateOfficeEmployeeTable extends Migration
             $table->unsignedBigInteger('employee_id');
             $table->foreign('employee_id')->references('id')->on('employees')->onDelete('cascade');
 
-            $table->boolean('default')->default(false);
-
             $table->timestamps();
         });
     }

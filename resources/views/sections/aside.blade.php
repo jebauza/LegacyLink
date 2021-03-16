@@ -179,8 +179,9 @@
                                     </a>
                                 </li>
 
-                                <li class="menu-item " aria-haspopup="true">
-                                    <a href="{{ route('admin.offices.indexView') }}" class="menu-link">
+                                <li class="menu-item @if(Route::is('admin.employees.indexView')) menu-item-active @endif"
+                                    aria-haspopup="true">
+                                    <a href="{{ route('admin.employees.indexView') }}" class="menu-link">
                                         <span class="svg-icon menu-icon">
 
                                             <!--begin::Svg Icon | path:C:\wamp64\www\keenthemes\themes\metronic\theme\html\demo3\dist/../src/media/svg/icons\Communication\Group.svg-->
@@ -199,7 +200,7 @@
                                             </svg>
                                             <!--end::Svg Icon-->
                                         </span>
-                                        <span class="menu-text">Usuarios</span>
+                                        <span class="menu-text">Empleados</span>
                                     </a>
                                 </li>
 

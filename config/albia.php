@@ -1,0 +1,26 @@
+<?php
+
+return [
+
+    'roles' => [
+        ['id' => 1, 'name' => 'Super Admin'],
+        ['id' => 2, 'name' => 'Admin Sucursal'],
+        ['id' => 3, 'name' => 'Asesor']
+    ],
+
+    'permissions' => [
+
+        /* Employee */
+        ['name' => 'employees.index', 'roles' => [1,2]],
+        ['name' => 'employees.store', 'roles' => [1,2]],
+        ['name' => 'employees.show', 'roles' => [1,2]],
+        ['name' => 'employees.update', 'roles' => [1,2]],
+        ['name' => 'employees.activate', 'roles' => [1,2]],
+        ['name' => 'employees.deactivate', 'roles' => [1,2]],
+
+    ],
+
+    'employees_admin' => [
+        ['name' => 'Albia Admin', 'email' => 'superadmin@albia.es', 'password' => '12345678', 'role' => 1]
+    ]
+];
