@@ -24,7 +24,7 @@
     <!--end::Global Theme Styles-->
     <!--begin::Layout Themes(used by all pages)-->
     <!--end::Layout Themes-->
-    <link rel="shortcut icon" href="{{ asset('media/logos/favicon.ico') }}" />
+    <link rel="shortcut icon" href="{{ asset('media/logos/logo-albia-rgb.jpg') }}" />
 </head>
 <!--end::Head-->
 <!--begin::Body-->
@@ -47,7 +47,7 @@
                     <!--begin::Login Header-->
                     <div class="d-flex flex-center mb-15">
                         <a href="#">
-                            <img src="assets/media/logos/logo-letter-13.png" class="max-h-75px" alt="" />
+                            <img src="{{ asset('media/logos/logo-albia-rgb.jpg') }}" class="max-h-150px" alt="" />
                         </a>
                     </div>
                     <!--end::Login Header-->
@@ -67,9 +67,10 @@
 
                     <!--begin::Login Sign in form-->
                     <div class="login-signin">
-                        <div class="mb-20">
-                            <h3>Sign In To Admin</h3>
-                            <div class="text-muted font-weight-bold">Enter your details to login to your account:</div>
+                        <div class="mb-10">
+                            <h3>Sign In</h3>
+                            <div class="text-muted font-weight-bold">Ingrese sus datos para iniciar sesión en su cuenta:
+                            </div>
                         </div>
 
                         <form class="form" id="kt_login_signin_form" method="POST" action="{{ route('admin.login') }}">
@@ -107,25 +108,25 @@
                                         <input type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }} />
                                         <span></span>{{ __('Remember Me') }}</label>
                                 </div>
-                                <a href="javascript:;" id="kt_login_forgot" class="text-muted text-hover-primary">Forget
-                                    Password ?</a>
+                                <a href="javascript:;" id="kt_login_forgot"
+                                    class="text-muted text-hover-primary">Recuperar la Contraseña ?</a>
                             </div>
                             <button id="kt_login_signin_submit"
                                 class="btn btn-primary font-weight-bold px-9 py-4 my-3 mx-4">Sign In</button>
                         </form>
                         <div class="mt-10">
-                            <span class="opacity-70 mr-4">Don't have an account yet?</span>
+                            <span class="opacity-70 mr-4">¿Aún no tienes una cuenta?</span>
                             <a href="javascript:;" id="kt_login_signup"
-                                class="text-muted text-hover-primary font-weight-bold">Sign Up!</a>
+                                class="text-muted text-hover-primary font-weight-bold">Registrarse!</a>
                         </div>
                     </div>
                     <!--end::Login Sign in form-->
 
                     <!--begin::Login Sign up form-->
                     <div class="login-signup">
-                        <div class="mb-20">
-                            <h3>Sign Up</h3>
-                            <div class="text-muted font-weight-bold">Enter your details to create your account</div>
+                        <div class="mb-10">
+                            <h3>Registro</h3>
+                            <div class="text-muted font-weight-bold">Ingrese sus datos para crear su cuenta</div>
                         </div>
                         <form class="form" id="kt_login_signup_form" method="POST"
                             action="{{ route('admin.register') }}">
@@ -188,9 +189,9 @@
 
                             <div class="form-group d-flex flex-wrap flex-center mt-10">
                                 <button id="kt_login_signup_submit"
-                                    class="btn btn-primary font-weight-bold px-9 py-4 my-3 mx-2">Sign Up</button>
+                                    class="btn btn-primary font-weight-bold px-9 py-4 my-3 mx-2">Aceptar</button>
                                 <button id="kt_login_signup_cancel"
-                                    class="btn btn-light-primary font-weight-bold px-9 py-4 my-3 mx-2">Cancel</button>
+                                    class="btn btn-light-primary font-weight-bold px-9 py-4 my-3 mx-2">Cancelar</button>
                             </div>
                         </form>
                     </div>
@@ -198,9 +199,10 @@
 
                     <!--begin::Login forgot password form-->
                     <div class="login-forgot">
-                        <div class="mb-20">
-                            <h3>Forgotten Password ?</h3>
-                            <div class="text-muted font-weight-bold">Enter your email to reset your password</div>
+                        <div class="mb-10">
+                            <h3>Contraseña olvidada ?</h3>
+                            <div class="text-muted font-weight-bold">Ingrese su correo electrónico para restablecer su
+                                contraseña</div>
                         </div>
                         <form class="form" id="kt_login_forgot_form" method="POST"
                             action="{{ route('admin.forget-password') }}">
@@ -221,9 +223,9 @@
 
                             <div class="form-group d-flex flex-wrap flex-center mt-10">
                                 <button id="kt_login_forgot_submit"
-                                    class="btn btn-primary font-weight-bold px-9 py-4 my-3 mx-2">Request</button>
+                                    class="btn btn-primary font-weight-bold px-9 py-4 my-3 mx-2">Enviar</button>
                                 <button id="kt_login_forgot_cancel"
-                                    class="btn btn-light-primary font-weight-bold px-9 py-4 my-3 mx-2">Cancel</button>
+                                    class="btn btn-light-primary font-weight-bold px-9 py-4 my-3 mx-2">Cancelar</button>
                             </div>
                         </form>
                     </div>

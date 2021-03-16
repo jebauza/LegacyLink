@@ -4,13 +4,6 @@
 
         <!--begin::Info-->
         <div class="d-flex align-items-center flex-wrap mr-2">
-
-            <!--begin::Actions-->
-            <a href="#" class="btn btn-light-danger font-weight-bolder btn-sm mr-2">Reports</a>
-            <a href="#" class="btn btn-light-success font-weight-bolder btn-sm mr-2">Import</a>
-
-            <!--end::Actions-->
-
             <!--begin::Dropdowns-->
             <div class="input-group input-group-sm input-group-solid max-w-175px">
                 <input type="text" class="form-control pl-4" placeholder="Search..." />
