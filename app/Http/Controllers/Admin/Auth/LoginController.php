@@ -35,9 +35,6 @@ class LoginController extends Controller
         $remember = $request->remember ? true : false;
 
         if (Auth::attempt($credentials, $remember)) {
-
-            $office = auth()->user()->currentOffice();
-            session(['currentOffice' => $office]);
             return redirect()->intended('admin/home');
         }
 

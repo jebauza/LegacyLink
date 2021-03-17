@@ -1834,6 +1834,534 @@ module.exports = {
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/modules/employees/EmployeeComponent.vue?vue&type=script&lang=js&":
+/*!******************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/modules/employees/EmployeeComponent.vue?vue&type=script&lang=js& ***!
+  \******************************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _EmployeeFormAddEditComponent__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./EmployeeFormAddEditComponent */ "./resources/js/components/modules/employees/EmployeeFormAddEditComponent.vue");
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  components: {
+    EmployeeFormAddEdit: _EmployeeFormAddEditComponent__WEBPACK_IMPORTED_MODULE_0__.default
+  },
+  created: function created() {
+    this.getEmployees();
+  },
+  data: function data() {
+    return {
+      employees: {
+        data: []
+      }
+    };
+  },
+  methods: {
+    getEmployees: function getEmployees() {
+      var _this = this;
+
+      var page = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 1;
+      var url = "admin/ajax/employees/paginate?page=".concat(page);
+      var loading = this.$vs.loading({
+        type: 'points',
+        color: '#187de4',
+        // background: '#7a76cb',
+        text: 'Cargando...'
+      });
+      axios.get(url).then(function (res) {
+        loading.close();
+        _this.employees = res.data.data;
+      })["catch"](function (err) {
+        loading.close();
+        console.error(err);
+      });
+    },
+    openModalAddEdit: function openModalAddEdit(action) {
+      var employee = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
+      this.$refs.employeeFormAddEdit.showForm(action, employee);
+    },
+    updateList: function updateList() {
+      var _this$employees$curre;
+
+      var action = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
+      this.getEmployees((_this$employees$curre = this.employees.current_page) !== null && _this$employees$curre !== void 0 ? _this$employees$curre : 1);
+    },
+    askDestroy: function askDestroy(employee) {
+      var self = this;
+      Swal.fire({
+        title: '¿Estas seguro que deseas eliminar este registro?',
+        text: "Si eliminas este registro, no podras recuperarlo",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#187de4',
+        cancelButtonColor: '#d33',
+        confirmButtonText: '¡Si, estoy seguro!',
+        cancelButtonText: "Cancelar"
+      }).then(function (result) {
+        if (result.isConfirmed) {
+          self.destroy(employee.id);
+        }
+      });
+    },
+    destroy: function destroy(id) {
+      var _this2 = this;
+
+      var url = "/admin/ajax/employees/".concat(id, "/destroy");
+      var loading = this.$vs.loading({
+        type: 'points',
+        color: '#187de4',
+        // background: '#7a76cb',
+        text: 'Eliminando...'
+      });
+      axios["delete"](url).then(function (res) {
+        loading.close();
+        Swal.fire({
+          title: res.data.message,
+          icon: "success",
+          timer: 1500,
+          showConfirmButton: false
+        });
+
+        _this2.getEmployees();
+      })["catch"](function (err) {
+        loading.close();
+
+        if (err.response.data.message) {
+          Swal.fire({
+            title: 'Error!',
+            text: err.response.data.message,
+            icon: "error",
+            showCloseButton: true,
+            closeButtonColor: '#ee2d41'
+          });
+        }
+      });
+    }
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/modules/employees/EmployeeFormAddEditComponent.vue?vue&type=script&lang=js&":
+/*!*****************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/modules/employees/EmployeeFormAddEditComponent.vue?vue&type=script&lang=js& ***!
+  \*****************************************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  created: function created() {
+    this.getOffices();
+  },
+  data: function data() {
+    return {
+      modalType: 'add',
+      //add, edit
+      offices: [],
+      roles: [],
+      form: {
+        name: '',
+        last_name: '',
+        email: '',
+        phone: '',
+        password: '',
+        extra_info: '',
+        offices: [],
+        rol: '',
+        id: ''
+      },
+      errors: {}
+    };
+  },
+  methods: {
+    getOffices: function getOffices() {
+      var _this = this;
+
+      var url = "/admin/ajax/offices";
+      axios.get(url).then(function (res) {
+        _this.offices = res.data.data.map(function (office) {
+          return {
+            text: office.name,
+            value: office.id
+          };
+        });
+      })["catch"](function (err) {
+        console.error(err);
+      });
+    },
+    showForm: function showForm(action) {
+      var employee = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
+
+      if (this.modalType != action) {
+        this.clearForm();
+      }
+
+      this.modalType = action;
+
+      if (this.modalType === 'edit' && employee) {
+        this.form = {
+          name: employee.name,
+          last_name: employee.last_name,
+          email: employee.email,
+          phone: employee.phone,
+          password: '',
+          extra_info: employee.extra_info,
+          id: employee.id
+        };
+      }
+
+      this.errors = {};
+      $('#modalAddEditEmployee').modal('show');
+    },
+    clearForm: function clearForm() {
+      this.form = {
+        name: '',
+        last_name: '',
+        email: '',
+        phone: '',
+        password: '',
+        extra_info: '',
+        offices: [],
+        rol: '',
+        id: ''
+      };
+      this.errors = {};
+    },
+    actionStoreUpdate: function actionStoreUpdate() {
+      if (this.modalType == 'add') {
+        this.store();
+      } else if (this.modalType == 'edit') {
+        this.update();
+      }
+    },
+    store: function store() {
+      var _this2 = this;
+
+      var url = '/admin/ajax/employees/store';
+      var loading = this.$vs.loading({
+        type: 'points',
+        color: '#187de4',
+        // background: '#7a76cb',
+        text: 'Cargando...'
+      });
+      axios.post(url, this.form).then(function (res) {
+        loading.close();
+        Swal.fire({
+          title: res.data.message,
+          icon: "success",
+          timer: 1500,
+          showConfirmButton: false
+        });
+        $('#modalAddEditEmployee').modal('hide');
+
+        _this2.clearForm();
+
+        _this2.$emit('updateOfficeList', 'add');
+      })["catch"](function (err) {
+        loading.close();
+
+        if (err.response && err.response.status == 422) {
+          _this2.errors = err.response.data.errors;
+        } else if (err.response.data.message) {
+          Swal.fire({
+            title: 'Error!',
+            text: err.response.data.message,
+            icon: "error",
+            showCloseButton: true,
+            closeButtonColor: 'red'
+          });
+        }
+      });
+    }
+    /* update() {
+        const url = `/admin/ajax/offices/${this.form.id}/update`;
+        const loading = this.$vs.loading({
+            type: 'points',
+            color: '#187de4',
+            // background: '#7a76cb',
+            text: 'Cargando...'
+        });
+         axios.put(url, this.form)
+        .then(res => {
+            loading.close();
+            Swal.fire({
+                title: res.data.message,
+                icon: "success",
+                timer: 1500,
+                showConfirmButton: false
+            });
+            $('#modalAddEditOffice').modal('hide');
+            this.clearForm();
+            this.$emit('updateOfficeList', 'add');
+        }).catch(err => {
+            loading.close();
+            if(err.response && err.response.status == 422) {
+                this.errors = err.response.data.errors;
+            }else if(err.response.data.message) {
+                Swal.fire({
+                    title: 'Error!',
+                    text: err.response.data.message,
+                    icon: "error",
+                    showCloseButton: true,
+                    closeButtonColor: '#ee2d41',
+                });
+            }
+        });
+    }, */
+
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/modules/offices/OfficeComponent.vue?vue&type=script&lang=js&":
 /*!**************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/modules/offices/OfficeComponent.vue?vue&type=script&lang=js& ***!
@@ -1951,19 +2479,6 @@ __webpack_require__.r(__webpack_exports__);
     return {
       offices: {
         data: []
-      },
-      form: {
-        name: '',
-        cif: '',
-        address: '',
-        extra_address: '',
-        city: '',
-        cp: '',
-        province: '',
-        country: '',
-        phone: '',
-        email: '',
-        contact_person: ''
       }
     };
   },
@@ -6838,6 +7353,30 @@ __webpack_require__.r(__webpack_exports__);
 var ___CSS_LOADER_EXPORT___ = _css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
 ___CSS_LOADER_EXPORT___.push([module.id, "/*!\n  * Vuesax v4.0.1-alpha.24 🖖 (https://lusaxweb.github.io/vuesax/)\n  * Forged by Luis Daniel Rovira\n  * Released under the MIT License.\n  * Donate: https://www.patreon.com/bePatron?c=1567892\n  * © 2019, Lusaxweb. (https://lusaxweb.net)\n  */\n.vs-button {\n  --vs-color: \"\";\n  --vs-color-rotate: var(--vs-primary);\n  --vs-color-darken: var(--vs-primary);\n  --vs-button-padding: 8px 12px;\n  --vs-button-margin: 5px;\n  --vs-button-border-radius: 12px;\n  --vs-button-text-color: #fff;\n}\n\n.vs-button {\n  border: 0px;\n  margin: var(--vs-button-margin);\n  border-radius: var(--vs-button-border-radius);\n  -webkit-transition: all 0.25s ease;\n  transition: all 0.25s ease;\n  position: relative;\n  -webkit-user-select: none;\n     -moz-user-select: none;\n      -ms-user-select: none;\n          user-select: none;\n  z-index: 1;\n  overflow: hidden;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n  padding: 0px;\n  outline: none;\n  font-size: 0.8rem;\n  -webkit-box-sizing: border-box;\n          box-sizing: border-box;\n}\n.vs-button.vs-component-dark.vs-button--transparent {\n  color: rgba(var(--vs-text), 1) !important;\n}\n.vs-button--fff:focus {\n  color: #1e1e1e !important;\n}\n.vs-button__content {\n  padding: var(--vs-button-padding);\n  width: 100%;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n}\n.vs-button--active-disabled {\n  pointer-events: none;\n  opacity: 0.6;\n}\n.vs-button:disabled {\n  pointer-events: none;\n  opacity: 0.35;\n}\n.vs-button.vs-button--animate:not(.vs-button--animate-inactive) .vs-button__content i {\n  font-size: 1.15rem;\n}\n.vs-button.vs-button--animate:not(.vs-button--animate-inactive):hover .vs-button__content {\n  -webkit-transform: translate(-100%);\n          transform: translate(-100%);\n}\n.vs-button.vs-button--animate:not(.vs-button--animate-inactive):hover .vs-button__animate {\n  -webkit-transform: translate(0%);\n          transform: translate(0%);\n}\n.vs-button.vs-button--animate:not(.vs-button--animate-inactive).vs-button--animate-vertical:hover .vs-button__content {\n  -webkit-transform: translate(0, -100%) !important;\n          transform: translate(0, -100%) !important;\n  opacity: 0;\n}\n.vs-button.vs-button--animate:not(.vs-button--animate-inactive).vs-button--animate-vertical:hover .vs-button__animate {\n  -webkit-transform: translate(0%) !important;\n          transform: translate(0%) !important;\n}\n.vs-button.vs-button--animate:not(.vs-button--animate-inactive).vs-button--animate-scale:hover .vs-button__content {\n  -webkit-transform: scale(1.4) !important;\n          transform: scale(1.4) !important;\n  opacity: 0;\n}\n.vs-button.vs-button--animate:not(.vs-button--animate-inactive).vs-button--animate-scale:hover .vs-button__animate {\n  opacity: 1;\n  -webkit-transform: scale(1);\n          transform: scale(1);\n}\n.vs-button.vs-button--animate:not(.vs-button--animate-inactive).vs-button--animate-rotate:hover .vs-button__content {\n  -webkit-transform: rotate(180deg) !important;\n          transform: rotate(180deg) !important;\n  opacity: 0;\n}\n.vs-button.vs-button--animate:not(.vs-button--animate-inactive).vs-button--animate-rotate:hover .vs-button__animate {\n  opacity: 1;\n  -webkit-transform: rotate(0);\n          transform: rotate(0);\n}\n.vs-button.vs-button--animate:not(.vs-button--animate-inactive) .vs-button__content {\n  -webkit-transition: -webkit-transform 0.25s ease;\n  transition: -webkit-transform 0.25s ease;\n  transition: transform 0.25s ease;\n  transition: transform 0.25s ease, -webkit-transform 0.25s ease;\n}\n.vs-button__animate {\n  position: absolute;\n  width: 100%;\n  height: 100%;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n  top: 0px;\n  left: 0px;\n  -webkit-transition: -webkit-transform 0.25s ease;\n  transition: -webkit-transform 0.25s ease;\n  transition: transform 0.25s ease;\n  transition: transform 0.25s ease, -webkit-transform 0.25s ease;\n  -webkit-transform: translate(100%);\n          transform: translate(100%);\n  pointer-events: none;\n}\n.vs-button__animate--vertical {\n  -webkit-transform: translate(0, 100%);\n          transform: translate(0, 100%);\n}\n.vs-button__animate--scale {\n  -webkit-transform: scale(0.5);\n          transform: scale(0.5);\n  opacity: 0;\n}\n.vs-button__animate--rotate {\n  -webkit-transform: rotate(-180deg);\n          transform: rotate(-180deg);\n  opacity: 0;\n}\n.vs-button--block {\n  width: 100%;\n  display: block;\n}\n.vs-button--upload:after {\n  content: \"\";\n  position: absolute;\n  width: 100%;\n  height: 100%;\n  background: rgba(var(--vs-color), 0.4);\n  top: 0px;\n  left: 0px;\n  z-index: 1200;\n  -webkit-animation: btnupload 0.7s ease infinite;\n          animation: btnupload 0.7s ease infinite;\n  -webkit-box-sizing: border-box;\n          box-sizing: border-box;\n}\n.vs-button--loading {\n  pointer-events: none;\n  -webkit-user-select: none;\n     -moz-user-select: none;\n      -ms-user-select: none;\n          user-select: none;\n}\n.vs-button .vs-button__loading {\n  width: 100%;\n  height: 100%;\n  position: absolute;\n  top: 0px;\n  left: 0px;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n  background: rgba(var(--vs-color), 0.8);\n  border-radius: inherit;\n}\n.vs-button .vs-button__loading:after {\n  content: \"\";\n  width: 17px;\n  height: 17px;\n  border: 2px dotted rgba(255, 255, 255, 0.6);\n  border-top: 2px solid rgba(255, 255, 255, 0);\n  border-bottom: 2px solid rgba(255, 255, 255, 0);\n  border-right: 2px solid rgba(255, 255, 255, 0);\n  border-radius: 50%;\n  position: absolute;\n  -webkit-animation: btnload 0.6s linear infinite;\n          animation: btnload 0.6s linear infinite;\n  -webkit-box-sizing: border-box;\n          box-sizing: border-box;\n}\n.vs-button .vs-button__loading:before {\n  position: absolute;\n  content: \"\";\n  width: 17px;\n  height: 17px;\n  border: 2px solid white;\n  border-top: 2px solid rgba(255, 255, 255, 0);\n  border-bottom: 2px solid rgba(255, 255, 255, 0);\n  border-right: 2px solid rgba(255, 255, 255, 0);\n  border-radius: 50%;\n  -webkit-animation: btnload 0.6s ease infinite;\n          animation: btnload 0.6s ease infinite;\n  -webkit-box-sizing: border-box;\n          box-sizing: border-box;\n}\n.vs-button--size-xl {\n  border-radius: 20px;\n}\n.vs-button--size-xl .vs-button__content {\n  padding: 15px 20px;\n  font-size: 1.1rem;\n}\n.vs-button--size-large {\n  font-size: 1rem;\n  border-radius: 15px;\n}\n.vs-button--size-large .vs-button__content {\n  padding: 10px 15px;\n}\n.vs-button--size-small {\n  font-size: 0.75rem;\n  border-radius: 9px;\n}\n.vs-button--size-small .vs-button__content {\n  padding: 5px 10px;\n}\n.vs-button--size-mini {\n  font-size: 0.6rem;\n  border-radius: 7px;\n}\n.vs-button--size-mini .vs-button__content {\n  padding: 3px 8px;\n}\n.vs-button--circle {\n  border-radius: 25px;\n}\n.vs-button--square {\n  border-radius: 0px;\n}\n.vs-button--icon {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n}\n.vs-button--icon .vs-button__content {\n  padding: 8px 8px;\n}\n.vs-button--icon i {\n  font-size: 1.15rem;\n}\n\n.vs-button--default {\n  background: rgba(var(--vs-color), 1);\n  color: #fff;\n}\n.vs-button--default.vs-button--active {\n  -webkit-box-shadow: 0px 10px 20px -10px rgba(var(--vs-color), 1);\n          box-shadow: 0px 10px 20px -10px rgba(var(--vs-color), 1);\n  -webkit-transform: translate(0, -3px);\n          transform: translate(0, -3px);\n}\n.vs-button--default:hover {\n  -webkit-box-shadow: 0px 10px 20px -10px rgba(var(--vs-color), 1);\n          box-shadow: 0px 10px 20px -10px rgba(var(--vs-color), 1);\n  -webkit-transform: translate(0, -3px);\n          transform: translate(0, -3px);\n}\n\n.vs-button--flat {\n  background: rgba(var(--vs-color), 0.15);\n  color: rgba(var(--vs-color), 1);\n}\n.vs-button--flat.vs-button--dark {\n  color: rgba(var(--vs-text), 1);\n}\n.vs-button--flat:hover {\n  background: rgba(var(--vs-color), 0.25);\n}\n.vs-button--flat:focus {\n  color: #fff;\n  background: rgba(var(--vs-color), 1);\n  -webkit-transition: all 0.25s ease, background 0.25s ease 0.25s;\n  transition: all 0.25s ease, background 0.25s ease 0.25s;\n}\n.vs-button--flat.vs-button--active {\n  background: rgba(var(--vs-color), 1);\n  color: #fff;\n}\n\n.vs-button--floating {\n  background: rgba(var(--vs-color), 1);\n  color: #fff;\n  -webkit-box-shadow: 0px 8px 20px -6px rgba(var(--vs-color), 1);\n          box-shadow: 0px 8px 20px -6px rgba(var(--vs-color), 1);\n  -webkit-transform: translate(0, -3px);\n          transform: translate(0, -3px);\n}\n.vs-button--floating:hover {\n  -webkit-box-shadow: 0px 8px 20px -6px rgba(var(--vs-color), 1);\n          box-shadow: 0px 8px 20px -6px rgba(var(--vs-color), 1);\n  -webkit-transform: translate(0, -6px);\n          transform: translate(0, -6px);\n}\n.vs-button--floating:focus {\n  -webkit-transform: translate(0, 0px);\n          transform: translate(0, 0px);\n  -webkit-box-shadow: 0px 0px 0px 0px rgba(var(--vs-color), 1);\n          box-shadow: 0px 0px 0px 0px rgba(var(--vs-color), 1);\n}\n.vs-button--floating.vs-button--active {\n  -webkit-transform: translate(0, 0px);\n          transform: translate(0, 0px);\n  -webkit-box-shadow: 0px 0px 0px 0px rgba(var(--vs-color), 1);\n          box-shadow: 0px 0px 0px 0px rgba(var(--vs-color), 1);\n}\n\n.vs-button--border {\n  background: rgba(var(--vs-color), 0);\n  color: rgba(var(--vs-color), 1);\n}\n.vs-button--border:before {\n  content: \"\";\n  border: 2px solid rgba(var(--vs-color), 1);\n  position: absolute;\n  top: 0px;\n  left: 0px;\n  width: 100%;\n  height: 100%;\n  border-radius: inherit;\n  background: transparent;\n  pointer-events: none;\n  -webkit-transition: all 0.25s ease;\n  transition: all 0.25s ease;\n  -webkit-box-sizing: border-box;\n          box-sizing: border-box;\n}\n.vs-button--border:hover:before {\n  border: 2px solid rgba(var(--vs-color), 0.5);\n}\n.vs-button--border:focus {\n  color: #fff;\n  background: rgba(var(--vs-color), 1);\n}\n.vs-button--border.vs-button--active {\n  background: rgba(var(--vs-color), 1);\n  color: #fff;\n}\n\n.vs-button--gradient {\n  background: rgba(var(--vs-color), 1);\n  color: #fff;\n  overflow: hidden;\n}\n.vs-button--gradient.vs-button--primary::before, .vs-button--gradient.vs-button--success::before {\n  -webkit-filter: hue-rotate(40deg);\n          filter: hue-rotate(40deg);\n}\n.vs-button--gradient::before {\n  content: \"\";\n  background: linear-gradient(30deg, rgba(var(--vs-color), 0) 33%, rgba(var(--vs-color), 1) 100%);\n  position: absolute;\n  top: 0px;\n  left: 0px;\n  width: 100%;\n  height: 100%;\n  border-radius: inherit;\n  pointer-events: none;\n  -webkit-transition: all 0.4s ease;\n  transition: all 0.4s ease;\n  z-index: -1;\n  -webkit-filter: hue-rotate(-40deg);\n          filter: hue-rotate(-40deg);\n  -webkit-box-sizing: border-box;\n          box-sizing: border-box;\n}\n.vs-button--gradient:hover {\n  -webkit-transform: translate(0, -3px);\n          transform: translate(0, -3px);\n  -webkit-box-shadow: 0px 10px 20px -10px rgba(var(--vs-color), 0.7);\n          box-shadow: 0px 10px 20px -10px rgba(var(--vs-color), 0.7);\n}\n.vs-button--gradient:hover::before {\n  opacity: 0;\n}\n.vs-button--gradient.vs-button--active {\n  -webkit-transform: translate(0, -3px);\n          transform: translate(0, -3px);\n  -webkit-box-shadow: 0px 10px 20px -10px rgba(0, 0, 0, 0.35);\n          box-shadow: 0px 10px 20px -10px rgba(0, 0, 0, 0.35);\n}\n\n.vs-button--relief {\n  background: rgba(var(--vs-color), 1);\n  color: #fff;\n  overflow: hidden;\n  -webkit-transform: translate(0) scale(1, 1);\n          transform: translate(0) scale(1, 1);\n}\n.vs-button--relief .vs-button__content {\n  -webkit-transition: all 0.25s ease;\n  transition: all 0.25s ease;\n}\n.vs-button--relief.vs-button--icon.vs-button--active {\n  height: auto;\n}\n.vs-button--relief::before {\n  content: \"\";\n  position: absolute;\n  bottom: 0px;\n  left: 0px;\n  width: 100%;\n  height: calc(100% - 3px);\n  border-radius: inherit;\n  pointer-events: none;\n  -webkit-transition: all 0.4s ease;\n  transition: all 0.4s ease;\n  z-index: -1;\n  -webkit-filter: contrast(2) grayscale(0.4);\n          filter: contrast(2) grayscale(0.4);\n  border-bottom: 3px solid rgba(var(--vs-color), 1);\n  -webkit-box-sizing: border-box;\n          box-sizing: border-box;\n}\n.vs-button--relief:active {\n  -webkit-transform: translate(0, 1px);\n          transform: translate(0, 1px);\n}\n.vs-button--relief:active .vs-button__content {\n  padding-bottom: 6px;\n}\n.vs-button--relief:active::before {\n  border-bottom: 0px solid rgba(var(--vs-color), 1);\n}\n.vs-button--relief.vs-button--active {\n  -webkit-transform: translate(0, 1px);\n          transform: translate(0, 1px);\n}\n.vs-button--relief.vs-button--active .vs-button__content {\n  padding-bottom: 6px;\n}\n.vs-button--relief.vs-button--active::before {\n  border-bottom: 0px solid rgba(var(--vs-color), 1);\n}\n\n.vs-button--transparent {\n  background: transparent;\n  color: rgba(var(--vs-color), 1);\n  overflow: hidden;\n}\n.vs-button--transparent::before {\n  content: \"\";\n  background: rgba(var(--vs-color), 0.1);\n  position: absolute;\n  bottom: 0px;\n  left: 0px;\n  width: 100%;\n  height: 100%;\n  border-radius: inherit;\n  pointer-events: none;\n  -webkit-transition: all 0.25s ease;\n  transition: all 0.25s ease;\n  z-index: -1;\n  -webkit-transform: scale(0.5);\n          transform: scale(0.5);\n  opacity: 0;\n  -webkit-box-sizing: border-box;\n          box-sizing: border-box;\n}\n.vs-button--transparent:active:not(.vs-button--active)::before {\n  -webkit-transform: scale(0.9) !important;\n          transform: scale(0.9) !important;\n}\n.vs-button--transparent:hover::before {\n  opacity: 1;\n  -webkit-transform: scale(1);\n          transform: scale(1);\n}\n.vs-button--transparent.vs-button--active::before {\n  background: rgba(var(--vs-color), 0.2);\n  opacity: 1;\n  -webkit-transform: scale(1);\n          transform: scale(1);\n}\n\n.vs-button--shadow {\n  background: rgba(var(--vs-background), 1);\n  color: rgba(var(--vs-text), 1);\n  overflow: hidden;\n  -webkit-box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, var(--vs-shadow-opacity));\n          box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, var(--vs-shadow-opacity));\n}\n.vs-button--shadow:active:not(.vs-button--active) {\n  -webkit-transform: translate(0, -1px);\n          transform: translate(0, -1px);\n  -webkit-box-shadow: 0px 5px 15px 0px rgba(0, 0, 0, var(--vs-shadow-opacity)) !important;\n          box-shadow: 0px 5px 15px 0px rgba(0, 0, 0, var(--vs-shadow-opacity)) !important;\n}\n.vs-button--shadow:hover {\n  -webkit-transform: translate(0, -3px);\n          transform: translate(0, -3px);\n  -webkit-box-shadow: 0px 8px 25px 0px rgba(0, 0, 0, var(--vs-shadow-opacity));\n          box-shadow: 0px 8px 25px 0px rgba(0, 0, 0, var(--vs-shadow-opacity));\n}\n.vs-button--shadow.vs-button--active {\n  -webkit-transform: translate(0, -3px);\n          transform: translate(0, -3px);\n  -webkit-box-shadow: 0px 8px 25px 0px rgba(0, 0, 0, var(--vs-shadow-opacity));\n          box-shadow: 0px 8px 25px 0px rgba(0, 0, 0, var(--vs-shadow-opacity));\n}\n\n@-webkit-keyframes btnload {\n  0% {\n    -webkit-transform: rotate(0deg);\n            transform: rotate(0deg);\n  }\n  100% {\n    -webkit-transform: rotate(360deg);\n            transform: rotate(360deg);\n  }\n}\n\n@keyframes btnload {\n  0% {\n    -webkit-transform: rotate(0deg);\n            transform: rotate(0deg);\n  }\n  100% {\n    -webkit-transform: rotate(360deg);\n            transform: rotate(360deg);\n  }\n}\n@-webkit-keyframes btnupload {\n  0% {\n    -webkit-transform: translate(0, 110%);\n            transform: translate(0, 110%);\n  }\n  100% {\n    -webkit-transform: translate(0, -110%);\n            transform: translate(0, -110%);\n  }\n}\n@keyframes btnupload {\n  0% {\n    -webkit-transform: translate(0, 110%);\n            transform: translate(0, 110%);\n  }\n  100% {\n    -webkit-transform: translate(0, -110%);\n            transform: translate(0, -110%);\n  }\n}\n.vs-ripple-content {\n  --vs-color: inherit;\n  width: 100px;\n  height: 100px;\n  position: absolute;\n  width: 100%;\n  pointer-events: none;\n  overflow: hidden;\n  height: 100%;\n  top: 0px;\n  right: 0px;\n  border-radius: inherit;\n  z-index: -1;\n}\n.vs-ripple-content .vs-ripple {\n  width: 0px;\n  height: 0px;\n  border-radius: 50%;\n  opacity: 0;\n  position: absolute;\n  -webkit-transform: translate(-50%, -50%);\n          transform: translate(-50%, -50%);\n  -webkit-transition: all 0.5s ease;\n  transition: all 0.5s ease;\n  background: radial-gradient(circle, rgba(var(--vs-color), 0.05), rgba(var(--vs-color), 0.6));\n}\n.vs-ripple-content .vs-ripple--solid {\n  background: rgba(var(--vs-color), 1);\n  opacity: 1;\n}\n.vs-ripple-content .vs-ripple-invert {\n  width: 0px;\n  height: 0px;\n  border-radius: 50%;\n  opacity: 0;\n  position: absolute;\n  -webkit-transform: translate(-50%, -50%);\n          transform: translate(-50%, -50%);\n  -webkit-transition: all 0.5s ease;\n  transition: all 0.5s ease;\n  background-image: radial-gradient(circle, rgba(var(--vs-color), 0.5), rgba(var(--vs-color), 0));\n}\n.vs-ripple-content .vs-ripple-cut-1 {\n  width: 0px;\n  height: 0px;\n  opacity: 0;\n  position: absolute;\n  -webkit-transform: translate(-100%, -50%) skew(20deg);\n          transform: translate(-100%, -50%) skew(20deg);\n  -webkit-transition: all 0.6s ease;\n  transition: all 0.6s ease;\n  background-image: -webkit-gradient(linear, right top, left top, from(rgba(255, 255, 255, 0.25)), to(rgba(255, 255, 255, 0)));\n  background-image: linear-gradient(270deg, rgba(255, 255, 255, 0.25) 0%, rgba(255, 255, 255, 0) 100%);\n}\n.vs-ripple-content .vs-ripple-cut-2 {\n  width: 0px;\n  height: 0px;\n  opacity: 0;\n  position: absolute;\n  -webkit-transform: translate(0%, -50%) skew(20deg);\n          transform: translate(0%, -50%) skew(20deg);\n  -webkit-transition: all 0.6s ease;\n  transition: all 0.6s ease;\n  background-image: -webkit-gradient(linear, left top, right top, from(rgba(255, 255, 255, 0.25)), to(rgba(255, 255, 255, 0)));\n  background-image: linear-gradient(90deg, rgba(255, 255, 255, 0.25) 0%, rgba(255, 255, 255, 0) 100%);\n}\n.vs-button-group {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n}\n.vs-button-group .vs-button {\n  margin: 0px;\n}\n.vs-button-group .vs-button:not(:last-of-type):not(:first-of-type) {\n  border-radius: 0px;\n  border: 0px;\n}\n.vs-button-group .vs-button:not(:last-of-type):not(:first-of-type).vs-button--border:before {\n  border-left: 0px;\n  width: 100%;\n}\n.vs-button-group .vs-button:not(:last-of-type):not(:first-of-type).vs-button--border + .vs-button--border:not(:last-of-type):before {\n  border-right: 0px;\n  width: calc(100%);\n}\n.vs-button-group .vs-button:last-of-type {\n  border-radius: 0px 12px 12px 0px;\n}\n.vs-button-group .vs-button:first-of-type {\n  border-radius: 12px 0px 0px 12px;\n}\n.vs-alert {\n  --vs-color: var(--vs-primary);\n}\n\n.vs-alert {\n  background: rgba(var(--vs-color), 0.1);\n  color: rgba(var(--vs-color), 1);\n  width: 100%;\n  padding: 0px 20px;\n  border-radius: 0px 12px 12px 0px;\n  position: relative;\n  font-size: 0.9rem;\n  z-index: 10;\n  -webkit-transition: height 0.25s ease;\n  transition: height 0.25s ease;\n  overflow: hidden;\n}\n.vs-alert::-moz-selection {\n  background: rgba(var(--vs-color), 0.15);\n}\n.vs-alert::selection {\n  background: rgba(var(--vs-color), 0.15);\n}\n.vs-alert *::-moz-selection {\n  background: rgba(var(--vs-color), 0.15);\n}\n.vs-alert *::selection {\n  background: rgba(var(--vs-color), 0.15);\n}\n.vs-alert b {\n  font-weight: 600;\n}\n.vs-alert a {\n  color: inherit !important;\n  text-decoration: underline;\n}\n.vs-alert a:hover {\n  opacity: 0.6;\n}\n.vs-alert::after {\n  content: \"\";\n  background: rgba(var(--vs-color), 1);\n  left: 0px;\n  top: 0px;\n  width: 2px;\n  height: 100%;\n  position: absolute;\n}\n.vs-alert--solid {\n  background: rgba(var(--vs-color), 1);\n  color: #fff;\n}\n.vs-alert--solid .vs-alert__icon i {\n  color: #fff;\n}\n.vs-alert--solid .vs-alert__icon svg {\n  fill: #fff;\n}\n.vs-alert--solid .vs-alert__close {\n  color: #fff;\n  -webkit-box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0.15);\n          box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0.15);\n}\n.vs-alert--solid .vs-alert__close:hover {\n  -webkit-transform: translate(0, -2px);\n          transform: translate(0, -2px);\n  -webkit-box-shadow: 0px 5px 18px 0px rgba(0, 0, 0, 0.15);\n          box-shadow: 0px 5px 18px 0px rgba(0, 0, 0, 0.15);\n}\n.vs-alert--solid .vs-alert__close svg {\n  fill: #fff;\n}\n.vs-alert--solid::after {\n  background: rgba(255, 255, 255, 0.4);\n}\n.vs-alert--border {\n  background: transparent;\n}\n.vs-alert--border::before {\n  border: 1px solid rgba(var(--vs-color), 1);\n  border-left: 0px;\n  width: calc(100% - 2px);\n  content: \"\";\n  position: absolute;\n  height: calc(100% - 2px);\n  top: 0px;\n  left: 0px;\n  z-index: -1;\n  border-radius: inherit;\n}\n.vs-alert--shadow {\n  background: transparent;\n  -webkit-box-shadow: 0px 4px 15px 0px rgba(var(--vs-color), 0.12);\n          box-shadow: 0px 4px 15px 0px rgba(var(--vs-color), 0.12);\n}\n.vs-alert--gradient {\n  background: rgba(var(--vs-color), 1);\n  color: #fff;\n  border-radius: 12px;\n}\n.vs-alert--gradient .vs-alert__icon i {\n  color: #fff;\n}\n.vs-alert--gradient .vs-alert__icon svg {\n  fill: #fff;\n}\n.vs-alert--gradient .vs-alert__close {\n  color: #fff;\n  -webkit-box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0.15);\n          box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0.15);\n}\n.vs-alert--gradient .vs-alert__close:hover {\n  -webkit-transform: translate(0, -2px);\n          transform: translate(0, -2px);\n  -webkit-box-shadow: 0px 5px 18px 0px rgba(0, 0, 0, 0.15);\n          box-shadow: 0px 5px 18px 0px rgba(0, 0, 0, 0.15);\n}\n.vs-alert--gradient .vs-alert__close svg {\n  fill: #fff;\n}\n.vs-alert--gradient::after {\n  display: none;\n}\n.vs-alert--gradient::before {\n  background: linear-gradient(30deg, rgba(var(--vs-color), 0) 33%, rgba(var(--vs-color), 1) 100%);\n  -webkit-filter: hue-rotate(-50deg);\n          filter: hue-rotate(-50deg);\n  width: 100%;\n  content: \"\";\n  position: absolute;\n  height: 100%;\n  top: 0px;\n  left: 0px;\n  z-index: -1;\n  border-radius: inherit;\n}\n.vs-alert--flat {\n  background: rgba(0, 0, 0, 0.03);\n}\n.vs-alert--relief {\n  background: rgba(var(--vs-color), 1);\n  color: #fff;\n  border-radius: 12px;\n  -webkit-box-shadow: 6px 6px 0px 0px rgba(var(--vs-color), 0.3);\n          box-shadow: 6px 6px 0px 0px rgba(var(--vs-color), 0.3);\n}\n.vs-alert--relief .vs-alert__icon i {\n  color: #fff;\n}\n.vs-alert--relief .vs-alert__icon svg {\n  fill: #fff;\n}\n.vs-alert--relief .vs-alert__close {\n  color: #fff;\n  -webkit-box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0.15);\n          box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0.15);\n}\n.vs-alert--relief .vs-alert__close:hover {\n  -webkit-transform: translate(0, -2px);\n          transform: translate(0, -2px);\n  background: rgba(0, 0, 0, 0.2);\n  -webkit-box-shadow: 0px 5px 18px 0px rgba(0, 0, 0, 0.15);\n          box-shadow: 0px 5px 18px 0px rgba(0, 0, 0, 0.15);\n}\n.vs-alert--relief .vs-alert__close svg {\n  fill: #fff;\n}\n.vs-alert--relief::after {\n  display: none;\n}\n\n.vs-alert__title {\n  font-weight: 600;\n  font-size: 1rem;\n  padding: 15px;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  -webkit-box-pack: justify;\n      -ms-flex-pack: justify;\n          justify-content: space-between;\n}\n.vs-alert__title--clickHidden {\n  cursor: pointer;\n  padding-right: 0px;\n}\n.vs-alert__title ~ .vs-alert__content .vs-alert__content__text {\n  padding-top: 0px;\n}\n\n.vs-alert__content {\n  -webkit-transition: height 0.25s ease;\n  transition: height 0.25s ease;\n  overflow: hidden;\n}\n.vs-alert__content__text {\n  padding: 15px 15px;\n  padding-top: 20px;\n  padding-bottom: 20px;\n}\n\n.vs-alert__close {\n  position: absolute;\n  top: 9px;\n  right: 6px;\n  background: transparent;\n  border: 0px;\n  color: rgba(var(--vs-color), 1);\n  width: 30px;\n  height: 30px;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n  -webkit-transition: all 0.25s ease;\n  transition: all 0.25s ease;\n  -webkit-box-shadow: 0px 0px 0px 0px rgba(var(--vs-color), 0.3);\n          box-shadow: 0px 0px 0px 0px rgba(var(--vs-color), 0.3);\n  border-radius: 10px;\n  padding: 0px;\n}\n.vs-alert__close:hover {\n  -webkit-transform: translate(0, -2px);\n          transform: translate(0, -2px);\n  -webkit-box-shadow: 0px 5px 18px 0px rgba(var(--vs-color), 0.3);\n          box-shadow: 0px 5px 18px 0px rgba(var(--vs-color), 0.3);\n}\n.vs-alert__close svg {\n  fill: rgba(var(--vs-color), 1);\n}\n\n.vs-alert__footer {\n  position: relative;\n  width: 100%;\n  padding: 10px 15px;\n  padding-top: 0px;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  -webkit-box-pack: end;\n      -ms-flex-pack: end;\n          justify-content: flex-end;\n}\n\n.vs-alert__icon {\n  position: absolute;\n  width: 50px;\n  height: 100%;\n  left: 0px;\n  top: 0px;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n  padding-left: 2px;\n}\n.vs-alert__icon i {\n  font-size: 1.3rem;\n  color: rgba(var(--vs-color), 1);\n}\n.vs-alert__icon svg {\n  width: 24px;\n  height: 24px;\n  fill: rgba(var(--vs-color), 1);\n}\n.vs-alert__icon ~ .vs-alert__footer {\n  padding-left: 35px;\n}\n.vs-alert__icon ~ .vs-alert__content {\n  padding-left: 20px;\n}\n.vs-alert__icon ~ .vs-alert__title {\n  padding-left: 35px;\n}\n\n.vs-alert__progress {\n  width: 100%;\n  position: absolute;\n  bottom: 0px;\n  left: 0px;\n  height: 2px;\n  background: rgba(var(--vs-color), 0.2);\n}\n.vs-alert__progress__bar {\n  width: 30%;\n  left: 0px;\n  position: relative;\n  height: 100%;\n  background: rgba(var(--vs-color), 1);\n  -webkit-transition: all 0.25s ease;\n  transition: all 0.25s ease;\n}\n\n.vs-alert__pagination {\n  position: relative;\n  padding: 0px 20px;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  -webkit-box-pack: start;\n      -ms-flex-pack: start;\n          justify-content: flex-start;\n  margin-bottom: 10px;\n}\n.vs-alert__pagination span {\n  font-size: 0.8rem;\n  margin: 0px 8px;\n  min-width: 28px;\n  text-align: center;\n}\n.vs-alert__pagination button {\n  border: 0px;\n  background: transparent;\n  color: rgba(var(--vs-color), 1);\n  padding: 0px 7px;\n  font-size: 1rem;\n  background: rgba(var(--vs-color), 0.1);\n  border-radius: 8px;\n  -webkit-transition: all 0.25s ease;\n  transition: all 0.25s ease;\n}\n.vs-alert__pagination button:hover {\n  background: rgba(var(--vs-color), 1);\n  color: #fff;\n}\n.vs-icon-close {\n  width: 30px;\n  height: 30px;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n  position: relative;\n  -webkit-transition: all 0.25s ease;\n  transition: all 0.25s ease;\n}\n.vs-icon-close:before {\n  background: rgba(var(--vs-color), 1);\n  content: \"\";\n  position: absolute;\n  width: 16px;\n  -webkit-transform: rotate(-45deg);\n          transform: rotate(-45deg);\n  height: 2px;\n  border-radius: 2px;\n  -webkit-transition: all 0.3s ease;\n  transition: all 0.3s ease;\n}\n.vs-icon-close:after {\n  background: rgba(var(--vs-color), 1);\n  content: \"\";\n  position: absolute;\n  width: 16px;\n  height: 2px;\n  -webkit-transform: rotate(45deg);\n          transform: rotate(45deg);\n  border-radius: 2px;\n  -webkit-transition: all 0.3s ease;\n  transition: all 0.3s ease;\n}\n.vs-icon-close.vs-icon-hover-less:hover:after {\n  width: 12px;\n  -webkit-transform: rotate(180deg);\n          transform: rotate(180deg);\n}\n.vs-icon-close.vs-icon-hover-less:hover:before {\n  width: 12px;\n  -webkit-transform: rotate(180deg);\n          transform: rotate(180deg);\n}\n\n.vs-icon-plus {\n  width: 30px;\n  height: 30px;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n  position: relative;\n  -webkit-transition: all 0.25s ease;\n  transition: all 0.25s ease;\n  cursor: pointer;\n}\n.vs-icon-plus:before {\n  background: rgba(var(--vs-color), 1);\n  content: \"\";\n  position: absolute;\n  width: 14px;\n  -webkit-transform: rotate(0deg);\n          transform: rotate(0deg);\n  height: 2px;\n  border-radius: 2px;\n  -webkit-transition: all 0.3s ease;\n  transition: all 0.3s ease;\n}\n.vs-icon-plus:after {\n  background: rgba(var(--vs-color), 1);\n  content: \"\";\n  position: absolute;\n  width: 14px;\n  height: 2px;\n  -webkit-transform: rotate(90deg);\n          transform: rotate(90deg);\n  border-radius: 2px;\n  -webkit-transition: all 0.4s ease;\n  transition: all 0.4s ease;\n}\n.vs-icon-plus:hover:not(.less) {\n  -webkit-transform: rotate(-90deg);\n          transform: rotate(-90deg);\n}\n.vs-icon-plus.less:hover {\n  -webkit-transform: scale(0.75);\n          transform: scale(0.75);\n}\n.vs-icon-plus.less:after {\n  -webkit-transform: rotate(180deg);\n          transform: rotate(180deg);\n}\n\n.vs-icon-check {\n  width: 23px;\n  height: 23px;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n  -webkit-transition: all 0.25s ease;\n  transition: all 0.25s ease;\n  border-radius: inherit;\n}\n.vs-icon-check span {\n  -webkit-transform: rotate(45deg);\n          transform: rotate(45deg);\n  display: block;\n  position: relative;\n  width: 8px;\n  height: 13px;\n  margin-top: -4px;\n}\n.vs-icon-check span .line1 {\n  background: transparent;\n  content: \"\";\n  position: absolute;\n  height: 2px;\n  border-radius: 2px;\n  -webkit-transition: all 0.2s ease;\n  transition: all 0.2s ease;\n  border-radius: 5px;\n  z-index: 100;\n  width: 8px;\n  bottom: 0px;\n}\n.vs-icon-check span .line1:after {\n  content: \"\";\n  position: absolute;\n  width: 0%;\n  height: 2px;\n  background: #fff;\n  -webkit-transition: all 0.25s ease;\n  transition: all 0.25s ease;\n  border-radius: 5px 0px 0px 5px;\n}\n.vs-icon-check span .line2 {\n  bottom: 0px;\n  right: 0rem;\n  z-index: 100;\n  border-radius: 5px;\n  background: transparent;\n  content: \"\";\n  position: absolute;\n  height: 13px;\n  border-radius: 5px;\n  -webkit-transition: all 0.2s ease;\n  transition: all 0.2s ease;\n  width: 2px;\n}\n.vs-icon-check span .line2:after {\n  content: \"\";\n  position: absolute;\n  width: 2px;\n  height: 0%;\n  background: #fff;\n  -webkit-transition: all 0.25s ease;\n  transition: all 0.25s ease;\n  bottom: 0px;\n  border-radius: 5px 5px 0px 0px;\n}\n.vs-icon-check.active:before {\n  width: 8px;\n}\n.vs-icon-check.active:after {\n  width: 4px;\n}\n.vs-icon-check.indeterminate span {\n  -webkit-transform: rotate(0);\n          transform: rotate(0);\n  height: auto;\n  margin: 0px;\n  width: auto;\n}\n.vs-icon-check.indeterminate span:after {\n  position: relative;\n  content: \"\";\n  width: 10px;\n  height: 2px;\n  background: #fff;\n  display: block;\n}\n.vs-icon-check.indeterminate span .line1 {\n  -webkit-transform: rotate(-45deg);\n          transform: rotate(-45deg);\n  bottom: 0px;\n  right: -1px;\n  opacity: 0;\n  display: none;\n}\n.vs-icon-check.indeterminate span .line2 {\n  right: 0px !important;\n  bottom: -0.14rem !important;\n  -webkit-transform: rotate(45deg) !important;\n          transform: rotate(45deg) !important;\n  -webkit-transition: all 0.25s ease !important;\n  transition: all 0.25s ease !important;\n  height: 11px !important;\n  display: none;\n}\n\n.vs-icon-arrow {\n  pointer-events: none;\n  width: 7px;\n  height: 7px;\n  -webkit-transform: rotate(-135deg);\n          transform: rotate(-135deg);\n  -webkit-transition: all 0.25s ease;\n  transition: all 0.25s ease;\n  -webkit-transform-origin: center;\n          transform-origin: center;\n}\n.vs-icon-arrow:after {\n  content: \"\";\n  width: 100%;\n  height: 1px;\n  background: rgba(var(--vs-text), 1);\n  position: absolute;\n  display: block;\n  top: 0px;\n}\n.vs-icon-arrow:before {\n  top: 0px;\n  content: \"\";\n  width: 1px;\n  height: 100%;\n  background: rgba(var(--vs-text), 1);\n  position: absolute;\n  display: block;\n}\n.vs-input-parent {\n  --vs-color: var(--vs-primary);\n}\n\n.vs-input-parent {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -ms-flex-item-align: center;\n      align-self: center;\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: column;\n          flex-direction: column;\n  position: relative;\n}\n.vs-input-parent.square .vs-input-content {\n  border-radius: 0px !important;\n}\n.vs-input-parent.textWhite .vs-input {\n  color: #fff;\n}\n.vs-input-parent.transparent .vs-input {\n  background: transparent !important;\n}\n.vs-input-parent.block {\n  width: 100%;\n}\n.vs-input-parent.block .vs-input {\n  width: 100%;\n}\n.vs-input-parent--has-label {\n  margin-top: 20px !important;\n}\n.vs-input-parent--state-success .vs-input {\n  background: rgba(var(--vs-success), 0.1) !important;\n  color: rgba(var(--vs-success), 1);\n}\n.vs-input-parent--state-success .vs-input__label {\n  color: rgba(var(--vs-success), 1);\n}\n.vs-input-parent--state-success .vs-input__icon {\n  color: rgba(var(--vs-success), 1);\n  background: rgba(var(--vs-success), 0.1);\n  -webkit-box-shadow: -15px 10px 10px -10px rgba(var(--vs-success), 0.1);\n          box-shadow: -15px 10px 10px -10px rgba(var(--vs-success), 0.1);\n}\n.vs-input-parent--state-danger .vs-input {\n  background: rgba(var(--vs-danger), 0.1) !important;\n  color: rgba(var(--vs-danger), 1);\n}\n.vs-input-parent--state-danger .vs-input__label {\n  color: rgba(var(--vs-danger), 1);\n}\n.vs-input-parent--state-danger .vs-input__icon {\n  color: rgba(var(--vs-danger), 1);\n  background: rgba(var(--vs-danger), 0.1);\n  -webkit-box-shadow: -15px 10px 10px -10px rgba(var(--vs-danger), 0.1);\n          box-shadow: -15px 10px 10px -10px rgba(var(--vs-danger), 0.1);\n}\n.vs-input-parent--state-warn .vs-input {\n  background: rgba(var(--vs-warn), 0.1) !important;\n  color: rgba(var(--vs-warn), 1);\n}\n.vs-input-parent--state-warn .vs-input__label {\n  color: rgba(var(--vs-warn), 1);\n}\n.vs-input-parent--state-warn .vs-input__icon {\n  color: rgba(var(--vs-warn), 1);\n  background: rgba(var(--vs-warn), 0.1);\n  -webkit-box-shadow: -15px 10px 10px -10px rgba(var(--vs-warn), 0.1);\n          box-shadow: -15px 10px 10px -10px rgba(var(--vs-warn), 0.1);\n}\n.vs-input-parent--state-dark .vs-input {\n  background: rgba(var(--vs-dark), 0.1) !important;\n  color: rgba(var(--vs-dark), 1);\n}\n.vs-input-parent--state-dark .vs-input__label {\n  color: rgba(var(--vs-dark), 1);\n}\n.vs-input-parent--state-dark .vs-input__icon {\n  color: rgba(var(--vs-dark), 1);\n  background: rgba(var(--vs-dark), 0.1);\n  -webkit-box-shadow: -15px 10px 10px -10px rgba(var(--vs-dark), 0.1);\n          box-shadow: -15px 10px 10px -10px rgba(var(--vs-dark), 0.1);\n}\n.vs-input-parent--state-primary .vs-input {\n  background: rgba(var(--vs-primary), 0.1) !important;\n  color: rgba(var(--vs-primary), 1);\n}\n.vs-input-parent--state-primary .vs-input__label {\n  color: rgba(var(--vs-primary), 1);\n}\n.vs-input-parent--state-primary .vs-input__icon {\n  color: rgba(var(--vs-primary), 1);\n  background: rgba(var(--vs-primary), 0.1);\n  -webkit-box-shadow: -15px 10px 10px -10px rgba(var(--vs-primary), 0.1);\n          box-shadow: -15px 10px 10px -10px rgba(var(--vs-primary), 0.1);\n}\n\n.vs-input-content {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  -webkit-box-pack: start;\n      -ms-flex-pack: start;\n          justify-content: flex-start;\n  position: relative;\n  border-radius: 12px;\n}\n.vs-input-content + .vs-input__message {\n  padding-top: 2px;\n}\n.vs-input-content--has-color .vs-input:focus {\n  border-bottom: 2px solid rgba(var(--vs-color), 1);\n}\n.vs-input-content--has-color .vs-input:focus ~ .vs-input__icon {\n  color: rgba(var(--vs-color), 1);\n}\n.vs-input-content--has-color .vs-input:focus ~ .vs-input__label {\n  color: rgba(var(--vs-color), 1);\n}\n.vs-input-content--has-color .vs-input:focus ~ .vs-input__label--placeholder {\n  color: rgba(var(--vs-color), 1);\n}\n\n.vs-input {\n  border: 2px solid transparent;\n  background: rgba(var(--vs-gray-2), 1);\n  color: rgba(var(--vs-text), 1);\n  padding: 7px 13px;\n  border-radius: inherit;\n  -webkit-transition: all 0.25s ease;\n  transition: all 0.25s ease;\n  padding-left: 10px;\n  width: 200px;\n}\n.vs-input:focus {\n  background: rgba(var(--vs-gray-3), 1);\n  padding-left: 15px;\n}\n.vs-input:focus.vs-input--has-icon:not(.vs-input--has-icon--after) {\n  padding-left: 40px;\n}\n.vs-input:focus.vs-input--has-icon:not(.vs-input--has-icon--after) ~ .vs-input__icon {\n  -webkit-box-shadow: 15px 10px 10px -10px rgba(0, 0, 0, var(--vs-shadow-opacity));\n          box-shadow: 15px 10px 10px -10px rgba(0, 0, 0, var(--vs-shadow-opacity));\n}\n.vs-input:focus.vs-input--has-icon:not(.vs-input--has-icon--after) ~ .vs-input__label:not(.vs-input__label--placeholder):not(.vs-input__label--label) {\n  left: 44px;\n}\n.vs-input:focus ~ .vs-input__icon {\n  -webkit-box-shadow: -15px 10px 10px -10px rgba(0, 0, 0, var(--vs-shadow-opacity));\n          box-shadow: -15px 10px 10px -10px rgba(0, 0, 0, var(--vs-shadow-opacity));\n  -webkit-transform: translate(-6px, -6px);\n          transform: translate(-6px, -6px);\n  background: rgba(var(--vs-gray-1), 1);\n}\n.vs-input:focus ~ .vs-input__icon--after {\n  -webkit-transform: translate(6px, -6px);\n          transform: translate(6px, -6px);\n}\n.vs-input:focus ~ .vs-input__label:not(.vs-input__label--placeholder):not(.vs-input__label--label) {\n  opacity: 0;\n  left: 20px;\n}\n.vs-input:focus ~ .vs-input__label--placeholder {\n  opacity: 1;\n  visibility: visible;\n  pointer-events: auto;\n  -webkit-transform: translate(-3%, -77%);\n          transform: translate(-3%, -77%);\n  font-size: 0.75rem;\n}\n.vs-input__label {\n  position: absolute;\n  left: 13px;\n  font-size: 0.8rem;\n  -webkit-transition: all 0.25s ease;\n  transition: all 0.25s ease;\n  cursor: text;\n  -webkit-user-select: none;\n     -moz-user-select: none;\n      -ms-user-select: none;\n          user-select: none;\n  pointer-events: none;\n  width: 100%;\n  height: 100%;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  -webkit-box-pack: start;\n      -ms-flex-pack: start;\n          justify-content: flex-start;\n  opacity: 0.4;\n}\n.vs-input__label--hidden {\n  opacity: 0;\n  visibility: hidden;\n}\n.vs-input__label--hidden.vs-input__label--placeholder {\n  opacity: 1;\n  visibility: visible;\n  pointer-events: auto;\n  -webkit-transform: translate(-3px, -80%);\n          transform: translate(-3px, -80%);\n  font-size: 0.75rem;\n}\n.vs-input__label--label {\n  opacity: 1;\n  visibility: visible;\n  pointer-events: auto;\n  -webkit-transform: translate(-2px, -77%);\n          transform: translate(-2px, -77%);\n  font-size: 0.75rem;\n}\n.vs-input--has-icon {\n  padding-left: 38px;\n}\n.vs-input--has-icon ~ .vs-input__label {\n  left: 44px;\n}\n.vs-input--has-icon--after {\n  padding-left: 7px;\n  padding-right: 38px;\n}\n.vs-input--has-icon--after ~ .vs-input__label {\n  left: 13px;\n}\n.vs-input--has-icon--after.vs-input__label--label {\n  -webkit-transform: translate(calc(-3px - 22px), -80%) !important;\n          transform: translate(calc(-3px - 22px), -80%) !important;\n}\n.vs-input--has-icon:focus--has-icon--after ~ .vs-input__label {\n  left: 44px;\n}\n.vs-input--has-icon:focus--has-icon--after ~ .vs-input__label--placeholder {\n  -webkit-transform: translate(calc(-3px - 22px), -80%) !important;\n          transform: translate(calc(-3px - 22px), -80%) !important;\n}\n.vs-input--has-icon:focus--has-icon--after ~ .vs-input__label {\n  left: 44px;\n}\n.vs-input__icon {\n  position: absolute;\n  right: auto;\n  width: 36px;\n  height: 36px;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n  -webkit-box-shadow: 12px 0px 10px -10px rgba(0, 0, 0, var(--vs-shadow-opacity));\n          box-shadow: 12px 0px 10px -10px rgba(0, 0, 0, var(--vs-shadow-opacity));\n  -webkit-transition: all 0.25s ease;\n  transition: all 0.25s ease;\n  border-radius: inherit;\n  background: rgba(var(--vs-gray-2), 1);\n  pointer-events: none;\n  left: 0px;\n}\n.vs-input__icon--after {\n  left: auto;\n  right: 0px;\n  -webkit-box-shadow: -12px 0px 10px -10px rgba(0, 0, 0, var(--vs-shadow-opacity));\n          box-shadow: -12px 0px 10px -10px rgba(0, 0, 0, var(--vs-shadow-opacity));\n}\n.vs-input__icon--click {\n  pointer-events: auto !important;\n  cursor: pointer;\n}\n.vs-input__icon--click:hover {\n  -webkit-box-shadow: -15px 10px 10px -10px rgba(0, 0, 0, var(--vs-shadow-opacity));\n          box-shadow: -15px 10px 10px -10px rgba(0, 0, 0, var(--vs-shadow-opacity));\n  -webkit-transform: translate(-6px, -6px);\n          transform: translate(-6px, -6px);\n  background: rgba(var(--vs-gray-1), 1);\n}\n.vs-input__icon--click:hover.vs-input__icon--after {\n  -webkit-transform: translate(6px, -6px);\n          transform: translate(6px, -6px);\n}\n.vs-input__message {\n  font-size: 0.7rem;\n  position: relative;\n  padding: 0px 7px;\n  -webkit-transition: all 0.25s ease;\n  transition: all 0.25s ease;\n  overflow: hidden;\n}\n.vs-input__message--success {\n  color: rgba(var(--vs-success), 1);\n}\n.vs-input__message--danger {\n  color: rgba(var(--vs-danger), 1);\n}\n.vs-input__message--warn {\n  color: rgba(var(--vs-warn), 1);\n}\n.vs-input__message--dark {\n  color: rgba(var(--vs-dark), 1);\n}\n.vs-input__message--primary {\n  color: rgba(var(--vs-primary), 1);\n}\n.vs-input__progress {\n  width: 95%;\n  left: 2.5%;\n  position: relative;\n  height: 2px;\n  background: rgba(var(--vs-gray-2), 1);\n  margin-top: 5px;\n  overflow: hidden;\n  border-radius: 5px;\n}\n.vs-input__progress--danger .vs-input__progress__bar {\n  background: rgba(var(--vs-danger), 1);\n}\n.vs-input__progress--warn .vs-input__progress__bar {\n  background: rgba(var(--vs-warn), 1);\n}\n.vs-input__progress--success .vs-input__progress__bar {\n  background: rgba(var(--vs-success), 1);\n}\n.vs-input__progress__bar {\n  width: 32%;\n  height: 2px;\n  max-width: 100%;\n  -webkit-transition: all 0.25s ease;\n  transition: all 0.25s ease;\n  border-radius: 5px;\n}\n.vs-input__loading {\n  position: absolute;\n  width: 22px;\n  height: 22px;\n  right: 7px;\n  pointer-events: none;\n  border-radius: 50%;\n  -webkit-box-sizing: border-box;\n          box-sizing: border-box;\n  background: inherit;\n  cursor: default;\n}\n.vs-input__loading:after {\n  -webkit-box-sizing: border-box;\n          box-sizing: border-box;\n  position: absolute;\n  width: 100%;\n  height: 100%;\n  border: 2px solid rgba(var(--vs-primary), 1);\n  border-radius: inherit;\n  border-top: 2px solid transparent;\n  border-left: 2px solid transparent;\n  border-right: 2px solid transparent;\n  -webkit-animation: rotateInputLoading 0.8s ease infinite;\n          animation: rotateInputLoading 0.8s ease infinite;\n  top: 0px;\n  content: \"\";\n}\n.vs-input__loading:before {\n  -webkit-box-sizing: border-box;\n          box-sizing: border-box;\n  top: 0px;\n  position: absolute;\n  width: 100%;\n  height: 100%;\n  border: 2px dashed rgba(var(--vs-primary), 1);\n  border-radius: inherit;\n  border-top: 2px solid transparent;\n  border-left: 2px solid transparent;\n  border-right: 2px solid transparent;\n  -webkit-animation: rotateInputLoading 0.8s linear infinite;\n          animation: rotateInputLoading 0.8s linear infinite;\n  opacity: 0.2;\n  content: \"\";\n}\n\n.vs-input-parent--border .vs-input__icon {\n  background: transparent !important;\n  -webkit-box-shadow: none !important;\n          box-shadow: none !important;\n}\n.vs-input-parent--border .vs-input-content {\n  border-radius: 0px;\n}\n.vs-input-parent--border .vs-input-content .vs-input__affects {\n  width: 100%;\n  height: 100%;\n  position: absolute;\n  top: 0px;\n  left: 0px;\n  pointer-events: none;\n}\n.vs-input-parent--border .vs-input-content .vs-input__affects__1 {\n  border-bottom: 2px solid rgba(var(--vs-gray-3), 1);\n  width: 100%;\n  height: 2px;\n  position: absolute;\n  bottom: 0px;\n  -webkit-transition: all 0.25s ease;\n  transition: all 0.25s ease;\n}\n.vs-input-parent--border .vs-input-content .vs-input__affects__2 {\n  border-bottom: 2px solid rgba(var(--vs-color), 1);\n  width: 0%;\n  height: 2px;\n  position: absolute;\n  bottom: 0px;\n  -webkit-transition: all 0.25s ease;\n  transition: all 0.25s ease;\n  left: 50%;\n  -webkit-transform: translate(-50%);\n          transform: translate(-50%);\n}\n.vs-input-parent--border .vs-input-content .vs-input {\n  background: transparent;\n  border-radius: 0px;\n}\n.vs-input-parent--border .vs-input-content .vs-input:focus ~ .vs-input__affects .vs-input__affects__2 {\n  width: 100%;\n}\n.vs-input-parent--shadow .vs-input__icon {\n  background: transparent;\n  z-index: 100;\n}\n.vs-input-parent--shadow .vs-input-content .vs-input__affects {\n  width: 100%;\n  height: 100%;\n  position: absolute;\n  top: 0px;\n  left: 0px;\n  border-radius: inherit;\n  pointer-events: none;\n  z-index: 10;\n}\n.vs-input-parent--shadow .vs-input-content .vs-input__affects__1 {\n  -webkit-box-shadow: 0px 6px 25px -6px rgba(0, 0, 0, var(--vs-shadow-opacity));\n          box-shadow: 0px 6px 25px -6px rgba(0, 0, 0, var(--vs-shadow-opacity));\n  width: 100%;\n  height: 100%;\n  position: absolute;\n  top: 0px;\n  -webkit-transition: all 0.25s ease;\n  transition: all 0.25s ease;\n  z-index: 200;\n  border-radius: inherit;\n}\n.vs-input-parent--shadow .vs-input-content .vs-input {\n  background: transparent;\n  border-radius: 0px;\n  border: 2px solid transparent;\n}\n.vs-input-parent--shadow .vs-input-content .vs-input:focus {\n  -webkit-transform: translate(0, 3px);\n          transform: translate(0, 3px);\n}\n.vs-input-parent--shadow .vs-input-content .vs-input:focus ~ .vs-input__icon {\n  background: rgba(var(--vs-background), 1) !important;\n  opacity: 1;\n  -webkit-box-shadow: 0px 10px 20px -5px rgba(0, 0, 0, var(--vs-shadow-opacity)) !important;\n          box-shadow: 0px 10px 20px -5px rgba(0, 0, 0, var(--vs-shadow-opacity)) !important;\n}\n.vs-input-parent--shadow .vs-input-content .vs-input:focus ~ .vs-input__affects .vs-input__affects__1 {\n  -webkit-transform: translate(0, 3px);\n          transform: translate(0, 3px);\n  -webkit-box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, var(--vs-shadow-opacity));\n          box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, var(--vs-shadow-opacity));\n}\n\n@-webkit-keyframes rotateInputLoading {\n  0% {\n    -webkit-transform: rotate(0deg);\n            transform: rotate(0deg);\n  }\n  100% {\n    -webkit-transform: rotate(360deg);\n            transform: rotate(360deg);\n  }\n}\n\n@keyframes rotateInputLoading {\n  0% {\n    -webkit-transform: rotate(0deg);\n            transform: rotate(0deg);\n  }\n  100% {\n    -webkit-transform: rotate(360deg);\n            transform: rotate(360deg);\n  }\n}\n.vs-checkbox-content {\n  --vs-color: var(--vs-primary);\n}\n\n.vs-checkbox-content {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  -webkit-box-pack: start;\n      -ms-flex-pack: start;\n          justify-content: flex-start;\n}\n\n.vs-checkbox-con {\n  width: 23px;\n  height: 23px;\n  border-radius: 9px;\n  position: relative;\n  z-index: 1;\n}\n\n.vs-checkbox-mask {\n  border-radius: 32%;\n  width: 100%;\n  height: 100%;\n  position: absolute;\n  z-index: 50;\n  cursor: pointer;\n  pointer-events: none;\n  -webkit-box-sizing: border-box;\n          box-sizing: border-box;\n  -webkit-transition: all 0.25s ease;\n  transition: all 0.25s ease;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n  z-index: -1;\n  box-sizing: border-box;\n}\n.vs-checkbox-mask i:not(.vs-icon-check) {\n  opacity: 0;\n  -webkit-transition: all 0.25s ease;\n  transition: all 0.25s ease;\n  color: #fff;\n  font-size: 1.1em;\n  -webkit-transform: scale(0.5);\n          transform: scale(0.5);\n}\n.vs-checkbox-mask:after {\n  content: \"\";\n  position: absolute;\n  top: 0px;\n  left: 0px;\n  width: 100%;\n  height: 100%;\n  background: rgba(var(--vs-color), 1);\n  -webkit-transform: scale(0.5);\n          transform: scale(0.5);\n  border-radius: inherit;\n  opacity: 0;\n  -webkit-transition: all 0.25s ease;\n  transition: all 0.25s ease;\n  z-index: -1;\n}\n.vs-checkbox-mask:before {\n  content: \"\";\n  position: absolute;\n  top: 0px;\n  left: 0px;\n  width: 100%;\n  height: 100%;\n  border-radius: inherit;\n  -webkit-transition: all 0.25s ease;\n  transition: all 0.25s ease;\n  z-index: -1;\n  border: 2px solid rgba(var(--vs-gray-4), 1);\n  -webkit-box-sizing: border-box;\n          box-sizing: border-box;\n}\n.vs-checkbox-mask .vs-icon-check {\n  opacity: 0;\n  z-index: 200;\n}\n\n.vs-checkbox {\n  position: absolute;\n  width: 100%;\n  height: 100%;\n  top: 0px;\n  left: 0px;\n  margin: 0px;\n  padding: 0px;\n  opacity: 0;\n  z-index: 100;\n  cursor: pointer;\n}\n.vs-checkbox:disabled {\n  opacity: 0;\n  pointer-events: none;\n}\n.vs-checkbox:active ~ .vs-checkbox-mask {\n  background: rgba(var(--vs-gray-4), 1) !important;\n}\n.vs-checkbox:hover ~ .vs-checkbox-mask {\n  background: rgba(var(--vs-gray-3), 1);\n}\n.vs-checkbox:hover ~ .vs-checkbox-mask:before {\n  border: 2px solid rgba(var(--vs-gray-4), 0);\n}\n.vs-checkbox:checked:hover ~ .vs-checkbox-mask {\n  -webkit-box-shadow: 0px 3px 15px 0px rgba(var(--vs-color), 0.35);\n          box-shadow: 0px 3px 15px 0px rgba(var(--vs-color), 0.35);\n}\n.vs-checkbox:checked ~ .vs-checkbox-mask {\n  -webkit-box-shadow: 0px 0px 0px 0px rgba(var(--vs-color), 0.35);\n          box-shadow: 0px 0px 0px 0px rgba(var(--vs-color), 0.35);\n}\n.vs-checkbox:checked ~ .vs-checkbox-mask i:not(.vs-icon-check) {\n  opacity: 1;\n  -webkit-transform: scale(1);\n          transform: scale(1);\n  -webkit-transition: all 0.25s ease 0.15s;\n  transition: all 0.25s ease 0.15s;\n}\n.vs-checkbox:checked ~ .vs-checkbox-mask .vs-icon-check {\n  opacity: 1;\n}\n.vs-checkbox:checked ~ .vs-checkbox-mask .vs-icon-check span .line1:after {\n  width: 100%;\n  -webkit-transition: all 0.25s ease 0.1s;\n  transition: all 0.25s ease 0.1s;\n}\n.vs-checkbox:checked ~ .vs-checkbox-mask .vs-icon-check span .line2:after {\n  -webkit-transition: all 0.2s ease 0.3s;\n  transition: all 0.2s ease 0.3s;\n  height: 100%;\n}\n.vs-checkbox:checked ~ .vs-checkbox-mask:after {\n  opacity: 1;\n  -webkit-transform: scale(1);\n          transform: scale(1);\n}\n.vs-checkbox:checked ~ .vs-checkbox-mask:before {\n  opacity: 0;\n  -webkit-transform: scale(1.2);\n          transform: scale(1.2);\n}\n\n.vs-checkbox-label {\n  -webkit-user-select: none;\n     -moz-user-select: none;\n      -ms-user-select: none;\n          user-select: none;\n  cursor: pointer;\n  padding: 7px;\n  -webkit-transition: all 0.25s ease;\n  transition: all 0.25s ease;\n  position: relative;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n  font-size: 0.9rem;\n}\n.vs-checkbox-label:before {\n  position: absolute;\n  width: 0px;\n  height: 2px;\n  background: rgba(var(--vs-text), 0.6);\n  content: \"\";\n  -webkit-transition: all 0.25s ease;\n  transition: all 0.25s ease;\n}\n\n.vs-checkbox--disabled {\n  pointer-events: none;\n}\n.vs-checkbox--disabled .vs-checkbox-label {\n  opacity: 0.5;\n}\n.vs-checkbox--disabled .vs-checkbox-mask {\n  opacity: 0.6;\n  background: transparent !important;\n}\n\n.vs-checkbox--checked .lineThrough {\n  opacity: 0.4;\n}\n.vs-checkbox--checked .lineThrough:before {\n  width: calc(100% - 10px);\n}\n\n.vs-checkbox--loading {\n  pointer-events: none;\n}\n.vs-checkbox--loading.vs-checkbox--checked .vs-checkbox-mask {\n  background: transparent !important;\n}\n.vs-checkbox--loading.vs-checkbox--checked .vs-checkbox-mask:before {\n  border-radius: 50%;\n  border: 2px solid rgba(var(--vs-color), 1) !important;\n  border-top: 2px solid transparent !important;\n  -webkit-animation: rotateCheckboxLoading 0.6s linear infinite;\n          animation: rotateCheckboxLoading 0.6s linear infinite;\n  opacity: 1 !important;\n}\n.vs-checkbox--loading.vs-checkbox--checked .vs-checkbox-mask:after {\n  opacity: 0;\n  -webkit-transform: scale(0.5);\n          transform: scale(0.5);\n}\n.vs-checkbox--loading .vs-checkbox-mask {\n  background: transparent !important;\n}\n.vs-checkbox--loading .vs-checkbox-mask:before {\n  border-radius: 50%;\n  border: 2px solid rgba(var(--vs-gray-4), 1) !important;\n  border-top: 2px solid transparent !important;\n  -webkit-animation: rotateCheckboxLoading 0.6s linear infinite;\n          animation: rotateCheckboxLoading 0.6s linear infinite;\n}\n\n@-webkit-keyframes rotateCheckboxLoading {\n  0% {\n    -webkit-transform: rotate(0deg);\n            transform: rotate(0deg);\n  }\n  100% {\n    -webkit-transform: rotate(360deg);\n            transform: rotate(360deg);\n  }\n}\n\n@keyframes rotateCheckboxLoading {\n  0% {\n    -webkit-transform: rotate(0deg);\n            transform: rotate(0deg);\n  }\n  100% {\n    -webkit-transform: rotate(360deg);\n            transform: rotate(360deg);\n  }\n}\n.vs-checkbox--label-before .vs-checkbox-label {\n  -webkit-box-ordinal-group: 0;\n      -ms-flex-order: -1;\n          order: -1;\n}\n.vs-switch {\n  --vs-color: var(--vs-primary);\n}\n\n@-webkit-keyframes rotateSwitch {\n  0% {\n    -webkit-transform: rotate(0deg);\n            transform: rotate(0deg);\n  }\n  100% {\n    -webkit-transform: rotate(360deg);\n            transform: rotate(360deg);\n  }\n}\n\n@keyframes rotateSwitch {\n  0% {\n    -webkit-transform: rotate(0deg);\n            transform: rotate(0deg);\n  }\n  100% {\n    -webkit-transform: rotate(360deg);\n            transform: rotate(360deg);\n  }\n}\n.vs-switch {\n  color: #fff;\n  padding: 5px;\n  border-radius: 20px;\n  min-width: 48px;\n  height: 28px;\n  border: 0px;\n  position: relative;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n  background: rgba(var(--vs-gray-3), 1);\n  -webkit-transition: all 0.25s ease;\n  transition: all 0.25s ease;\n  overflow: hidden;\n}\n.vs-switch--icon .vs-switch__input:checked ~ .vs-switch__circle {\n  color: #fff !important;\n}\n.vs-switch--icon .vs-switch__circle {\n  background: transparent !important;\n  -webkit-box-shadow: none !important;\n          box-shadow: none !important;\n}\n.vs-switch--icon .vs-switch__circle i {\n  opacity: 1;\n  font-size: 1.3rem;\n}\n.vs-switch--indeterminate .vs-switch__input {\n  pointer-events: none;\n}\n.vs-switch--indeterminate .vs-switch__circle {\n  left: 50% !important;\n  -webkit-transform: translate(-50%);\n          transform: translate(-50%);\n}\n.vs-switch--square {\n  border-radius: 5px;\n}\n.vs-switch--square .vs-switch__background {\n  border-radius: 5px !important;\n}\n.vs-switch--square .vs-switch__circle {\n  border-radius: 5px !important;\n}\n.vs-switch:after {\n  -webkit-transition: all 0s ease 0s;\n  transition: all 0s ease 0s;\n  opacity: 0;\n  visibility: hidden;\n  content: \"\";\n  position: absolute;\n  width: calc(100% - 8px);\n  height: calc(100% - 8px);\n  border: 3px dashed rgba(var(--vs-color), 1);\n  z-index: 200;\n  border-radius: 50%;\n  border-top: 3px solid transparent;\n  border-right: 3px solid transparent;\n  -webkit-animation: rotateSwitch 0.6s linear infinite 0.25s;\n          animation: rotateSwitch 0.6s linear infinite 0.25s;\n  pointer-events: none;\n}\n.vs-switch:before {\n  pointer-events: none;\n  -webkit-transition: all 0s ease 0s;\n  transition: all 0s ease 0s;\n  opacity: 0;\n  visibility: hidden;\n  content: \"\";\n  position: absolute;\n  width: calc(100% - 8px);\n  height: calc(100% - 8px);\n  border: 3px solid rgba(var(--vs-color), 1);\n  z-index: 200;\n  border-radius: 50%;\n  border-top: 3px solid transparent;\n  border-right: 3px solid transparent;\n  -webkit-animation: rotateSwitch 0.6s ease infinite 0.25s;\n          animation: rotateSwitch 0.6s ease infinite 0.25s;\n}\n.vs-switch--loading {\n  width: 28px !important;\n  min-width: 28px !important;\n  pointer-events: none;\n  border-radius: 20px !important;\n}\n.vs-switch--loading .vs-switch__circle {\n  border-radius: 50% !important;\n}\n.vs-switch--loading .vs-switch__background {\n  opacity: 0 !important;\n}\n.vs-switch--loading:after {\n  opacity: 1;\n  visibility: visible;\n  -webkit-transition: all 0.25s ease 0.3s;\n  transition: all 0.25s ease 0.3s;\n}\n.vs-switch--loading:before {\n  opacity: 1;\n  visibility: visible;\n  -webkit-transition: all 0.25s ease 0.3s;\n  transition: all 0.25s ease 0.3s;\n}\n.vs-switch:hover {\n  background: rgba(var(--vs-gray-4), 1);\n}\n.vs-switch:active {\n  -webkit-transform: scale(0.9);\n          transform: scale(0.9);\n}\n.vs-switch__background {\n  width: 100%;\n  height: auto;\n  position: absolute;\n  background: rgba(var(--vs-color), 1);\n  border-radius: inherit;\n  z-index: 2;\n  -webkit-transition: all 0.25s ease-out;\n  transition: all 0.25s ease-out;\n  -webkit-transform: scale(1);\n          transform: scale(1);\n  left: -100%;\n  border-radius: 50%;\n  padding-bottom: 100%;\n}\n.vs-switch__text {\n  font-size: 0.7rem;\n  padding: 5px;\n  padding-left: 25px;\n  -webkit-transition: all 0.25s ease 0.05s;\n  transition: all 0.25s ease 0.05s;\n  color: rgba(var(--vs-text), 1);\n  z-index: 9;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n  position: relative;\n  overflow: hidden;\n  white-space: nowrap;\n}\n.vs-switch__text.on {\n  -webkit-transform: translate(-100%);\n          transform: translate(-100%);\n  position: absolute;\n  opacity: 0;\n}\n.vs-switch__text i {\n  font-size: 1rem;\n  opacity: 0.7;\n}\n.vs-switch__circle {\n  width: 20px;\n  height: 20px;\n  background: rgba(var(--vs-background), 1);\n  border-radius: 20px;\n  -webkit-transition: all 0.25s ease;\n  transition: all 0.25s ease;\n  position: absolute;\n  z-index: 10;\n  left: 4px;\n  color: rgba(var(--vs-text), 1);\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n}\n.vs-switch__circle i {\n  font-size: 0.8rem;\n}\n.vs-switch__input {\n  position: absolute;\n  width: 100%;\n  opacity: 0 !important;\n  height: 100%;\n  border-radius: inherit;\n  z-index: 100;\n  top: 0px;\n  left: 0px;\n  margin: 0px;\n  cursor: pointer;\n}\n.vs-switch__input:active:checked ~ .vs-switch__circle {\n  left: calc(100% - 30px);\n}\n.vs-switch__input:active ~ .vs-switch__circle {\n  width: 25px;\n}\n.vs-switch__input:checked ~ .vs-switch__background {\n  opacity: 1;\n  -webkit-transform: scale(1);\n          transform: scale(1);\n  width: 100%;\n  padding-bottom: 100%;\n  left: 0px;\n  border-radius: 50%;\n  -webkit-transition: all 0.25s ease;\n  transition: all 0.25s ease;\n}\n.vs-switch__input:checked ~ .vs-switch__text {\n  padding-left: 5px;\n  padding-right: 25px;\n  color: #fff;\n}\n.vs-switch__input:checked ~ .vs-switch__text i {\n  opacity: 1;\n}\n.vs-switch__input:checked ~ .vs-switch__text.on {\n  -webkit-transform: translate(0);\n          transform: translate(0);\n  position: relative;\n  opacity: 1;\n}\n.vs-switch__input:checked ~ .vs-switch__text.off {\n  -webkit-transform: translate(100%);\n          transform: translate(100%);\n  position: absolute;\n  opacity: 0;\n}\n.vs-switch__input:checked ~ .vs-switch__circle {\n  left: calc(100% - 24px);\n  -webkit-box-shadow: -5px 0px 25px 0px rgba(var(--vs-background), 0.6);\n          box-shadow: -5px 0px 25px 0px rgba(var(--vs-background), 0.6);\n  color: rgba(var(--vs-color), 1);\n}\n.vs-select {\n  --vs-color: var(--vs-primary);\n}\n\n.vs-select__options .vs-checkbox-content {\n  --vs-color: inherit;\n}\n\n.vs-select-enter-active {\n  -webkit-transition: all 0.25s ease;\n  transition: all 0.25s ease;\n}\n\n.vs-select-enter {\n  opacity: 0;\n  -webkit-transform: translate(0, -10px);\n          transform: translate(0, -10px);\n  -webkit-transition: all 0.25s ease;\n  transition: all 0.25s ease;\n  -webkit-box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, var(--vs-shadow-opacity));\n          box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, var(--vs-shadow-opacity));\n}\n.vs-select-enter:after {\n  opacity: 0 !important;\n  -webkit-box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, var(--vs-shadow-opacity));\n          box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, var(--vs-shadow-opacity));\n}\n\n.vs-select-leave-active {\n  -webkit-transition: all 0.25s ease;\n  transition: all 0.25s ease;\n}\n\n.vs-select-leave-to {\n  opacity: 0;\n  -webkit-transform: translate(0, -10px);\n          transform: translate(0, -10px);\n  -webkit-transition: all 0.25s ease;\n  transition: all 0.25s ease;\n  -webkit-box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, var(--vs-shadow-opacity));\n          box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, var(--vs-shadow-opacity));\n}\n.vs-select-leave-to.top {\n  -webkit-transform: translate(0, 10px) !important;\n          transform: translate(0, 10px) !important;\n}\n.vs-select-leave-to:after {\n  opacity: 0 !important;\n  -webkit-box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, var(--vs-shadow-opacity));\n          box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, var(--vs-shadow-opacity));\n}\n\n.vs-select-content {\n  width: 100%;\n  max-width: 200px;\n}\n.vs-select-content.block.block {\n  max-width: 100%;\n}\n\n.vs-select {\n  position: relative;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n  min-height: 38px;\n  width: 100%;\n}\n.vs-select--state-success .vs-select__input {\n  background: rgba(var(--vs-success), 0.05);\n  color: rgba(var(--vs-success), 1);\n}\n.vs-select--state-success .vs-select__input:hover {\n  color: rgba(var(--vs-text), 1);\n}\n.vs-select--state-success .vs-select__chips {\n  background: rgba(var(--vs-success), 0.05);\n  color: rgba(var(--vs-success), 1);\n}\n.vs-select--state-success .vs-select__chips:hover:after {\n  opacity: 0;\n}\n.vs-select--state-success .vs-select__chips:after {\n  width: calc(100% - 4px);\n  height: calc(100% - 4px);\n  content: \"\";\n  position: absolute;\n  top: 0px;\n  left: 0px;\n  border: 2px solid rgba(var(--vs-success), 0.5);\n  border-radius: inherit;\n  -webkit-transition: all 0.25s ease;\n  transition: all 0.25s ease;\n}\n.vs-select--state-success .vs-select__label {\n  color: rgba(var(--vs-success), 1);\n}\n.vs-select--state-success .vs-select__icon {\n  color: rgba(var(--vs-success), 1);\n  background: rgba(var(--vs-success), 0.1);\n  -webkit-box-shadow: -15px 10px 10px -10px rgba(var(--vs-success), 0.1);\n          box-shadow: -15px 10px 10px -10px rgba(var(--vs-success), 0.1);\n}\n.vs-select--state-success .vs-icon-arrow:after {\n  background: rgba(var(--vs-success), 1);\n}\n.vs-select--state-success .vs-icon-arrow:before {\n  background: rgba(var(--vs-success), 1);\n}\n.vs-select--state-danger .vs-select__input {\n  background: rgba(var(--vs-danger), 0.05);\n  color: rgba(var(--vs-danger), 1);\n}\n.vs-select--state-danger .vs-select__input:hover {\n  color: rgba(var(--vs-text), 1);\n}\n.vs-select--state-danger .vs-select__chips {\n  background: rgba(var(--vs-danger), 0.05);\n  color: rgba(var(--vs-danger), 1);\n}\n.vs-select--state-danger .vs-select__chips:hover:after {\n  opacity: 0;\n}\n.vs-select--state-danger .vs-select__chips:after {\n  width: calc(100% - 4px);\n  height: calc(100% - 4px);\n  content: \"\";\n  position: absolute;\n  top: 0px;\n  left: 0px;\n  border: 2px solid rgba(var(--vs-danger), 0.5);\n  border-radius: inherit;\n  -webkit-transition: all 0.25s ease;\n  transition: all 0.25s ease;\n}\n.vs-select--state-danger .vs-select__label {\n  color: rgba(var(--vs-danger), 1);\n}\n.vs-select--state-danger .vs-select__icon {\n  color: rgba(var(--vs-danger), 1);\n  background: rgba(var(--vs-danger), 0.1);\n  -webkit-box-shadow: -15px 10px 10px -10px rgba(var(--vs-danger), 0.1);\n          box-shadow: -15px 10px 10px -10px rgba(var(--vs-danger), 0.1);\n}\n.vs-select--state-danger .vs-icon-arrow:after {\n  background: rgba(var(--vs-danger), 1);\n}\n.vs-select--state-danger .vs-icon-arrow:before {\n  background: rgba(var(--vs-danger), 1);\n}\n.vs-select--state-warn .vs-select__input {\n  background: rgba(var(--vs-warn), 0.05);\n  color: rgba(var(--vs-warn), 1);\n}\n.vs-select--state-warn .vs-select__input:hover {\n  color: rgba(var(--vs-text), 1);\n}\n.vs-select--state-warn .vs-select__chips {\n  background: rgba(var(--vs-warn), 0.05);\n  color: rgba(var(--vs-warn), 1);\n}\n.vs-select--state-warn .vs-select__chips:hover:after {\n  opacity: 0;\n}\n.vs-select--state-warn .vs-select__chips:after {\n  width: calc(100% - 4px);\n  height: calc(100% - 4px);\n  content: \"\";\n  position: absolute;\n  top: 0px;\n  left: 0px;\n  border: 2px solid rgba(var(--vs-warn), 0.5);\n  border-radius: inherit;\n  -webkit-transition: all 0.25s ease;\n  transition: all 0.25s ease;\n}\n.vs-select--state-warn .vs-select__label {\n  color: rgba(var(--vs-warn), 1);\n}\n.vs-select--state-warn .vs-select__icon {\n  color: rgba(var(--vs-warn), 1);\n  background: rgba(var(--vs-warn), 0.1);\n  -webkit-box-shadow: -15px 10px 10px -10px rgba(var(--vs-warn), 0.1);\n          box-shadow: -15px 10px 10px -10px rgba(var(--vs-warn), 0.1);\n}\n.vs-select--state-warn .vs-icon-arrow:after {\n  background: rgba(var(--vs-warn), 1);\n}\n.vs-select--state-warn .vs-icon-arrow:before {\n  background: rgba(var(--vs-warn), 1);\n}\n.vs-select--state-dark .vs-select__input {\n  background: rgba(var(--vs-dark), 0.05);\n  color: rgba(var(--vs-dark), 1);\n}\n.vs-select--state-dark .vs-select__input:hover {\n  color: rgba(var(--vs-text), 1);\n}\n.vs-select--state-dark .vs-select__chips {\n  background: rgba(var(--vs-dark), 0.05);\n  color: rgba(var(--vs-dark), 1);\n}\n.vs-select--state-dark .vs-select__chips:hover:after {\n  opacity: 0;\n}\n.vs-select--state-dark .vs-select__chips:after {\n  width: calc(100% - 4px);\n  height: calc(100% - 4px);\n  content: \"\";\n  position: absolute;\n  top: 0px;\n  left: 0px;\n  border: 2px solid rgba(var(--vs-dark), 0.5);\n  border-radius: inherit;\n  -webkit-transition: all 0.25s ease;\n  transition: all 0.25s ease;\n}\n.vs-select--state-dark .vs-select__label {\n  color: rgba(var(--vs-dark), 1);\n}\n.vs-select--state-dark .vs-select__icon {\n  color: rgba(var(--vs-dark), 1);\n  background: rgba(var(--vs-dark), 0.1);\n  -webkit-box-shadow: -15px 10px 10px -10px rgba(var(--vs-dark), 0.1);\n          box-shadow: -15px 10px 10px -10px rgba(var(--vs-dark), 0.1);\n}\n.vs-select--state-dark .vs-icon-arrow:after {\n  background: rgba(var(--vs-dark), 1);\n}\n.vs-select--state-dark .vs-icon-arrow:before {\n  background: rgba(var(--vs-dark), 1);\n}\n.vs-select--state-primary .vs-select__input {\n  background: rgba(var(--vs-primary), 0.05);\n  color: rgba(var(--vs-primary), 1);\n}\n.vs-select--state-primary .vs-select__input:hover {\n  color: rgba(var(--vs-text), 1);\n}\n.vs-select--state-primary .vs-select__chips {\n  background: rgba(var(--vs-primary), 0.05);\n  color: rgba(var(--vs-primary), 1);\n}\n.vs-select--state-primary .vs-select__chips:hover:after {\n  opacity: 0;\n}\n.vs-select--state-primary .vs-select__chips:after {\n  width: calc(100% - 4px);\n  height: calc(100% - 4px);\n  content: \"\";\n  position: absolute;\n  top: 0px;\n  left: 0px;\n  border: 2px solid rgba(var(--vs-primary), 0.5);\n  border-radius: inherit;\n  -webkit-transition: all 0.25s ease;\n  transition: all 0.25s ease;\n}\n.vs-select--state-primary .vs-select__label {\n  color: rgba(var(--vs-primary), 1);\n}\n.vs-select--state-primary .vs-select__icon {\n  color: rgba(var(--vs-primary), 1);\n  background: rgba(var(--vs-primary), 0.1);\n  -webkit-box-shadow: -15px 10px 10px -10px rgba(var(--vs-primary), 0.1);\n          box-shadow: -15px 10px 10px -10px rgba(var(--vs-primary), 0.1);\n}\n.vs-select--state-primary .vs-icon-arrow:after {\n  background: rgba(var(--vs-primary), 1);\n}\n.vs-select--state-primary .vs-icon-arrow:before {\n  background: rgba(var(--vs-primary), 1);\n}\n.vs-select.loading {\n  pointer-events: none;\n}\n.vs-select.loading *:not(.vs-select__loading):not(.vs-select__label) {\n  opacity: 0.6;\n}\n.vs-select.loading .vs-select__label {\n  pointer-events: none !important;\n}\n.vs-select.top.activeOptions .vs-select__input, .vs-select.top.activeOptions .vs-select__chips {\n  border-radius: 0px 0px 12px 12px !important;\n  -webkit-box-shadow: 0px -5px 25px -4px rgba(0, 0, 0, var(--vs-shadow-opacity)) !important;\n          box-shadow: 0px -5px 25px -4px rgba(0, 0, 0, var(--vs-shadow-opacity)) !important;\n}\n.vs-select--disabled {\n  opacity: 0.6;\n  pointer-events: none;\n}\n.vs-select--disabled label {\n  pointer-events: none;\n}\n.vs-select .vs-icon-arrow {\n  z-index: 600;\n  position: absolute;\n  right: 15px;\n  margin-top: -2px;\n  -webkit-transition: all 0.25s ease;\n  transition: all 0.25s ease;\n  pointer-events: auto;\n  cursor: pointer;\n}\n.vs-select.activeOptions .vs-icon-arrow {\n  -webkit-transform: rotate(45deg);\n          transform: rotate(45deg);\n  margin-top: -2px !important;\n}\n.vs-select.activeOptions .vs-select__input {\n  border-radius: 12px 12px 0px 0px;\n  background: rgba(var(--vs-background), 1);\n  -webkit-box-shadow: 0px 5px 25px -4px rgba(0, 0, 0, var(--vs-shadow-opacity));\n          box-shadow: 0px 5px 25px -4px rgba(0, 0, 0, var(--vs-shadow-opacity));\n  -webkit-transform: translate(0, -4px);\n          transform: translate(0, -4px);\n  -webkit-transition: all 0.25s ease, height 0s;\n  transition: all 0.25s ease, height 0s;\n  border: 2px solid transparent;\n  color: rgba(var(--vs-text), 1);\n}\n.vs-select.activeOptions .vs-select__chips {\n  border-radius: 12px 12px 0px 0px;\n  background: rgba(var(--vs-background), 1);\n  -webkit-box-shadow: 0px 5px 25px -4px rgba(0, 0, 0, var(--vs-shadow-opacity));\n          box-shadow: 0px 5px 25px -4px rgba(0, 0, 0, var(--vs-shadow-opacity));\n  -webkit-transform: translate(0, -4px);\n          transform: translate(0, -4px);\n  -webkit-transition: all 0.25s ease, height 0s;\n  transition: all 0.25s ease, height 0s;\n}\n.vs-select.activeOptions .vs-select__chips:after {\n  opacity: 0;\n}\n.vs-select.activeOptions .vs-select__label--placeholder {\n  opacity: 1;\n  visibility: visible;\n  pointer-events: auto;\n  -webkit-transform: translate(-3%, -28px) !important;\n          transform: translate(-3%, -28px) !important;\n  font-size: 0.75rem;\n  margin-top: 0px !important;\n}\n.vs-select.activeOptions .vs-select__label {\n  margin-top: -4px;\n}\n.vs-select__input {\n  opacity: 1;\n  background: transparent;\n  padding: 7px 13px;\n  border: 2px solid transparent;\n  border-radius: 12px;\n  cursor: pointer;\n  -webkit-transition: all 0.25s ease, height 0s;\n  transition: all 0.25s ease, height 0s;\n  background: rgba(var(--vs-gray-2), 1);\n  color: rgba(var(--vs-text), 1);\n  min-height: 38px;\n  padding-right: 30px;\n  width: 100%;\n}\n.vs-select__input.multiple {\n  color: transparent;\n  background: transparent;\n  pointer-events: none;\n}\n.vs-select__input.simple {\n  -webkit-user-select: none;\n     -moz-user-select: none;\n      -ms-user-select: none;\n          user-select: none;\n}\n.vs-select__input:focus {\n  border-radius: 12px 12px 0px 0px;\n  background: rgba(var(--vs-background), 1);\n  -webkit-box-shadow: 0px 5px 25px -4px rgba(0, 0, 0, var(--vs-shadow-opacity));\n          box-shadow: 0px 5px 25px -4px rgba(0, 0, 0, var(--vs-shadow-opacity));\n  -webkit-transform: translate(0, -4px);\n          transform: translate(0, -4px);\n  -webkit-transition: all 0.25s ease;\n  transition: all 0.25s ease;\n}\n.vs-select__input:focus ~ .vs-select__label--placeholder {\n  opacity: 1;\n  visibility: visible;\n  pointer-events: auto;\n  -webkit-transform: translate(-3%, -28px) !important;\n          transform: translate(-3%, -28px) !important;\n  font-size: 0.75rem;\n  margin-top: 0px !important;\n}\n.vs-select__input:hover {\n  background: rgba(var(--vs-background), 1);\n  -webkit-box-shadow: 0px 5px 25px -4px rgba(0, 0, 0, var(--vs-shadow-opacity));\n          box-shadow: 0px 5px 25px -4px rgba(0, 0, 0, var(--vs-shadow-opacity));\n  -webkit-transform: translate(0, -4px);\n          transform: translate(0, -4px);\n}\n.vs-select__input:hover ~ .vs-select__label {\n  margin-top: -4px;\n}\n.vs-select__input:hover ~ .vs-icon-arrow {\n  margin-top: -6px;\n}\n.vs-select__chips {\n  width: 100%;\n  height: auto;\n  position: absolute;\n  left: 0px;\n  background: rgba(var(--vs-gray-2), 1);\n  z-index: 300;\n  border-radius: 12px;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  border: 0px;\n  display: flex;\n  -webkit-box-align: start;\n      -ms-flex-align: start;\n          align-items: flex-start;\n  -webkit-box-pack: start;\n      -ms-flex-pack: start;\n          justify-content: flex-start;\n  -ms-flex-wrap: wrap;\n      flex-wrap: wrap;\n  padding: 5px;\n  min-height: 38px;\n  -webkit-transition: all 0.25s ease, height 0s;\n  transition: all 0.25s ease, height 0s;\n  padding-right: 26px;\n}\n.vs-select__chips:focus {\n  border-radius: 12px 12px 0px 0px;\n  background: rgba(var(--vs-background), 1);\n  -webkit-box-shadow: 0px 5px 25px -4px rgba(0, 0, 0, var(--vs-shadow-opacity));\n          box-shadow: 0px 5px 25px -4px rgba(0, 0, 0, var(--vs-shadow-opacity));\n  -webkit-transform: translate(0, -4px);\n          transform: translate(0, -4px);\n  -webkit-transition: all 0.25s ease;\n  transition: all 0.25s ease;\n}\n.vs-select__chips:hover {\n  background: rgba(var(--vs-background), 1);\n  -webkit-box-shadow: 0px 5px 25px -4px rgba(0, 0, 0, var(--vs-shadow-opacity));\n          box-shadow: 0px 5px 25px -4px rgba(0, 0, 0, var(--vs-shadow-opacity));\n  -webkit-transform: translate(0, -4px);\n          transform: translate(0, -4px);\n  -webkit-transition: all 0.25s ease;\n  transition: all 0.25s ease;\n}\n.vs-select__chips:hover ~ .vs-icon-arrow {\n  margin-top: -6px;\n  -webkit-transition: all 0.25s ease;\n  transition: all 0.25s ease;\n}\n.vs-select__chips__input {\n  width: auto;\n  -webkit-box-flex: 1;\n      -ms-flex: 1;\n          flex: 1;\n  max-width: 100%;\n  position: relative;\n  min-width: 0px;\n  border: 0px solid transparent;\n  background: transparent;\n  margin: 2px 3px;\n  min-width: 30px;\n}\n.vs-select__chips__input::-webkit-input-placeholder {\n  color: rgba(var(--vs-text), 0.4);\n}\n.vs-select__chips__input::-moz-placeholder {\n  color: rgba(var(--vs-text), 0.4);\n}\n.vs-select__chips__input:-ms-input-placeholder {\n  color: rgba(var(--vs-text), 0.4);\n}\n.vs-select__chips__input::-ms-input-placeholder {\n  color: rgba(var(--vs-text), 0.4);\n}\n.vs-select__chips__input::placeholder {\n  color: rgba(var(--vs-text), 0.4);\n}\n.vs-select__chips__chip {\n  -webkit-box-flex: 0;\n      -ms-flex: 0 1 auto;\n          flex: 0 1 auto;\n  position: relative;\n  background: rgba(var(--vs-background), 1);\n  border-radius: 10px;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n  padding: 0px 6px;\n  margin: 2px 3px;\n  padding-right: 10px;\n  font-size: 0.84rem;\n  border: 2px solid rgba(var(--vs-gray-2), 1);\n  -webkit-box-sizing: border-box;\n          box-sizing: border-box;\n  color: rgba(var(--vs-text), 1);\n}\n.vs-select__chips__chip.isCollapse {\n  padding-right: 6px !important;\n}\n.vs-select__chips__chip__close {\n  position: absolute;\n  top: -4px;\n  right: -4px;\n  width: 15px;\n  height: 15px;\n  background: rgba(var(--vs-gray-4), 1);\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n  border-radius: 50%;\n  font-size: 0.75rem;\n  cursor: pointer;\n  -webkit-transition: all 0.25s ease;\n  transition: all 0.25s ease;\n}\n.vs-select__chips__chip__close:hover {\n  background: rgba(var(--vs-danger), 1);\n}\n.vs-select__chips__chip__close:hover .vs-icon-close {\n  --vs-color: var(--vs-background);\n}\n.vs-select__chips__chip__close:hover .vs-icon-close:after {\n  width: 12px;\n  -webkit-transform: rotate(180deg);\n          transform: rotate(180deg);\n}\n.vs-select__chips__chip__close:hover .vs-icon-close:before {\n  width: 12px;\n  -webkit-transform: rotate(180deg);\n          transform: rotate(180deg);\n}\n.vs-select__chips__chip__close .vs-icon-close {\n  --vs-color: var(--vs-text);\n  -webkit-transform: scale(0.5);\n          transform: scale(0.5);\n}\n.vs-select__options {\n  --vs-color: var(--vs-primary);\n  position: absolute;\n  z-index: 99999;\n  background: rgba(var(--vs-background), 1);\n  padding: 5px;\n  border-radius: 0px 0px 12px 12px;\n  overflow: hidden;\n  -webkit-box-shadow: 0px 10px 20px -5px rgba(0, 0, 0, var(--vs-shadow-opacity));\n          box-shadow: 0px 10px 20px -5px rgba(0, 0, 0, var(--vs-shadow-opacity));\n}\n.vs-select__options.top {\n  border-radius: 12px 12px 0px 0px;\n  -webkit-box-shadow: 0px -10px 20px -5px rgba(0, 0, 0, var(--vs-shadow-opacity));\n          box-shadow: 0px -10px 20px -5px rgba(0, 0, 0, var(--vs-shadow-opacity));\n}\n.vs-select__options.top:after {\n  top: auto;\n  bottom: -10px;\n}\n.vs-select__options:after {\n  content: \"\";\n  position: absolute;\n  top: -10px;\n  width: 80%;\n  margin-left: 10%;\n  left: 0px;\n  height: 10px;\n  background: rgba(var(--vs-background), 1);\n  -webkit-box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, var(--vs-shadow-opacity));\n          box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, var(--vs-shadow-opacity));\n  z-index: 200;\n  -webkit-transition: all 0.25s ease 0.05s;\n  transition: all 0.25s ease 0.05s;\n  opacity: 1;\n}\n.vs-select__options__content {\n  max-height: 200px;\n  overflow: auto;\n  height: auto;\n  z-index: 100;\n  -webkit-transform: scale(1);\n          transform: scale(1);\n  -webkit-transition: all 0.25s ease;\n  transition: all 0.25s ease;\n  position: relative;\n  scroll-behavior: smooth;\n}\n.vs-select__options__content__not-data {\n  font-size: 0.8rem;\n  text-align: center;\n  padding: 6px 10px;\n}\n.vs-select__options__content::-webkit-scrollbar {\n  width: 5px;\n  height: 5px;\n  display: block;\n  background: transparent;\n}\n.vs-select__options__content::-webkit-scrollbar-thumb {\n  background: rgba(var(--vs-gray-3), 1);\n  border-radius: 5px;\n}\n.vs-select__label {\n  position: absolute;\n  left: 14px;\n  font-size: 0.8rem;\n  -webkit-transition: all 0.25s ease;\n  transition: all 0.25s ease;\n  cursor: text;\n  -webkit-user-select: none;\n     -moz-user-select: none;\n      -ms-user-select: none;\n          user-select: none;\n  pointer-events: none;\n  width: 100%;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  -webkit-box-pack: start;\n      -ms-flex-pack: start;\n          justify-content: flex-start;\n  opacity: 0.4;\n  z-index: 500;\n}\n.vs-select__label--hidden {\n  opacity: 0;\n  visibility: hidden;\n}\n.vs-select__label--hidden.vs-select__label--placeholder {\n  opacity: 1;\n  visibility: visible;\n  pointer-events: auto;\n  -webkit-transform: translate(-3%, -28px) !important;\n          transform: translate(-3%, -28px) !important;\n  font-size: 0.75rem;\n  margin-top: 0px !important;\n}\n.vs-select__label--label {\n  opacity: 1;\n  visibility: visible;\n  pointer-events: auto;\n  -webkit-transform: translate(-3%, -28px) !important;\n          transform: translate(-3%, -28px) !important;\n  font-size: 0.75rem;\n  margin-top: 0px !important;\n}\n.vs-select__loading {\n  position: absolute;\n  width: 22px;\n  height: 22px;\n  right: 7px;\n  pointer-events: none;\n  border-radius: 50%;\n  -webkit-box-sizing: border-box;\n          box-sizing: border-box;\n  background: inherit;\n  cursor: default;\n  z-index: 600;\n}\n.vs-select__loading:after {\n  -webkit-box-sizing: border-box;\n          box-sizing: border-box;\n  position: absolute;\n  width: 100%;\n  height: 100%;\n  border: 2px solid rgba(var(--vs-primary), 1);\n  border-radius: inherit;\n  border-top: 2px solid transparent;\n  border-left: 2px solid transparent;\n  border-right: 2px solid transparent;\n  -webkit-animation: rotateInputLoading 0.8s ease infinite;\n          animation: rotateInputLoading 0.8s ease infinite;\n  top: 0px;\n  content: \"\";\n}\n.vs-select__loading:before {\n  -webkit-box-sizing: border-box;\n          box-sizing: border-box;\n  top: 0px;\n  position: absolute;\n  width: 100%;\n  height: 100%;\n  border: 2px dashed rgba(var(--vs-primary), 1);\n  border-radius: inherit;\n  border-top: 2px solid transparent;\n  border-left: 2px solid transparent;\n  border-right: 2px solid transparent;\n  -webkit-animation: rotateInputLoading 0.8s linear infinite;\n          animation: rotateInputLoading 0.8s linear infinite;\n  opacity: 0.2;\n  content: \"\";\n}\n.vs-select__loading ~ .vs-icon-arrow {\n  opacity: 0 !important;\n}\n.vs-select__message {\n  font-size: 0.7rem;\n  position: relative;\n  padding: 0px 7px;\n  -webkit-transition: all 0.25s ease;\n  transition: all 0.25s ease;\n  overflow: hidden;\n}\n.vs-select__message--success {\n  color: rgba(var(--vs-success), 1);\n}\n.vs-select__message--danger {\n  color: rgba(var(--vs-danger), 1);\n}\n.vs-select__message--warn {\n  color: rgba(var(--vs-warn), 1);\n}\n.vs-select__message--dark {\n  color: rgba(var(--vs-dark), 1);\n}\n.vs-select__message--primary {\n  color: rgba(var(--vs-primary), 1);\n}\n\n.vs-darken .vs-select__options.isColorDark {\n  --vs-color: 0, 0, 0 !important;\n}\n.vs-darken .vs-select__options.isColorDark .vs-select__option:hover {\n  background: rgba(var(--vs-color), 0.2);\n  color: rgba(var(--vs-text), 1);\n}\n.vs-darken .vs-select__options.isColorDark .activeOption {\n  color: rgba(var(--vs-text), 1);\n  background: rgba(var(--vs-color), 0.6);\n}\n.vs-select__option {\n  border: 0px;\n  width: 100%;\n  padding: 6px 10px;\n  text-align: left;\n  background: transparent;\n  -webkit-transition: all 0.25s ease;\n  transition: all 0.25s ease;\n  color: rgba(var(--vs-text), 1);\n  border-radius: 5px;\n  -webkit-box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, var(--vs-shadow-opacity));\n          box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, var(--vs-shadow-opacity));\n  margin: 2px 0px;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-align: cneter;\n      -ms-flex-align: cneter;\n          align-items: cneter;\n  -webkit-box-pack: start;\n      -ms-flex-pack: start;\n          justify-content: flex-start;\n  overflow: hidden;\n  opacity: 1;\n  visibility: visible;\n  max-height: 40px;\n}\n.vs-select__option.hiddenOption {\n  opacity: 0;\n  visibility: hidden;\n  max-height: 0px;\n  padding-top: 0px;\n  padding-bottom: 0px;\n  border: 0px;\n  margin: 0px;\n}\n.vs-select__option.isMultiple {\n  padding: 0px;\n  padding-left: 5px;\n}\n.vs-select__option.isMultiple .vs-select__option-group {\n  padding-left: 0px;\n}\n.vs-select__option.isMultiple.isHover {\n  background: rgba(var(--vs-gray-2), 1) !important;\n}\n.vs-select__option.isMultiple:disabled .vs-checkbox-content {\n  pointer-events: none;\n}\n.vs-select__option.isMultiple:hover {\n  padding-left: 5px !important;\n}\n.vs-select__option.isMultiple .vs-checkbox-content {\n  width: 100%;\n  pointer-events: none;\n}\n.vs-select__option.isMultiple .vs-checkbox-content .vs-checkbox-con {\n  -webkit-transform: scale(0.85);\n          transform: scale(0.85);\n}\n.vs-select__option.isMultiple .vs-checkbox-content .vs-checkbox-label {\n  width: calc(100% - 23px);\n  text-align: left;\n  -webkit-box-pack: start;\n      -ms-flex-pack: start;\n          justify-content: flex-start;\n}\n.vs-select__option.isMultiple.activeOption {\n  pointer-events: auto !important;\n}\n.vs-select__option.isHover {\n  background: rgba(var(--vs-gray-2), 1);\n}\n.vs-select__option.activeOption {\n  background: rgba(var(--vs-color), 0.05);\n  color: rgba(var(--vs-color), 1);\n  pointer-events: none;\n}\n.vs-select__option:hover:not(:disabled) {\n  color: rgba(var(--vs-color), 1);\n  padding-left: 14px;\n}\n.vs-select__option-group {\n  padding-left: 10px;\n  border-bottom: 2px solid rgba(var(--vs-gray-1), 1);\n  position: relative;\n  overflow: hidden;\n  -webkit-transition: all 0.25s ease;\n  transition: all 0.25s ease;\n}\n.vs-select__option-group:last-child {\n  border: 0px;\n}\n.vs-select__option-group.hiddenOptionGroup {\n  border-bottom: 0px solid rgba(var(--vs-gray-1), 1);\n}\n.vs-select__option-group.hiddenOptionGroup h5 {\n  padding: 0px;\n  max-height: 0px;\n}\n.vs-select__option-group h5 {\n  max-height: 28px;\n  -webkit-transition: all 0.25s ease;\n  transition: all 0.25s ease;\n  opacity: 0.5;\n  margin: 0px;\n  padding: 0px;\n  padding: 7px 0px;\n  font-size: 0.7rem;\n  -webkit-user-select: none;\n     -moz-user-select: none;\n      -ms-user-select: none;\n          user-select: none;\n  overflow: hidden;\n}\n.vs-select__option-group h5 * {\n  pointer-events: none;\n}\n.vs-avatar-content {\n  --vs-color: var(--vs-gray-2);\n  --vs-badge: var(--vs-primary);\n}\n\n.vs-avatar-content {\n  border-radius: 35%;\n  z-index: 1;\n  width: 44px;\n  height: 44px;\n  position: relative;\n  -webkit-transition: all 0.25s ease;\n  transition: all 0.25s ease;\n  -webkit-user-select: none;\n     -moz-user-select: none;\n      -ms-user-select: none;\n          user-select: none;\n}\n.vs-avatar-content.vs-change-color-badge .vs-avatar__badge .vs-avatar__points__point {\n  background: rgba(var(--vs-background), 1);\n}\n.vs-avatar-content.vs-change-color:hover .vs-avatar {\n  -webkit-box-shadow: inset 0px 0px 40px 0px rgba(0, 0, 0, 0.1);\n          box-shadow: inset 0px 0px 40px 0px rgba(0, 0, 0, 0.1);\n}\n.vs-avatar-content:hover .vs-avatar {\n  -webkit-box-shadow: inset 0px 0px 40px 0px rgba(0, 0, 0, 0.04);\n          box-shadow: inset 0px 0px 40px 0px rgba(0, 0, 0, 0.04);\n}\n.vs-avatar-content:hover img {\n  -webkit-transform: scale(1.1);\n          transform: scale(1.1);\n}\n.vs-avatar-content--size.history:after {\n  top: -2px !important;\n}\n.vs-avatar-content--hasIcons {\n  margin-right: 20px;\n}\n.vs-avatar-content--hidden {\n  display: none;\n}\n.vs-avatar-content--circle {\n  border-radius: 50% !important;\n}\n.vs-avatar-content--circle .vs-avatar__badge {\n  right: -2px;\n  bottom: -2px;\n}\n.vs-avatar-content--circle .vs-avatar__badge.top-right {\n  top: -2px;\n  bottom: auto;\n}\n.vs-avatar-content--circle .vs-avatar__badge.top-left {\n  top: -2px;\n  left: -2px;\n  bottom: auto;\n  right: auto;\n}\n.vs-avatar-content--circle .vs-avatar__badge.bottom-left {\n  left: -2px;\n  right: auto;\n}\n.vs-avatar-content--square {\n  border-radius: 0% !important;\n}\n.vs-avatar-content.history--gradient:after {\n  background-image: linear-gradient(40deg, #f99b4a 0%, #df376b 74%, #c52d91 74%) !important;\n}\n.vs-avatar-content.history .vs-avatar {\n  width: calc(100% - 4px);\n  height: calc(100% - 4px);\n  border: 2px solid rgba(var(--vs-background), 1);\n  margin: 2px;\n}\n.vs-avatar-content.history:after {\n  content: \"\";\n  position: absolute;\n  top: 0px;\n  left: 0px;\n  width: 100%;\n  height: 100%;\n  border-radius: inherit;\n  background-color: #FFE53B;\n  z-index: -1;\n  background: rgba(var(--vs-color), 1);\n}\n.vs-avatar-content.vs-component--is-color .vs-avatar {\n  color: rgba(var(--vs-background), 1);\n}\n.vs-avatar-content.vs-component--is-color .vs-avatar__points .vs-avatar__points__point {\n  background: rgba(var(--vs-background), 1);\n}\n\n.vs-avatar {\n  background: rgba(var(--vs-color), 1);\n  color: #fff;\n  overflow: hidden;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n  color: rgba(var(--vs-text), 1);\n  border-radius: inherit;\n  width: 100%;\n  height: 100%;\n  -webkit-transition: all 0.25s ease;\n  transition: all 0.25s ease;\n  -webkit-box-shadow: inset 0px 0px 0px 0px rgba(0, 0, 0, 0.05);\n          box-shadow: inset 0px 0px 0px 0px rgba(0, 0, 0, 0.05);\n}\n.vs-avatar i {\n  font-size: 1.4rem;\n}\n.vs-avatar img {\n  width: 100%;\n  height: auto;\n  display: block;\n  -webkit-transition: all 0.25s ease;\n  transition: all 0.25s ease;\n  border-radius: inherit;\n}\n.vs-avatar__loading {\n  position: absolute;\n  width: 100%;\n  top: 0px;\n  left: 0px;\n  background: rgba(0, 0, 0, 0.5);\n  z-index: 100;\n  height: 100%;\n  border-radius: inherit;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n}\n.vs-avatar__loading__animate {\n  height: 60%;\n  width: 60%;\n  border-radius: 50%;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n  position: relative;\n}\n.vs-avatar__loading__animate:after {\n  -webkit-box-sizing: border-box;\n          box-sizing: border-box;\n  position: absolute;\n  width: 100%;\n  height: 100%;\n  border: 2px solid #fff;\n  border-radius: inherit;\n  border-top: 2px solid transparent;\n  border-left: 2px solid transparent;\n  border-right: 2px solid transparent;\n  -webkit-animation: rotateInputLoading 0.8s ease infinite;\n          animation: rotateInputLoading 0.8s ease infinite;\n  top: 0px;\n  content: \"\";\n}\n.vs-avatar__loading__animate:before {\n  -webkit-box-sizing: border-box;\n          box-sizing: border-box;\n  top: 0px;\n  position: absolute;\n  width: 100%;\n  height: 100%;\n  border: 2px dashed #fff;\n  border-radius: inherit;\n  border-top: 2px solid transparent;\n  border-left: 2px solid transparent;\n  border-right: 2px solid transparent;\n  -webkit-animation: rotateInputLoading 0.8s linear infinite;\n          animation: rotateInputLoading 0.8s linear infinite;\n  opacity: 0.2;\n  content: \"\";\n}\n.vs-avatar--letter--3 {\n  font-size: 0.9rem;\n}\n.vs-avatar--letter--4 {\n  font-size: 0.8rem;\n}\n.vs-avatar--letter--5 {\n  font-size: 0.7rem;\n}\n.vs-avatar--letter--6 {\n  font-size: 0.6rem;\n}\n.vs-avatar__badge {\n  position: absolute;\n  width: 13px;\n  height: 13px;\n  background: rgba(var(--vs-badge), 1);\n  border-radius: 50%;\n  border: 2px solid rgba(var(--vs-background), 1) !important;\n  right: -4px;\n  bottom: -4px;\n  font-size: 0.6rem;\n  font-weight: bold;\n  z-index: 200;\n  color: rgba(var(--vs-text), 1);\n}\n.vs-avatar__badge.isSlot, .vs-avatar__badge.writing {\n  width: auto;\n  height: auto;\n  border-radius: 7px;\n  min-width: 18px;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n  color: rgba(var(--vs-background), 1);\n  line-height: 0.9rem;\n  padding: 0px 3px;\n  min-height: 18px;\n}\n.vs-avatar__badge.top-right {\n  top: -4px;\n  bottom: auto;\n}\n.vs-avatar__badge.top-left {\n  top: -4px;\n  left: -4px;\n  bottom: auto;\n  right: auto;\n}\n.vs-avatar__badge.bottom-left {\n  left: -4px;\n  right: auto;\n}\n.vs-avatar__points {\n  position: relative;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n}\n.vs-avatar__points__point {\n  width: 5px;\n  height: 5px;\n  background: rgba(var(--vs-text), 1);\n  margin: 0px 2px;\n  border-radius: 50%;\n}\n.vs-avatar__points__point:nth-child(1) {\n  -webkit-animation: point 1.2s ease infinite;\n          animation: point 1.2s ease infinite;\n}\n.vs-avatar__points__point:nth-child(2) {\n  -webkit-animation: point 1.2s ease infinite 0.4s;\n          animation: point 1.2s ease infinite 0.4s;\n}\n.vs-avatar__points__point:nth-child(3) {\n  -webkit-animation: point 1.2s ease infinite 0.8s;\n          animation: point 1.2s ease infinite 0.8s;\n}\n.vs-avatar__latest {\n  background: rgba(0, 0, 0, 0.5);\n  top: 0px;\n  left: 0px;\n  width: 100%;\n  height: 100%;\n  position: absolute;\n  z-index: 300;\n  border-radius: inherit;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n  color: #fff;\n  font-weight: 600;\n  -webkit-user-select: none;\n     -moz-user-select: none;\n      -ms-user-select: none;\n          user-select: none;\n}\n.vs-avatar__icons {\n  position: absolute;\n  width: auto;\n  height: auto;\n  min-height: 90%;\n  background: rgba(var(--vs-gray-3), 1);\n  top: 50%;\n  -webkit-transform: translate(0, -50%);\n          transform: translate(0, -50%);\n  right: -20px;\n  padding: 3px;\n  padding-left: 5px;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-align: end;\n      -ms-flex-align: end;\n          align-items: flex-end;\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: column;\n          flex-direction: column;\n  z-index: -1;\n  border-radius: 5px 5px 5px 5px;\n  font-size: 1rem;\n}\n.vs-avatar__icons i {\n  cursor: pointer;\n  -webkit-transition: all 0.25s ease;\n  transition: all 0.25s ease;\n}\n.vs-avatar__icons i:hover {\n  opacity: 0.7;\n}\n\n@-webkit-keyframes point {\n  0% {\n    opacity: 1;\n  }\n  50% {\n    opacity: 0.4;\n    -webkit-transform: scale(0.5);\n            transform: scale(0.5);\n  }\n  100% {\n    opacity: 1;\n  }\n}\n\n@keyframes point {\n  0% {\n    opacity: 1;\n  }\n  50% {\n    opacity: 0.4;\n    -webkit-transform: scale(0.5);\n            transform: scale(0.5);\n  }\n  100% {\n    opacity: 1;\n  }\n}\n.vs-avatar__group {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n  padding-left: 18px;\n}\n.vs-avatar__group.float {\n  -ms-flex-wrap: wrap;\n      flex-wrap: wrap;\n  -webkit-box-align: start;\n      -ms-flex-align: start;\n          align-items: flex-start;\n  -webkit-box-pack: start;\n      -ms-flex-pack: start;\n          justify-content: flex-start;\n  padding-left: 0px;\n}\n.vs-avatar__group.float .vs-avatar-content {\n  position: relative;\n  z-index: 2;\n  border: 3px solid vs-color(\"background\");\n  margin: 0px;\n}\n.vs-avatar__group:not(.float) .vs-avatar-content {\n  margin-left: -18px;\n  position: relative;\n  z-index: 2;\n}\n.vs-avatar__group:not(.float) .vs-avatar-content:hover .vs-avatar {\n  -webkit-box-shadow: inset 0px 0px 0px 0px rgba(0, 0, 0, 0.1);\n          box-shadow: inset 0px 0px 0px 0px rgba(0, 0, 0, 0.1);\n}\n.vs-avatar__group:not(.float) .vs-avatar-content:hover img {\n  -webkit-transform: scale(1);\n          transform: scale(1);\n}\n.vs-avatar__group:not(.float) .vs-avatar-content .vs-avatar__latest {\n  width: calc(100% - 6px);\n  height: calc(100% - 6px);\n  margin: 3px;\n}\n.vs-avatar__group:not(.float) .vs-avatar-content:not(.vs-change-color) .vs-avatar {\n  background: vs-color(\"background\");\n}\n.vs-avatar__group:not(.float) .vs-avatar-content img {\n  width: calc(100% - 6px);\n}\n.vs-avatar__group:not(.float) .vs-avatar-content:hover:not(.vs-avatar-content--hasIcons) {\n  -webkit-transform: translate(-10px);\n          transform: translate(-10px);\n}\n.vs-avatar__group:not(.float) .vs-avatar-content:hover:not(.vs-avatar-content--hasIcons) .vs-avatar {\n  -webkit-transform: scale(1);\n          transform: scale(1);\n}\n.vs-avatar__group:not(.float) .vs-avatar-content--hasIcons {\n  margin-right: 0px;\n}\n.vs-avatar__group:not(.float) .vs-avatar-content--hasIcons:hover {\n  -webkit-transform: translate(-34px) !important;\n          transform: translate(-34px) !important;\n}\n.vs-radio-content {\n  --vs-color: var(--vs-primary);\n}\n\n.vs-radio-content {\n  position: relative;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n}\n.vs-radio-content.active .vs-radio__effect__icon {\n  opacity: 0;\n  -webkit-transition: all 0.25s ease;\n  transition: all 0.25s ease;\n  -webkit-transform: scale(1.3);\n          transform: scale(1.3);\n}\n.vs-radio-content.active .vs-radio__effect:after {\n  border: 7px solid rgba(var(--vs-color), 1);\n  -webkit-box-shadow: 0px 3px 12px 0px rgba(var(--vs-color), 0.3);\n          box-shadow: 0px 3px 12px 0px rgba(var(--vs-color), 0.3);\n}\n.vs-radio-content:not(.active) .vs-radio input:hover ~ .vs-radio__effect .vs-radio__effect__icon {\n  opacity: 0.7;\n}\n.vs-radio-content:not(.active) .vs-radio input:hover ~ .vs-radio__effect::after {\n  border: 2px solid rgba(var(--vs-text), 0.2);\n}\n.vs-radio-content.loading {\n  pointer-events: none;\n  -webkit-user-select: none;\n     -moz-user-select: none;\n      -ms-user-select: none;\n          user-select: none;\n}\n.vs-radio-content.loading .vs-radio__effect:after {\n  opacity: 0.1;\n}\n.vs-radio-content.loading .vs-radio__effect__loading {\n  position: absolute;\n  width: 100%;\n  height: 100%;\n  border-radius: inherit;\n}\n.vs-radio-content.loading .vs-radio__effect__loading:after {\n  content: \"\";\n  position: absolute;\n  width: 100%;\n  height: 100%;\n  border-radius: inherit;\n  border: 2px solid rgba(var(--vs-text), 0.4);\n  border-top: 2px solid rgba(var(--vs-text), 0);\n  border-left: 2px solid rgba(var(--vs-text), 0);\n  border-bottom: 2px solid rgba(var(--vs-text), 0);\n  -webkit-box-sizing: border-box;\n          box-sizing: border-box;\n  -webkit-transition: all 0.25s ease;\n  transition: all 0.25s ease;\n  display: block;\n  -webkit-box-shadow: 0px 0px 0px 0px rgba(var(--vs-color), 0.4);\n          box-shadow: 0px 0px 0px 0px rgba(var(--vs-color), 0.4);\n  -webkit-animation: loadingRadio 0.6s ease infinite;\n          animation: loadingRadio 0.6s ease infinite;\n}\n.vs-radio-content.loading .vs-radio__effect__loading:before {\n  content: \"\";\n  position: absolute;\n  width: 100%;\n  height: 100%;\n  border-radius: inherit;\n  border: 2px dashed rgba(var(--vs-text), 0.4);\n  border-top: 2px solid rgba(var(--vs-text), 0);\n  border-left: 2px solid rgba(var(--vs-text), 0);\n  border-bottom: 2px solid rgba(var(--vs-text), 0);\n  -webkit-box-sizing: border-box;\n          box-sizing: border-box;\n  -webkit-transition: all 0.25s ease;\n  transition: all 0.25s ease;\n  display: block;\n  -webkit-box-shadow: 0px 0px 0px 0px rgba(var(--vs-color), 0.4);\n          box-shadow: 0px 0px 0px 0px rgba(var(--vs-color), 0.4);\n  -webkit-animation: loadingRadio 0.6s linear infinite;\n          animation: loadingRadio 0.6s linear infinite;\n}\n.vs-radio-content label {\n  cursor: pointer;\n}\n.vs-radio-content.disabled {\n  opacity: 0.5;\n  pointer-events: none;\n}\n.vs-radio-content.disabled .vs-radio__effect {\n  background: rgba(var(--vs-gray-3), 1);\n}\n.vs-radio-content.disabled label {\n  pointer-events: none;\n}\n\n.vs-radio {\n  width: 20px;\n  height: 20px;\n  min-width: 20px;\n  min-height: 20px;\n  margin: 0px;\n  padding: 0px;\n  border-radius: 50%;\n  position: relative;\n  z-index: 10;\n}\n.vs-radio__label {\n  margin: 0px 6px;\n}\n.vs-radio__effect {\n  position: absolute;\n  width: 100%;\n  height: 100%;\n  border-radius: inherit;\n  left: 0px;\n  top: 0px;\n  -webkit-transition: all 0.25s ease;\n  transition: all 0.25s ease;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n  -webkit-box-sizing: border-box;\n          box-sizing: border-box;\n  z-index: 10;\n}\n.vs-radio__effect__icon {\n  -webkit-transition: all 0.25s ease;\n  transition: all 0.25s ease;\n}\n.vs-radio__effect__icon i {\n  font-size: 0.75rem;\n}\n.vs-radio__effect:after {\n  content: \"\";\n  position: absolute;\n  width: 100%;\n  height: 100%;\n  border-radius: inherit;\n  border: 2px solid rgba(var(--vs-text), 0.4);\n  -webkit-box-sizing: border-box;\n          box-sizing: border-box;\n  -webkit-transition: all 0.25s ease;\n  transition: all 0.25s ease;\n  display: block;\n  -webkit-box-shadow: 0px 0px 0px 0px rgba(var(--vs-color), 0.4);\n          box-shadow: 0px 0px 0px 0px rgba(var(--vs-color), 0.4);\n}\n.vs-radio input {\n  margin: 0px;\n  padding: 0px;\n  width: 100%;\n  height: 100%;\n  position: relative;\n  z-index: 100;\n  opacity: 0;\n  cursor: pointer;\n}\n.vs-radio input:active ~ .vs-radio__effect:after {\n  -webkit-transform: scale(0.9);\n          transform: scale(0.9);\n}\n@-webkit-keyframes loadingRadio {\n  0% {\n    -webkit-transform: rotate(0);\n            transform: rotate(0);\n  }\n  100% {\n    -webkit-transform: rotate(360deg);\n            transform: rotate(360deg);\n  }\n}\n@keyframes loadingRadio {\n  0% {\n    -webkit-transform: rotate(0);\n            transform: rotate(0);\n  }\n  100% {\n    -webkit-transform: rotate(360deg);\n            transform: rotate(360deg);\n  }\n}\n.vs-tooltip {\n  --vs-color: var(--vs-text);\n}\n\n.vs-tooltip-enter-active, .vs-tooltip-leave-active {\n  -webkit-transition: all 0.25s ease;\n  transition: all 0.25s ease;\n}\n\n.vs-tooltip-enter, .vs-tooltip-leave-to {\n  opacity: 0;\n}\n.vs-tooltip-enter.top, .vs-tooltip-leave-to.top {\n  -webkit-transform: translate(0, 5px);\n          transform: translate(0, 5px);\n}\n.vs-tooltip-enter.bottom, .vs-tooltip-leave-to.bottom {\n  -webkit-transform: translate(0, -5px);\n          transform: translate(0, -5px);\n}\n.vs-tooltip-enter.left, .vs-tooltip-leave-to.left {\n  -webkit-transform: translate(5px);\n          transform: translate(5px);\n}\n.vs-tooltip-enter.right, .vs-tooltip-leave-to.right {\n  -webkit-transform: translate(-5px);\n          transform: translate(-5px);\n}\n\n.darken .vs-tooltip {\n  --vs-color: var(--vs-gray-3);\n  color: #fff;\n}\n.darken .vs-tooltip:not(.vs-change-color) {\n  color: #fff !important;\n}\n\n.vs-tooltip {\n  background: rgba(var(--vs-color), 1);\n  color: rgba(var(--vs-background), 1);\n  position: absolute;\n  z-index: 1000000;\n  text-align: center;\n  padding: 5px 10px;\n  border-radius: 12px;\n  font-size: 0.85rem;\n  max-width: 350px;\n  min-width: 30px;\n  min-height: 30px;\n}\n.vs-tooltip.loading {\n  color: rgba(var(--vs-background), 0.2);\n}\n.vs-tooltip.loading * {\n  opacity: 0.5;\n  pointer-events: none;\n}\n.vs-tooltip__loading {\n  width: 22px;\n  height: 22px;\n  position: absolute;\n  display: block;\n  top: 50%;\n  left: 50%;\n  -webkit-transform: translate(-50%, -50%);\n          transform: translate(-50%, -50%);\n  border-radius: 50%;\n  opacity: 1 !important;\n}\n.vs-tooltip__loading:after {\n  content: \"\";\n  position: absolute;\n  width: 100%;\n  height: 100%;\n  border-radius: inherit;\n  border: 2px solid rgba(var(--vs-background), 1);\n  border-top: 2px solid rgba(var(--vs-background), 0);\n  border-left: 2px solid rgba(var(--vs-background), 0);\n  border-bottom: 2px solid rgba(var(--vs-background), 0);\n  -webkit-box-sizing: border-box;\n          box-sizing: border-box;\n  -webkit-transition: all 0.25s ease;\n  transition: all 0.25s ease;\n  display: block;\n  -webkit-box-shadow: 0px 0px 0px 0px rgba(var(--vs-color), 1);\n          box-shadow: 0px 0px 0px 0px rgba(var(--vs-color), 1);\n  -webkit-animation: loadingTooltip 0.6s ease infinite;\n          animation: loadingTooltip 0.6s ease infinite;\n}\n.vs-tooltip__loading:before {\n  content: \"\";\n  position: absolute;\n  width: 100%;\n  height: 100%;\n  border-radius: inherit;\n  border: 2px dashed rgba(var(--vs-background), 1);\n  border-top: 2px solid rgba(var(--vs-background), 0);\n  border-left: 2px solid rgba(var(--vs-background), 0);\n  border-bottom: 2px solid rgba(var(--vs-background), 0);\n  -webkit-box-sizing: border-box;\n          box-sizing: border-box;\n  -webkit-transition: all 0.25s ease;\n  transition: all 0.25s ease;\n  display: block;\n  -webkit-box-shadow: 0px 0px 0px 0px rgba(var(--vs-color), 1);\n          box-shadow: 0px 0px 0px 0px rgba(var(--vs-color), 1);\n  -webkit-animation: loadingTooltip 0.6s linear infinite;\n          animation: loadingTooltip 0.6s linear infinite;\n}\n.vs-tooltip.borderThick {\n  background: rgba(var(--vs-background), 1);\n  color: rgba(var(--vs-color), 1);\n  -webkit-box-shadow: 0px 2px 10px 0px rgba(0, 0, 0, var(--vs-shadow-opacity));\n          box-shadow: 0px 2px 10px 0px rgba(0, 0, 0, var(--vs-shadow-opacity));\n}\n.vs-tooltip.borderThick.top {\n  border-bottom: 4px solid rgba(var(--vs-color), 1);\n}\n.vs-tooltip.borderThick.top:after {\n  bottom: -7px;\n}\n.vs-tooltip.borderThick.left {\n  border-right: 4px solid rgba(var(--vs-color), 1);\n}\n.vs-tooltip.borderThick.left:after {\n  right: -7px;\n}\n.vs-tooltip.borderThick.right {\n  border-left: 4px solid rgba(var(--vs-color), 1);\n}\n.vs-tooltip.borderThick.right:after {\n  left: -7px;\n}\n.vs-tooltip.borderThick.bottom {\n  border-top: 4px solid rgba(var(--vs-color), 1);\n}\n.vs-tooltip.borderThick.bottom:after {\n  top: -7px;\n}\n.vs-tooltip.borderThick:before {\n  width: 100%;\n  height: 100%;\n  z-index: -1;\n  background: inherit;\n  border-radius: inherit;\n  top: 0px;\n  left: 0px;\n  content: \"\";\n  position: absolute;\n}\n.vs-tooltip.borderThick:after {\n  background: rgba(var(--vs-color), 1) !important;\n}\n.vs-tooltip.border {\n  background: rgba(var(--vs-background), 1);\n  color: rgba(var(--vs-color), 1);\n  border: 2px solid rgba(var(--vs-color), 1);\n}\n.vs-tooltip.border:before {\n  width: 100%;\n  height: 100%;\n  z-index: -1;\n  background: inherit;\n  border-radius: inherit;\n  top: 0px;\n  left: 0px;\n  content: \"\";\n  position: absolute;\n}\n.vs-tooltip.border:after {\n  border: 2px solid rgba(var(--vs-color), 1);\n  width: 12px !important;\n  height: 12px !important;\n}\n.vs-tooltip.circle {\n  border-radius: 20px;\n}\n.vs-tooltip.square {\n  border-radius: 0px;\n}\n.vs-tooltip.notArrow:after {\n  display: none;\n}\n.vs-tooltip.shadow {\n  background: rgba(var(--vs-background), 1);\n  color: rgba(var(--vs-color), 1);\n  -webkit-box-shadow: 0px 2px 10px 0px rgba(0, 0, 0, var(--vs-shadow-opacity));\n          box-shadow: 0px 2px 10px 0px rgba(0, 0, 0, var(--vs-shadow-opacity));\n}\n.vs-tooltip.shadow:before {\n  width: 100%;\n  height: 100%;\n  z-index: -1;\n  background: inherit;\n  border-radius: inherit;\n  top: 0px;\n  left: 0px;\n  content: \"\";\n  position: absolute;\n}\n.vs-tooltip.shadow:after {\n  -webkit-box-shadow: 0px 2px 10px 0px rgba(0, 0, 0, var(--vs-shadow-opacity));\n          box-shadow: 0px 2px 10px 0px rgba(0, 0, 0, var(--vs-shadow-opacity));\n}\n.vs-tooltip.isDark {\n  --vs-color: var(--vs-gray-3);\n  color: #fff;\n}\n.vs-tooltip.top:after {\n  content: \"\";\n  position: absolute;\n  bottom: -3px;\n  background: inherit;\n  width: 10px;\n  height: 10px;\n  left: 50%;\n  -webkit-transform: translate(-50%) rotate(45deg);\n          transform: translate(-50%) rotate(45deg);\n  z-index: -2;\n  border-radius: 0px 0px 2px 0px;\n}\n.vs-tooltip.bottom:after {\n  content: \"\";\n  position: absolute;\n  top: -3px;\n  background: inherit;\n  width: 10px;\n  height: 10px;\n  left: 50%;\n  -webkit-transform: translate(-50%) rotate(45deg);\n          transform: translate(-50%) rotate(45deg);\n  z-index: -2;\n  border-radius: 2px 0px 0px 0px;\n}\n.vs-tooltip.left:after {\n  content: \"\";\n  position: absolute;\n  right: -3px;\n  background: inherit;\n  width: 10px;\n  height: 10px;\n  top: 50%;\n  -webkit-transform: translate(0, -50%) rotate(45deg);\n          transform: translate(0, -50%) rotate(45deg);\n  z-index: -2;\n  border-radius: 0px 2px 0px 0px;\n}\n.vs-tooltip.right:after {\n  content: \"\";\n  position: absolute;\n  left: -3px;\n  background: inherit;\n  width: 10px;\n  height: 10px;\n  top: 50%;\n  -webkit-transform: translate(0, -50%) rotate(45deg);\n          transform: translate(0, -50%) rotate(45deg);\n  z-index: -2;\n  border-radius: 0px 0px 0px 2px;\n}\n\n@-webkit-keyframes loadingTooltip {\n  0% {\n    -webkit-transform: rotate(0);\n            transform: rotate(0);\n  }\n  100% {\n    -webkit-transform: rotate(360deg);\n            transform: rotate(360deg);\n  }\n}\n\n@keyframes loadingTooltip {\n  0% {\n    -webkit-transform: rotate(0);\n            transform: rotate(0);\n  }\n  100% {\n    -webkit-transform: rotate(360deg);\n            transform: rotate(360deg);\n  }\n}\n.vs-dialog-content {\n  --vs-color: var(--vs-primary);\n}\n\n.vs-dialog-enter-active {\n  -webkit-transition: all 0.25s ease;\n  transition: all 0.25s ease;\n}\n.vs-dialog-enter-active .vs-dialog:not(.vs-dialog--fullScreen) {\n  -webkit-animation: rebound 0.4s;\n          animation: rebound 0.4s;\n}\n\n.vs-dialog-leave-active {\n  -webkit-transition: all 0.15s ease;\n  transition: all 0.15s ease;\n}\n.vs-dialog-leave-active .vs-dialog {\n  -webkit-transition: all 0.15s ease;\n  transition: all 0.15s ease;\n}\n\n.vs-dialog-enter, .vs-dialog-leave-to {\n  opacity: 0;\n}\n.vs-dialog-enter .vs-dialog, .vs-dialog-leave-to .vs-dialog {\n  -webkit-transform: scale(0.7);\n          transform: scale(0.7);\n  -webkit-box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, var(--vs-shadow-opacity));\n          box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, var(--vs-shadow-opacity));\n}\n.vs-dialog-enter .vs-dialog--fullScreen, .vs-dialog-leave-to .vs-dialog--fullScreen {\n  -webkit-transform: translate(0, 8%) !important;\n          transform: translate(0, 8%) !important;\n}\n\n@-webkit-keyframes rebound {\n  0% {\n    -webkit-transform: scale(0.8);\n            transform: scale(0.8);\n  }\n  40% {\n    -webkit-transform: scale(1.08);\n            transform: scale(1.08);\n  }\n  80% {\n    -webkit-transform: scale(0.98);\n            transform: scale(0.98);\n  }\n  100% {\n    -webkit-transform: scale(1);\n            transform: scale(1);\n  }\n}\n\n@keyframes rebound {\n  0% {\n    -webkit-transform: scale(0.8);\n            transform: scale(0.8);\n  }\n  40% {\n    -webkit-transform: scale(1.08);\n            transform: scale(1.08);\n  }\n  80% {\n    -webkit-transform: scale(0.98);\n            transform: scale(0.98);\n  }\n  100% {\n    -webkit-transform: scale(1);\n            transform: scale(1);\n  }\n}\n@-webkit-keyframes reboundClick {\n  0% {\n    -webkit-transform: scale(1);\n            transform: scale(1);\n  }\n  40% {\n    -webkit-transform: scale(1.05);\n            transform: scale(1.05);\n  }\n  80% {\n    -webkit-transform: scale(0.96);\n            transform: scale(0.96);\n  }\n  100% {\n    -webkit-transform: scale(1);\n            transform: scale(1);\n  }\n}\n@keyframes reboundClick {\n  0% {\n    -webkit-transform: scale(1);\n            transform: scale(1);\n  }\n  40% {\n    -webkit-transform: scale(1.05);\n            transform: scale(1.05);\n  }\n  80% {\n    -webkit-transform: scale(0.96);\n            transform: scale(0.96);\n  }\n  100% {\n    -webkit-transform: scale(1);\n            transform: scale(1);\n  }\n}\n.vs-dialog-content {\n  background: rgba(0, 0, 0, var(--vs-background-opacity));\n  position: fixed;\n  left: 0px;\n  top: 0px;\n  z-index: var(--vs-zindex-2);\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-align: start;\n      -ms-flex-align: start;\n          align-items: flex-start;\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n  width: 100%;\n  height: 100%;\n  max-height: 100vh;\n  overflow-y: auto;\n  overflow-x: hidden;\n  padding-top: 80px;\n  padding-bottom: 80px;\n}\n.vs-dialog-content.fullScreen {\n  padding: 0px;\n  overflow: hidden;\n}\n.vs-dialog-content.blur {\n  -webkit-backdrop-filter: saturate(180%) blur(15px);\n          backdrop-filter: saturate(180%) blur(15px);\n}\n\n.vs-dialog {\n  background: rgba(var(--vs-background), 1);\n  color: rgba(var(--vs-text), 1);\n  position: relative;\n  min-width: 400px;\n  border-radius: var(--vs-radius);\n  -webkit-transition: all 0.25s ease;\n  transition: all 0.25s ease;\n  -webkit-box-shadow: 0px 5px 30px 0px rgba(0, 0, 0, var(--vs-shadow-opacity));\n          box-shadow: 0px 5px 30px 0px rgba(0, 0, 0, var(--vs-shadow-opacity));\n  max-width: 800px;\n  margin: auto;\n}\n.vs-dialog--notCenter .vs-dialog__header {\n  display: block;\n}\n.vs-dialog__loading {\n  width: 100%;\n  position: absolute;\n  top: 0px;\n  left: 0px;\n  height: 100%;\n  border-radius: inherit;\n  background: rgba(var(--vs-background), 0.8);\n  z-index: 100;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n}\n.vs-dialog__loading:after {\n  content: \"\";\n  position: absolute;\n  width: 30px;\n  height: 30px;\n  border-radius: inherit;\n  border: 2px solid rgba(var(--vs-color), 1);\n  border-top: 2px solid rgba(var(--vs-color), 0);\n  border-left: 2px solid rgba(var(--vs-color), 0);\n  border-bottom: 2px solid rgba(var(--vs-color), 0);\n  -webkit-box-sizing: border-box;\n          box-sizing: border-box;\n  -webkit-transition: all 0.25s ease;\n  transition: all 0.25s ease;\n  display: block;\n  -webkit-box-shadow: 0px 0px 0px 0px rgba(var(--vs-color), 1);\n          box-shadow: 0px 0px 0px 0px rgba(var(--vs-color), 1);\n  -webkit-animation: loadingDialog 0.6s ease infinite;\n          animation: loadingDialog 0.6s ease infinite;\n}\n.vs-dialog__loading:before {\n  content: \"\";\n  position: absolute;\n  width: 30px;\n  height: 30px;\n  border-radius: inherit;\n  border: 2px dashed rgba(var(--vs-color), 1);\n  border-top: 2px solid rgba(var(--vs-color), 0);\n  border-left: 2px solid rgba(var(--vs-color), 0);\n  border-bottom: 2px solid rgba(var(--vs-color), 0);\n  -webkit-box-sizing: border-box;\n          box-sizing: border-box;\n  -webkit-transition: all 0.25s ease;\n  transition: all 0.25s ease;\n  display: block;\n  -webkit-box-shadow: 0px 0px 0px 0px rgba(var(--vs-color), 1);\n          box-shadow: 0px 0px 0px 0px rgba(var(--vs-color), 1);\n  -webkit-animation: loadingDialog 0.6s linear infinite;\n          animation: loadingDialog 0.6s linear infinite;\n}\n.vs-dialog--scroll .vs-dialog__content {\n  max-height: calc(80vh - 200px);\n  overflow: auto;\n}\n.vs-dialog--autoWidth {\n  width: auto !important;\n  min-width: auto !important;\n  max-width: auto !important;\n}\n.vs-dialog--square {\n  border-radius: 0px;\n}\n.vs-dialog--square .vs-dialog__close {\n  border-radius: 0px;\n}\n.vs-dialog--notPadding .vs-dialog__footer {\n  padding: 0px;\n}\n.vs-dialog--notPadding .vs-dialog__content {\n  padding: 0px;\n  margin-bottom: 0px !important;\n}\n.vs-dialog--notPadding .vs-dialog__header {\n  padding: 0px;\n}\n.vs-dialog--rebound {\n  -webkit-animation: reboundClick 0.3s !important;\n          animation: reboundClick 0.3s !important;\n}\n.vs-dialog--fullScreen {\n  width: calc(100% - 30px) !important;\n  height: calc(100% - 30px) !important;\n  max-width: none !important;\n  max-height: none !important;\n}\n.vs-dialog__footer {\n  padding: 10px 16px;\n  padding-top: 0px;\n}\n.vs-dialog__header {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n  padding: 10px 16px;\n}\n.vs-dialog__content {\n  padding: 10px 16px;\n  width: 100%;\n  position: relative;\n  border-radius: inherit;\n}\n.vs-dialog__content.notFooter {\n  margin-bottom: 20px;\n}\n.vs-dialog__close {\n  --vs-color: var(--vs-text);\n  position: absolute;\n  top: -6px;\n  right: -6px;\n  padding: 0px;\n  margin: 0px;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n  background: inherit;\n  border-radius: 12px;\n  -webkit-box-shadow: 0px 5px 20px 0px rgba(0, 0, 0, var(--vs-shadow-opacity));\n          box-shadow: 0px 5px 20px 0px rgba(0, 0, 0, var(--vs-shadow-opacity));\n  -webkit-transition: all 0.25s ease;\n  transition: all 0.25s ease;\n  z-index: 200;\n  border: 0px;\n}\n.vs-dialog__close i {\n  width: 34px;\n  height: 34px;\n  opacity: 0.7;\n}\n.vs-dialog__close i:after {\n  width: 14px;\n}\n.vs-dialog__close i:before {\n  width: 14px;\n}\n.vs-dialog__close:hover {\n  -webkit-box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, var(--vs-shadow-opacity));\n          box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, var(--vs-shadow-opacity));\n  -webkit-transform: translate(-2px, 2px);\n          transform: translate(-2px, 2px);\n}\n.vs-dialog__close:hover i {\n  opacity: 1;\n}\n\n@-webkit-keyframes loadingDialog {\n  0% {\n    -webkit-transform: rotate(0);\n            transform: rotate(0);\n  }\n  100% {\n    -webkit-transform: rotate(360deg);\n            transform: rotate(360deg);\n  }\n}\n\n@keyframes loadingDialog {\n  0% {\n    -webkit-transform: rotate(0);\n            transform: rotate(0);\n  }\n  100% {\n    -webkit-transform: rotate(360deg);\n            transform: rotate(360deg);\n  }\n}\n@media (max-width: 600px) {\n  .vs-dialog {\n    min-width: calc(100vw - 20px);\n    max-width: calc(100vw - 20px);\n    margin: auto 10px;\n  }\n}\n.vs-pagination-content {\n  --vs-color: var(--vs-primary);\n}\n\n.vs-pagination-content {\n  position: relative;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -ms-flex-item-align: center;\n      align-self: center;\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n}\n.vs-pagination-content.notMargin .vs-pagination__dotted {\n  background: rgba(var(--vs-gray-3), 1);\n  margin: 0px;\n}\n.vs-pagination-content.notMargin .vs-pagination__arrow {\n  margin: 0px !important;\n  border-radius: 0px;\n}\n.vs-pagination-content.notMargin .vs-pagination__arrow:first-of-type {\n  border-radius: 12px 0px 0px 12px;\n}\n.vs-pagination-content.notMargin .vs-pagination__arrow:last-of-type {\n  border-radius: 0px 12px 12px 0px;\n}\n.vs-pagination-content.notMargin .vs-pagination__button {\n  border-radius: 0px;\n  margin: 0px !important;\n}\n.vs-pagination-content.disabled {\n  opacity: 0.5;\n  pointer-events: none;\n  -webkit-user-select: none;\n     -moz-user-select: none;\n      -ms-user-select: none;\n          user-select: none;\n}\n.vs-pagination-content.square .vs-pagination__active {\n  border-radius: 0px;\n}\n.vs-pagination-content.square .vs-pagination__button {\n  border-radius: 0px;\n}\n.vs-pagination-content.square .vs-pagination__arrow {\n  border-radius: 0px;\n}\n.vs-pagination-content.circle .vs-pagination__active {\n  border-radius: 50%;\n}\n.vs-pagination-content.circle .vs-pagination__button {\n  border-radius: 50%;\n}\n.vs-pagination-content.circle .vs-pagination__arrow {\n  border-radius: 50%;\n}\n.vs-pagination-content.buttonsDotted .vs-pagination__arrow {\n  width: 15px;\n  height: 12px;\n  min-width: 15px;\n  padding: 0px;\n  background: transparent;\n}\n.vs-pagination-content.buttonsDotted .vs-pagination__arrow i {\n  width: 6px;\n  height: 6px;\n}\n.vs-pagination-content.buttonsDotted .vs-pagination__arrow i:before {\n  width: 1px;\n}\n.vs-pagination-content.buttonsDotted .vs-pagination__arrow i:after {\n  height: 1px;\n}\n.vs-pagination-content.buttonsDotted .vs-pagination__dotted {\n  width: 12px;\n  height: 12px;\n  font-size: 0.9rem;\n  letter-spacing: 1px;\n}\n.vs-pagination-content.buttonsDotted .vs-pagination__button {\n  width: 12px;\n  height: 12px;\n}\n.vs-pagination-content.buttonsDotted .vs-pagination__button.active {\n  -webkit-transform: scale(1);\n          transform: scale(1);\n}\n.vs-pagination-content.buttonsDotted .vs-pagination__active {\n  width: 12px;\n  height: 12px;\n  -webkit-box-shadow: 0px 2px 10px 0px rgba(var(--vs-color), 0.4);\n          box-shadow: 0px 2px 10px 0px rgba(var(--vs-color), 0.4);\n  -webkit-transform: scale(1);\n          transform: scale(1);\n}\n.vs-pagination-content.buttonsDotted .vs-pagination__active.move {\n  -webkit-transform: scale(1.2);\n          transform: scale(1.2);\n}\n\n.vs-pagination {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -ms-flex-item-align: center;\n      align-self: center;\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n  position: relative;\n}\n.vs-pagination__progress {\n  width: calc(100% - 16px);\n  height: 3px;\n  background: rgba(var(--vs-gray-3), 1);\n  position: absolute;\n  bottom: -8px;\n  border-radius: 10px;\n}\n.vs-pagination__progress .progress {\n  width: 0px;\n  background: rgba(var(--vs-color), 1);\n  height: 100%;\n  position: relative;\n  border-radius: inherit;\n  -webkit-transition: all 0.25s ease;\n  transition: all 0.25s ease;\n  max-width: 100%;\n}\n.vs-pagination__slot {\n  min-height: 36px;\n  min-width: 36px;\n  position: relative;\n  display: block;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n}\n.vs-pagination__arrow {\n  position: relative;\n  width: auto;\n  height: 36px;\n  min-width: 36px;\n  border-radius: 12px;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n  margin: 0px 2px;\n  background: rgba(var(--vs-gray-3), 1);\n  -webkit-transition: all 0.25s ease;\n  transition: all 0.25s ease;\n  border: 0px;\n}\n.vs-pagination__arrow:disabled {\n  opacity: 0.4;\n  pointer-events: none;\n}\n.vs-pagination__arrow:hover {\n  background: rgba(var(--vs-gray-4), 1);\n}\n.vs-pagination__arrow i {\n  width: 10px;\n  height: 10px;\n  position: relative;\n  display: block;\n  margin-left: 4px;\n  -webkit-transform: rotate(-45deg) scale(0.8);\n          transform: rotate(-45deg) scale(0.8);\n}\n.vs-pagination__arrow i:before {\n  width: 2px;\n}\n.vs-pagination__arrow i:after {\n  height: 2px;\n}\n.vs-pagination__arrow.next i {\n  margin-left: -4px;\n  -webkit-transform: rotate(135deg) scale(0.8);\n          transform: rotate(135deg) scale(0.8);\n}\n.vs-pagination__active {\n  position: absolute;\n  left: 50%;\n  top: 0px;\n  width: 36px;\n  height: 36px;\n  background: rgba(var(--vs-color), 1);\n  border-radius: 12px;\n  z-index: 100;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n  font-size: 0.9rem;\n  -webkit-transition: all 0.25s ease;\n  transition: all 0.25s ease;\n  color: #fff;\n  -webkit-box-shadow: 0px 5px 20px 0px rgba(var(--vs-color), 0.3);\n          box-shadow: 0px 5px 20px 0px rgba(var(--vs-color), 0.3);\n  cursor: default;\n}\n.vs-pagination__active.move {\n  -webkit-transform: scale(1.1);\n          transform: scale(1.1);\n}\n.vs-pagination__dotted {\n  width: 36px;\n  height: 36px;\n  position: relative;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n  font-size: 1.4rem;\n  letter-spacing: 2px;\n  margin: 0px 2px;\n  cursor: pointer;\n}\n.vs-pagination__dotted:hover span.dotted {\n  opacity: 0;\n  margin-left: -1px;\n  -webkit-transition: all 0.25s ease;\n  transition: all 0.25s ease;\n}\n.vs-pagination__dotted:hover .con-arrows {\n  opacity: 1;\n  margin-left: -1px;\n  -webkit-transition: all 0.25s ease;\n  transition: all 0.25s ease;\n}\n.vs-pagination__dotted.next:hover span.dotted {\n  opacity: 0;\n  margin-left: 1px;\n  -webkit-transition: all 0.25s ease;\n  transition: all 0.25s ease;\n}\n.vs-pagination__dotted.next:hover .con-arrows {\n  opacity: 1;\n  margin-left: 1px;\n  -webkit-transition: all 0.25s ease;\n  transition: all 0.25s ease;\n}\n.vs-pagination__dotted span.dotted {\n  margin-right: -2px;\n  text-align: center;\n}\n.vs-pagination__dotted.next .con-arrows {\n  -webkit-transform: rotate(180deg);\n          transform: rotate(180deg);\n  margin-left: -5px;\n}\n.vs-pagination__dotted .con-arrows {\n  width: 10px;\n  height: 10px;\n  position: absolute;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n  margin-left: 5px;\n  opacity: 0;\n  -webkit-transition: all 0.1s ease;\n  transition: all 0.1s ease;\n}\n.vs-pagination__dotted .con-arrows i {\n  width: 10px;\n  height: 10px;\n  position: relative;\n  display: block;\n  -webkit-transform: rotate(-45deg) scale(0.8);\n          transform: rotate(-45deg) scale(0.8);\n}\n.vs-pagination__dotted .con-arrows i:before {\n  width: 2px;\n}\n.vs-pagination__dotted .con-arrows i:after {\n  height: 2px;\n}\n.vs-pagination__dotted .con-arrows i:last-child {\n  position: absolute;\n  top: 0px;\n  margin-left: 6px;\n}\n.vs-pagination__button {\n  width: 36px;\n  height: 36px;\n  border-radius: 12px;\n  padding: 0px;\n  background: rgba(var(--vs-gray-3), 1);\n  margin: 0px 2px;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n  font-size: 0.9rem;\n  -webkit-transition: all 0.25s ease;\n  transition: all 0.25s ease;\n  color: rgba(var(--vs-text), 1);\n  position: relative;\n  border: 0px;\n}\n.vs-pagination__button.loading {\n  border-radius: 50%;\n  opacity: 0.5;\n  pointer-events: none;\n  -webkit-user-select: none;\n     -moz-user-select: none;\n      -ms-user-select: none;\n          user-select: none;\n}\n.vs-pagination__button.loading:after {\n  content: \"\";\n  position: absolute;\n  width: 100%;\n  height: 100%;\n  border-radius: 50%;\n  border: 2px solid rgba(var(--vs-color), 1);\n  border-top: 2px solid rgba(var(--vs-background), 0);\n  border-left: 2px solid rgba(var(--vs-background), 0);\n  border-bottom: 2px solid rgba(var(--vs-background), 0);\n  -webkit-box-sizing: border-box;\n          box-sizing: border-box;\n  -webkit-transition: all 0.25s ease;\n  transition: all 0.25s ease;\n  display: block;\n  -webkit-box-shadow: 0px 0px 0px 0px rgba(var(--vs-color), 1);\n          box-shadow: 0px 0px 0px 0px rgba(var(--vs-color), 1);\n  -webkit-animation: loadingPagination 0.6s ease infinite;\n          animation: loadingPagination 0.6s ease infinite;\n}\n.vs-pagination__button.loading:before {\n  content: \"\";\n  position: absolute;\n  width: 100%;\n  height: 100%;\n  border-radius: 50%;\n  border: 2px dashed rgba(var(--vs-color), 1);\n  border-top: 2px solid rgba(var(--vs-background), 0);\n  border-left: 2px solid rgba(var(--vs-background), 0);\n  border-bottom: 2px solid rgba(var(--vs-background), 0);\n  -webkit-box-sizing: border-box;\n          box-sizing: border-box;\n  -webkit-transition: all 0.25s ease;\n  transition: all 0.25s ease;\n  display: block;\n  -webkit-box-shadow: 0px 0px 0px 0px rgba(var(--vs-color), 1);\n          box-shadow: 0px 0px 0px 0px rgba(var(--vs-color), 1);\n  -webkit-animation: loadingPagination 0.6s linear infinite;\n          animation: loadingPagination 0.6s linear infinite;\n}\n.vs-pagination__button.disabled {\n  opacity: 0.4;\n  pointer-events: none;\n  -webkit-user-select: none;\n     -moz-user-select: none;\n      -ms-user-select: none;\n          user-select: none;\n}\n.vs-pagination__button:hover {\n  background: rgba(var(--vs-gray-4), 1);\n}\n.vs-pagination__button:active {\n  -webkit-transform: scale(0.9);\n          transform: scale(0.9);\n}\n\n@-webkit-keyframes loadingPagination {\n  0% {\n    -webkit-transform: rotate(0);\n            transform: rotate(0);\n  }\n  100% {\n    -webkit-transform: rotate(360deg);\n            transform: rotate(360deg);\n  }\n}\n\n@keyframes loadingPagination {\n  0% {\n    -webkit-transform: rotate(0);\n            transform: rotate(0);\n  }\n  100% {\n    -webkit-transform: rotate(360deg);\n            transform: rotate(360deg);\n  }\n}\n.vs-table-content {\n  --vs-color: var(--vs-primary);\n}\n\n.vs-table-content {\n  width: 100%;\n  border-radius: 16px;\n}\n\n.vs-table {\n  width: 100%;\n  font-size: 0.9rem;\n  margin: 0px;\n  overflow: auto;\n}\n.vs-table table {\n  margin: 0px;\n  border-collapse: collapse;\n  width: 100%;\n  min-width: 500px;\n  border: 0px;\n}\n.vs-table.striped .vs-table__tr:nth-child(2n) {\n  background: rgba(var(--vs-gray-1), 1) !important;\n}\n.vs-table_not-found {\n  display: none;\n  padding: 20px;\n  text-align: center;\n  width: 100%;\n}\n.vs-table_not-found tr {\n  text-align: center;\n}\n.vs-table_not-found tr td {\n  padding: 20px;\n  border: 0px;\n}\n.vs-table__tbody:empty {\n  display: none;\n  background: #000;\n}\n.vs-table__tbody:empty ~ .vs-table_not-found {\n  display: table-row-group;\n}\n.vs-table.isSelectedValue tr {\n  cursor: pointer;\n}\n.vs-table__footer {\n  padding: 8px 10px;\n  background: rgba(var(--vs-gray-2), 1);\n  border-radius: 0px 0px 14px 14px;\n}\n.vs-table__header {\n  width: 100%;\n  padding: 10px;\n  background: rgba(var(--vs-gray-2), 1);\n  border-radius: 14px 14px 0px 0px;\n}\n.vs-table__header ~ .vs-table .vs-table__th:first-child {\n  border-radius: 0px;\n}\n.vs-table__header ~ .vs-table .vs-table__th:last-child {\n  border-radius: 0px;\n}\n.vs-table__thead {\n  width: 100%;\n}\n.vs-table__thead .vs-table__th {\n  background: rgba(var(--vs-gray-2), 1);\n}\n.vs-table__thead .vs-table__th:first-child {\n  border-radius: 14px 0px 0px 0px;\n}\n.vs-table__thead .vs-table__th:last-child {\n  border-radius: 0px 14px 0px 0px;\n}\n.isMultipleSelected .vs-table__tr .vs-table__td {\n  border-radius: 0px !important;\n}\n\n.vs-table__tr {\n  padding: 5px;\n  border: 0px;\n}\n.vs-table__tr.expand {\n  cursor: pointer;\n}\n.vs-table__tr.vs-change-color .vs-table__td {\n  background: rgba(var(--vs-color), 0.1) !important;\n  color: rgba(var(--vs-color), 1) !important;\n}\n.vs-table__tr.vs-change-color .vs-table__td:hover {\n  background: rgba(var(--vs-color), 0.2) !important;\n}\n.vs-table__tr:first-of-type .vs-table__td:last-child {\n  border-radius: 0px 0px 15px 0px;\n}\n.vs-table__tr:first-of-type .vs-table__td:first-child {\n  border-radius: 0px 0px 0px 15px;\n}\n.vs-table__tr.isExpand:first-of-type .vs-table__td {\n  background: rgba(var(--vs-gray-1), 1) !important;\n  border-radius: 0px;\n}\n.vs-table__tr.isExpand:not(:first-of-type) .vs-table__td {\n  background: rgba(var(--vs-gray-1), 1) !important;\n}\n.vs-table__tr.isExpand:not(:first-of-type) .vs-table__td:last-child {\n  border-radius: 0px 15px 0px 0px;\n}\n.vs-table__tr.isExpand:not(:first-of-type) .vs-table__td:first-child {\n  border-radius: 15px 0px 0px 0px;\n}\n.vs-table__tr.isExpand:not(:first-of-type) + .vs-table__tr__expand td {\n  border-radius: 0px 0px 15px 15px !important;\n}\n.vs-table__tr.selected .vs-table__td {\n  background: rgba(var(--vs-color), 0.1) !important;\n  color: rgba(var(--vs-color), 1) !important;\n}\n.vs-table__tr .vs-table__td {\n  background: rgba(var(--vs-bg), 0.1);\n  color: rgba(var(--vs-bg), 1);\n}\n.vs-table__tr.vs-change-color:hover .vs-table__td {\n  background: rgba(var(--vs-color), 0.2) !important;\n}\n.vs-table__tr:hover .vs-table__td {\n  background: rgba(var(--vs-gray-1), 1);\n}\n\n.vs-table__tr__expand {\n  -webkit-transition: all 0.25s ease;\n  transition: all 0.25s ease;\n  border: 0px;\n}\n.vs-table__tr__expand td {\n  -webkit-transition: all 0.25s ease;\n  transition: all 0.25s ease;\n  padding: 0px;\n  background: rgba(var(--vs-gray-1), 1) !important;\n  border: 0px;\n}\n.vs-table__tr__expand td .vs-table__expand__td__content {\n  overflow: hidden;\n  display: block;\n  -webkit-transition: all 0.25s ease;\n  transition: all 0.25s ease;\n}\n.vs-table__tr__expand td .vs-table__expand__td__content__sub {\n  padding: 10px 15px;\n  z-index: 1;\n  position: relative;\n}\n\n.fade-expand-enter-active, .fade-expand-leave-active {\n  -webkit-transition: all 0.25s ease;\n  transition: all 0.25s ease;\n}\n\n.fade-expand-enter, .fade-expand-leave-to {\n  opacity: 0;\n}\n.fade-expand-enter td .vs-table__expand__td__content, .fade-expand-leave-to td .vs-table__expand__td__content {\n  height: 0px !important;\n}\n.vs-table__th {\n  padding: 10px 12px;\n  text-align: left;\n  -webkit-transition: all 0.25s ease;\n  transition: all 0.25s ease;\n  font-size: 0.8rem;\n  border: 0px;\n}\n.vs-table__th.sort .vs-table__th__content {\n  pointer-events: none;\n}\n.vs-table__th.sort:hover {\n  background: rgba(var(--vs-gray-3), 1);\n}\n.vs-table__th[data-sort-type=asc] .icon-sort-2 {\n  margin-top: -7px;\n  -webkit-transform: rotate(45deg) !important;\n          transform: rotate(45deg) !important;\n}\n.vs-table__th[data-sort-type=asc] .icon-sort-1 {\n  margin-top: -1px;\n  -webkit-transform: rotate(45deg) !important;\n          transform: rotate(45deg) !important;\n}\n.vs-table__th[data-sort-type=desc] .icon-sort-2 {\n  margin-top: -7px;\n}\n.vs-table__th[data-sort-type=desc] .icon-sort-1 {\n  margin-top: -1px;\n  -webkit-transform: rotate(-135deg) !important;\n          transform: rotate(-135deg) !important;\n}\n.vs-table__th__content {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  -webkit-box-pack: start;\n      -ms-flex-pack: start;\n          justify-content: flex-start;\n  -webkit-transition: all 0.25s ease;\n  transition: all 0.25s ease;\n}\n.vs-table__th__content__icons {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: column;\n          flex-direction: column;\n  margin-left: 7px;\n  -webkit-transform: scale(0.8);\n          transform: scale(0.8);\n}\n.vs-table__th__content .vs-icon-arrow {\n  position: relative;\n  display: block;\n}\n.vs-table__th__content .vs-icon-arrow.icon-sort-1 {\n  -webkit-transform: rotate(45deg);\n          transform: rotate(45deg);\n}\n.vs-table__th__content .vs-icon-arrow.icon-sort-2 {\n  -webkit-transform: rotate(-135deg);\n          transform: rotate(-135deg);\n}\n.vs-table__td {\n  padding: 10px 12px;\n  -webkit-transition: all 0.25s ease;\n  transition: all 0.25s ease;\n  font-size: 0.8rem;\n  border: 0px;\n}\n.vs-table__td:last-child {\n  border-radius: 0px 15px 15px 0px;\n}\n.vs-table__td:first-child {\n  border-radius: 15px 0px 0px 15px;\n}\n.vs-table__td.isCheckbox {\n  width: 23px;\n}\n.vs-table__td.isEdit {\n  text-decoration: underline;\n  cursor: pointer;\n}\n.vs-navbar-content {\n  --vs-color: var(--vs-background);\n}\n\n.vs-navbar-content {\n  width: 100%;\n  position: absolute;\n  z-index: 9000;\n  top: 0px;\n  left: 0px;\n  width: 100%;\n  border-radius: 0px 0px 15px 15px;\n  background: rgba(var(--vs-color), 1);\n  -webkit-transition: all 0.25s ease;\n  transition: all 0.25s ease;\n  color: rgba(var(--vs-text), 1);\n}\n.vs-navbar-content.paddingScroll:not(.paddingScrollActive) {\n  padding-top: 20px;\n  padding-bottom: 20px;\n}\n.vs-navbar-content.paddingScroll:not(.paddingScrollActive) .vs-navbar__group__items {\n  margin-bottom: -30px;\n}\n.vs-navbar-content.vsNavbarSquare {\n  border-radius: 0px;\n}\n.vs-navbar-content.textWhite {\n  color: #fff;\n}\n.vs-navbar-content.textWhite .vs-navbar__line {\n  background: #fff;\n}\n.vs-navbar-content.textWhite .vs-navbar__item:before {\n  background: #fff;\n}\n.vs-navbar-content.fixed {\n  position: fixed !important;\n}\n.vs-navbar-content.shadow, .vs-navbar-content.shadowActive {\n  -webkit-box-shadow: 0px 5px 25px 0px rgba(0, 0, 0, var(--vs-shadow-opacity));\n          box-shadow: 0px 5px 25px 0px rgba(0, 0, 0, var(--vs-shadow-opacity));\n}\n.vs-navbar-content.hidden {\n  -webkit-transform: translate(0, -100%);\n          transform: translate(0, -100%);\n}\n\n.vs-navbar {\n  width: 100%;\n  position: relative;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  -webkit-box-pack: justify;\n      -ms-flex-pack: justify;\n          justify-content: space-between;\n  padding: 0px 15px;\n  -webkit-box-sizing: border-box;\n          box-sizing: border-box;\n  min-height: 44px;\n}\n.vs-navbar__left {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  -webkit-box-pack: start;\n      -ms-flex-pack: start;\n          justify-content: flex-start;\n}\n.vs-navbar__right {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  -webkit-box-pack: end;\n      -ms-flex-pack: end;\n          justify-content: flex-end;\n}\n.vs-navbar__center {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n}\n.vs-navbar__line {\n  position: absolute;\n  left: 0px;\n  bottom: 0px;\n  width: 100px;\n  background: rgba(var(--vs-text), 1);\n  height: 3px;\n  -webkit-transition: all 0.25s ease;\n  transition: all 0.25s ease;\n}\n.vs-navbar__line.notTransition {\n  -webkit-transition: none !important;\n  transition: none !important;\n}\n.vs-navbar__item {\n  padding: 10px 15px;\n  margin: 0px;\n  border: 0px;\n  background: transparent;\n  font-size: 0.85rem;\n  opacity: 0.7;\n  -webkit-transition: all 0.25s ease, color 0s;\n  transition: all 0.25s ease, color 0s;\n  font-weight: bold;\n  color: inherit;\n}\n.vs-navbar__item.active {\n  opacity: 1;\n}\n.vs-navbar__item:hover {\n  opacity: 1;\n}\n.vs-navbar__group {\n  position: relative;\n}\n.vs-navbar__group:hover .vs-navbar__group__item {\n  opacity: 1;\n}\n.vs-navbar__group:hover .vs-navbar__group__items {\n  opacity: 1;\n  visibility: visible;\n  -webkit-transform: translate(0, 100%);\n          transform: translate(0, 100%);\n}\n.vs-navbar__group__item {\n  padding: 10px 15px;\n  background: transparent;\n  color: inherit;\n  font-weight: bold;\n  -webkit-transition: all 0.25s ease, color 0s;\n  transition: all 0.25s ease, color 0s;\n  opacity: 0.7;\n  border: 0px;\n}\n.vs-navbar__group__items {\n  position: absolute;\n  bottom: 0px;\n  left: 0px;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: column;\n          flex-direction: column;\n  margin-bottom: -12px;\n  -webkit-transform: translate(0, 90%);\n          transform: translate(0, 90%);\n  background: rgba(var(--vs-color), 1);\n  border-radius: 5px 18px 18px 18px;\n  padding: 10px;\n  min-width: 160px;\n  opacity: 0;\n  -webkit-box-shadow: 0px 5px 20px 0px rgba(0, 0, 0, var(--vs-shadow-opacity));\n          box-shadow: 0px 5px 20px 0px rgba(0, 0, 0, var(--vs-shadow-opacity));\n  -webkit-transition: all 0.25s ease;\n  transition: all 0.25s ease;\n  color: inherit;\n  visibility: hidden;\n}\n.vs-navbar__group__items:after {\n  content: \"\";\n  left: 0px;\n  top: -13px;\n  background: transparent;\n  width: 100%;\n  height: 14px;\n  position: absolute;\n  z-index: -1;\n}\n.vs-navbar__group__items .vs-navbar__item {\n  text-align: left;\n  width: 100%;\n  position: relative;\n  padding: 5px 10px;\n}\n.vs-navbar__group__items .vs-navbar__item:before {\n  content: \"\";\n  left: 0px;\n  top: 0px;\n  width: 4px;\n  height: 4px;\n  background: rgba(var(--vs-text), 1);\n  position: absolute;\n  border-radius: 50%;\n  top: calc(50% - 2px);\n  opacity: 0;\n  -webkit-transform: translate(-10px);\n          transform: translate(-10px);\n  -webkit-transition: all 0.25s ease;\n  transition: all 0.25s ease;\n}\n.vs-navbar__group__items .vs-navbar__item.active:before {\n  opacity: 1;\n  -webkit-transform: translate(0px);\n          transform: translate(0px);\n}\n.vs-sidebar-content {\n  --vs-color: var(--vs-primary);\n}\n\n@-webkit-keyframes delayOpacity {\n  0% {\n    opacity: 0;\n  }\n  100% {\n    opacity: 1;\n  }\n}\n\n@keyframes delayOpacity {\n  0% {\n    opacity: 0;\n  }\n  100% {\n    opacity: 1;\n  }\n}\n.vs-sidebar-content {\n  position: fixed;\n  left: 0px;\n  top: 0px;\n  width: calc(100% - 50px);\n  max-width: 260px;\n  height: 100vh;\n  border-radius: 0px 30px 30px 0px;\n  color: rgba(var(--vs-text), 1);\n  -webkit-box-shadow: 0px 0px 25px 0px rgba(0, 0, 0, var(--vs-shadow-opacity));\n          box-shadow: 0px 0px 25px 0px rgba(0, 0, 0, var(--vs-shadow-opacity));\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-align: start;\n      -ms-flex-align: start;\n          align-items: flex-start;\n  -webkit-box-pack: justify;\n      -ms-flex-pack: justify;\n          justify-content: space-between;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: column;\n          flex-direction: column;\n  z-index: 21000;\n  background: rgba(var(--vs-background), 1);\n  -webkit-transition: all 0.25s ease;\n  transition: all 0.25s ease;\n  -webkit-transform: translate(-110%);\n          transform: translate(-110%);\n}\n.vs-sidebar-content.right {\n  left: auto;\n  right: 0px;\n  -webkit-transform: translate(110%);\n          transform: translate(110%);\n}\n.vs-sidebar-content.right.open {\n  -webkit-transform: translate(0);\n          transform: translate(0);\n}\n.vs-sidebar-content.right.reduce .vs-sidebar__item:hover .vs-sidebar__item__text-tooltip {\n  opacity: 1;\n  left: auto !important;\n  right: 60px !important;\n}\n.vs-sidebar-content.absolute {\n  position: absolute !important;\n  z-index: 9001;\n  height: 100%;\n}\n.vs-sidebar-content.relative {\n  position: relative !important;\n  z-index: 9001;\n  height: 100%;\n}\n.vs-sidebar-content.textWhite .vs-sidebar__group__content:after {\n  background: rgba(255, 255, 255, 0.4);\n}\n.vs-sidebar-content.textWhite .vs-sidebar__item:after {\n  background: #fff !important;\n}\n.vs-sidebar-content.textWhite .vs-sidebar__item.active {\n  color: #fff !important;\n}\n.vs-sidebar-content.notShadow {\n  -webkit-box-shadow: none !important;\n          box-shadow: none !important;\n}\n.vs-sidebar-content.square {\n  border-radius: 0px;\n}\n.vs-sidebar-content.notLineActive .vs-sidebar .vs-sidebar__item:after {\n  display: none;\n}\n.vs-sidebar-content.open {\n  -webkit-transform: translate(0%);\n          transform: translate(0%);\n}\n.vs-sidebar-content.reduce .vs-sidebar__footer {\n  padding: 10px 0px;\n}\n.vs-sidebar-content.reduce .vs-sidebar__header .vs-avatar-content {\n  width: 44px !important;\n  height: 44px !important;\n}\n.vs-sidebar-content.reduce .vs-sidebar__logo img {\n  width: 80%;\n}\n.vs-sidebar-content.reduce .vs-sidebar__item {\n  padding-left: 16px !important;\n  min-height: 47px;\n}\n.vs-sidebar-content.reduce .vs-sidebar__item:not(.hasIcon) .vs-sidebar__item__text {\n  font-size: 0.5rem;\n}\n.vs-sidebar-content.reduce .vs-sidebar__item.hasIcon .vs-sidebar__item__text {\n  -webkit-transform: translate(-10px);\n          transform: translate(-10px);\n  margin-left: -50px;\n}\n.vs-sidebar-content.reduce .vs-sidebar__item__arrow {\n  position: absolute;\n  left: 36px;\n  top: 10px;\n  -webkit-animation: delayOpacity 0.6s ease;\n          animation: delayOpacity 0.6s ease;\n  width: 5px;\n  height: 5px;\n}\n.vs-sidebar-content.reduce .vs-sidebar__item:hover .vs-sidebar__item__text-tooltip {\n  opacity: 1;\n  left: 60px;\n}\n.vs-sidebar-content.reduce .vs-sidebar__item.hasIcon {\n  padding: 0px !important;\n}\n.vs-sidebar-content.reduce .vs-sidebar__item.hasIcon:after {\n  left: -6px;\n}\n.vs-sidebar-content .vs-sidebar__logo {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n  width: 100%;\n  padding: 25px 0px;\n  min-height: 80px;\n}\n.vs-sidebar-content .vs-sidebar__logo img {\n  max-width: 120px;\n  max-height: 35px;\n}\n.vs-sidebar-content .vs-sidebar {\n  overflow-x: hidden;\n  width: 100%;\n  -webkit-box-flex: 1;\n      -ms-flex-positive: 1;\n          flex-grow: 1;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-align: start;\n      -ms-flex-align: start;\n          align-items: flex-start;\n  -webkit-box-pack: start;\n      -ms-flex-pack: start;\n          justify-content: flex-start;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: column;\n          flex-direction: column;\n}\n.vs-sidebar-content .vs-sidebar::-webkit-scrollbar {\n  width: 0px;\n}\n.vs-sidebar-content .vs-sidebar__header {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n  width: 100%;\n  padding: 10px;\n}\n.vs-sidebar-content .vs-sidebar__footer {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  justify-self: flex-start;\n  width: 100%;\n  padding: 10px;\n}\n.vs-sidebar__item {\n  width: 100%;\n  padding: 14px 16px;\n  padding-top: 15px;\n  text-align: left;\n  background: transparent;\n  font-size: 1rem;\n  font-weight: bold;\n  opacity: 0.7;\n  -webkit-transition: all 0.25s ease;\n  transition: all 0.25s ease;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  -webkit-box-pack: start;\n      -ms-flex-pack: start;\n          justify-content: flex-start;\n  position: relative;\n  color: rgba(var(--vs-text), 1);\n  border: 0px;\n}\n.vs-sidebar__item.hasIcon {\n  padding: 0px;\n}\n.vs-sidebar__item.hasIcon.active {\n  padding-left: 8px;\n}\n.vs-sidebar__item.hasIcon:hover {\n  padding-left: 8px;\n  opacity: 1;\n}\n.vs-sidebar__item:after {\n  content: \"\";\n  position: absolute;\n  left: -4px;\n  top: 0px;\n  width: 10px;\n  height: 100%;\n  background: rgba(var(--vs-color), 1);\n  border-radius: 0px 20px 20px 0px;\n  -webkit-transform: translate(-6px);\n          transform: translate(-6px);\n  -webkit-transition: all 0.25s ease;\n  transition: all 0.25s ease;\n  z-index: 60;\n}\n.vs-sidebar__item.active:not(.hasIcon) {\n  padding-left: 25px;\n}\n.vs-sidebar__item.active {\n  opacity: 1;\n  color: rgba(var(--vs-color), 1);\n}\n.vs-sidebar__item.active:after {\n  -webkit-transform: translate(0px);\n          transform: translate(0px);\n}\n.vs-sidebar__item__icon {\n  min-width: 50px;\n  height: 47px;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n  font-size: 1.2rem;\n  z-index: 50;\n  background: rgba(var(--vs-background), 1);\n}\n.vs-sidebar__item:hover:not(.hasIcon) {\n  opacity: 1;\n  padding-left: 25px;\n}\n.vs-sidebar__item__text {\n  white-space: nowrap;\n  text-overflow: ellipsis;\n  overflow: hidden;\n  z-index: 10;\n  -webkit-transition: all 0.25s ease;\n  transition: all 0.25s ease;\n  font-size: 0.9rem;\n}\n.vs-sidebar__item__arrow {\n  width: 7px;\n  height: 7px;\n  position: relative;\n  justify-self: flex-end;\n  margin-left: auto;\n  margin-right: 15px;\n  -webkit-transition: all 0.25s ease;\n  transition: all 0.25s ease;\n  -webkit-transform: rotate(-135deg) !important;\n          transform: rotate(-135deg) !important;\n  z-index: 80;\n}\n.vs-sidebar__item__arrow .vs-icon-arrow:before {\n  width: 2px;\n}\n.vs-sidebar__item__arrow .vs-icon-arrow:after {\n  height: 2px;\n}\n.vs-sidebar__item__text-tooltip {\n  position: fixed;\n  left: 50px;\n  opacity: 0;\n  pointer-events: none;\n  -webkit-transition: all 0.25s ease;\n  transition: all 0.25s ease;\n  font-size: 0.85rem;\n  white-space: nowrap;\n}\n.vs-sidebar__group {\n  padding: 0px;\n  width: 100%;\n  min-width: 260px;\n  position: relative;\n}\n.vs-sidebar__group.open .vs-sidebar__group__content:after {\n  -webkit-transform: translate(0);\n          transform: translate(0);\n  opacity: 1;\n}\n.vs-sidebar__group.open > .vs-sidebar__group__header .vs-sidebar__item {\n  opacity: 1;\n}\n.vs-sidebar__group.open > .vs-sidebar__group__header .vs-sidebar__item__arrow {\n  -webkit-transform: rotate(45deg) !important;\n          transform: rotate(45deg) !important;\n}\n.vs-sidebar__group__header {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n}\n.vs-sidebar__group__content {\n  overflow: hidden;\n  -webkit-transition: all 0.25s ease;\n  transition: all 0.25s ease;\n  position: relative;\n}\n.vs-sidebar__group__content:after {\n  content: \"\";\n  position: absolute;\n  left: 0px;\n  top: 0px;\n  background: rgba(var(--vs-color), 0.3);\n  width: 4px;\n  height: 100%;\n  opacity: 0;\n  -webkit-transition: all 0.25s ease;\n  transition: all 0.25s ease;\n  -webkit-transform: translate(-100%);\n          transform: translate(-100%);\n  border-radius: 0px 10px 10px 0px;\n  z-index: 60;\n}\n.vs-sidebar__group__content .vs-sidebar__item {\n  background: rgba(var(--vs-background), 1);\n}\n.vs-sidebar__group > .vs-sidebar__group__header .vs-sidebar__item:hover {\n  padding-left: 0px;\n}\n.vs-card-content {\n  --vs-color: var(--vs-primary);\n}\n\n.vs-card-content.type-5 .vs-card {\n  -webkit-box-shadow: none;\n          box-shadow: none;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: column;\n          flex-direction: column;\n}\n.vs-card-content.type-5 .vs-card:hover .vs-card__interactions {\n  bottom: 50px;\n}\n.vs-card-content.type-5 .vs-card:hover .vs-card__text {\n  -webkit-transform: translate(0);\n          transform: translate(0);\n  opacity: 1;\n  -webkit-box-shadow: 0px 0px 30px 0px rgba(0, 0, 0, var(--vs-shadow-opacity));\n          box-shadow: 0px 0px 30px 0px rgba(0, 0, 0, var(--vs-shadow-opacity));\n}\n.vs-card-content.type-5 .vs-card:hover .vs-card__img {\n  border-radius: 6px 40px 6px 40px;\n}\n.vs-card-content.type-5 .vs-card:hover .vs-card__img img {\n  -webkit-transform: scale(1.1);\n          transform: scale(1.1);\n}\n.vs-card-content.type-5 .vs-card__img {\n  border-radius: 6px 20px 6px 20px;\n}\n.vs-card-content.type-5 .vs-card__interactions {\n  bottom: 6px;\n  -webkit-transition: all 0.25s ease;\n  transition: all 0.25s ease;\n  z-index: 20;\n}\n.vs-card-content.type-5 .vs-card__text {\n  background: rgba(var(--vs-background), 1);\n  -webkit-box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, var(--vs-shadow-opacity));\n          box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, var(--vs-shadow-opacity));\n  border-radius: 6px 20px 6px 20px;\n  margin-top: -50px;\n  z-index: 10;\n  position: relative;\n  width: calc(100% - 30px);\n  padding-top: 10px;\n  -webkit-transition: all 0.25s ease;\n  transition: all 0.25s ease;\n  -webkit-transform: translate(0, 25px);\n          transform: translate(0, 25px);\n  opacity: 0;\n}\n.vs-card-content.type-4 .vs-card {\n  -webkit-box-shadow: none;\n          box-shadow: none;\n  max-width: 300px;\n}\n.vs-card-content.type-4 .vs-card:hover {\n  -webkit-transform: translate(0, -5px);\n          transform: translate(0, -5px);\n}\n.vs-card-content.type-4 .vs-card:hover .vs-card__img img {\n  -webkit-transform: scale(1);\n          transform: scale(1);\n}\n.vs-card-content.type-4 .vs-card:hover .vs-card__text {\n  padding-top: 15px;\n  padding-bottom: 25px;\n}\n.vs-card-content.type-4 .vs-card__img {\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  max-height: 600px;\n}\n.vs-card-content.type-4 .vs-card__img img {\n  -webkit-transform: scale(1.2);\n          transform: scale(1.2);\n}\n.vs-card-content.type-4 .vs-card__interactions {\n  top: 0px;\n  bottom: auto;\n}\n.vs-card-content.type-4 .vs-card__text {\n  background: rgba(var(--vs-background), 0.8);\n  position: absolute;\n  bottom: 0px;\n  -webkit-backdrop-filter: saturate(180%) blur(20px);\n          backdrop-filter: saturate(180%) blur(20px);\n  border-radius: 0px 0px 20px 20px;\n  -webkit-transition: all 0.25s ease;\n  transition: all 0.25s ease;\n}\n.vs-card-content.type-4 .vs-card__text p {\n  opacity: 1;\n}\n.vs-card-content.type-3 .vs-card {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  max-width: 400px;\n}\n.vs-card-content.type-3 .vs-card:hover {\n  -webkit-transform: scale(1.04);\n          transform: scale(1.04);\n}\n.vs-card-content.type-3 .vs-card__img img {\n  min-width: 200px;\n}\n.vs-card-content.type-3 .vs-card__text {\n  padding-top: 15px;\n}\n.vs-card-content.type-3 .vs-card__title h2, .vs-card-content.type-3 .vs-card__title h3, .vs-card-content.type-3 .vs-card__title h4, .vs-card-content.type-3 .vs-card__title h5, .vs-card-content.type-3 .vs-card__title h6 {\n  padding: 0px;\n}\n.vs-card-content.type-2 .vs-card {\n  -webkit-box-shadow: none;\n          box-shadow: none;\n  overflow: hidden;\n}\n.vs-card-content.type-2 .vs-card:hover {\n  -webkit-transform: scale(0.95);\n          transform: scale(0.95);\n}\n.vs-card-content.type-2 .vs-card:hover .vs-card__img img {\n  -webkit-transform: scale(1.15);\n          transform: scale(1.15);\n}\n.vs-card-content.type-2 .vs-card:hover .vs-card__text {\n  -webkit-transform: translate(0);\n          transform: translate(0);\n  opacity: 1;\n  color: #fff;\n}\n.vs-card-content.type-2 .vs-card__interactions {\n  right: 0px;\n  top: 0px;\n  left: auto;\n  bottom: auto;\n  -webkit-box-align: end;\n      -ms-flex-align: end;\n          align-items: flex-end;\n}\n.vs-card-content.type-2 .vs-card__title {\n  position: relative;\n  color: inherit;\n  padding: 0px;\n}\n.vs-card-content.type-2 .vs-card__title h2, .vs-card-content.type-2 .vs-card__title h3, .vs-card-content.type-2 .vs-card__title h4, .vs-card-content.type-2 .vs-card__title h5, .vs-card-content.type-2 .vs-card__title h6 {\n  padding: 0px;\n  padding-bottom: 5px;\n}\n.vs-card-content.type-2 .vs-card__text {\n  position: absolute;\n  bottom: 0px;\n  background: rgba(var(--vs-background), 0.9);\n  padding-top: 30px;\n  border-radiu: 0px 0px 20px 20px;\n  background: -webkit-gradient(linear, left top, left bottom, from(transparent), to(rgba(0, 0, 0, 0.5)));\n  background: linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.5) 100%);\n  color: transparent;\n  font-size: 0.9rem;\n  -webkit-transform: translate(0, 45%);\n          transform: translate(0, 45%);\n  -webkit-transition: all 0.25s ease;\n  transition: all 0.25s ease;\n}\n.vs-card-content.type-2 .vs-card__text p {\n  opacity: 1;\n}\n.vs-card-content.type-1 .vs-card:hover {\n  -webkit-box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, var(--vs-shadow-opacity));\n          box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, var(--vs-shadow-opacity));\n  -webkit-transform: translate(0, 5px);\n          transform: translate(0, 5px);\n}\n.vs-card-content.type-1 .vs-card:hover .vs-card__img img {\n  -webkit-transform: scale(1.15);\n          transform: scale(1.15);\n}\n\n.vs-card {\n  background: rgba(var(--vs-background), 1);\n  color: rgba(var(--vs-text), 1);\n  width: 100%;\n  max-width: 350px;\n  -webkit-box-shadow: 0px 5px 20px 0px rgba(0, 0, 0, var(--vs-shadow-opacity));\n          box-shadow: 0px 5px 20px 0px rgba(0, 0, 0, var(--vs-shadow-opacity));\n  border-radius: 20px;\n  -webkit-transition: all 0.25s ease;\n  transition: all 0.25s ease;\n  cursor: pointer;\n  position: relative;\n}\n.vs-card__text {\n  font-size: 0.85rem;\n  padding: 0px 15px;\n  padding-bottom: 15px;\n}\n.vs-card__text p {\n  font-size: inherit;\n  margin: 0px;\n  opacity: 0.8;\n}\n.vs-card__title {\n  padding-top: 10px;\n  padding-bottom: 5px;\n}\n.vs-card__title h2, .vs-card__title h3, .vs-card__title h4, .vs-card__title h5, .vs-card__title h6 {\n  padding: 0px;\n  margin: 0px;\n  font-size: 1.1rem;\n}\n.vs-card__interactions {\n  position: absolute;\n  bottom: 0px;\n  padding: 5px 10px;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  -webkit-box-pack: start;\n      -ms-flex-pack: start;\n          justify-content: flex-start;\n  left: 0px;\n}\n.vs-card__img {\n  position: relative;\n  max-height: 250px;\n  overflow: hidden;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n  border-radius: 20px;\n  -webkit-transition: all 0.25s ease;\n  transition: all 0.25s ease;\n}\n.vs-card__img img {\n  width: 100%;\n  border-radius: 20px;\n  display: block;\n  -webkit-transition: all 0.25s ease;\n  transition: all 0.25s ease;\n}\n.vs-card__group {\n  width: 100%;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  position: relative;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n}\n.vs-card__group-space {\n  min-width: 20px;\n  position: relative;\n  height: 20px;\n}\n.vs-card__group .vs-card__group-cards {\n  position: relative;\n  z-index: 1;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  -webkit-box-pack: start;\n      -ms-flex-pack: start;\n          justify-content: flex-start;\n  overflow: hidden;\n  overflow-x: auto;\n  scroll-behavior: smooth;\n  padding-top: 20px;\n  padding-bottom: 20px;\n  border-radius: 20px;\n}\n.vs-card__group .vs-card__group-cards .vs-card-content {\n  min-width: 350px;\n  margin-left: 20px;\n}\n.vs-card__group .vs-card__group-prev {\n  z-index: 2;\n  position: relative;\n  left: 0px;\n  width: 50px;\n  height: 50px;\n  min-width: 50px;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n  background: transparent;\n  border: 0px;\n}\n.vs-card__group .vs-card__group-prev .vs-icon-arrow {\n  width: 15px;\n  height: 15px;\n  display: block;\n  -webkit-transform: rotate(-45deg);\n          transform: rotate(-45deg);\n}\n.vs-card__group .vs-card__group-prev .vs-icon-arrow:before {\n  width: 2px;\n}\n.vs-card__group .vs-card__group-prev .vs-icon-arrow:after {\n  height: 2px;\n}\n.vs-card__group .vs-card__group-next {\n  border: 0px;\n  z-index: 2;\n  position: relative;\n  left: 0px;\n  width: 50px;\n  height: 50px;\n  min-width: 50px;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n  background: transparent;\n}\n.vs-card__group .vs-card__group-next .vs-icon-arrow {\n  width: 15px;\n  height: 15px;\n  display: block;\n  -webkit-transform: rotate(135deg);\n          transform: rotate(135deg);\n}\n.vs-card__group .vs-card__group-next .vs-icon-arrow:before {\n  width: 2px;\n}\n.vs-card__group .vs-card__group-next .vs-icon-arrow:after {\n  height: 2px;\n}\n.loading-enter-active, .loading-leave-active {\n  -webkit-transition: opacity 0.5s;\n  transition: opacity 0.5s;\n}\n\n.loading-enter, .loading-leave-to {\n  opacity: 0;\n}\n\n.vs-loading {\n  --vs-color: var(--vs-primary);\n  --vs-background: 255,255,255;\n  --vs-opacity: .6;\n  position: fixed;\n  top: 0px;\n  left: 0px;\n  width: 100%;\n  height: 100%;\n  z-index: 100000;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n  background: rgba(var(--vs-background), var(--vs-opacity));\n  -webkit-transition: all 0.25s ease;\n  transition: all 0.25s ease;\n  padding: 20px;\n  border-radius: inherit;\n}\n.vs-loading--target {\n  position: absolute;\n}\n.vs-loading__load {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: column;\n          flex-direction: column;\n}\n.vs-loading__load__text {\n  font-size: 0.75em;\n  margin: 7px;\n  font-weight: bold;\n  color: rgba(var(--vs-color), 1);\n}\n.vs-loading__load__percent {\n  position: relative;\n  font-size: 0.65rem;\n  font-weight: bold;\n  color: rgba(var(--vs-color), 1);\n  margin-top: 1px;\n  z-index: 200;\n}\n.vs-loading__load__animation {\n  width: 40px;\n  height: 40px;\n  position: relative;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n}\n\n.vs-loading__progress {\n  width: 100%;\n  position: absolute;\n  top: 0px;\n  left: 0px;\n  height: 4px;\n  background: rgba(var(--vs-color), 0.2);\n}\n.vs-loading__progress__bar {\n  background: rgba(var(--vs-color), 1);\n  height: 100%;\n  position: relative;\n  border-radius: 0px 10px 10px 0px;\n}\n\n.vs-loading--default .vs-loading__load__animation {\n  border-radius: 50%;\n}\n.vs-loading--default .vs-loading__load__animation__1 {\n  position: absolute;\n  width: 100%;\n  height: 100%;\n  border: 3px solid rgba(var(--vs-color), 1);\n  border-radius: inherit;\n  border-top: 3px solid transparent;\n  border-left: 3px solid transparent;\n  border-right: 3px solid transparent;\n  -webkit-animation: rotate 0.8s ease infinite;\n          animation: rotate 0.8s ease infinite;\n  top: 0px;\n}\n.vs-loading--default .vs-loading__load__animation__2 {\n  top: 0px;\n  position: absolute;\n  width: 100%;\n  height: 100%;\n  border: 3px dashed rgba(var(--vs-color), 1);\n  border-radius: inherit;\n  border-top: 3px solid transparent;\n  border-left: 3px solid transparent;\n  border-right: 3px solid transparent;\n  -webkit-animation: rotate 0.8s linear infinite;\n          animation: rotate 0.8s linear infinite;\n  opacity: 0.2;\n}\n.vs-loading--default .vs-loading__load__animation__3 {\n  display: none;\n}\n\n@-webkit-keyframes rotate {\n  0% {\n    -webkit-transform: rotate(0deg);\n            transform: rotate(0deg);\n  }\n  100% {\n    -webkit-transform: rotate(360deg);\n            transform: rotate(360deg);\n  }\n}\n\n@keyframes rotate {\n  0% {\n    -webkit-transform: rotate(0deg);\n            transform: rotate(0deg);\n  }\n  100% {\n    -webkit-transform: rotate(360deg);\n            transform: rotate(360deg);\n  }\n}\n.vs-loading--waves .vs-loading__load__animation {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n}\n.vs-loading--waves .vs-loading__load__animation__1 {\n  width: 0px;\n  background: transparent;\n  height: 0px;\n  position: absolute;\n  -webkit-animation: waves 0.7s ease infinite;\n          animation: waves 0.7s ease infinite;\n  -webkit-box-shadow: 0px 0px 10px 0px rgba(var(--vs-color), 0.5);\n          box-shadow: 0px 0px 10px 0px rgba(var(--vs-color), 0.5);\n  border-radius: 50%;\n}\n.vs-loading--waves .vs-loading__load__animation__2 {\n  width: 0px;\n  background: transparent;\n  height: 0px;\n  position: absolute;\n  -webkit-animation: waves 1.4s linear infinite;\n          animation: waves 1.4s linear infinite;\n  -webkit-box-shadow: 0px 0px 10px 0px rgba(var(--vs-color), 0.5);\n          box-shadow: 0px 0px 10px 0px rgba(var(--vs-color), 0.5);\n  border-radius: 50%;\n}\n.vs-loading--waves .vs-loading__load__animation__3 {\n  width: 0px;\n  background: transparent;\n  height: 0px;\n  position: absolute;\n  -webkit-animation: waves 1.75s ease infinite;\n          animation: waves 1.75s ease infinite;\n  -webkit-box-shadow: 0px 0px 10px 0px rgba(var(--vs-color), 0.5);\n          box-shadow: 0px 0px 10px 0px rgba(var(--vs-color), 0.5);\n  border-radius: 50%;\n}\n\n@-webkit-keyframes waves {\n  0% {\n    width: 0px;\n    height: 0px;\n  }\n  100% {\n    height: 50px;\n    width: 50px;\n    opacity: 0;\n  }\n}\n\n@keyframes waves {\n  0% {\n    width: 0px;\n    height: 0px;\n  }\n  100% {\n    height: 50px;\n    width: 50px;\n    opacity: 0;\n  }\n}\n.vs-loading--corners .vs-loading__load__animation {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n}\n.vs-loading--corners .vs-loading__load__animation__1 {\n  width: 100%;\n  background: transparent;\n  height: 100%;\n  position: absolute;\n  -webkit-animation: corners 1s ease infinite;\n          animation: corners 1s ease infinite;\n  border-radius: 50%;\n  border: 2px solid rgba(var(--vs-color), 1);\n}\n.vs-loading--corners .vs-loading__load__animation__2 {\n  display: none;\n}\n.vs-loading--corners .vs-loading__load__animation__3 {\n  display: none;\n}\n\n@-webkit-keyframes corners {\n  0% {\n    border-radius: 50%;\n    -webkit-transform: rotate(0deg);\n            transform: rotate(0deg);\n  }\n  25% {\n    border-radius: 50% 50% 50% 15%;\n  }\n  50% {\n    border-radius: 50% 50% 15% 30%;\n  }\n  75% {\n    border-radius: 50% 15% 30% 30%;\n  }\n  100% {\n    border-radius: 50%;\n    -webkit-transform: rotate(-180deg);\n            transform: rotate(-180deg);\n  }\n}\n\n@keyframes corners {\n  0% {\n    border-radius: 50%;\n    -webkit-transform: rotate(0deg);\n            transform: rotate(0deg);\n  }\n  25% {\n    border-radius: 50% 50% 50% 15%;\n  }\n  50% {\n    border-radius: 50% 50% 15% 30%;\n  }\n  75% {\n    border-radius: 50% 15% 30% 30%;\n  }\n  100% {\n    border-radius: 50%;\n    -webkit-transform: rotate(-180deg);\n            transform: rotate(-180deg);\n  }\n}\n.vs-loading--border .vs-loading__load__animation {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n  border-radius: 50%;\n}\n.vs-loading--border .vs-loading__load__animation__1 {\n  position: absolute;\n  width: 100%;\n  height: 100%;\n  border: 1px solid rgba(var(--vs-color), 1);\n  border-radius: inherit;\n  border-top: 1px solid transparent;\n  border-left: 1px solid transparent;\n  border-right: 1px solid transparent;\n  -webkit-animation: rotate 1s linear infinite;\n          animation: rotate 1s linear infinite;\n  top: 0px;\n}\n.vs-loading--border .vs-loading__load__animation__2 {\n  top: 0px;\n  position: absolute;\n  width: 100%;\n  height: 100%;\n  border: 1px dashed rgba(var(--vs-color), 1);\n  border-radius: inherit;\n  border-top: 1px solid transparent;\n  border-left: 1px solid transparent;\n  border-right: 1px solid transparent;\n  -webkit-animation: rotate 1s linear infinite 0.2s;\n          animation: rotate 1s linear infinite 0.2s;\n}\n.vs-loading--border .vs-loading__load__animation__3 {\n  top: 0px;\n  position: absolute;\n  width: 100%;\n  height: 100%;\n  border: 1px dashed rgba(var(--vs-color), 1);\n  border-radius: inherit;\n  -webkit-animation: rotate 1s linear infinite 0.4s;\n          animation: rotate 1s linear infinite 0.4s;\n  opacity: 0.2;\n}\n\n.vs-loading--points .vs-loading__load__percent {\n  position: absolute;\n  top: -10px;\n}\n.vs-loading--points .vs-loading__load__animation {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-align: end;\n      -ms-flex-align: end;\n          align-items: flex-end;\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n  width: auto;\n}\n.vs-loading--points .vs-loading__load__animation__1 {\n  width: 8px;\n  height: 8px;\n  background: rgba(var(--vs-color), 1);\n  border-radius: 50%;\n  margin: 3px;\n  -webkit-animation: points 0.75s ease infinite;\n          animation: points 0.75s ease infinite;\n}\n.vs-loading--points .vs-loading__load__animation__2 {\n  width: 8px;\n  height: 8px;\n  background: rgba(var(--vs-color), 1);\n  border-radius: 50%;\n  margin: 3px;\n  -webkit-animation: points 0.75s ease infinite 0.25s;\n          animation: points 0.75s ease infinite 0.25s;\n}\n.vs-loading--points .vs-loading__load__animation__3 {\n  width: 8px;\n  height: 8px;\n  background: rgba(var(--vs-color), 1);\n  border-radius: 50%;\n  margin: 3px;\n  -webkit-animation: points 0.75s ease infinite 0.5s;\n          animation: points 0.75s ease infinite 0.5s;\n}\n\n@-webkit-keyframes points {\n  0% {\n    -webkit-transform: translate(0px, 0px);\n            transform: translate(0px, 0px);\n  }\n  50% {\n    -webkit-transform: translate(0, -15px);\n            transform: translate(0, -15px);\n  }\n  100% {\n    -webkit-transform: translate(0px, 0px);\n            transform: translate(0px, 0px);\n  }\n}\n\n@keyframes points {\n  0% {\n    -webkit-transform: translate(0px, 0px);\n            transform: translate(0px, 0px);\n  }\n  50% {\n    -webkit-transform: translate(0, -15px);\n            transform: translate(0, -15px);\n  }\n  100% {\n    -webkit-transform: translate(0px, 0px);\n            transform: translate(0px, 0px);\n  }\n}\n.vs-loading--square .vs-loading__load__animation {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n}\n.vs-loading--square .vs-loading__load__animation__1 {\n  position: absolute;\n  width: 100%;\n  height: 100%;\n  border: 2px solid rgba(var(--vs-color), 1);\n  border-radius: inherit;\n  -webkit-animation: rotateSquare 4s ease infinite;\n          animation: rotateSquare 4s ease infinite;\n  top: 0px;\n}\n.vs-loading--square .vs-loading__load__animation__2 {\n  top: 0px;\n  position: absolute;\n  width: 100%;\n  height: 100%;\n  border: 2px solid rgba(var(--vs-color), 1);\n  border-radius: inherit;\n  animation: rotateSquare 4s ease infinite reverse;\n  background: rgba(var(--vs-background), 1);\n}\n.vs-loading--square .vs-loading__load__animation__3 {\n  display: none;\n}\n\n@-webkit-keyframes rotateSquare {\n  0% {\n    -webkit-transform: rotate(0deg);\n            transform: rotate(0deg);\n  }\n  50% {\n    -webkit-transform: rotate(360deg);\n            transform: rotate(360deg);\n  }\n  100% {\n    -webkit-transform: rotate(0deg);\n            transform: rotate(0deg);\n  }\n}\n\n@keyframes rotateSquare {\n  0% {\n    -webkit-transform: rotate(0deg);\n            transform: rotate(0deg);\n  }\n  50% {\n    -webkit-transform: rotate(360deg);\n            transform: rotate(360deg);\n  }\n  100% {\n    -webkit-transform: rotate(0deg);\n            transform: rotate(0deg);\n  }\n}\n.vs-loading--gradient .vs-loading__load__animation {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n  width: 60px;\n  height: 60px;\n}\n.vs-loading--gradient .vs-loading__load__animation__1 {\n  position: absolute;\n  width: 100%;\n  height: 100%;\n  border: 0px;\n  border-radius: inherit;\n  -webkit-animation: rotate 1s linear infinite;\n          animation: rotate 1s linear infinite;\n  top: 0px;\n  background: -webkit-gradient(linear, left bottom, left top, color-stop(33%, rgba(var(--vs-background), 0)), to(rgba(var(--vs-color), 1)));\n  background: linear-gradient(0deg, rgba(var(--vs-background), 0) 33%, rgba(var(--vs-color), 1) 100%);\n  border-radius: 50%;\n}\n.vs-loading--gradient .vs-loading__load__animation__2 {\n  top: 2px;\n  position: absolute;\n  width: calc(100% - 4px);\n  height: calc(100% - 4px);\n  border: 0px;\n  border-radius: inherit;\n  background: rgba(var(--vs-background), 1);\n  border-radius: 50%;\n}\n.vs-loading--gradient .vs-loading__load__animation__3 {\n  display: none;\n}\n\n.vs-loading--rectangle .vs-loading__load__percent {\n  position: absolute;\n  bottom: -2px;\n}\n.vs-loading--rectangle .vs-loading__load__animation {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-align: end;\n      -ms-flex-align: end;\n          align-items: flex-end;\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n}\n.vs-loading--rectangle .vs-loading__load__animation__1 {\n  position: absolute;\n  width: 15px;\n  height: 15px;\n  border: 0px;\n  border-radius: inherit;\n  -webkit-animation: rectangle 1s ease infinite;\n          animation: rectangle 1s ease infinite;\n  background: rgba(var(--vs-color), 1);\n}\n.vs-loading--rectangle .vs-loading__load__animation__2 {\n  position: absolute;\n  width: 15px;\n  height: 15px;\n  border: 0px;\n  border-radius: inherit;\n  -webkit-animation: rectangle 1s ease-out infinite;\n          animation: rectangle 1s ease-out infinite;\n  background: rgba(var(--vs-color), 0.2);\n}\n.vs-loading--rectangle .vs-loading__load__animation__3 {\n  display: none;\n}\n\n@-webkit-keyframes rectangle {\n  0% {\n    -webkit-transform: translate(-50px);\n            transform: translate(-50px);\n  }\n  50% {\n    -webkit-transform: translate(50px);\n            transform: translate(50px);\n  }\n  100% {\n    -webkit-transform: translate(-50px);\n            transform: translate(-50px);\n  }\n}\n\n@keyframes rectangle {\n  0% {\n    -webkit-transform: translate(-50px);\n            transform: translate(-50px);\n  }\n  50% {\n    -webkit-transform: translate(50px);\n            transform: translate(50px);\n  }\n  100% {\n    -webkit-transform: translate(-50px);\n            transform: translate(-50px);\n  }\n}\n.vs-loading--circles .vs-loading__load__animation {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n  width: 60px;\n  height: 60px;\n}\n.vs-loading--circles .vs-loading__load__animation__1 {\n  position: absolute;\n  width: 40px;\n  height: 40px;\n  -webkit-animation: rotate 1s ease infinite;\n          animation: rotate 1s ease infinite;\n  border-radius: 50%;\n  border: 2px solid rgba(var(--vs-color), 1);\n  border-top: 3px solid transparent;\n  border-left: 3px solid transparent;\n  border-right: 3px solid transparent;\n}\n.vs-loading--circles .vs-loading__load__animation__2 {\n  position: absolute;\n  width: 50px;\n  height: 50px;\n  -webkit-animation: rotate 1s ease-in-out infinite;\n          animation: rotate 1s ease-in-out infinite;\n  border-radius: 50%;\n  border: 2px dashed rgba(var(--vs-color), 1);\n  border-top: 3px solid transparent;\n  border-left: 3px solid transparent;\n  border-right: 3px solid transparent;\n}\n.vs-loading--circles .vs-loading__load__animation__3 {\n  position: absolute;\n  width: 60px;\n  height: 60px;\n  animation: rotate 1s linear infinite reverse;\n  border-radius: 50%;\n  border: 2px solid rgba(var(--vs-color), 1);\n  border-top: 3px solid transparent;\n  border-left: 3px solid transparent;\n  border-right: 3px solid transparent;\n}\n\n.vs-loading--square-rotate .vs-loading__load__percent {\n  position: absolute;\n  bottom: 30px;\n}\n.vs-loading--square-rotate .vs-loading__load__animation {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-align: end;\n      -ms-flex-align: end;\n          align-items: flex-end;\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n  width: 60px;\n  height: 60px;\n}\n.vs-loading--square-rotate .vs-loading__load__animation__1 {\n  position: absolute;\n  width: 25px;\n  height: 25px;\n  -webkit-animation: squareRotate 3s ease infinite;\n          animation: squareRotate 3s ease infinite;\n  background: rgba(var(--vs-color), 1);\n}\n.vs-loading--square-rotate .vs-loading__load__animation__2 {\n  display: none;\n}\n.vs-loading--square-rotate .vs-loading__load__animation__3 {\n  display: none;\n}\n\n@-webkit-keyframes squareRotate {\n  0% {\n    -webkit-transform: rotateX(0deg) rotateY(0deg);\n            transform: rotateX(0deg) rotateY(0deg);\n  }\n  25% {\n    -webkit-transform: rotateX(180deg) rotateY(0deg);\n            transform: rotateX(180deg) rotateY(0deg);\n  }\n  50% {\n    -webkit-transform: rotateX(180deg) rotateY(180deg);\n            transform: rotateX(180deg) rotateY(180deg);\n  }\n  75% {\n    -webkit-transform: rotateX(0deg) rotateY(180deg);\n            transform: rotateX(0deg) rotateY(180deg);\n  }\n  100% {\n    -webkit-transform: rotateX(0deg) rotateY(0deg);\n            transform: rotateX(0deg) rotateY(0deg);\n  }\n}\n\n@keyframes squareRotate {\n  0% {\n    -webkit-transform: rotateX(0deg) rotateY(0deg);\n            transform: rotateX(0deg) rotateY(0deg);\n  }\n  25% {\n    -webkit-transform: rotateX(180deg) rotateY(0deg);\n            transform: rotateX(180deg) rotateY(0deg);\n  }\n  50% {\n    -webkit-transform: rotateX(180deg) rotateY(180deg);\n            transform: rotateX(180deg) rotateY(180deg);\n  }\n  75% {\n    -webkit-transform: rotateX(0deg) rotateY(180deg);\n            transform: rotateX(0deg) rotateY(180deg);\n  }\n  100% {\n    -webkit-transform: rotateX(0deg) rotateY(0deg);\n            transform: rotateX(0deg) rotateY(0deg);\n  }\n}\n.vs-loading--scale .vs-loading__load__percent {\n  position: absolute;\n  bottom: 40px;\n}\n.vs-loading--scale .vs-loading__load__animation {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-align: cneter;\n      -ms-flex-align: cneter;\n          align-items: cneter;\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n  width: 40px;\n  height: 40px;\n}\n.vs-loading--scale .vs-loading__load__animation__1 {\n  position: relative;\n  width: 5px;\n  height: 5px;\n  background: rgba(var(--vs-color), 1);\n  margin: 3px;\n  -webkit-animation: scale 0.8s ease infinite;\n          animation: scale 0.8s ease infinite;\n  border-radius: 5px;\n}\n.vs-loading--scale .vs-loading__load__animation__2 {\n  position: relative;\n  width: 5px;\n  height: 5px;\n  background: rgba(var(--vs-color), 1);\n  margin: 3px;\n  -webkit-animation: scale 0.8s ease infinite 0.2s;\n          animation: scale 0.8s ease infinite 0.2s;\n  border-radius: 5px;\n}\n.vs-loading--scale .vs-loading__load__animation__3 {\n  position: relative;\n  width: 5px;\n  height: 5px;\n  background: rgba(var(--vs-color), 1);\n  margin: 3px;\n  -webkit-animation: scale 0.8s ease infinite 0.4s;\n          animation: scale 0.8s ease infinite 0.4s;\n  border-radius: 5px;\n}\n\n@-webkit-keyframes scale {\n  0% {\n    height: 5px;\n  }\n  50% {\n    height: 25px;\n  }\n  0% {\n    height: 5px;\n  }\n}\n\n@keyframes scale {\n  0% {\n    height: 5px;\n  }\n  50% {\n    height: 25px;\n  }\n  0% {\n    height: 5px;\n  }\n}\n.notification-enter-active {\n  -webkit-transition: all 0.3s ease 0.05s, margin 0.25s ease, -webkit-transform 0.3s ease, -webkit-clip-path 8s ease 0.8s;\n  transition: all 0.3s ease 0.05s, margin 0.25s ease, -webkit-transform 0.3s ease, -webkit-clip-path 8s ease 0.8s;\n  transition: all 0.3s ease 0.05s, transform 0.3s ease, margin 0.25s ease, clip-path 8s ease 0.8s;\n  transition: all 0.3s ease 0.05s, transform 0.3s ease, margin 0.25s ease, clip-path 8s ease 0.8s, -webkit-transform 0.3s ease, -webkit-clip-path 8s ease 0.8s;\n}\n\n.notification-leave-to {\n  max-height: 0px !important;\n  padding-top: 0px !important;\n  padding-bottom: 0px !important;\n  margin-top: 0px !important;\n  margin-bottom: 0px !important;\n  -webkit-box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0);\n          box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0);\n  opacity: 0 !important;\n  -webkit-clip-path: circle(0% at 80% 35%) !important;\n          clip-path: circle(0% at 80% 35%) !important;\n}\n\n.notification-enter {\n  -webkit-transform: translate(25%);\n          transform: translate(25%);\n  -webkit-clip-path: circle(0% at 80% 35%) !important;\n          clip-path: circle(0% at 80% 35%) !important;\n}\n.notification-enter .vs-notification__content {\n  opacity: 0;\n  -webkit-transform: translate(10%);\n          transform: translate(10%);\n}\n\n.vs-notification-parent {\n  position: fixed;\n  right: 0px;\n  bottom: 0px;\n  z-index: 200000;\n  -webkit-transition: all 25s ease;\n  transition: all 25s ease;\n  padding: 10px 0px;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: column;\n          flex-direction: column;\n  -webkit-box-align: end;\n      -ms-flex-align: end;\n          align-items: flex-end;\n  -webkit-box-pack: end;\n      -ms-flex-pack: end;\n          justify-content: flex-end;\n}\n.vs-notification-parent--top-right {\n  bottom: auto;\n  top: 0px;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: reverse;\n      -ms-flex-direction: column-reverse;\n          flex-direction: column-reverse;\n}\n.vs-notification-parent--top-center {\n  bottom: auto;\n  top: 0px;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: reverse;\n      -ms-flex-direction: column-reverse;\n          flex-direction: column-reverse;\n  left: 50%;\n  right: auto;\n  -webkit-transform: translate(-50%);\n          transform: translate(-50%);\n}\n.vs-notification-parent--top-center .vs-notification--sticky {\n  margin: 3px 20px;\n  border-radius: 20px;\n}\n.vs-notification-parent--top-center .vs-notification--sticky:last-child {\n  border-radius: 0px 0px 20px 20px;\n  margin-top: -10px;\n}\n.vs-notification-parent--top-center .vs-notification {\n  -webkit-clip-path: circle(120% at 50% 0%);\n          clip-path: circle(120% at 50% 0%);\n  -webkit-transition: all 0.25s ease, max-height 0.25s ease, -webkit-transform 0.3s ease, -webkit-clip-path 0.5s ease 0.1s;\n  transition: all 0.25s ease, max-height 0.25s ease, -webkit-transform 0.3s ease, -webkit-clip-path 0.5s ease 0.1s;\n  transition: all 0.25s ease, transform 0.3s ease, max-height 0.25s ease, clip-path 0.5s ease 0.1s;\n  transition: all 0.25s ease, transform 0.3s ease, max-height 0.25s ease, clip-path 0.5s ease 0.1s, -webkit-transform 0.3s ease, -webkit-clip-path 0.5s ease 0.1s;\n}\n.vs-notification-parent--top-center .vs-notification.vs-notification--border {\n  border: 3px solid transparent;\n  border-top: 3px solid rgba(var(--vs-border), 1);\n}\n.vs-notification-parent--top-center .notification-enter {\n  -webkit-transform: translate(0, -25%);\n          transform: translate(0, -25%);\n  -webkit-clip-path: circle(0% at 50% 0%) !important;\n          clip-path: circle(0% at 50% 0%) !important;\n}\n.vs-notification-parent--top-center .notification-enter .vs-notification__content {\n  opacity: 0;\n  -webkit-transform: translate(0, -10%);\n          transform: translate(0, -10%);\n}\n.vs-notification-parent--bottom-center {\n  left: 50%;\n  right: auto;\n  -webkit-transform: translate(-50%);\n          transform: translate(-50%);\n}\n.vs-notification-parent--bottom-center .vs-notification--sticky {\n  margin: 3px 20px;\n  border-radius: 20px;\n}\n.vs-notification-parent--bottom-center .vs-notification--sticky:last-child {\n  border-radius: 20px 20px 0px 0px;\n  margin-bottom: -10px;\n}\n.vs-notification-parent--bottom-center .vs-notification {\n  -webkit-clip-path: circle(120% at 50% 100%);\n          clip-path: circle(120% at 50% 100%);\n  -webkit-transition: all 0.25s ease, max-height 0.25s ease, -webkit-transform 0.3s ease, -webkit-clip-path 0.5s ease 0.1s;\n  transition: all 0.25s ease, max-height 0.25s ease, -webkit-transform 0.3s ease, -webkit-clip-path 0.5s ease 0.1s;\n  transition: all 0.25s ease, transform 0.3s ease, max-height 0.25s ease, clip-path 0.5s ease 0.1s;\n  transition: all 0.25s ease, transform 0.3s ease, max-height 0.25s ease, clip-path 0.5s ease 0.1s, -webkit-transform 0.3s ease, -webkit-clip-path 0.5s ease 0.1s;\n}\n.vs-notification-parent--bottom-center .vs-notification.vs-notification--border {\n  border: 3px solid transparent;\n  border-bottom: 3px solid rgba(var(--vs-border), 1);\n}\n.vs-notification-parent--bottom-center .notification-enter {\n  -webkit-transform: translate(0, 25%);\n          transform: translate(0, 25%);\n  -webkit-clip-path: circle(0% at 50% 100%) !important;\n          clip-path: circle(0% at 50% 100%) !important;\n}\n.vs-notification-parent--bottom-center .notification-enter .vs-notification__content {\n  opacity: 0;\n  -webkit-transform: translate(0, 10%);\n          transform: translate(0, 10%);\n}\n.vs-notification-parent--top-left {\n  bottom: auto;\n  top: 0px;\n  left: 0px;\n  right: auto;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: reverse;\n      -ms-flex-direction: column-reverse;\n          flex-direction: column-reverse;\n  -webkit-box-align: start;\n      -ms-flex-align: start;\n          align-items: flex-start;\n  -webkit-box-pack: end;\n      -ms-flex-pack: end;\n          justify-content: flex-end;\n}\n.vs-notification-parent--top-left .vs-notification--sticky {\n  margin-left: 0px;\n  border-radius: 0px 20px 20px 0px;\n}\n.vs-notification-parent--top-left .vs-notification {\n  -webkit-clip-path: circle(145% at 0% 50%);\n          clip-path: circle(145% at 0% 50%);\n}\n.vs-notification-parent--top-left .vs-notification.vs-notification--border {\n  border: 3px solid transparent;\n  border-left: 3px solid rgba(var(--vs-border), 1);\n}\n.vs-notification-parent--top-left .notification-enter {\n  -webkit-transform: translate(-25%);\n          transform: translate(-25%);\n  -webkit-clip-path: circle(0% at 20% 35%) !important;\n          clip-path: circle(0% at 20% 35%) !important;\n}\n.vs-notification-parent--top-left .notification-enter .vs-notification__content {\n  opacity: 0;\n  -webkit-transform: translate(-10%);\n          transform: translate(-10%);\n}\n.vs-notification-parent--bottom-left {\n  left: 0px;\n  right: auto;\n}\n.vs-notification-parent--bottom-left .vs-notification--sticky {\n  margin-left: 0px;\n  border-radius: 0px 20px 20px 0px;\n}\n.vs-notification-parent--bottom-left .vs-notification {\n  -webkit-clip-path: circle(145% at 0% 50%);\n          clip-path: circle(145% at 0% 50%);\n}\n.vs-notification-parent--bottom-left .vs-notification.vs-notification--border {\n  border: 3px solid transparent;\n  border-left: 3px solid rgba(var(--vs-border), 1);\n}\n.vs-notification-parent--bottom-left .notification-enter {\n  -webkit-transform: translate(-25%);\n          transform: translate(-25%);\n  -webkit-clip-path: circle(0% at 20% 35%) !important;\n          clip-path: circle(0% at 20% 35%) !important;\n}\n.vs-notification-parent--bottom-left .notification-enter .vs-notification__content {\n  opacity: 0;\n  -webkit-transform: translate(-10%);\n          transform: translate(-10%);\n}\n\n.vs-notification {\n  --vs-color: var(--vs-background);\n  --vs-border: var(--vs-background);\n  --vs-opacity: .6;\n  position: relative;\n  max-width: 340px;\n  width: 100%;\n  height: auto;\n  border-radius: 20px;\n  -webkit-box-shadow: 0px 10px 30px -5px rgba(0, 0, 0, var(--vs-shadow-opacity));\n          box-shadow: 0px 10px 30px -5px rgba(0, 0, 0, var(--vs-shadow-opacity));\n  overflow: hidden;\n  -webkit-clip-path: circle(145% at 100% 50%);\n          clip-path: circle(145% at 100% 50%);\n  background: rgba(var(--vs-color), 1);\n  color: rgba(var(--vs-text), 1);\n  margin: 3px 10px;\n  -webkit-transition: all 0.25s ease, max-height 0.25s ease, -webkit-transform 0.3s ease 0.1s, -webkit-clip-path 0.5s ease 0.1s;\n  transition: all 0.25s ease, max-height 0.25s ease, -webkit-transform 0.3s ease 0.1s, -webkit-clip-path 0.5s ease 0.1s;\n  transition: all 0.25s ease, transform 0.3s ease 0.1s, max-height 0.25s ease, clip-path 0.5s ease 0.1s;\n  transition: all 0.25s ease, transform 0.3s ease 0.1s, max-height 0.25s ease, clip-path 0.5s ease 0.1s, -webkit-transform 0.3s ease 0.1s, -webkit-clip-path 0.5s ease 0.1s;\n}\n.vs-notification:hover:not(.vs-notification--flat) {\n  -webkit-box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, var(--vs-shadow-opacity));\n          box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, var(--vs-shadow-opacity));\n  -webkit-transform: translate(0, 3px);\n          transform: translate(0, 3px);\n}\n.vs-notification--notPadding {\n  padding: 0px !important;\n}\n.vs-notification.vs-notification--icon {\n  padding-left: 50px !important;\n}\n.vs-notification.vs-notification--loading {\n  width: 100px !important;\n  max-height: 100px !important;\n  min-height: 100px !important;\n  padding: 0px !important;\n  padding-left: 0px !important;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n}\n.vs-notification--width-auto {\n  width: auto;\n  max-width: none;\n}\n.vs-notification--width-all {\n  max-width: calc(100vw - 50px);\n  width: calc(100vw - 50px);\n}\n.vs-notification--square {\n  border-radius: 0px !important;\n}\n.vs-notification--sticky {\n  margin-right: 0px;\n  margin-bottom: 0px;\n  border-radius: 20px 0px 0px 20px;\n}\n.vs-notification--flat {\n  -webkit-box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, var(--vs-shadow-opacity));\n          box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, var(--vs-shadow-opacity));\n  background: rgba(var(--vs-background), 1);\n  color: rgba(var(--vs-color), 1) !important;\n}\n.vs-notification--flat:hover::after {\n  background: rgba(var(--vs-color), 0.15);\n}\n.vs-notification--flat .vs-notification__progress {\n  background: rgba(var(--vs-color), 1);\n}\n.vs-notification--flat .vs-notification__close {\n  --vs-color: inherit;\n}\n.vs-notification--flat .vs-notification__content {\n  color: rgba(var(--vs-color), 1) !important;\n}\n.vs-notification--flat.vs-notification--border {\n  border: 0px solid transparent !important;\n  border-right: 3px solid rgba(var(--vs-border), 1) !important;\n}\n.vs-notification--flat:after {\n  content: \"\";\n  background: rgba(var(--vs-color), 0.1);\n  width: 100%;\n  height: 100%;\n  border-radius: inherit;\n  position: absolute;\n  top: 0px;\n  left: 0px;\n  z-index: -1;\n  -webkit-transition: all 0.25s ease;\n  transition: all 0.25s ease;\n}\n.vs-notification.vs-notification--onClick {\n  cursor: pointer;\n}\n.vs-notification.vs-notification--color:not(.vs-notification--flat) {\n  color: #fff;\n}\n.vs-notification.vs-notification--color:not(.vs-notification--flat) .vs-notification__progress {\n  background: #fff;\n}\n.vs-notification.vs-notification--color:not(.vs-notification--flat) .vs-notification__close {\n  --vs-color: 255,255,255;\n}\n.vs-notification.vs-notification--color:not(.vs-notification--flat) .vs-notification__loading:after {\n  border: 2px solid #fff;\n  border-top: 2px solid transparent;\n  border-left: 2px solid transparent;\n  border-right: 2px solid transparent;\n}\n.vs-notification.vs-notification--color:not(.vs-notification--flat) .vs-notification__loading:before {\n  border: 2px dashed #fff;\n  border-top: 2px solid transparent;\n  border-left: 2px solid transparent;\n  border-right: 2px solid transparent;\n}\n.vs-notification.vs-notification--border {\n  border: 3px solid transparent;\n  border-right: 3px solid rgba(var(--vs-border), 1);\n}\n.vs-notification__progress {\n  width: 0%;\n  height: 3px;\n  background: rgba(var(--vs-text), 1);\n  position: absolute;\n  bottom: 0px;\n  left: 0px;\n  -webkit-transition: all 0.25s ease;\n  transition: all 0.25s ease;\n}\n.vs-notification__loading {\n  width: 50px;\n  height: 50px;\n  border-radius: 50%;\n  position: absolute;\n}\n.vs-notification__loading:after {\n  -webkit-box-sizing: border-box;\n          box-sizing: border-box;\n  position: absolute;\n  width: 100%;\n  height: 100%;\n  border: 2px solid rgba(var(--vs-text), 1);\n  border-radius: inherit;\n  border-top: 2px solid transparent;\n  border-left: 2px solid transparent;\n  border-right: 2px solid transparent;\n  -webkit-animation: loadingNoti 0.8s ease infinite;\n          animation: loadingNoti 0.8s ease infinite;\n  top: 0px;\n  content: \"\";\n}\n.vs-notification__loading:before {\n  -webkit-box-sizing: border-box;\n          box-sizing: border-box;\n  top: 0px;\n  position: absolute;\n  width: 100%;\n  height: 100%;\n  border: 2px dashed rgba(var(--vs-text), 1);\n  border-radius: inherit;\n  border-top: 2px solid transparent;\n  border-left: 2px solid transparent;\n  border-right: 2px solid transparent;\n  -webkit-animation: loadingNoti 0.8s linear infinite;\n          animation: loadingNoti 0.8s linear infinite;\n  opacity: 0.2;\n  content: \"\";\n}\n.vs-notification__close {\n  --vs-color: var(--vs-text);\n  position: absolute;\n  border: 0px;\n  background: transparent;\n  top: 2px;\n  right: 2px;\n  -webkit-transform: scale(0.75);\n          transform: scale(0.75);\n  padding: 0px;\n}\n.vs-notification__icon {\n  position: absolute;\n  top: calc(50% - 22px);\n  background: transparent;\n  width: 45px;\n  height: 45px;\n  left: 2px;\n  border-radius: 0px 35% 35% 0px;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n}\n.vs-notification__icon i {\n  font-size: 1.2rem;\n}\n.vs-notification__content {\n  position: relative;\n  width: auto;\n  height: auto;\n  -webkit-transition: all 0.25s ease 0.2s;\n  transition: all 0.25s ease 0.2s;\n  opacity: 1;\n}\n.vs-notification__content__text {\n  width: 100%;\n}\n.vs-notification__content__text p {\n  margin: 0px;\n  padding: 0px;\n  font-size: 0.75rem;\n  line-height: 1rem;\n}\n.vs-notification__content__header {\n  width: 100%;\n  margin: 0px;\n  padding: 0px;\n  padding-bottom: 6px;\n}\n.vs-notification__content__header h4 {\n  width: 100%;\n  margin: 0px;\n  padding: 0px;\n  font-size: 0.9rem;\n}\n\n.darken .vs-notification--dark {\n  color: #fff !important;\n}\n.darken .vs-notification--dark .vs-notification__close {\n  --vs-color: 255,255,255 !important;\n}\n.darken .vs-notification--dark h4 {\n  color: #fff !important;\n}\n.darken .vs-notification--dark p {\n  color: #fff !important;\n}\n\n@-webkit-keyframes loadingNoti {\n  0% {\n    -webkit-transform: rotate(0deg);\n            transform: rotate(0deg);\n  }\n  100% {\n    -webkit-transform: rotate(360deg);\n            transform: rotate(360deg);\n  }\n}\n\n@keyframes loadingNoti {\n  0% {\n    -webkit-transform: rotate(0deg);\n            transform: rotate(0deg);\n  }\n  100% {\n    -webkit-transform: rotate(360deg);\n            transform: rotate(360deg);\n  }\n}\n@-webkit-keyframes progressNoti {\n  0% {\n    width: 0%;\n  }\n  100% {\n    width: 100%;\n  }\n}\n@keyframes progressNoti {\n  0% {\n    width: 0%;\n  }\n  100% {\n    width: 100%;\n  }\n}\n@media (max-width: 600px) {\n  .vs-notification {\n    margin: 3px 0px !important;\n    border-radius: 0px !important;\n    width: 100% !important;\n    max-width: 100% !important;\n    min-width: 100% !important;\n  }\n  .vs-notification:hover {\n    -webkit-transform: translate(0) !important;\n            transform: translate(0) !important;\n  }\n  .vs-notification:last-child {\n    margin-bottom: 0px !important;\n  }\n\n  .vs-notification-parent {\n    padding: 0px;\n    width: 100% !important;\n    max-width: 100% !important;\n  }\n  .vs-notification-parent .vs-notification--sticky {\n    margin-bottom: 0px !important;\n  }\n  .vs-notification-parent.vs-notification-parent--top-center .vs-notification:last-child {\n    margin-bottom: 3px;\n    margin-top: 0px !important;\n  }\n}\n.vs-row {\n  width: 100%;\n  position: relative;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-align: start;\n      -ms-flex-align: start;\n          align-items: flex-start;\n  -webkit-box-pack: start;\n      -ms-flex-pack: start;\n          justify-content: flex-start;\n  -ms-flex-wrap: wrap;\n      flex-wrap: wrap;\n}\n\n.vs-col {\n  width: 100%;\n  position: relative;\n}\n.vs-col--w-1 {\n  width: 8.33%;\n}\n.vs-col--w-2 {\n  width: 16.66%;\n}\n.vs-col--w-3 {\n  width: 25%;\n}\n.vs-col--w-4 {\n  width: 33.33%;\n}\n.vs-col--w-5 {\n  width: 41.66%;\n}\n.vs-col--w-6 {\n  width: 50%;\n}\n.vs-col--w-7 {\n  width: 58.33%;\n}\n.vs-col--w-8 {\n  width: 66.66%;\n}\n.vs-col--w-9 {\n  width: 75%;\n}\n.vs-col--w-10 {\n  width: 83.33%;\n}\n.vs-col--w-11 {\n  width: 91.66%;\n}\n.vs-col--w-12 {\n  width: 100%;\n}\n.vs-col--offset-1 {\n  margin-left: 8.33%;\n}\n.vs-col--offset-2 {\n  margin-left: 16.66%;\n}\n.vs-col--offset-3 {\n  margin-left: 25%;\n}\n.vs-col--offset-4 {\n  margin-left: 33.33%;\n}\n.vs-col--offset-5 {\n  margin-left: 41.66%;\n}\n.vs-col--offset-6 {\n  margin-left: 50%;\n}\n.vs-col--offset-7 {\n  margin-left: 58.33%;\n}\n.vs-col--offset-8 {\n  margin-left: 66.66%;\n}\n.vs-col--offset-9 {\n  margin-left: 75%;\n}\n.vs-col--offset-10 {\n  margin-left: 83.33%;\n}\n.vs-col--offset-11 {\n  margin-left: 91.66%;\n}\n.vs-col--offset-12 {\n  margin-left: 100%;\n}\n.vs-col--lg-1 {\n  width: 8.33%;\n}\n.vs-col--lg-2 {\n  width: 16.66%;\n}\n.vs-col--lg-3 {\n  width: 25%;\n}\n.vs-col--lg-4 {\n  width: 33.33%;\n}\n.vs-col--lg-5 {\n  width: 41.66%;\n}\n.vs-col--lg-6 {\n  width: 50%;\n}\n.vs-col--lg-7 {\n  width: 58.33%;\n}\n.vs-col--lg-8 {\n  width: 66.66%;\n}\n.vs-col--lg-9 {\n  width: 75%;\n}\n.vs-col--lg-10 {\n  width: 83.33%;\n}\n.vs-col--lg-11 {\n  width: 91.66%;\n}\n.vs-col--lg-12 {\n  width: 100%;\n}\n@media (max-width: 900px) {\n  .vs-col--sm-1 {\n    width: 8.33%;\n  }\n  .vs-col--sm-2 {\n    width: 16.66%;\n  }\n  .vs-col--sm-3 {\n    width: 25%;\n  }\n  .vs-col--sm-4 {\n    width: 33.33%;\n  }\n  .vs-col--sm-5 {\n    width: 41.66%;\n  }\n  .vs-col--sm-6 {\n    width: 50%;\n  }\n  .vs-col--sm-7 {\n    width: 58.33%;\n  }\n  .vs-col--sm-8 {\n    width: 66.66%;\n  }\n  .vs-col--sm-9 {\n    width: 75%;\n  }\n  .vs-col--sm-10 {\n    width: 83.33%;\n  }\n  .vs-col--sm-11 {\n    width: 91.66%;\n  }\n  .vs-col--sm-12 {\n    width: 100%;\n  }\n}\n@media (max-width: 600px) {\n  .vs-col--xs-1 {\n    width: 8.33%;\n  }\n  .vs-col--xs-2 {\n    width: 16.66%;\n  }\n  .vs-col--xs-3 {\n    width: 25%;\n  }\n  .vs-col--xs-4 {\n    width: 33.33%;\n  }\n  .vs-col--xs-5 {\n    width: 41.66%;\n  }\n  .vs-col--xs-6 {\n    width: 50%;\n  }\n  .vs-col--xs-7 {\n    width: 58.33%;\n  }\n  .vs-col--xs-8 {\n    width: 66.66%;\n  }\n  .vs-col--xs-9 {\n    width: 75%;\n  }\n  .vs-col--xs-10 {\n    width: 83.33%;\n  }\n  .vs-col--xs-11 {\n    width: 91.66%;\n  }\n  .vs-col--xs-12 {\n    width: 100%;\n  }\n}\n:root {\n  --vs-primary: 25, 91, 255;\n  --vs-warn: 255, 186, 0;\n  --vs-danger: 255,71,87;\n  --vs-success: 70,201,58;\n  --vs-dark: 30,30,30;\n  --vs-light: 244,247,248;\n  --vs-color: 17,18,20;\n  --vs-facebook: 59, 89, 153;\n  --vs-twitter: 29, 161, 242;\n  --vs-youtube: 255, 0, 0;\n  --vs-pinterest: 189, 8, 28;\n  --vs-linkedin: 0, 119, 181;\n  --vs-snapchat: 255, 252, 0;\n  --vs-whatsapp: 37, 211, 102;\n  --vs-tumblr: 54, 70, 93;\n  --vs-reddit: 255, 69, 0;\n  --vs-spotify: 30, 215, 96;\n  --vs-amazon: 255, 153, 0;\n  --vs-medium: 2, 184, 117;\n  --vs-vimeo: 26, 183, 234;\n  --vs-skype: 0, 175, 240;\n  --vs-dribbble: 234, 76, 137;\n  --vs-slack: 74, 21, 75;\n  --vs-yahoo: 67, 2, 151;\n  --vs-twitch: 100, 65, 164;\n  --vs-discord: 114, 137, 218;\n  --vs-telegram: 0, 136, 204;\n  --vs-google-plus: 219, 68, 55;\n  --vs-messenger: 0, 132, 255;\n  --vs-background: 255, 255, 255;\n  --vs-text: 44, 62, 80;\n  --vs-gray-1: 249, 252, 253;\n  --vs-gray-2: 244, 247, 248;\n  --vs-gray-3: 240, 243, 244;\n  --vs-gray-4: 230, 233, 234;\n}\n\n[class*=\"--primary\"] {\n  --vs-color: var(--vs-primary);\n}\n\n[class*=\"--default\"] {\n  --vs-color: var(--vs-primary);\n}\n\n[class*=\"--danger\"] {\n  --vs-color: var(--vs-danger);\n}\n\n[class*=\"--success\"] {\n  --vs-color: var(--vs-success);\n}\n\n[class*=\"--dark\"] {\n  --vs-color: var(--vs-dark);\n}\n\n[class*=\"--warn\"] {\n  --vs-color: var(--vs-warn);\n}\n\n:root {\n  --vs-shadow-opacity: .05;\n  --vs-radius: 20px;\n  --vs-zindex-1: 100000;\n  --vs-zindex-2: 99000;\n  --vs-zindex-3: 98000;\n  --vs-zindex-4: 97000;\n  --vs-background-opacity: .2;\n}\n\n[vs-theme=dark] {\n  --vs-background: 30, 32, 35;\n  --vs-text: 255, 255, 255;\n  --vs-gray-1: 24, 25, 28;\n  --vs-gray-2: 20, 20, 23;\n  --vs-gray-3: 15, 16, 19;\n  --vs-gray-4: 10, 11, 14;\n  --vs-shadow-opacity: .3;\n  --vs-dark: 0, 0, 0;\n  --vs-background-opacity: .6;\n}\n[vs-theme=dark] .vs-pagination-content.vs-component-dark .vs-pagination__active {\n  --vs-color: 255, 255, 255;\n  color: rgba(var(--vs-gray-3), 1);\n}\n[vs-theme=dark] .vs-button.vs-component-dark.vs-button--transparent {\n  color: rgba(var(--vs-text), 1) !important;\n}\n[vs-theme=dark] .vs-button.vs-component-dark.vs-button--transparent:hover:before {\n  background: rgba(var(--vs-color), 0.2);\n}\n[vs-theme=dark] .vs-button.vs-component-dark.vs-button--transparent.vs-button--active:before {\n  background: rgba(var(--vs-color), var(--vs-background-opacity));\n}\n[vs-theme=dark] .vs-ripple, [vs-theme=dark] .vs-ripple-invert, [vs-theme=dark] .vs-ripple-content {\n  --vs-color: 0,0,0;\n}\n[vs-theme=dark] .vs-loading {\n  --vs-background: 0, 0, 0;\n}\n[vs-theme=dark] .vs-input-parent--state-dark {\n  --vs-dark: 255, 255, 255 !important;\n}\n[vs-theme=dark] .vs-input-parent--state-dark .vs-input {\n  background: #000 !important;\n}\n[vs-theme=dark] .vs-component-dark {\n  --vs-color: 0, 0, 0 !important;\n}\n[vs-theme=dark] .vs-component-dark .vs-avatar {\n  color: #fff !important;\n}\n[vs-theme=dark] .vs-component-dark.vs-alert {\n  --vs-color: 0, 0, 0 !important;\n  background: rgba(var(--vs-color), 1) !important;\n  color: rgba(var(--vs-text), 1) !important;\n}\n\nbutton {\n  cursor: pointer;\n  outline: none;\n}\n\n[disabled] {\n  opacity: 0.6;\n}\n\ninput {\n  outline: none;\n}\n\ninput, textarea, button, select, a {\n  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);\n}\n\n[class*=vs-] {\n  -webkit-box-sizing: border-box;\n          box-sizing: border-box;\n  outline: none;\n  list-style: none;\n}\n\n.vs-ripple-content {\n  --vs-color: inherit;\n  width: 100px;\n  height: 100px;\n  position: absolute;\n  width: 100%;\n  pointer-events: none;\n  overflow: hidden;\n  height: 100%;\n  top: 0px;\n  right: 0px;\n  border-radius: inherit;\n  z-index: -1;\n}\n.vs-ripple-content .vs-ripple {\n  width: 0px;\n  height: 0px;\n  border-radius: 50%;\n  opacity: 0;\n  position: absolute;\n  -webkit-transform: translate(-50%, -50%);\n          transform: translate(-50%, -50%);\n  -webkit-transition: all 0.5s ease;\n  transition: all 0.5s ease;\n  background: radial-gradient(circle, rgba(var(--vs-color), 0.05), rgba(var(--vs-color), 0.6));\n}\n.vs-ripple-content .vs-ripple--solid {\n  background: rgba(var(--vs-color), 1);\n  opacity: 1;\n}\n.vs-ripple-content .vs-ripple-invert {\n  width: 0px;\n  height: 0px;\n  border-radius: 50%;\n  opacity: 0;\n  position: absolute;\n  -webkit-transform: translate(-50%, -50%);\n          transform: translate(-50%, -50%);\n  -webkit-transition: all 0.5s ease;\n  transition: all 0.5s ease;\n  background-image: radial-gradient(circle, rgba(var(--vs-color), 0.5), rgba(var(--vs-color), 0));\n}\n.vs-ripple-content .vs-ripple-cut-1 {\n  width: 0px;\n  height: 0px;\n  opacity: 0;\n  position: absolute;\n  -webkit-transform: translate(-100%, -50%) skew(20deg);\n          transform: translate(-100%, -50%) skew(20deg);\n  -webkit-transition: all 0.6s ease;\n  transition: all 0.6s ease;\n  background-image: -webkit-gradient(linear, right top, left top, from(rgba(255, 255, 255, 0.25)), to(rgba(255, 255, 255, 0)));\n  background-image: linear-gradient(270deg, rgba(255, 255, 255, 0.25) 0%, rgba(255, 255, 255, 0) 100%);\n}\n.vs-ripple-content .vs-ripple-cut-2 {\n  width: 0px;\n  height: 0px;\n  opacity: 0;\n  position: absolute;\n  -webkit-transform: translate(0%, -50%) skew(20deg);\n          transform: translate(0%, -50%) skew(20deg);\n  -webkit-transition: all 0.6s ease;\n  transition: all 0.6s ease;\n  background-image: -webkit-gradient(linear, left top, right top, from(rgba(255, 255, 255, 0.25)), to(rgba(255, 255, 255, 0)));\n  background-image: linear-gradient(90deg, rgba(255, 255, 255, 0.25) 0%, rgba(255, 255, 255, 0) 100%);\n}\n\n.vs-remove-transition *, .vs-remove-transition *:after, .vs-remove-transition *:before {\n  -webkit-transition: all 0s !important;\n  transition: all 0s !important;\n}\n", ""]);
+// Exports
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
+
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/dist/cjs.js??clonedRuleSet-8[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-8[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/modules/employees/EmployeeFormAddEditComponent.vue?vue&type=style&index=0&lang=css&":
+/*!*************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js??clonedRuleSet-8[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-8[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/modules/employees/EmployeeFormAddEditComponent.vue?vue&type=style&index=0&lang=css& ***!
+  \*************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__);
+// Imports
+
+var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
+// Module
+___CSS_LOADER_EXPORT___.push([module.id, "\n.vs-select-content {\n    max-width: none;\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -38471,6 +39010,36 @@ var update = _style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMP
 
 /***/ }),
 
+/***/ "./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-8[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-8[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/modules/employees/EmployeeFormAddEditComponent.vue?vue&type=style&index=0&lang=css&":
+/*!*****************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-8[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-8[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/modules/employees/EmployeeFormAddEditComponent.vue?vue&type=style&index=0&lang=css& ***!
+  \*****************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !../../../../../node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js */ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _node_modules_css_loader_dist_cjs_js_clonedRuleSet_8_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_8_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_EmployeeFormAddEditComponent_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !!../../../../../node_modules/css-loader/dist/cjs.js??clonedRuleSet-8[0].rules[0].use[1]!../../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../../node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-8[0].rules[0].use[2]!../../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./EmployeeFormAddEditComponent.vue?vue&type=style&index=0&lang=css& */ "./node_modules/css-loader/dist/cjs.js??clonedRuleSet-8[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-8[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/modules/employees/EmployeeFormAddEditComponent.vue?vue&type=style&index=0&lang=css&");
+
+            
+
+var options = {};
+
+options.insert = "head";
+options.singleton = false;
+
+var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default()(_node_modules_css_loader_dist_cjs_js_clonedRuleSet_8_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_8_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_EmployeeFormAddEditComponent_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_1__.default, options);
+
+
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_css_loader_dist_cjs_js_clonedRuleSet_8_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_8_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_EmployeeFormAddEditComponent_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_1__.default.locals || {});
+
+/***/ }),
+
 /***/ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js":
 /*!****************************************************************************!*\
   !*** ./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js ***!
@@ -38750,6 +39319,86 @@ module.exports = function (list, options) {
 
 /***/ }),
 
+/***/ "./resources/js/components/modules/employees/EmployeeComponent.vue":
+/*!*************************************************************************!*\
+  !*** ./resources/js/components/modules/employees/EmployeeComponent.vue ***!
+  \*************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _EmployeeComponent_vue_vue_type_template_id_1b25467c___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./EmployeeComponent.vue?vue&type=template&id=1b25467c& */ "./resources/js/components/modules/employees/EmployeeComponent.vue?vue&type=template&id=1b25467c&");
+/* harmony import */ var _EmployeeComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./EmployeeComponent.vue?vue&type=script&lang=js& */ "./resources/js/components/modules/employees/EmployeeComponent.vue?vue&type=script&lang=js&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+;
+var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__.default)(
+  _EmployeeComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__.default,
+  _EmployeeComponent_vue_vue_type_template_id_1b25467c___WEBPACK_IMPORTED_MODULE_0__.render,
+  _EmployeeComponent_vue_vue_type_template_id_1b25467c___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/modules/employees/EmployeeComponent.vue"
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/modules/employees/EmployeeFormAddEditComponent.vue":
+/*!************************************************************************************!*\
+  !*** ./resources/js/components/modules/employees/EmployeeFormAddEditComponent.vue ***!
+  \************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _EmployeeFormAddEditComponent_vue_vue_type_template_id_5dd82da1___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./EmployeeFormAddEditComponent.vue?vue&type=template&id=5dd82da1& */ "./resources/js/components/modules/employees/EmployeeFormAddEditComponent.vue?vue&type=template&id=5dd82da1&");
+/* harmony import */ var _EmployeeFormAddEditComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./EmployeeFormAddEditComponent.vue?vue&type=script&lang=js& */ "./resources/js/components/modules/employees/EmployeeFormAddEditComponent.vue?vue&type=script&lang=js&");
+/* harmony import */ var _EmployeeFormAddEditComponent_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./EmployeeFormAddEditComponent.vue?vue&type=style&index=0&lang=css& */ "./resources/js/components/modules/employees/EmployeeFormAddEditComponent.vue?vue&type=style&index=0&lang=css&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! !../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+;
+
+
+/* normalize component */
+
+var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__.default)(
+  _EmployeeFormAddEditComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__.default,
+  _EmployeeFormAddEditComponent_vue_vue_type_template_id_5dd82da1___WEBPACK_IMPORTED_MODULE_0__.render,
+  _EmployeeFormAddEditComponent_vue_vue_type_template_id_5dd82da1___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/modules/employees/EmployeeFormAddEditComponent.vue"
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
+
+/***/ }),
+
 /***/ "./resources/js/components/modules/offices/OfficeComponent.vue":
 /*!*********************************************************************!*\
   !*** ./resources/js/components/modules/offices/OfficeComponent.vue ***!
@@ -38828,6 +39477,38 @@ component.options.__file = "resources/js/components/modules/offices/OfficeFormAd
 
 /***/ }),
 
+/***/ "./resources/js/components/modules/employees/EmployeeComponent.vue?vue&type=script&lang=js&":
+/*!**************************************************************************************************!*\
+  !*** ./resources/js/components/modules/employees/EmployeeComponent.vue?vue&type=script&lang=js& ***!
+  \**************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_EmployeeComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./EmployeeComponent.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/modules/employees/EmployeeComponent.vue?vue&type=script&lang=js&");
+ /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_EmployeeComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__.default); 
+
+/***/ }),
+
+/***/ "./resources/js/components/modules/employees/EmployeeFormAddEditComponent.vue?vue&type=script&lang=js&":
+/*!*************************************************************************************************************!*\
+  !*** ./resources/js/components/modules/employees/EmployeeFormAddEditComponent.vue?vue&type=script&lang=js& ***!
+  \*************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_EmployeeFormAddEditComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./EmployeeFormAddEditComponent.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/modules/employees/EmployeeFormAddEditComponent.vue?vue&type=script&lang=js&");
+ /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_EmployeeFormAddEditComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__.default); 
+
+/***/ }),
+
 /***/ "./resources/js/components/modules/offices/OfficeComponent.vue?vue&type=script&lang=js&":
 /*!**********************************************************************************************!*\
   !*** ./resources/js/components/modules/offices/OfficeComponent.vue?vue&type=script&lang=js& ***!
@@ -38857,6 +39538,53 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_OfficeFormAddEditComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./OfficeFormAddEditComponent.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/modules/offices/OfficeFormAddEditComponent.vue?vue&type=script&lang=js&");
  /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_OfficeFormAddEditComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__.default); 
+
+/***/ }),
+
+/***/ "./resources/js/components/modules/employees/EmployeeFormAddEditComponent.vue?vue&type=style&index=0&lang=css&":
+/*!*********************************************************************************************************************!*\
+  !*** ./resources/js/components/modules/employees/EmployeeFormAddEditComponent.vue?vue&type=style&index=0&lang=css& ***!
+  \*********************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_style_loader_dist_cjs_js_node_modules_css_loader_dist_cjs_js_clonedRuleSet_8_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_8_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_EmployeeFormAddEditComponent_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/style-loader/dist/cjs.js!../../../../../node_modules/css-loader/dist/cjs.js??clonedRuleSet-8[0].rules[0].use[1]!../../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../../node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-8[0].rules[0].use[2]!../../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./EmployeeFormAddEditComponent.vue?vue&type=style&index=0&lang=css& */ "./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-8[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-8[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/modules/employees/EmployeeFormAddEditComponent.vue?vue&type=style&index=0&lang=css&");
+
+
+/***/ }),
+
+/***/ "./resources/js/components/modules/employees/EmployeeComponent.vue?vue&type=template&id=1b25467c&":
+/*!********************************************************************************************************!*\
+  !*** ./resources/js/components/modules/employees/EmployeeComponent.vue?vue&type=template&id=1b25467c& ***!
+  \********************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_EmployeeComponent_vue_vue_type_template_id_1b25467c___WEBPACK_IMPORTED_MODULE_0__.render),
+/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_EmployeeComponent_vue_vue_type_template_id_1b25467c___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
+/* harmony export */ });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_EmployeeComponent_vue_vue_type_template_id_1b25467c___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./EmployeeComponent.vue?vue&type=template&id=1b25467c& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/modules/employees/EmployeeComponent.vue?vue&type=template&id=1b25467c&");
+
+
+/***/ }),
+
+/***/ "./resources/js/components/modules/employees/EmployeeFormAddEditComponent.vue?vue&type=template&id=5dd82da1&":
+/*!*******************************************************************************************************************!*\
+  !*** ./resources/js/components/modules/employees/EmployeeFormAddEditComponent.vue?vue&type=template&id=5dd82da1& ***!
+  \*******************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_EmployeeFormAddEditComponent_vue_vue_type_template_id_5dd82da1___WEBPACK_IMPORTED_MODULE_0__.render),
+/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_EmployeeFormAddEditComponent_vue_vue_type_template_id_5dd82da1___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
+/* harmony export */ });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_EmployeeFormAddEditComponent_vue_vue_type_template_id_5dd82da1___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./EmployeeFormAddEditComponent.vue?vue&type=template&id=5dd82da1& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/modules/employees/EmployeeFormAddEditComponent.vue?vue&type=template&id=5dd82da1&");
+
 
 /***/ }),
 
@@ -38890,6 +39618,939 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_OfficeFormAddEditComponent_vue_vue_type_template_id_6c8a3886___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
 /* harmony export */ });
 /* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_OfficeFormAddEditComponent_vue_vue_type_template_id_6c8a3886___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./OfficeFormAddEditComponent.vue?vue&type=template&id=6c8a3886& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/modules/offices/OfficeFormAddEditComponent.vue?vue&type=template&id=6c8a3886&");
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/modules/employees/EmployeeComponent.vue?vue&type=template&id=1b25467c&":
+/*!***********************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/modules/employees/EmployeeComponent.vue?vue&type=template&id=1b25467c& ***!
+  \***********************************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* binding */ render),
+/* harmony export */   "staticRenderFns": () => (/* binding */ staticRenderFns)
+/* harmony export */ });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    { staticClass: "card card-custom" },
+    [
+      _c("div", { staticClass: "card-header flex-wrap border-0 pt-6 pb-0" }, [
+        _vm._m(0),
+        _vm._v(" "),
+        _c("div", { staticClass: "card-toolbar" }, [
+          _c(
+            "button",
+            {
+              staticClass: "btn btn-primary font-weight-bolder",
+              on: {
+                click: function($event) {
+                  return _vm.openModalAddEdit("add")
+                }
+              }
+            },
+            [
+              _c("i", { staticClass: "fas fa-plus-square" }),
+              _vm._v(" Nuevo\n                ")
+            ]
+          )
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "card-body" }, [
+        _vm._m(1),
+        _vm._v(" "),
+        _vm.employees.data.length
+          ? _c(
+              "div",
+              { staticClass: "table-responsive" },
+              [
+                _c("table", { staticClass: "table table-hover" }, [
+                  _vm._m(2),
+                  _vm._v(" "),
+                  _c(
+                    "tbody",
+                    _vm._l(_vm.employees.data, function(employee, index) {
+                      return _c("tr", { key: index }, [
+                        _c("th", [_vm._v(_vm._s(index + 1))]),
+                        _vm._v(" "),
+                        _c("td", [_vm._v(_vm._s(employee.name))]),
+                        _vm._v(" "),
+                        _c("td", [_vm._v(_vm._s(employee.last_name))]),
+                        _vm._v(" "),
+                        _c("td", [_vm._v(_vm._s(employee.email))]),
+                        _vm._v(" "),
+                        _c("td", [_vm._v(_vm._s(employee.phone))]),
+                        _vm._v(" "),
+                        _c("td", [
+                          _c(
+                            "div",
+                            { staticClass: "d-flex justify-content-center" },
+                            [
+                              _vm._m(3, true),
+                              _vm._v(" "),
+                              _c(
+                                "button",
+                                {
+                                  staticClass:
+                                    "btn btn-sm btn-clean btn-icon mr-2",
+                                  attrs: { title: "Editar" },
+                                  on: {
+                                    click: function($event) {
+                                      return _vm.openModalAddEdit(
+                                        "edit",
+                                        employee
+                                      )
+                                    }
+                                  }
+                                },
+                                [_c("i", { staticClass: "fas fa-pen" })]
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "button",
+                                {
+                                  staticClass:
+                                    "btn btn-sm btn-clean btn-icon mr-2",
+                                  attrs: { title: "Eliminar" },
+                                  on: {
+                                    click: function($event) {
+                                      return _vm.askDestroy(employee)
+                                    }
+                                  }
+                                },
+                                [_c("i", { staticClass: "fas fa-trash-alt" })]
+                              )
+                            ]
+                          )
+                        ])
+                      ])
+                    }),
+                    0
+                  )
+                ]),
+                _vm._v(" "),
+                _c("pagination", {
+                  class: "mt-2",
+                  attrs: { align: "center", limit: 5, data: _vm.employees },
+                  on: { "pagination-change-page": _vm.getEmployees }
+                })
+              ],
+              1
+            )
+          : _c(
+              "div",
+              {
+                staticClass: "alert alert-warning mx-2 text-center",
+                staticStyle: { "margin-top": "18px" }
+              },
+              [
+                _vm._v(
+                  "\n                No hay ningún elemento para mostrar\n            "
+                )
+              ]
+            )
+      ]),
+      _vm._v(" "),
+      _c("employee-form-add-edit", {
+        ref: "employeeFormAddEdit",
+        on: {
+          updateOfficeList: function($event) {
+            return _vm.updateList()
+          }
+        }
+      })
+    ],
+    1
+  )
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "card-title" }, [
+      _c("h3", { staticClass: "card-label" }, [
+        _vm._v("Empleados\n                "),
+        _c("span", { staticClass: "d-block text-muted pt-2 font-size-sm" }, [
+          _vm._v("Administración de los empleados")
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "form-row pl-3 align-items-end" }, [
+      _c("div", { staticClass: "col-sm-5 form-group" }, [
+        _c("label", { attrs: { for: "nif" } }, [_c("b", [_vm._v("NOMBRE")])]),
+        _vm._v(" "),
+        _c("input", {
+          staticClass: "form-control",
+          attrs: { type: "text", name: "nif", placeholder: "NOMBRE" }
+        })
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-10 col-sm-5 form-group" }, [
+        _c("label", { attrs: { for: "date" } }, [_c("b", [_vm._v("CIF")])]),
+        _vm._v(" "),
+        _c("input", {
+          staticClass: "form-control",
+          attrs: { type: "text", name: "nif", placeholder: "CIF" }
+        })
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-auto form-group" }, [
+        _c(
+          "button",
+          {
+            staticClass:
+              "btn waves-effect waves-light btn-danger float-right font-weight-bolder",
+            attrs: { title: "Eliminar Filtros", type: "button" }
+          },
+          [_c("i", { staticClass: "fas fa-filter" })]
+        )
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", [
+      _c("tr", [
+        _c("th", [_vm._v("#")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("NOMBRE")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("APELLIDOS")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("EMAIL")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("TELEFONO")]),
+        _vm._v(" "),
+        _c("th", { staticClass: "text-nowrap d-flex justify-content-center" }, [
+          _vm._v("Acciones")
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "button",
+      {
+        staticClass: "btn btn-sm btn-clean btn-icon mr-2",
+        attrs: { title: "Edit details" }
+      },
+      [_c("i", { staticClass: "far fa-eye" })]
+    )
+  }
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/modules/employees/EmployeeFormAddEditComponent.vue?vue&type=template&id=5dd82da1&":
+/*!**********************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/modules/employees/EmployeeFormAddEditComponent.vue?vue&type=template&id=5dd82da1& ***!
+  \**********************************************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* binding */ render),
+/* harmony export */   "staticRenderFns": () => (/* binding */ staticRenderFns)
+/* harmony export */ });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    {
+      staticClass: "modal fade",
+      attrs: {
+        id: "modalAddEditEmployee",
+        tabindex: "-1",
+        role: "dialog",
+        "aria-labelledby": "exampleModalSizeSm",
+        "aria-hidden": "true"
+      }
+    },
+    [
+      _c(
+        "div",
+        {
+          staticClass: "modal-dialog modal-dialog-centered modal-lg",
+          attrs: { role: "document" }
+        },
+        [
+          _c("div", { staticClass: "modal-content" }, [
+            _c("div", { staticClass: "modal-header" }, [
+              _vm.modalType == "add"
+                ? _c("h5", { staticClass: "modal-title" }, [
+                    _vm._v("Nuevo Empleado")
+                  ])
+                : _c("h5", { staticClass: "modal-title" }, [
+                    _vm._v("Editar Empleado")
+                  ]),
+              _vm._v(" "),
+              _vm._m(0)
+            ]),
+            _vm._v(" "),
+            _c(
+              "form",
+              {
+                staticClass: "needs-validation",
+                on: {
+                  submit: function($event) {
+                    $event.preventDefault()
+                    return _vm.actionStoreUpdate()
+                  }
+                }
+              },
+              [
+                _c("div", { staticClass: "modal-body" }, [
+                  _c("div", { staticClass: "form-row" }, [
+                    _c("div", { staticClass: "form-group col-sm-6" }, [
+                      _c(
+                        "label",
+                        {
+                          class: [
+                            "control-label",
+                            _vm.errors.name ? "text-danger" : ""
+                          ]
+                        },
+                        [_c("b", [_vm._v("NOMBRE")])]
+                      ),
+                      _vm._v(" "),
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.form.name,
+                            expression: "form.name"
+                          }
+                        ],
+                        class: [
+                          "form-control",
+                          _vm.errors.name ? "is-invalid" : ""
+                        ],
+                        attrs: {
+                          type: "text",
+                          name: "name",
+                          placeholder: "NOMBRE",
+                          required: ""
+                        },
+                        domProps: { value: _vm.form.name },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(_vm.form, "name", $event.target.value)
+                          }
+                        }
+                      }),
+                      _vm._v(" "),
+                      _vm.errors.name
+                        ? _c(
+                            "small",
+                            {
+                              staticClass: "form-control-feedback text-danger"
+                            },
+                            [
+                              _vm._v(
+                                "\n                                " +
+                                  _vm._s(_vm.errors.name[0]) +
+                                  "\n                            "
+                              )
+                            ]
+                          )
+                        : _vm._e()
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "form-group col-sm-6" }, [
+                      _c(
+                        "label",
+                        {
+                          class: [
+                            "control-label",
+                            _vm.errors.last_name ? "text-danger" : ""
+                          ]
+                        },
+                        [_c("b", [_vm._v("APELLIDOS")])]
+                      ),
+                      _vm._v(" "),
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.form.cif,
+                            expression: "form.cif"
+                          }
+                        ],
+                        class: [
+                          "form-control",
+                          _vm.errors.last_name ? "is-invalid" : ""
+                        ],
+                        attrs: {
+                          type: "text",
+                          name: "cif",
+                          placeholder: "APELLIDOS",
+                          required: ""
+                        },
+                        domProps: { value: _vm.form.cif },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(_vm.form, "cif", $event.target.value)
+                          }
+                        }
+                      }),
+                      _vm._v(" "),
+                      _vm.errors.last_name
+                        ? _c(
+                            "small",
+                            {
+                              staticClass: "form-control-feedback text-danger"
+                            },
+                            [
+                              _vm._v(
+                                "\n                                " +
+                                  _vm._s(_vm.errors.last_name[0]) +
+                                  "\n                            "
+                              )
+                            ]
+                          )
+                        : _vm._e()
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "form-row" }, [
+                    _c("div", { staticClass: "form-group col-sm-6" }, [
+                      _c(
+                        "label",
+                        {
+                          class: [
+                            "control-label",
+                            _vm.errors.name ? "text-danger" : ""
+                          ]
+                        },
+                        [_c("b", [_vm._v("NOMBRE")])]
+                      ),
+                      _vm._v(" "),
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.form.name,
+                            expression: "form.name"
+                          }
+                        ],
+                        class: [
+                          "form-control",
+                          _vm.errors.name ? "is-invalid" : ""
+                        ],
+                        attrs: {
+                          type: "text",
+                          name: "name",
+                          placeholder: "NOMBRE",
+                          required: ""
+                        },
+                        domProps: { value: _vm.form.name },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(_vm.form, "name", $event.target.value)
+                          }
+                        }
+                      }),
+                      _vm._v(" "),
+                      _vm.errors.name
+                        ? _c(
+                            "small",
+                            {
+                              staticClass: "form-control-feedback text-danger"
+                            },
+                            [
+                              _vm._v(
+                                "\n                                " +
+                                  _vm._s(_vm.errors.name[0]) +
+                                  "\n                            "
+                              )
+                            ]
+                          )
+                        : _vm._e()
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "form-group col-sm-6" }, [
+                      _c(
+                        "label",
+                        {
+                          class: [
+                            "control-label",
+                            _vm.errors.last_name ? "text-danger" : ""
+                          ]
+                        },
+                        [_c("b", [_vm._v("APELLIDOS")])]
+                      ),
+                      _vm._v(" "),
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.form.cif,
+                            expression: "form.cif"
+                          }
+                        ],
+                        class: [
+                          "form-control",
+                          _vm.errors.last_name ? "is-invalid" : ""
+                        ],
+                        attrs: {
+                          type: "text",
+                          name: "cif",
+                          placeholder: "APELLIDOS",
+                          required: ""
+                        },
+                        domProps: { value: _vm.form.cif },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(_vm.form, "cif", $event.target.value)
+                          }
+                        }
+                      }),
+                      _vm._v(" "),
+                      _vm.errors.last_name
+                        ? _c(
+                            "small",
+                            {
+                              staticClass: "form-control-feedback text-danger"
+                            },
+                            [
+                              _vm._v(
+                                "\n                                " +
+                                  _vm._s(_vm.errors.last_name[0]) +
+                                  "\n                            "
+                              )
+                            ]
+                          )
+                        : _vm._e()
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "form-row" }, [
+                    _c("div", { staticClass: "form-group col-sm-6 col-md-4" }, [
+                      _c(
+                        "label",
+                        {
+                          class: [
+                            "control-label",
+                            _vm.errors.email ? "text-danger" : ""
+                          ]
+                        },
+                        [_c("b", [_vm._v("EMAIL")])]
+                      ),
+                      _vm._v(" "),
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.form.email,
+                            expression: "form.email"
+                          }
+                        ],
+                        class: [
+                          "form-control",
+                          _vm.errors.email ? "is-invalid" : ""
+                        ],
+                        attrs: {
+                          type: "email",
+                          name: "email",
+                          placeholder: "EMAIL"
+                        },
+                        domProps: { value: _vm.form.email },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(_vm.form, "email", $event.target.value)
+                          }
+                        }
+                      }),
+                      _vm._v(" "),
+                      _vm.errors.email
+                        ? _c(
+                            "small",
+                            {
+                              staticClass: "form-control-feedback text-danger"
+                            },
+                            [
+                              _vm._v(
+                                "\n                                " +
+                                  _vm._s(_vm.errors.email[0]) +
+                                  "\n                            "
+                              )
+                            ]
+                          )
+                        : _vm._e()
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "form-group col-sm-6 col-md-4" }, [
+                      _c(
+                        "label",
+                        {
+                          class: [
+                            "control-label",
+                            _vm.errors.phone ? "text-danger" : ""
+                          ]
+                        },
+                        [_c("b", [_vm._v("TELEFONO")])]
+                      ),
+                      _vm._v(" "),
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.form.phone,
+                            expression: "form.phone"
+                          }
+                        ],
+                        class: [
+                          "form-control",
+                          _vm.errors.phone ? "is-invalid" : ""
+                        ],
+                        attrs: { type: "text", name: "phone" },
+                        domProps: { value: _vm.form.phone },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(_vm.form, "phone", $event.target.value)
+                          }
+                        }
+                      }),
+                      _vm._v(" "),
+                      _vm.errors.phone
+                        ? _c(
+                            "small",
+                            {
+                              staticClass: "form-control-feedback text-danger"
+                            },
+                            [
+                              _vm._v(
+                                "\n                                " +
+                                  _vm._s(_vm.errors.phone[0]) +
+                                  "\n                            "
+                              )
+                            ]
+                          )
+                        : _vm._e()
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "form-group col-md-4" }, [
+                      _c(
+                        "label",
+                        {
+                          class: [
+                            "control-label",
+                            _vm.errors.password ? "text-danger" : ""
+                          ]
+                        },
+                        [_c("b", [_vm._v("PASSWORD")])]
+                      ),
+                      _vm._v(" "),
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.form.password,
+                            expression: "form.password"
+                          }
+                        ],
+                        class: [
+                          "form-control",
+                          _vm.errors.password ? "is-invalid" : ""
+                        ],
+                        attrs: {
+                          type: "password",
+                          name: "password",
+                          placeholder: "PASSWORD"
+                        },
+                        domProps: { value: _vm.form.password },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(_vm.form, "password", $event.target.value)
+                          }
+                        }
+                      }),
+                      _vm._v(" "),
+                      _vm.errors.password
+                        ? _c(
+                            "small",
+                            {
+                              staticClass: "form-control-feedback text-danger"
+                            },
+                            [
+                              _vm._v(
+                                "\n                                " +
+                                  _vm._s(_vm.errors.password[0]) +
+                                  "\n                            "
+                              )
+                            ]
+                          )
+                        : _vm._e()
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "form-row" }, [
+                    _c(
+                      "div",
+                      { staticClass: "form-group col-sm-6" },
+                      [
+                        _c(
+                          "label",
+                          {
+                            class: [
+                              "control-label",
+                              _vm.errors.offices ? "text-danger" : ""
+                            ]
+                          },
+                          [_c("b", [_vm._v("Sucursales")])]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "vs-select",
+                          {
+                            key: _vm.offices.length,
+                            attrs: { filter: "", multiple: "" },
+                            model: {
+                              value: _vm.form.offices,
+                              callback: function($$v) {
+                                _vm.$set(_vm.form, "offices", $$v)
+                              },
+                              expression: "form.offices"
+                            }
+                          },
+                          _vm._l(_vm.offices, function(o) {
+                            return _c(
+                              "vs-option",
+                              {
+                                key: o.value,
+                                attrs: { label: o.text, value: o.value }
+                              },
+                              [
+                                _vm._v(
+                                  "\n                                " +
+                                    _vm._s(o.text) +
+                                    "\n                                "
+                                )
+                              ]
+                            )
+                          }),
+                          1
+                        )
+                      ],
+                      1
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "div",
+                      { staticClass: "form-group col-sm-6" },
+                      [
+                        _c(
+                          "label",
+                          {
+                            class: [
+                              "control-label",
+                              _vm.errors.offices ? "text-danger" : ""
+                            ]
+                          },
+                          [_c("b", [_vm._v("Sucursales")])]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "vs-select",
+                          {
+                            key: _vm.offices.length,
+                            attrs: { filter: "", multiple: "" },
+                            model: {
+                              value: _vm.form.offices,
+                              callback: function($$v) {
+                                _vm.$set(_vm.form, "offices", $$v)
+                              },
+                              expression: "form.offices"
+                            }
+                          },
+                          _vm._l(_vm.offices, function(o) {
+                            return _c(
+                              "vs-option",
+                              {
+                                key: o.value,
+                                attrs: { label: o.text, value: o.value }
+                              },
+                              [
+                                _vm._v(
+                                  "\n                                " +
+                                    _vm._s(o.text) +
+                                    "\n                                "
+                                )
+                              ]
+                            )
+                          }),
+                          1
+                        )
+                      ],
+                      1
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "form-row" }, [
+                    _c("div", { staticClass: "form-group col-12" }, [
+                      _c(
+                        "label",
+                        {
+                          class: [
+                            "control-label",
+                            _vm.errors.extra_info ? "text-danger" : ""
+                          ]
+                        },
+                        [_c("b", [_vm._v("INFORMACION ADICIONAL")])]
+                      ),
+                      _vm._v(" "),
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.form.extra_info,
+                            expression: "form.extra_info"
+                          }
+                        ],
+                        class: [
+                          "form-control",
+                          _vm.errors.extra_info ? "is-invalid" : ""
+                        ],
+                        attrs: { type: "text", name: "extra_info" },
+                        domProps: { value: _vm.form.extra_info },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(
+                              _vm.form,
+                              "extra_info",
+                              $event.target.value
+                            )
+                          }
+                        }
+                      }),
+                      _vm._v(" "),
+                      _vm.errors.extra_info
+                        ? _c(
+                            "small",
+                            {
+                              staticClass: "form-control-feedback text-danger"
+                            },
+                            [
+                              _vm._v(
+                                "\n                                " +
+                                  _vm._s(_vm.errors.extra_info[0]) +
+                                  "\n                            "
+                              )
+                            ]
+                          )
+                        : _vm._e()
+                    ])
+                  ])
+                ]),
+                _vm._v(" "),
+                _vm._m(1)
+              ]
+            )
+          ])
+        ]
+      )
+    ]
+  )
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "button",
+      {
+        staticClass: "close",
+        attrs: {
+          type: "button",
+          "data-dismiss": "modal",
+          "aria-label": "Close"
+        }
+      },
+      [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "modal-footer" }, [
+      _c(
+        "button",
+        { staticClass: "btn btn-primary", attrs: { type: "submit" } },
+        [_vm._v("Guardar")]
+      ),
+      _vm._v(" "),
+      _c(
+        "button",
+        {
+          staticClass: "btn btn-secondary",
+          attrs: { type: "button", "data-dismiss": "modal" }
+        },
+        [_vm._v("Cerrar")]
+      )
+    ])
+  }
+]
+render._withStripped = true
+
 
 
 /***/ }),
@@ -39256,9 +40917,9 @@ var render = function() {
                             },
                             [
                               _vm._v(
-                                "\n                                " +
+                                "\r\n                                " +
                                   _vm._s(_vm.errors.cif[0]) +
-                                  "\n                            "
+                                  "\r\n                            "
                               )
                             ]
                           )
@@ -39315,9 +40976,9 @@ var render = function() {
                             },
                             [
                               _vm._v(
-                                "\n                                " +
+                                "\r\n                                " +
                                   _vm._s(_vm.errors.name[0]) +
-                                  "\n                            "
+                                  "\r\n                            "
                               )
                             ]
                           )
@@ -39376,9 +41037,9 @@ var render = function() {
                               },
                               [
                                 _vm._v(
-                                  "\n                                " +
+                                  "\r\n                                " +
                                     _vm._s(_vm.errors.email[0]) +
-                                    "\n                            "
+                                    "\r\n                            "
                                 )
                               ]
                             )
@@ -39434,9 +41095,9 @@ var render = function() {
                               },
                               [
                                 _vm._v(
-                                  "\n                                " +
+                                  "\r\n                                " +
                                     _vm._s(_vm.errors.phone[0]) +
-                                    "\n                            "
+                                    "\r\n                            "
                                 )
                               ]
                             )
@@ -39496,9 +41157,9 @@ var render = function() {
                               },
                               [
                                 _vm._v(
-                                  "\n                                " +
+                                  "\r\n                                " +
                                     _vm._s(_vm.errors.phone[0]) +
-                                    "\n                            "
+                                    "\r\n                            "
                                 )
                               ]
                             )
@@ -39557,9 +41218,9 @@ var render = function() {
                             },
                             [
                               _vm._v(
-                                "\n                                " +
+                                "\r\n                                " +
                                   _vm._s(_vm.errors.address[0]) +
-                                  "\n                            "
+                                  "\r\n                            "
                               )
                             ]
                           )
@@ -39619,9 +41280,9 @@ var render = function() {
                             },
                             [
                               _vm._v(
-                                "\n                                " +
+                                "\r\n                                " +
                                   _vm._s(_vm.errors.extra_address[0]) +
-                                  "\n                            "
+                                  "\r\n                            "
                               )
                             ]
                           )
@@ -39675,9 +41336,9 @@ var render = function() {
                             },
                             [
                               _vm._v(
-                                "\n                                " +
+                                "\r\n                                " +
                                   _vm._s(_vm.errors.city[0]) +
-                                  "\n                            "
+                                  "\r\n                            "
                               )
                             ]
                           )
@@ -39729,9 +41390,9 @@ var render = function() {
                             },
                             [
                               _vm._v(
-                                "\n                                " +
+                                "\r\n                                " +
                                   _vm._s(_vm.errors.cp[0]) +
-                                  "\n                            "
+                                  "\r\n                            "
                               )
                             ]
                           )
@@ -39783,9 +41444,9 @@ var render = function() {
                             },
                             [
                               _vm._v(
-                                "\n                                " +
+                                "\r\n                                " +
                                   _vm._s(_vm.errors.province[0]) +
-                                  "\n                            "
+                                  "\r\n                            "
                               )
                             ]
                           )
@@ -39837,9 +41498,9 @@ var render = function() {
                             },
                             [
                               _vm._v(
-                                "\n                                " +
+                                "\r\n                                " +
                                   _vm._s(_vm.errors.country[0]) +
-                                  "\n                            "
+                                  "\r\n                            "
                               )
                             ]
                           )
@@ -78634,6 +80295,7 @@ Vue.use((vuesax__WEBPACK_IMPORTED_MODULE_0___default()), {
 });
 Vue.component('pagination', __webpack_require__(/*! laravel-vue-pagination */ "./node_modules/laravel-vue-pagination/dist/laravel-vue-pagination.common.js"));
 Vue.component('office', __webpack_require__(/*! ./components/modules/offices/OfficeComponent */ "./resources/js/components/modules/offices/OfficeComponent.vue").default);
+Vue.component('employee', __webpack_require__(/*! ./components/modules/employees/EmployeeComponent */ "./resources/js/components/modules/employees/EmployeeComponent.vue").default);
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application

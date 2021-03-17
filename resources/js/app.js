@@ -20,6 +20,7 @@ Vue.component('pagination', require('laravel-vue-pagination'));
 
 
 Vue.component('office', require('./components/modules/offices/OfficeComponent').default);
+Vue.component('employee', require('./components/modules/employees/EmployeeComponent').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

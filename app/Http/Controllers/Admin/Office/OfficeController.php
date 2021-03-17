@@ -32,7 +32,7 @@ class OfficeController extends Controller
      */
     public function index()
     {
-        $offices = Office::orderBy('name')->get();
+        $offices = Office::filterByRole()->orderBy('name')->get();
 
         return $this->sendResponse(null, OfficeResource::collection($offices));
     }
@@ -61,7 +61,6 @@ class OfficeController extends Controller
         try {
             DB::beginTransaction();
             $newOffice = new Office($request->all());
-            // $newOffice->is_active = $request->is_active ? true : false;
             $newOffice->created_by = auth()->user()->id;
             $newOffice->updated_by = auth()->user()->id;
             $newOffice->save();
@@ -106,7 +105,6 @@ class OfficeController extends Controller
         try {
             DB::beginTransaction();
             $office->fill($request->all());
-            $office->is_active = $request->is_active ? true : false;
             $office->updated_by = auth()->user()->id;
             $office->save();
 

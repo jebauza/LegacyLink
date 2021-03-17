@@ -3,8 +3,8 @@
     <div class="card card-custom">
         <div class="card-header flex-wrap border-0 pt-6 pb-0">
             <div class="card-title">
-                <h3 class="card-label">Sucursales
-                <span class="d-block text-muted pt-2 font-size-sm">Administración de las sucursales</span></h3>
+                <h3 class="card-label">Empleados
+                <span class="d-block text-muted pt-2 font-size-sm">Administración de los empleados</span></h3>
             </div>
             <div class="card-toolbar">
                 <!--begin::Button-->
@@ -37,38 +37,34 @@
                 </div>
             </div>
 
-            <div v-if="offices.data.length" class="table-responsive">
+            <div v-if="employees.data.length" class="table-responsive">
                 <table class="table table-hover">
                     <thead>
                         <tr>
                             <th>#</th>
-                            <th>CIF</th>
                             <th>NOMBRE</th>
-                            <th>DIRECCION</th>
+                            <th>APELLIDOS</th>
                             <th>EMAIL</th>
                             <th>TELEFONO</th>
-                            <th>GERENTE</th>
                             <th class="text-nowrap d-flex justify-content-center">Acciones</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr v-for="(office, index) in offices.data" :key="index">
+                        <tr v-for="(employee, index) in employees.data" :key="index">
                             <th>{{ index + 1 }}</th>
-                            <td>{{ office.cif }}</td>
-                            <td>{{ office.name }}</td>
-                            <td>{{ office.address }}</td>
-                            <td>{{ office.email }}</td>
-                            <td>{{ office.phone }}</td>
-                            <td>{{ office.contact_person }}</td>
+                            <td>{{ employee.name }}</td>
+                            <td>{{ employee.last_name }}</td>
+                            <td>{{ employee.email }}</td>
+                            <td>{{ employee.phone }}</td>
                             <td>
                                 <div class="d-flex justify-content-center">
                                 <button  class="btn btn-sm btn-clean btn-icon mr-2" title="Edit details">
                                     <i class="far fa-eye"></i>
                                 </button>
-                                <button class="btn btn-sm btn-clean btn-icon mr-2" @click="openModalAddEdit('edit', office)" title="Editar">
+                                <button class="btn btn-sm btn-clean btn-icon mr-2" @click="openModalAddEdit('edit', employee)" title="Editar">
                                     <i class="fas fa-pen"></i>
                                 </button>
-                                <button class="btn btn-sm btn-clean btn-icon mr-2" @click="askDestroy(office)" title="Eliminar">
+                                <button class="btn btn-sm btn-clean btn-icon mr-2" @click="askDestroy(employee)" title="Eliminar">
                                     <i class="fas fa-trash-alt"></i>
                                 </button>
                                 </div>
@@ -77,7 +73,7 @@
                     </tbody>
                 </table>
 
-                <pagination :class="'mt-2'" :align="'center'" :limit="5" :data="offices" @pagination-change-page="getOffices"></pagination>
+                <pagination :class="'mt-2'" :align="'center'" :limit="5" :data=" employees" @pagination-change-page="getEmployees"></pagination>
             </div>
             <div v-else class="alert alert-warning mx-2 text-center" style="margin-top: 18px;">
                 No hay ningún elemento para mostrar
@@ -85,31 +81,31 @@
 
         </div>
 
-        <office-form-add-edit ref="officeFormAddEdit" @updateOfficeList="updateList()"></office-form-add-edit>
+        <employee-form-add-edit ref="employeeFormAddEdit" @updateOfficeList="updateList()"></employee-form-add-edit>
 
     </div>
 <!--end::Card-->
 </template>
 
 <script>
-import OfficeFormAddEdit from './OfficeFormAddEditComponent';
+import EmployeeFormAddEdit from './EmployeeFormAddEditComponent';
 
 export default {
-    components: {OfficeFormAddEdit},
+    components: {EmployeeFormAddEdit},
 
     created() {
-        this.getOffices();
+        this.getEmployees();
     },
 
     data() {
         return {
-            offices: {data:[]}
+            employees: {data:[]}
         }
     },
 
     methods: {
-        getOffices(page = 1) {
-            const url = `admin/ajax/offices/paginate?page=${page}`;
+        getEmployees(page = 1) {
+            const url = `admin/ajax/employees/paginate?page=${page}`;
             const loading = this.$vs.loading({
                 type: 'points',
                 color: '#187de4',
@@ -120,20 +116,20 @@ export default {
             axios.get(url)
             .then(res => {
                 loading.close();
-                this.offices = res.data.data;
+                this.employees = res.data.data;
             })
             .catch(err => {
                 loading.close();
                 console.error(err);
             })
         },
-        openModalAddEdit(action, office = null) {
-            this.$refs.officeFormAddEdit.showForm(action, office);
+        openModalAddEdit(action, employee = null) {
+            this.$refs.employeeFormAddEdit.showForm(action, employee);
         },
         updateList(action = null) {
-            this.getOffices(this.offices.current_page ?? 1 );
+            this.getEmployees(this.employees.current_page ?? 1 );
         },
-        askDestroy(office) {
+        askDestroy(employee) {
             const self = this;
             Swal.fire({
                 title: '¿Estas seguro que deseas eliminar este registro?',
@@ -146,12 +142,12 @@ export default {
                 cancelButtonText: "Cancelar",
             }).then((result) => {
                 if (result.isConfirmed) {
-                    self.destroy(office.id);
+                    self.destroy(employee.id);
                 }
             });
         },
         destroy(id) {
-            const url = `/admin/ajax/offices/${id}/destroy`;
+            const url = `/admin/ajax/employees/${id}/destroy`;
             const loading = this.$vs.loading({
                 type: 'points',
                 color: '#187de4',
@@ -168,7 +164,7 @@ export default {
                     timer: 1500,
                     showConfirmButton: false
                 });
-                this.getOffices();
+                this.getEmployees();
             }).catch(err => {
                 loading.close();
                 if(err.response.data.message) {
@@ -183,7 +179,7 @@ export default {
             });
         }
 
-    },
+    }
 }
 </script>
 

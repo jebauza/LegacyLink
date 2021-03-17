@@ -23,6 +23,11 @@ class CreateEmployeesTable extends Migration
             $table->string('password');
             $table->rememberToken();
             $table->boolean('is_active')->default(true);
+            $table->string('phone')->nullable();
+            $table->text('extra_info')->nullable();
+
+            $table->bigInteger('created_by')->nullable();
+            $table->bigInteger('updated_by')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });

@@ -33,8 +33,8 @@ class CreateOfficesTable extends Migration
             $table->decimal('latitude', 10, 8)->nullable();
             $table->decimal('longitude', 11, 8)->nullable();
             $table->boolean('is_active')->default(true);
-            $table->bigInteger('created_by')->unsigned()->index();
-            $table->bigInteger('updated_by')->unsigned()->index();
+            $table->bigInteger('created_by')->nullable();
+            $table->bigInteger('updated_by')->nullable();
 
             $table->timestamps();
         });
