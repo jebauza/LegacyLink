@@ -24,7 +24,6 @@ class OfficeFactory extends Factory
     public function definition()
     {
         return [
-            'code' => $this->faker->company .'_' . Str::random(5),
             'name' => $this->faker->company,
             'cif' => Str::random(7),
             'address' => $this->faker->streetAddress,
@@ -32,8 +31,8 @@ class OfficeFactory extends Factory
             'cp' => $this->faker->postcode,
             'province' => $this->faker->state,
             'country' => $this->faker->country,
-            'timezone' => rand(1,93),
-            'phone' => $this->faker->mobileNumber,
+            'timezone_id' => rand(1,93),
+            'phone' => $this->faker->phoneNumber,
             'contact_person' => $this->faker->name,
             'email' => $this->faker->unique()->safeEmail,
             'latitude' => $this->faker->latitude,
