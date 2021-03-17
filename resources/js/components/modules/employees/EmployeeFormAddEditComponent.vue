@@ -71,23 +71,46 @@
                         </div>
                     </div>
 
-                    <div class="form-row con-selects">
+                    <div class="form-row">
                         <div class="form-group col-sm-6">
                             <label :class="['control-label', errors.offices ? 'text-danger' : '']"><b>Sucursales</b></label>
                             <vs-select
+                                :key="offices.length"
                                 filter
-                                placeholder="Sucursales"
                                 v-model="form.offices"
                                 multiple
                             >
-                                <vs-option v-for="(office, index) in offices" :value="office.value">{{office.text}}ss</vs-option>
-
-                                <vs-option label="Sucursal 2" value="5">Sucursal 2</vs-option>
-                                <vs-option label="Sucursal 3" value="6">Sucursal 3</vs-option>
+                                <vs-option
+                                v-for="o in offices"
+                                :key="o.value"
+                                :label="o.text"
+                                :value="o.value"
+                                >
+                                {{ o.text }}
+                                </vs-option>
                             </vs-select>
                         </div>
 
                         <div class="form-group col-sm-6">
+                            <label :class="['control-label', errors.offices ? 'text-danger' : '']"><b>Sucursales</b></label>
+                            <vs-select
+                                :key="offices.length"
+                                filter
+                                v-model="form.offices"
+                                multiple
+                            >
+                                <vs-option
+                                v-for="o in offices"
+                                :key="o.value"
+                                :label="o.text"
+                                :value="o.value"
+                                >
+                                {{ o.text }}
+                                </vs-option>
+                            </vs-select>
+                        </div>
+
+                        <!-- <div class="form-group col-sm-6">
                             <label :class="['control-label', errors.rol ? 'text-danger' : '']"><b>ROL</b></label>
                             <vs-select
                                 filter
@@ -101,7 +124,7 @@
                             <small v-if="errors.rol" class="form-control-feedback text-danger">
                                 {{ errors.rol[0] }}
                             </small>
-                        </div>
+                        </div> -->
                     </div>
 
                     <div class="form-row">
@@ -285,6 +308,8 @@ export default {
 }
 </script>
 
-<style>
-
+<style lang="css">
+.vs-select-content {
+    max-width: none;
+}
 </style>
