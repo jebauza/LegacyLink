@@ -7,6 +7,7 @@ use App\Models\OfficeEmployee;
 use Laravel\Passport\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -27,7 +28,9 @@ class Employee extends Authenticatable
         'name',
         'email',
         'password',
-        'office_id'
+        'last_name',
+        'phone',
+        'extra_info'
     ];
 
     /**
@@ -49,14 +52,18 @@ class Employee extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    /**
-     * Get all of the comments for the Employee
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function office_sections()
+
+    public function scopeFilterByRole($query)
     {
-        return $this->hasMany(OfficeEmployee::class, 'employee_id', 'id');
+        $authUser = auth()->user();
+
+        if (!$authUser->hasRole('Super Admin')) {
+            $offices = $authUser->offices()->pluck('id');
+            return $query->whereHas('offices', function (Builder $query) use ($offices){
+                $query->whereIn('id', $offices);
+            })->get();
+        }
+
     }
 
     /**
@@ -67,21 +74,6 @@ class Employee extends Authenticatable
     public function offices()
     {
         return $this->belongsToMany(Office::class, 'office_employee', 'employee_id', 'office_id')
-                    ->withPivot('office_id','employee_id','default')->withTimestamps();
-    }
-
-    public function currentOffice()
-    {
-        $authUser = auth()->user();
-
-        if ($authUser) {
-            if(session('currentOffice')) {
-                return $authUser->offices()->where('id', session('currentOffice'))->first();
-            } else {
-                return $authUser->offices()->wherePivot('default', true)->first();
-            }
-        }
-
-        return null;
+                    ->withPivot('office_id','employee_id')->withTimestamps();
     }
 }

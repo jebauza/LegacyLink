@@ -31,7 +31,7 @@ Route::name('admin.')->group(function () {
         Route::get('home', [HomeController::class, 'home'])->name('home');
         Route::post('logout', [LoginController::class, 'logout'])->name('logout');
 
-        Route::get('offices', [OfficeController::class, 'indexView'])->name('offices.indexView');
+        Route::get('offices', [OfficeController::class, 'indexView'])->name('offices.indexView')->middleware('permission:offices.view');
         Route::get('employees', [EmployeeController::class, 'indexView'])->name('employees.indexView');
 
         Route::prefix('ajax')->name('ajax.')->middleware('ajax')->group(function () {
@@ -41,9 +41,9 @@ Route::name('admin.')->group(function () {
 
                 Route::get('/', [OfficeController::class, 'index'])->name('index');
                 Route::get('/paginate', [OfficeController::class, 'paginate'])->name('paginate');
-                Route::post('store', [OfficeController::class, 'store'])->name('store');
+                Route::post('store', [OfficeController::class, 'store'])->name('store')->middleware('permission:offices.store');
                 Route::get('show', [OfficeController::class, 'show'])->name('show');
-                Route::put('/{office_id}/update', [OfficeController::class, 'update'])->name('update');
+                Route::put('/{office_id}/update', [OfficeController::class, 'update'])->name('update')->middleware('permission:offices.store');
                 Route::delete('/{office_id}/destroy', [OfficeController::class, 'destroy'])->name('destroy');
 
             });
@@ -51,9 +51,9 @@ Route::name('admin.')->group(function () {
             // Employee
             Route::prefix('employees')->name('employees.')->group(function () {
 
-                /* Route::get('/', [OfficeController::class, 'index'])->name('index');
-                Route::get('/paginate', [OfficeController::class, 'paginate'])->name('paginate');
-                Route::post('store', [OfficeController::class, 'store'])->name('store');
+                Route::get('/', [EmployeeController::class, 'index'])->name('index');
+                Route::get('/paginate', [EmployeeController::class, 'paginate'])->name('paginate');
+                /* Route::post('store', [OfficeController::class, 'store'])->name('store');
                 Route::get('show', [OfficeController::class, 'show'])->name('show');
                 Route::put('/{office_id}/update', [OfficeController::class, 'update'])->name('update');
                 Route::delete('/{office_id}/destroy', [OfficeController::class, 'destroy'])->name('destroy'); */

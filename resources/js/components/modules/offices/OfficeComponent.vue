@@ -103,20 +103,7 @@ export default {
 
     data() {
         return {
-            offices: {data:[]},
-            form: {
-                name: '',
-                cif: '',
-                address: '',
-                extra_address: '',
-                city: '',
-                cp: '',
-                province: '',
-                country: '',
-                phone: '',
-                email: '',
-                contact_person: ''
-            }
+            offices: {data:[]}
         }
     },
 

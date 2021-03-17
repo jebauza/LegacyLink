@@ -10,7 +10,15 @@ return [
 
     'permissions' => [
 
+        /* Offices */
+        ['name' => 'offices.view', 'roles' => [1]],
+        ['name' => 'offices.index', 'roles' => [1]],
+        ['name' => 'offices.store', 'roles' => [1]],
+        ['name' => 'offices.show', 'roles' => [1]],
+        ['name' => 'offices.update', 'roles' => [1]],
+
         /* Employee */
+        ['name' => 'employees.view', 'roles' => [1,2]],
         ['name' => 'employees.index', 'roles' => [1,2]],
         ['name' => 'employees.store', 'roles' => [1,2]],
         ['name' => 'employees.show', 'roles' => [1,2]],
