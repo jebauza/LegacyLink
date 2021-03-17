@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\AuthApiController;
+use App\Http\Controllers\Api\DeceasedProfileApiController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,4 +31,6 @@ Route::middleware(['auth:api'])->name('api.')->group(function() {
         Route::get('logout', [AuthApiController::class, 'logout'])->name('logout');
         Route::get('user', [AuthApiController::class, 'user'])->name('user');
     });
+
 });
+Route::get('public/profile/{profile_id}', [DeceasedProfileApiController::class, 'byId'])->name('api.profile.byId');
