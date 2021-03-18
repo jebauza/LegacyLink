@@ -81,7 +81,7 @@
 
         </div>
 
-        <employee-form-add-edit ref="employeeFormAddEdit" @updateOfficeList="updateList()"></employee-form-add-edit>
+        <employee-form-add-edit ref="employeeFormAddEdit" @updateEmployeeList="updateList()"></employee-form-add-edit>
 
     </div>
 <!--end::Card-->

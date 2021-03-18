@@ -10,7 +10,7 @@
                 </button>
             </div>
 
-            <form class="needs-validation" v-on:submit.prevent="actionStoreUpdate()">
+            <form class="needs-validation" v-on:submit.prevent="'actionStoreUpdate()'">
             <div class="modal-body">
 
                     <div class="form-row">
@@ -23,24 +23,7 @@
                         </div>
                         <div class="form-group col-sm-6">
                             <label :class="['control-label', errors.last_name ? 'text-danger' : '']"><b>APELLIDOS</b></label>
-                            <input v-model="form.cif" type="text" :class="['form-control', errors.last_name ? 'is-invalid' : '']" name="cif" placeholder="APELLIDOS" required>
-                            <small v-if="errors.last_name" class="form-control-feedback text-danger">
-                                {{ errors.last_name[0] }}
-                            </small>
-                        </div>
-                    </div>
-
-                    <div class="form-row">
-                        <div class="form-group col-sm-6">
-                            <label :class="['control-label', errors.name ? 'text-danger' : '']"><b>NOMBRE</b></label>
-                            <input v-model="form.name" type="text" :class="['form-control', errors.name ? 'is-invalid' : '']" name="name" placeholder="NOMBRE" required>
-                            <small v-if="errors.name" class="form-control-feedback text-danger">
-                                {{ errors.name[0] }}
-                            </small>
-                        </div>
-                        <div class="form-group col-sm-6">
-                            <label :class="['control-label', errors.last_name ? 'text-danger' : '']"><b>APELLIDOS</b></label>
-                            <input v-model="form.cif" type="text" :class="['form-control', errors.last_name ? 'is-invalid' : '']" name="cif" placeholder="APELLIDOS" required>
+                            <input v-model="form.last_name" type="text" :class="['form-control', errors.last_name ? 'is-invalid' : '']" name="cif" placeholder="APELLIDOS" required>
                             <small v-if="errors.last_name" class="form-control-feedback text-danger">
                                 {{ errors.last_name[0] }}
                             </small>
@@ -57,7 +40,7 @@
                         </div>
                         <div class="form-group col-sm-6 col-md-4">
                             <label :class="['control-label', errors.phone ? 'text-danger' : '']"><b>TELEFONO</b></label>
-                            <input v-model="form.phone" type="text" :class="['form-control', errors.phone ? 'is-invalid' : '']" name="phone">
+                            <input v-model="form.phone" type="text" :class="['form-control', errors.phone ? 'is-invalid' : '']" name="phone" placeholder="TELEFONO">
                             <small v-if="errors.phone" class="form-control-feedback text-danger">
                                 {{ errors.phone[0] }}
                             </small>
@@ -73,58 +56,20 @@
 
                     <div class="form-row">
                         <div class="form-group col-sm-6">
-                            <label :class="['control-label', errors.offices ? 'text-danger' : '']"><b>Sucursales</b></label>
-                            <vs-select
-                                :key="offices.length"
-                                filter
-                                v-model="form.offices"
-                                multiple
-                            >
-                                <vs-option
-                                v-for="o in offices"
-                                :key="o.value"
-                                :label="o.text"
-                                :value="o.value"
-                                >
-                                {{ o.text }}
+                            <label :class="['control-label', errors.offices ? 'text-danger' : '']"><b>ROL</b></label>
+                            <vs-select filter placeholder="Seleciona" v-model="form.role" :key="roles.length" state="primary">
+                                <vs-option v-for="role in roles" :key="role.id" :label="role.name" :value="role.id">
+                                    {{ role.name }}
                                 </vs-option>
                             </vs-select>
                         </div>
 
                         <div class="form-group col-sm-6">
-                            <label :class="['control-label', errors.offices ? 'text-danger' : '']"><b>Sucursales</b></label>
-                            <vs-select
-                                :key="offices.length"
-                                filter
-                                v-model="form.offices"
-                                multiple
-                            >
-                                <vs-option
-                                v-for="o in offices"
-                                :key="o.value"
-                                :label="o.text"
-                                :value="o.value"
-                                >
-                                {{ o.text }}
-                                </vs-option>
+                            <label :class="['control-label', errors.offices ? 'text-danger' : '']"><b>SUCURSALES</b></label>
+                            <vs-select :key="offices.length" filter v-model="form.offices" multiple placeholder="Seleciona" state="primary">
+                                <vs-option v-for="office in offices" :key="office.id" :label="office.name" :value="office.id">{{ office.name }}</vs-option>
                             </vs-select>
                         </div>
-
-                        <!-- <div class="form-group col-sm-6">
-                            <label :class="['control-label', errors.rol ? 'text-danger' : '']"><b>ROL</b></label>
-                            <vs-select
-                                filter
-                                placeholder="ROL"
-                                v-model="form.rol"
-                            >
-                                <vs-option label="Vuesax" value="1">Super admin</vs-option>
-                                <vs-option label="Vue" value="2">Admin sucursal</vs-option>
-                                <vs-option label="Javascript" value="3">Asesor</vs-option>
-                            </vs-select>
-                            <small v-if="errors.rol" class="form-control-feedback text-danger">
-                                {{ errors.rol[0] }}
-                            </small>
-                        </div> -->
                     </div>
 
                     <div class="form-row">
@@ -139,7 +84,7 @@
 
             </div>
             <div class="modal-footer">
-                <button type="submit" class="btn btn-primary">Guardar</button>
+                <button type="button" @click="actionStoreUpdate()" class="btn btn-primary">Guardar</button>
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
             </div>
             </form>
@@ -152,6 +97,7 @@
 export default {
     created() {
         this.getOffices();
+        this.getRoles();
     },
     data() {
         return {
@@ -168,7 +114,7 @@ export default {
                 password: '',
                 extra_info: '',
                 offices: [],
-                rol: '',
+                role: '',
                 id: ''
             },
             errors: {}
@@ -181,9 +127,18 @@ export default {
 
             axios.get(url)
             .then(res => {
-                this.offices = res.data.data.map((office) => {
-                    return {text: office.name, value: office.id};
-                });
+                this.offices = res.data.data;
+            })
+            .catch(err => {
+                console.error(err);
+            })
+        },
+        getRoles() {
+            const url = `/admin/ajax/roles`;
+
+            axios.get(url)
+            .then(res => {
+                this.roles = res.data.data;
             })
             .catch(err => {
                 console.error(err);
@@ -204,6 +159,8 @@ export default {
                     phone: employee.phone,
                     password: '',
                     extra_info: employee.extra_info,
+                    offices: employee.offices.map(o => o.id),
+                    role: employee.role ? employee.role.id : '',
                     id: employee.id
                 };
             }
@@ -219,7 +176,7 @@ export default {
                 password: '',
                 extra_info: '',
                 offices: [],
-                rol: '',
+                role: '',
                 id: ''
             };
             this.errors = {};
@@ -251,7 +208,7 @@ export default {
                 });
                 $('#modalAddEditEmployee').modal('hide');
                 this.clearForm();
-                this.$emit('updateOfficeList', 'add');
+                this.$emit('updateEmployeeList', 'add');
             })
             .catch(err => {
                 loading.close();
@@ -268,8 +225,8 @@ export default {
                 }
             })
         },
-        /* update() {
-            const url = `/admin/ajax/offices/${this.form.id}/update`;
+        update() {
+            const url = `/admin/ajax/employees/${this.form.id}/update`;
             const loading = this.$vs.loading({
                 type: 'points',
                 color: '#187de4',
@@ -286,9 +243,9 @@ export default {
                     timer: 1500,
                     showConfirmButton: false
                 });
-                $('#modalAddEditOffice').modal('hide');
+                $('#modalAddEditEmployye').modal('hide');
                 this.clearForm();
-                this.$emit('updateOfficeList', 'add');
+                this.$emit('updateEmployeeList', 'edit');
             }).catch(err => {
                 loading.close();
                 if(err.response && err.response.status == 422) {
@@ -303,12 +260,12 @@ export default {
                     });
                 }
             });
-        }, */
+        },
     },
 }
 </script>
 
-<style lang="css">
+<style>
 .vs-select-content {
     max-width: none;
 }

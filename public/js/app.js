@@ -2142,64 +2142,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   created: function created() {
     this.getOffices();
+    this.getRoles();
   },
   data: function data() {
     return {
@@ -2215,7 +2161,7 @@ __webpack_require__.r(__webpack_exports__);
         password: '',
         extra_info: '',
         offices: [],
-        rol: '',
+        role: '',
         id: ''
       },
       errors: {}
@@ -2227,12 +2173,17 @@ __webpack_require__.r(__webpack_exports__);
 
       var url = "/admin/ajax/offices";
       axios.get(url).then(function (res) {
-        _this.offices = res.data.data.map(function (office) {
-          return {
-            text: office.name,
-            value: office.id
-          };
-        });
+        _this.offices = res.data.data;
+      })["catch"](function (err) {
+        console.error(err);
+      });
+    },
+    getRoles: function getRoles() {
+      var _this2 = this;
+
+      var url = "/admin/ajax/roles";
+      axios.get(url).then(function (res) {
+        _this2.roles = res.data.data;
       })["catch"](function (err) {
         console.error(err);
       });
@@ -2254,6 +2205,10 @@ __webpack_require__.r(__webpack_exports__);
           phone: employee.phone,
           password: '',
           extra_info: employee.extra_info,
+          offices: employee.offices.map(function (o) {
+            return o.id;
+          }),
+          role: employee.role ? employee.role.id : '',
           id: employee.id
         };
       }
@@ -2270,7 +2225,7 @@ __webpack_require__.r(__webpack_exports__);
         password: '',
         extra_info: '',
         offices: [],
-        rol: '',
+        role: '',
         id: ''
       };
       this.errors = {};
@@ -2283,7 +2238,7 @@ __webpack_require__.r(__webpack_exports__);
       }
     },
     store: function store() {
-      var _this2 = this;
+      var _this3 = this;
 
       var url = '/admin/ajax/employees/store';
       var loading = this.$vs.loading({
@@ -2302,14 +2257,14 @@ __webpack_require__.r(__webpack_exports__);
         });
         $('#modalAddEditEmployee').modal('hide');
 
-        _this2.clearForm();
+        _this3.clearForm();
 
-        _this2.$emit('updateOfficeList', 'add');
+        _this3.$emit('updateEmployeeList', 'add');
       })["catch"](function (err) {
         loading.close();
 
         if (err.response && err.response.status == 422) {
-          _this2.errors = err.response.data.errors;
+          _this3.errors = err.response.data.errors;
         } else if (err.response.data.message) {
           Swal.fire({
             title: 'Error!',
@@ -2320,43 +2275,46 @@ __webpack_require__.r(__webpack_exports__);
           });
         }
       });
-    }
-    /* update() {
-        const url = `/admin/ajax/offices/${this.form.id}/update`;
-        const loading = this.$vs.loading({
-            type: 'points',
-            color: '#187de4',
-            // background: '#7a76cb',
-            text: 'Cargando...'
-        });
-         axios.put(url, this.form)
-        .then(res => {
-            loading.close();
-            Swal.fire({
-                title: res.data.message,
-                icon: "success",
-                timer: 1500,
-                showConfirmButton: false
-            });
-            $('#modalAddEditOffice').modal('hide');
-            this.clearForm();
-            this.$emit('updateOfficeList', 'add');
-        }).catch(err => {
-            loading.close();
-            if(err.response && err.response.status == 422) {
-                this.errors = err.response.data.errors;
-            }else if(err.response.data.message) {
-                Swal.fire({
-                    title: 'Error!',
-                    text: err.response.data.message,
-                    icon: "error",
-                    showCloseButton: true,
-                    closeButtonColor: '#ee2d41',
-                });
-            }
-        });
-    }, */
+    },
+    update: function update() {
+      var _this4 = this;
 
+      var url = "/admin/ajax/employees/".concat(this.form.id, "/update");
+      var loading = this.$vs.loading({
+        type: 'points',
+        color: '#187de4',
+        // background: '#7a76cb',
+        text: 'Cargando...'
+      });
+      axios.put(url, this.form).then(function (res) {
+        loading.close();
+        Swal.fire({
+          title: res.data.message,
+          icon: "success",
+          timer: 1500,
+          showConfirmButton: false
+        });
+        $('#modalAddEditEmployye').modal('hide');
+
+        _this4.clearForm();
+
+        _this4.$emit('updateEmployeeList', 'edit');
+      })["catch"](function (err) {
+        loading.close();
+
+        if (err.response && err.response.status == 422) {
+          _this4.errors = err.response.data.errors;
+        } else if (err.response.data.message) {
+          Swal.fire({
+            title: 'Error!',
+            text: err.response.data.message,
+            icon: "error",
+            showCloseButton: true,
+            closeButtonColor: '#ee2d41'
+          });
+        }
+      });
+    }
   }
 });
 
@@ -39762,7 +39720,7 @@ var render = function() {
       _c("employee-form-add-edit", {
         ref: "employeeFormAddEdit",
         on: {
-          updateOfficeList: function($event) {
+          updateEmployeeList: function($event) {
             return _vm.updateList()
           }
         }
@@ -39919,7 +39877,7 @@ var render = function() {
                 on: {
                   submit: function($event) {
                     $event.preventDefault()
-                    return _vm.actionStoreUpdate()
+                    ;("actionStoreUpdate()")
                   }
                 }
               },
@@ -40002,8 +39960,8 @@ var render = function() {
                           {
                             name: "model",
                             rawName: "v-model",
-                            value: _vm.form.cif,
-                            expression: "form.cif"
+                            value: _vm.form.last_name,
+                            expression: "form.last_name"
                           }
                         ],
                         class: [
@@ -40016,133 +39974,13 @@ var render = function() {
                           placeholder: "APELLIDOS",
                           required: ""
                         },
-                        domProps: { value: _vm.form.cif },
+                        domProps: { value: _vm.form.last_name },
                         on: {
                           input: function($event) {
                             if ($event.target.composing) {
                               return
                             }
-                            _vm.$set(_vm.form, "cif", $event.target.value)
-                          }
-                        }
-                      }),
-                      _vm._v(" "),
-                      _vm.errors.last_name
-                        ? _c(
-                            "small",
-                            {
-                              staticClass: "form-control-feedback text-danger"
-                            },
-                            [
-                              _vm._v(
-                                "\n                                " +
-                                  _vm._s(_vm.errors.last_name[0]) +
-                                  "\n                            "
-                              )
-                            ]
-                          )
-                        : _vm._e()
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "form-row" }, [
-                    _c("div", { staticClass: "form-group col-sm-6" }, [
-                      _c(
-                        "label",
-                        {
-                          class: [
-                            "control-label",
-                            _vm.errors.name ? "text-danger" : ""
-                          ]
-                        },
-                        [_c("b", [_vm._v("NOMBRE")])]
-                      ),
-                      _vm._v(" "),
-                      _c("input", {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.form.name,
-                            expression: "form.name"
-                          }
-                        ],
-                        class: [
-                          "form-control",
-                          _vm.errors.name ? "is-invalid" : ""
-                        ],
-                        attrs: {
-                          type: "text",
-                          name: "name",
-                          placeholder: "NOMBRE",
-                          required: ""
-                        },
-                        domProps: { value: _vm.form.name },
-                        on: {
-                          input: function($event) {
-                            if ($event.target.composing) {
-                              return
-                            }
-                            _vm.$set(_vm.form, "name", $event.target.value)
-                          }
-                        }
-                      }),
-                      _vm._v(" "),
-                      _vm.errors.name
-                        ? _c(
-                            "small",
-                            {
-                              staticClass: "form-control-feedback text-danger"
-                            },
-                            [
-                              _vm._v(
-                                "\n                                " +
-                                  _vm._s(_vm.errors.name[0]) +
-                                  "\n                            "
-                              )
-                            ]
-                          )
-                        : _vm._e()
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "form-group col-sm-6" }, [
-                      _c(
-                        "label",
-                        {
-                          class: [
-                            "control-label",
-                            _vm.errors.last_name ? "text-danger" : ""
-                          ]
-                        },
-                        [_c("b", [_vm._v("APELLIDOS")])]
-                      ),
-                      _vm._v(" "),
-                      _c("input", {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.form.cif,
-                            expression: "form.cif"
-                          }
-                        ],
-                        class: [
-                          "form-control",
-                          _vm.errors.last_name ? "is-invalid" : ""
-                        ],
-                        attrs: {
-                          type: "text",
-                          name: "cif",
-                          placeholder: "APELLIDOS",
-                          required: ""
-                        },
-                        domProps: { value: _vm.form.cif },
-                        on: {
-                          input: function($event) {
-                            if ($event.target.composing) {
-                              return
-                            }
-                            _vm.$set(_vm.form, "cif", $event.target.value)
+                            _vm.$set(_vm.form, "last_name", $event.target.value)
                           }
                         }
                       }),
@@ -40249,7 +40087,11 @@ var render = function() {
                           "form-control",
                           _vm.errors.phone ? "is-invalid" : ""
                         ],
-                        attrs: { type: "text", name: "phone" },
+                        attrs: {
+                          type: "text",
+                          name: "phone",
+                          placeholder: "TELEFONO"
+                        },
                         domProps: { value: _vm.form.phone },
                         on: {
                           input: function($event) {
@@ -40350,33 +40192,37 @@ var render = function() {
                               _vm.errors.offices ? "text-danger" : ""
                             ]
                           },
-                          [_c("b", [_vm._v("Sucursales")])]
+                          [_c("b", [_vm._v("ROL")])]
                         ),
                         _vm._v(" "),
                         _c(
                           "vs-select",
                           {
-                            key: _vm.offices.length,
-                            attrs: { filter: "", multiple: "" },
+                            key: _vm.roles.length,
+                            attrs: {
+                              filter: "",
+                              placeholder: "Seleciona",
+                              state: "primary"
+                            },
                             model: {
-                              value: _vm.form.offices,
+                              value: _vm.form.role,
                               callback: function($$v) {
-                                _vm.$set(_vm.form, "offices", $$v)
+                                _vm.$set(_vm.form, "role", $$v)
                               },
-                              expression: "form.offices"
+                              expression: "form.role"
                             }
                           },
-                          _vm._l(_vm.offices, function(o) {
+                          _vm._l(_vm.roles, function(role) {
                             return _c(
                               "vs-option",
                               {
-                                key: o.value,
-                                attrs: { label: o.text, value: o.value }
+                                key: role.id,
+                                attrs: { label: role.name, value: role.id }
                               },
                               [
                                 _vm._v(
-                                  "\n                                " +
-                                    _vm._s(o.text) +
+                                  "\n                                    " +
+                                    _vm._s(role.name) +
                                     "\n                                "
                                 )
                               ]
@@ -40400,14 +40246,19 @@ var render = function() {
                               _vm.errors.offices ? "text-danger" : ""
                             ]
                           },
-                          [_c("b", [_vm._v("Sucursales")])]
+                          [_c("b", [_vm._v("SUCURSALES")])]
                         ),
                         _vm._v(" "),
                         _c(
                           "vs-select",
                           {
                             key: _vm.offices.length,
-                            attrs: { filter: "", multiple: "" },
+                            attrs: {
+                              filter: "",
+                              multiple: "",
+                              placeholder: "Seleciona",
+                              state: "primary"
+                            },
                             model: {
                               value: _vm.form.offices,
                               callback: function($$v) {
@@ -40416,20 +40267,14 @@ var render = function() {
                               expression: "form.offices"
                             }
                           },
-                          _vm._l(_vm.offices, function(o) {
+                          _vm._l(_vm.offices, function(office) {
                             return _c(
                               "vs-option",
                               {
-                                key: o.value,
-                                attrs: { label: o.text, value: o.value }
+                                key: office.id,
+                                attrs: { label: office.name, value: office.id }
                               },
-                              [
-                                _vm._v(
-                                  "\n                                " +
-                                    _vm._s(o.text) +
-                                    "\n                                "
-                                )
-                              ]
+                              [_vm._v(_vm._s(office.name))]
                             )
                           }),
                           1
@@ -40500,7 +40345,30 @@ var render = function() {
                   ])
                 ]),
                 _vm._v(" "),
-                _vm._m(1)
+                _c("div", { staticClass: "modal-footer" }, [
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn btn-primary",
+                      attrs: { type: "button" },
+                      on: {
+                        click: function($event) {
+                          return _vm.actionStoreUpdate()
+                        }
+                      }
+                    },
+                    [_vm._v("Guardar")]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn btn-secondary",
+                      attrs: { type: "button", "data-dismiss": "modal" }
+                    },
+                    [_vm._v("Cerrar")]
+                  )
+                ])
               ]
             )
           ])
@@ -40526,27 +40394,6 @@ var staticRenderFns = [
       },
       [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
     )
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "modal-footer" }, [
-      _c(
-        "button",
-        { staticClass: "btn btn-primary", attrs: { type: "submit" } },
-        [_vm._v("Guardar")]
-      ),
-      _vm._v(" "),
-      _c(
-        "button",
-        {
-          staticClass: "btn btn-secondary",
-          attrs: { type: "button", "data-dismiss": "modal" }
-        },
-        [_vm._v("Cerrar")]
-      )
-    ])
   }
 ]
 render._withStripped = true
@@ -40591,7 +40438,7 @@ var render = function() {
             },
             [
               _c("i", { staticClass: "fas fa-plus-square" }),
-              _vm._v(" Nuevo\n                ")
+              _vm._v(" Nuevo\r\n                ")
             ]
           )
         ])
@@ -40690,7 +40537,7 @@ var render = function() {
               },
               [
                 _vm._v(
-                  "\n                No hay ningún elemento para mostrar\n            "
+                  "\r\n                No hay ningún elemento para mostrar\r\n            "
                 )
               ]
             )
@@ -40715,7 +40562,7 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "card-title" }, [
       _c("h3", { staticClass: "card-label" }, [
-        _vm._v("Sucursales\n                "),
+        _vm._v("Sucursales\r\n                "),
         _c("span", { staticClass: "d-block text-muted pt-2 font-size-sm" }, [
           _vm._v("Administración de las sucursales")
         ])
