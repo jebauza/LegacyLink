@@ -151,6 +151,86 @@
                     }
                 ]
             }
+        },
+        "/public/profile/{profile_id}/events": {
+            "get": {
+                "tags": [
+                    "Public ceremonies list"
+                ],
+                "summary": "Get the public ceremonies list",
+                "description": "Return the list of ceremonies associated with a specific profile",
+                "operationId": "/public/profile/{profile_id}/events",
+                "parameters": [
+                    {
+                        "name": "profile_id",
+                        "in": "path",
+                        "description": "Deceased profile id",
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "example": true
+                                        },
+                                        "message": {
+                                            "example": "User login successfully."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/public/profile/{profile_id}": {
+            "get": {
+                "tags": [
+                    "Public Profile"
+                ],
+                "summary": "Get the public details of deseased profile",
+                "description": "Return the public details of a specific profile",
+                "operationId": "/public/profile/{profile_id}",
+                "parameters": [
+                    {
+                        "name": "profile_id",
+                        "in": "path",
+                        "description": "Deceased profile id",
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "example": true
+                                        },
+                                        "message": {
+                                            "example": "User login successfully."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         }
     },
     "components": {
@@ -280,6 +360,14 @@
         {
             "name": "Auth",
             "description": "API Endpoints of Auth"
+        },
+        {
+            "name": "Public agenda",
+            "description": "API Endpoints of public ceremonies list"
+        },
+        {
+            "name": "Public Profile",
+            "description": "API Endpoints of public deceased profile"
         }
     ],
     "externalDocs": {

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\CeremonyResource;
 use App\Http\Resources\DeceasedProfileResource;
+use App\Models\Ceremony;
 use App\Models\DeceasedProfile;
 use Illuminate\Http\Request;
 
@@ -40,9 +41,15 @@ class CeremonyApiController extends Controller
      *          )
      *      ),
      * )
+     *  @param int $profile_id
+     *  @return CeremonyResource
      */
-    public function agenda( DeceasedProfile $profile)
+    public function agenda(  $profile_id)
     {
-        return $this->sendResponse("Successful operation", (CeremonyResource::collection($profile->ceremonies)));
+        $ceremonies=Ceremony::where('profile_id',$profile_id)
+            ->orderBy('start')
+            ->get();
+
+        return $this->sendResponse("Successful operation", (CeremonyResource::collection($ceremonies)));
     }
 }

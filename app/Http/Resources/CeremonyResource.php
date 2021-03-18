@@ -14,6 +14,16 @@ class CeremonyResource extends JsonResource
      */
     public function toArray($request)
     {
-        return parent::toArray($request);
+        return [
+            "id"=>$this->id,
+            "main"=>$this->main,
+            "star"=>$this->star,
+            "end"=>$this->end,
+            "room_name"=>$this->room_name,
+            "additional_info"=>$this->additional_info,
+            "address"=>$this->address,
+            "type_id"=>$this->type->name,
+            "profile_id"=>$this->profile_id,
+        ];
     }
 }

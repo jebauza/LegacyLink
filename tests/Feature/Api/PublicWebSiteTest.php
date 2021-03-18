@@ -17,6 +17,7 @@ class PublicWebSiteTest extends TestCase
     public function can_get_deceased_profile_by_id()
     {
         $this->withoutExceptionHandling();
+        
         $profile=DeceasedProfile::factory()->create();
 
         $response = $this->get(route('api.profile.byId',['profile_id'=>$profile->id]));

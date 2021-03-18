@@ -18,8 +18,8 @@ class DeceasedProfileResource extends JsonResource
             "id"=>$this->id,
             "name"=>$this->name,
             "last_name"=>$this->last_name,
-            "birthday"=>$this->birthday,
-            "death"=>$this->death,
+            "birthday"=>$this->birthday->format('Y-m-d'),
+            "death"=>$this->death->format('Y-m-d'),
             "adviser"=>new AdviserResource($this->adviser)
         ];
     }
