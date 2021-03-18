@@ -31,7 +31,7 @@ class EmployeeStoreUpdateRequest extends FormRequest
             'last_name' => 'required|string|max:255',
             'email' => "required|email|unique:employees,email,$employee_id,id",
             'phone' => 'required|string|max:20',
-            'password' => 'required|string|min:8',
+            'password' => ($employee_id ? 'nullable' : 'required') .'|string|min:8',
             'extra_info' => 'nullable|string',
             'role' => 'required|exists:roles,id',
             'offices' => 'bail|array|min:1',
@@ -56,7 +56,7 @@ class EmployeeStoreUpdateRequest extends FormRequest
         if (empty($this->offices)) {
             $validator->errors()->add('offices', 'Selecione al menos una officina');
         }
-        
+
         $offices = $this->user()->offices()->whereIn('offices.id', $this->offices)->get();
         if ($offices->count() != count($this->offices)) {
             $validator->errors()->add('offices', 'No tiene permisos para agregar el emplado a la sucursal selecionada');

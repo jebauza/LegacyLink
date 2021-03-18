@@ -80,7 +80,7 @@ class EmployeeController extends Controller
             $newEmployee->updated_by = auth()->user()->id;
             if ($newEmployee->save()) {
                 $newEmployee->syncRoles(Role::where('id', $request->role)->get());
-                if ($request->offices && !$newEmployee->hasRole('Super Admin')) {
+                if (!$newEmployee->hasRole('Super Admin')) {
                     $newEmployee->offices()->sync($request->offices);
                 }
             }
@@ -132,19 +132,21 @@ class EmployeeController extends Controller
         try {
             DB::beginTransaction();
             $employee->fill($request->all());
-            if ($request->password) {
+            if (!empty($request->password)) {
                 $employee->password = Hash::make($request->password);
             }
             $employee->updated_by = auth()->user()->id;
             if ($employee->save()) {
                 $employee->syncRoles(Role::where('id', $request->role)->get());
-                if ($request->offices && !$newEmployee->hasRole('Super Admin')) {
-                    $newEmployee->offices()->sync($request->offices);
+                if ($employee->hasRole('Super Admin')) {
+                    $employee->offices()->sync([]);
+                } else {
+                    $employee->offices()->sync($request->offices);
                 }
             }
 
             DB::commit();
-            return $this->sendResponse('Update successfully', (new OfficeResource($office)));
+            return $this->sendResponse('Update successfully', (new EmployeeResource($employee)));
 
         } catch (\Exception $e) {
             DB::rollBack();

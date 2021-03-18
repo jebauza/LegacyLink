@@ -2294,7 +2294,7 @@ __webpack_require__.r(__webpack_exports__);
           timer: 1500,
           showConfirmButton: false
         });
-        $('#modalAddEditEmployye').modal('hide');
+        $('#modalAddEditEmployee').modal('hide');
 
         _this4.clearForm();
 
@@ -7334,7 +7334,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.vs-select-content {\r\n    max-width: none;\n}\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.vs-select-content {\n    max-width: none;\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -39934,9 +39934,9 @@ var render = function() {
                             },
                             [
                               _vm._v(
-                                "\r\n                                " +
+                                "\n                                " +
                                   _vm._s(_vm.errors.name[0]) +
-                                  "\r\n                            "
+                                  "\n                            "
                               )
                             ]
                           )
@@ -39993,9 +39993,9 @@ var render = function() {
                             },
                             [
                               _vm._v(
-                                "\r\n                                " +
+                                "\n                                " +
                                   _vm._s(_vm.errors.last_name[0]) +
-                                  "\r\n                            "
+                                  "\n                            "
                               )
                             ]
                           )
@@ -40053,9 +40053,9 @@ var render = function() {
                             },
                             [
                               _vm._v(
-                                "\r\n                                " +
+                                "\n                                " +
                                   _vm._s(_vm.errors.email[0]) +
-                                  "\r\n                            "
+                                  "\n                            "
                               )
                             ]
                           )
@@ -40111,9 +40111,9 @@ var render = function() {
                             },
                             [
                               _vm._v(
-                                "\r\n                                " +
+                                "\n                                " +
                                   _vm._s(_vm.errors.phone[0]) +
-                                  "\r\n                            "
+                                  "\n                            "
                               )
                             ]
                           )
@@ -40169,9 +40169,9 @@ var render = function() {
                             },
                             [
                               _vm._v(
-                                "\r\n                                " +
+                                "\n                                " +
                                   _vm._s(_vm.errors.password[0]) +
-                                  "\r\n                            "
+                                  "\n                            "
                               )
                             ]
                           )
@@ -40221,9 +40221,9 @@ var render = function() {
                               },
                               [
                                 _vm._v(
-                                  "\r\n                                    " +
+                                  "\n                                    " +
                                     _vm._s(role.name) +
-                                    "\r\n                                "
+                                    "\n                                "
                                 )
                               ]
                             )
@@ -40234,54 +40234,59 @@ var render = function() {
                       1
                     ),
                     _vm._v(" "),
-                    _c(
-                      "div",
-                      { staticClass: "form-group col-sm-6" },
-                      [
-                        _c(
-                          "label",
-                          {
-                            class: [
-                              "control-label",
-                              _vm.errors.offices ? "text-danger" : ""
-                            ]
-                          },
-                          [_c("b", [_vm._v("SUCURSALES")])]
-                        ),
-                        _vm._v(" "),
-                        _c(
-                          "vs-select",
-                          {
-                            key: _vm.offices.length,
-                            attrs: {
-                              filter: "",
-                              multiple: "",
-                              placeholder: "Seleciona",
-                              state: "primary"
-                            },
-                            model: {
-                              value: _vm.form.offices,
-                              callback: function($$v) {
-                                _vm.$set(_vm.form, "offices", $$v)
-                              },
-                              expression: "form.offices"
-                            }
-                          },
-                          _vm._l(_vm.offices, function(office) {
-                            return _c(
-                              "vs-option",
+                    _vm.form.role != 1
+                      ? _c(
+                          "div",
+                          { staticClass: "form-group col-sm-6" },
+                          [
+                            _c(
+                              "label",
                               {
-                                key: office.id,
-                                attrs: { label: office.name, value: office.id }
+                                class: [
+                                  "control-label",
+                                  _vm.errors.offices ? "text-danger" : ""
+                                ]
                               },
-                              [_vm._v(_vm._s(office.name))]
+                              [_c("b", [_vm._v("SUCURSALES")])]
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "vs-select",
+                              {
+                                key: _vm.offices.length,
+                                attrs: {
+                                  filter: "",
+                                  multiple: "",
+                                  placeholder: "Seleciona",
+                                  state: "primary"
+                                },
+                                model: {
+                                  value: _vm.form.offices,
+                                  callback: function($$v) {
+                                    _vm.$set(_vm.form, "offices", $$v)
+                                  },
+                                  expression: "form.offices"
+                                }
+                              },
+                              _vm._l(_vm.offices, function(office) {
+                                return _c(
+                                  "vs-option",
+                                  {
+                                    key: office.id,
+                                    attrs: {
+                                      label: office.name,
+                                      value: office.id
+                                    }
+                                  },
+                                  [_vm._v(_vm._s(office.name))]
+                                )
+                              }),
+                              1
                             )
-                          }),
+                          ],
                           1
                         )
-                      ],
-                      1
-                    )
+                      : _vm._e()
                   ]),
                   _vm._v(" "),
                   _c("div", { staticClass: "form-row" }, [
@@ -40334,9 +40339,9 @@ var render = function() {
                             },
                             [
                               _vm._v(
-                                "\r\n                                " +
+                                "\n                                " +
                                   _vm._s(_vm.errors.extra_info[0]) +
-                                  "\r\n                            "
+                                  "\n                            "
                               )
                             ]
                           )

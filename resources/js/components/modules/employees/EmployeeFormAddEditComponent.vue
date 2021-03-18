@@ -64,7 +64,7 @@
                             </vs-select>
                         </div>
 
-                        <div class="form-group col-sm-6">
+                        <div v-if="form.role != 1" class="form-group col-sm-6">
                             <label :class="['control-label', errors.offices ? 'text-danger' : '']"><b>SUCURSALES</b></label>
                             <vs-select :key="offices.length" filter v-model="form.offices" multiple placeholder="Seleciona" state="primary">
                                 <vs-option v-for="office in offices" :key="office.id" :label="office.name" :value="office.id">{{ office.name }}</vs-option>
@@ -243,7 +243,7 @@ export default {
                     timer: 1500,
                     showConfirmButton: false
                 });
-                $('#modalAddEditEmployye').modal('hide');
+                $('#modalAddEditEmployee').modal('hide');
                 this.clearForm();
                 this.$emit('updateEmployeeList', 'edit');
             }).catch(err => {
