@@ -27,7 +27,7 @@ class DeceasedProfile extends Model
 
     public function ceremonies()
     {
-        return $this->hasMany(Ceremony::class);
+        return $this->hasMany(Ceremony::class,'profile_id');
     }
 
     public function office()
