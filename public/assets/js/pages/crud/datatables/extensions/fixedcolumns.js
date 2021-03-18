@@ -2,7 +2,7 @@
 /******/ 	"use strict";
 var __webpack_exports__ = {};
 /*!************************************************************************!*\
-  !*** ../demo1/src/js/pages/crud/datatables/extensions/fixedcolumns.js ***!
+  !*** ../demo3/src/js/pages/crud/datatables/extensions/fixedcolumns.js ***!
   \************************************************************************/
 
 var KTDatatablesExtensionsFixedcolumns = function() {

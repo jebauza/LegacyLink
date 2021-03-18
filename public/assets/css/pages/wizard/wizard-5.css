@@ -61,14 +61,14 @@
 }
 .wizard.wizard-5 .wizard-aside .wizard-nav .wizard-steps .wizard-step[data-wizard-state=current] .wizard-icon {
   transition: color 0.15s ease, background-color 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
-  background-color: #C9F7F5;
+  background-color: #E1F0FF;
 }
 .wizard.wizard-5 .wizard-aside .wizard-nav .wizard-steps .wizard-step[data-wizard-state=current] .wizard-icon .wizard-check {
-  color: #1BC5BD;
+  color: #3699FF;
   display: none;
 }
 .wizard.wizard-5 .wizard-aside .wizard-nav .wizard-steps .wizard-step[data-wizard-state=current] .wizard-icon .wizard-number {
-  color: #1BC5BD;
+  color: #3699FF;
 }
 .wizard.wizard-5 .wizard-aside .wizard-nav .wizard-steps .wizard-step[data-wizard-state=current] .wizard-label .wizard-title {
   color: #181C32;
@@ -78,10 +78,10 @@
 }
 .wizard.wizard-5 .wizard-aside .wizard-nav .wizard-steps .wizard-step[data-wizard-state=current]:last-child .wizard-icon, .wizard.wizard-5 .wizard-aside .wizard-nav .wizard-steps .wizard-step[data-wizard-state=done] .wizard-icon {
   transition: color 0.15s ease, background-color 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
-  background-color: #C9F7F5;
+  background-color: #E1F0FF;
 }
 .wizard.wizard-5 .wizard-aside .wizard-nav .wizard-steps .wizard-step[data-wizard-state=current]:last-child .wizard-icon .wizard-check, .wizard.wizard-5 .wizard-aside .wizard-nav .wizard-steps .wizard-step[data-wizard-state=done] .wizard-icon .wizard-check {
-  color: #1BC5BD;
+  color: #3699FF;
   display: inline-block;
 }
 .wizard.wizard-5 .wizard-aside .wizard-nav .wizard-steps .wizard-step[data-wizard-state=current]:last-child .wizard-icon .wizard-number, .wizard.wizard-5 .wizard-aside .wizard-nav .wizard-steps .wizard-step[data-wizard-state=done] .wizard-icon .wizard-number {

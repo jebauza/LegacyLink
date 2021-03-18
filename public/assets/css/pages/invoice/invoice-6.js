@@ -18,7 +18,7 @@
 /************************************************************************/
 var __webpack_exports__ = {};
 /*!******************************************************!*\
-  !*** ../demo1/src/sass/pages/invoice/invoice-6.scss ***!
+  !*** ../demo3/src/sass/pages/invoice/invoice-6.scss ***!
   \******************************************************/
 __webpack_require__.r(__webpack_exports__);
 // extracted by mini-css-extract-plugin

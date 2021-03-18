@@ -2,7 +2,7 @@
 /******/ 	"use strict";
 var __webpack_exports__ = {};
 /*!**************************************************************************!*\
-  !*** ../demo1/src/js/pages/crud/datatables/advanced/column-rendering.js ***!
+  !*** ../demo3/src/js/pages/crud/datatables/advanced/column-rendering.js ***!
   \**************************************************************************/
 
 var KTDatatablesAdvancedColumnRendering = function() {

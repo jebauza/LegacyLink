@@ -1,9 +1,9 @@
 /******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
-/***/ "../demo1/src/js/vendors/plugins/prism.init.js":
+/***/ "../demo3/src/js/vendors/plugins/prism.init.js":
 /*!*****************************************************!*\
-  !*** ../demo1/src/js/vendors/plugins/prism.init.js ***!
+  !*** ../demo3/src/js/vendors/plugins/prism.init.js ***!
   \*****************************************************/
 /***/ (() => {
 
@@ -2024,7 +2024,7 @@ var __webpack_exports__ = {};
 
 __webpack_require__(/*! prismjs/prism.js */ "./node_modules/prismjs/prism.js");
 __webpack_require__(/*! prismjs/plugins/normalize-whitespace/prism-normalize-whitespace.js */ "./node_modules/prismjs/plugins/normalize-whitespace/prism-normalize-whitespace.js");
-__webpack_require__(/*! @/src/js/vendors/plugins/prism.init.js */ "../demo1/src/js/vendors/plugins/prism.init.js");
+__webpack_require__(/*! @/src/js/vendors/plugins/prism.init.js */ "../demo3/src/js/vendors/plugins/prism.init.js");
 
 __webpack_require__(/*! ./prismjs.scss */ "./webpack/plugins/custom/prismjs/prismjs.scss");
 

@@ -1,7 +1,7 @@
 /******/ (() => { // webpackBootstrap
 var __webpack_exports__ = {};
 /*!**************************************************************!*\
-  !*** ../demo1/src/js/pages/crud/forms/widgets/nouislider.js ***!
+  !*** ../demo3/src/js/pages/crud/forms/widgets/nouislider.js ***!
   \**************************************************************/
 // Class definition
 var KTnoUiSliderDemos = function() {
