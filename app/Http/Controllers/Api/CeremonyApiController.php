@@ -44,12 +44,12 @@ class CeremonyApiController extends Controller
      *  @param int $profile_id
      *  @return CeremonyResource
      */
-    public function agenda(  $profile_id)
+    public function agenda($profile_id)
     {
         $ceremonies=Ceremony::where('profile_id',$profile_id)
             ->orderBy('start')
             ->get();
-
+    
         return $this->sendResponse("Successful operation", (CeremonyResource::collection($ceremonies)));
     }
 }
