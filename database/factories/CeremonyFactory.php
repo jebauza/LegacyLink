@@ -27,7 +27,7 @@ class CeremonyFactory extends Factory
             'main' => $this->faker->boolean,
             'start' => $this->faker->date,
             'end' => $this->faker->date,
-            'room_name' => $this->faker->word,
+            'room_name' => "Sala ".$this->faker->randomNumber(1),
             'additional_info' => $this->faker->sentence,
             'address' => $this->faker->address,
             'latitude' => $this->faker->latitude,
