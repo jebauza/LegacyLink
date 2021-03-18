@@ -43,11 +43,6 @@ class CeremonyApiController extends Controller
      */
     public function agenda( DeceasedProfile $profile)
     {
-        return (CeremonyResource::collection($profile->ceremonies))
-            ->additional(
-                [
-                    'suscess'=>true,
-                    'message'=>"Successful operation"
-                ]);
+        return $this->sendResponse("Successful operation", (CeremonyResource::collection($profile->ceremonies)));
     }
 }

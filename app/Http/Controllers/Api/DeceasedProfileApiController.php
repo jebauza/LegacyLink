@@ -42,11 +42,6 @@ class DeceasedProfileApiController extends Controller
      */
     public function byId( DeceasedProfile $profile)
     {
-        return (new DeceasedProfileResource($profile))
-            ->additional(
-                [
-                    'suscess'=>true,
-                    'message'=>"Successful operation"
-                ]);
+        return $this->sendResponse("Successful operation", (new DeceasedProfileResource($profile)));
     }
 }
