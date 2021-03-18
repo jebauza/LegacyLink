@@ -20,8 +20,8 @@ class Ceremony extends Model
         'address',
         'latitude',
         'longitude',
-        'ceremony_type_id',
-        'deceased_profile_id'
+        'type_id',
+        'profile_id'
     ];
 
     protected $casts = [
@@ -31,11 +31,11 @@ class Ceremony extends Model
 
     public function profile()
     {
-        return $this->belongsTo(DeceasedProfile::class);
+        return $this->belongsTo(DeceasedProfile::class,'profile_id');
     }
 
     public function type()
     {
-        return $this->belongsTo(CeremonyType::class);
+        return $this->belongsTo(CeremonyType::class,"type_id");
     }
 }

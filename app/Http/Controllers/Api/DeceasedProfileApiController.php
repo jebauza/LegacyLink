@@ -39,9 +39,13 @@ class DeceasedProfileApiController extends Controller
      *          )
      *      ),
      * )
+     * @param int $profile_id
+     * @return DeceasedProfileResource
      */
-    public function byId( DeceasedProfile $profile)
+    public function byId(  $profile_id)
     {
+        $profile=DeceasedProfile::findOrFail($profile_id);
+
         return (new DeceasedProfileResource($profile))
             ->additional(
                 [

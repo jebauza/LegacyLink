@@ -32,7 +32,7 @@ class CeremonyFactory extends Factory
             'address' => $this->faker->address,
             'latitude' => $this->faker->latitude,
             'longitude' => $this->faker->longitude,
-            'ceremony_type_id' => CeremonyType::factory(),
+            'type_id' => CeremonyType::factory(),
         ];
     }
 }
