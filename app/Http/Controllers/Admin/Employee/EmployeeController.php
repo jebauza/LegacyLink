@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin\Employee;
 use App\Models\Employee;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Spatie\Permission\Models\Role;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Resources\EmployeeResource;
@@ -29,7 +30,10 @@ class EmployeeController extends Controller
      */
     public function index()
     {
-        $employyes = Employee::filterByRole()->orderBy('name')->get();
+        $employyes = Employee::filterByRole()
+                            ->with('offices','roles')
+                            ->orderBy('name')
+                            ->get();
 
         return $this->sendResponse(null, EmployeeResource::collection($employyes));
     }
@@ -39,9 +43,15 @@ class EmployeeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function paginate()
+    public function paginate(Request $request)
     {
-        $employeesPaginate = Employee::filterByRole()->orderBy('name')->paginate();
+        $employeesPaginate = Employee::filterByRole()
+                                    ->name($request->name)
+                                    ->email($request->email)
+                                    ->with('offices','roles')
+                                    ->orderBy('name')
+                                    ->paginate();
+
         $employeesPaginate->setCollection(EmployeeResource::collection($employeesPaginate->getCollection())->collection);
 
         return $this->sendResponse(null, $employeesPaginate);
@@ -71,10 +81,15 @@ class EmployeeController extends Controller
             $newEmployee->password = Hash::make($request->password);
             $newEmployee->created_by = auth()->user()->id;
             $newEmployee->updated_by = auth()->user()->id;
-            $newEmployee->save();
+            if ($newEmployee->save()) {
+                $newEmployee->syncRoles(Role::where('id', $request->role)->get());
+                if (!$newEmployee->hasRole('Super Admin')) {
+                    $newEmployee->offices()->sync($request->offices);
+                }
+            }
 
             DB::commit();
-            return $this->sendResponse("Save successfully", (new OfficeResource($newOffice)), 201);
+            return $this->sendResponse(__('Saved successfully'), (new EmployeeResource($newEmployee)), 201);
 
         } catch (\Exception $e) {
             DB::rollBack();
@@ -111,9 +126,35 @@ class EmployeeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(EmployeeStoreUpdateRequest $request, $id)
     {
-        //
+        if(!$employee = Employee::find($id)) {
+            return $this->sendError404();
+        }
+
+        try {
+            DB::beginTransaction();
+            $employee->fill($request->all());
+            if (!empty($request->password)) {
+                $employee->password = Hash::make($request->password);
+            }
+            $employee->updated_by = auth()->user()->id;
+            if ($employee->save()) {
+                $employee->syncRoles(Role::where('id', $request->role)->get());
+                if ($employee->hasRole('Super Admin')) {
+                    $employee->offices()->sync([]);
+                } else {
+                    $employee->offices()->sync($request->offices);
+                }
+            }
+
+            DB::commit();
+            return $this->sendResponse(__('Edited successfully'), (new EmployeeResource($employee)));
+
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return $this->sendError500($e->getMessage());
+        }
     }
 
     /**
@@ -126,4 +167,6 @@ class EmployeeController extends Controller
     {
         //
     }
+
+
 }

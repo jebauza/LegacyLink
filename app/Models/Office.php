@@ -20,7 +20,7 @@ class Office extends Model
         $authUser = auth()->user();
 
         if (!$authUser->hasRole('Super Admin')) {
-            $offices = $authUser->offices()->pluck('id');
+            $offices = $authUser->offices()->pluck('offices.id');
             $query->whereIn('id', $offices);
         }
     }

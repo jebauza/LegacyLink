@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Models\Office;
 use App\Models\OfficeEmployee;
 use Laravel\Passport\HasApiTokens;
+use Spatie\Permission\Models\Role;
 use Spatie\Permission\Traits\HasRoles;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Builder;
@@ -27,7 +28,6 @@ class Employee extends Authenticatable
     protected $fillable = [
         'name',
         'email',
-        'password',
         'last_name',
         'phone',
         'extra_info'
@@ -52,20 +52,36 @@ class Employee extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-
+    // SCOPES
     public function scopeFilterByRole($query)
     {
         $authUser = auth()->user();
 
         if (!$authUser->hasRole('Super Admin')) {
-            $offices = $authUser->offices()->pluck('id');
+            $offices = $authUser->offices()->pluck('offices.id');
             return $query->whereHas('offices', function (Builder $query) use ($offices){
-                $query->whereIn('id', $offices);
-            })->get();
+                $query->whereIn('offices.id', $offices);
+            });
         }
-
     }
 
+    public function scopeName($query, $param)
+    {
+        if ($param) {
+            $query->where('name', 'like', "%$param%")
+                ->orWhere('last_name', 'like', "%$param%");
+        }
+    }
+
+    public function scopeEmail($query, $param)
+    {
+        if ($param) {
+            $query->where('email', 'like', "%$param%");
+        }
+    }
+
+
+    //RELATIONS
     /**
      * The roles that belong to the Employee
      *
@@ -75,5 +91,22 @@ class Employee extends Authenticatable
     {
         return $this->belongsToMany(Office::class, 'office_employee', 'employee_id', 'office_id')
                     ->withPivot('office_id','employee_id')->withTimestamps();
+    }
+
+
+    /**
+     * The roles that belong to the Employee
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function getCanAssignRoles()
+    {
+        $myRole = $this->roles()->orderBy('id')->first();
+
+        if ($myRole) {
+            return Role::where('id', '>=', $myRole->id)->get();
+        }
+
+        return collect([]);
     }
 }
