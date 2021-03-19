@@ -2,6 +2,8 @@ require('./bootstrap');
 
 window.Vue = require('vue').default;
 
+Vue.mixin(require('./trans'))
+
 /* Vuesax - Biblioteca para interfaz de usuario */
 import Vuesax from 'vuesax';
 import 'vuesax/dist/vuesax.css';

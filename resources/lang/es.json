@@ -1,3 +1,26 @@
 {
+    "Employees": "Empleados",
+    "Employee administration": "Administración de los empleados",
+    "Add": "Añadir",
+    "Actions": "Acciones",
+    "Edit": "Editar",
+    "Delete": "Eliminar",
+    "There is no item to display": "No hay ningún elemento para mostrar",
+    "Are you sure you want to delete this record?": "¿Estas seguro que deseas eliminar este registro?",
+    "If you delete this record, you will not be able to recover it": "Si eliminas este registro, no podras recuperarlo",
+    "Deleting": "Eliminando",
+    "Loading": "Cargando",
+    "Cancel": "Cancelar",
+    "Yes, I'm sure!": "¡Si, estoy seguro!",
+    "Employee": "Empleado",
+    "Show": "Mostrar",
+    "Select": "Seleccionar",
+    "Save": "Guardar",
+    "Request processed successfully.": "Solicitud procesada correctamente.",
+    "Internal Server Error": "Error Interno del Servidor",
+    "Not Found": "No Encontrado",
+    "Saved successfully": "Guardado con éxito",
+    "Edited successfully": "Editado con éxito",
+    "Remove Filters": "Eliminar Filtros"
 
 }

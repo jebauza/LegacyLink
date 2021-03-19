@@ -43,12 +43,15 @@ class EmployeeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function paginate()
+    public function paginate(Request $request)
     {
         $employeesPaginate = Employee::filterByRole()
+                                    ->name($request->name)
+                                    ->email($request->email)
                                     ->with('offices','roles')
                                     ->orderBy('name')
                                     ->paginate();
+
         $employeesPaginate->setCollection(EmployeeResource::collection($employeesPaginate->getCollection())->collection);
 
         return $this->sendResponse(null, $employeesPaginate);
@@ -86,7 +89,7 @@ class EmployeeController extends Controller
             }
 
             DB::commit();
-            return $this->sendResponse("Save successfully", (new EmployeeResource($newEmployee)), 201);
+            return $this->sendResponse(__('Saved successfully'), (new EmployeeResource($newEmployee)), 201);
 
         } catch (\Exception $e) {
             DB::rollBack();
@@ -146,7 +149,7 @@ class EmployeeController extends Controller
             }
 
             DB::commit();
-            return $this->sendResponse('Update successfully', (new EmployeeResource($employee)));
+            return $this->sendResponse(__('Edited successfully'), (new EmployeeResource($employee)));
 
         } catch (\Exception $e) {
             DB::rollBack();

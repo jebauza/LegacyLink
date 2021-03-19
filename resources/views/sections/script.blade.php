@@ -74,3 +74,8 @@
 <script src="{{ asset('assets/js/scripts.bundle.js') }}"></script>
 <!--end::Global Theme Bundle-->
 <!--end::Page Scripts-->
+
+<script>
+    window._locale = "{{ app()->getLocale() }}";
+    window._translations = {!! cache('translations') !!};
+</script>

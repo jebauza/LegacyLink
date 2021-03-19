@@ -182,5 +182,8 @@ return [
         'title'                 => 'título',
         'username'              => 'usuario',
         'year'                  => 'año',
+        'role'                  => 'rol',
+        'offices'               => 'sucursales',
+        'extra_information'     => 'información extra',
     ],
 ];

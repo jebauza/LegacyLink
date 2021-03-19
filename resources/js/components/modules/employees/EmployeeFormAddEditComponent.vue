@@ -3,8 +3,9 @@
     <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 v-if="modalType=='add'" class="modal-title">Nuevo Empleado</h5>
-                <h5 v-else class="modal-title">Editar Empleado</h5>
+                <h5 v-if="modalType=='add'" class="modal-title" style="text-transform: uppercase;">{{ __('Add') }} {{ __('Employee') }}</h5>
+                <h5 v-else-if="modalType=='edit'" class="modal-title">{{ __('Edit') }} {{ __('Employee') }}</h5>
+                <h5 v-else class="modal-title">{{ __('Employee') }}</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -15,15 +16,15 @@
 
                     <div class="form-row">
                         <div class="form-group col-sm-6">
-                            <label :class="['control-label', errors.name ? 'text-danger' : '']"><b>NOMBRE</b></label>
-                            <input v-model="form.name" type="text" :class="['form-control', errors.name ? 'is-invalid' : '']" name="name" placeholder="NOMBRE" required>
+                            <label :class="['control-label', errors.name ? 'text-danger' : '']"><b>{{ __('validation.attributes.name') }}</b></label>
+                            <input v-model="form.name" type="text" :class="['form-control', errors.name ? 'is-invalid' : '']" name="name" :placeholder="__('validation.attributes.name')" required :disabled="modalType=='show'">
                             <small v-if="errors.name" class="form-control-feedback text-danger">
                                 {{ errors.name[0] }}
                             </small>
                         </div>
                         <div class="form-group col-sm-6">
-                            <label :class="['control-label', errors.last_name ? 'text-danger' : '']"><b>APELLIDOS</b></label>
-                            <input v-model="form.last_name" type="text" :class="['form-control', errors.last_name ? 'is-invalid' : '']" name="cif" placeholder="APELLIDOS" required>
+                            <label :class="['control-label', errors.last_name ? 'text-danger' : '']"><b>{{ __('validation.attributes.last_name') }}</b></label>
+                            <input v-model="form.last_name" type="text" :class="['form-control', errors.last_name ? 'is-invalid' : '']" name="last_name" :placeholder="__('validation.attributes.last_name')" required :disabled="modalType=='show'">
                             <small v-if="errors.last_name" class="form-control-feedback text-danger">
                                 {{ errors.last_name[0] }}
                             </small>
@@ -32,22 +33,30 @@
 
                     <div class="form-row">
                         <div class="form-group col-sm-6 col-md-4">
-                            <label :class="['control-label', errors.email ? 'text-danger' : '']"><b>EMAIL</b></label>
-                            <input  v-model="form.email" type="email" :class="['form-control', errors.email ? 'is-invalid' : '']" name="email" placeholder="EMAIL">
+                            <label :class="['control-label', errors.email ? 'text-danger' : '']"><b>{{ __('validation.attributes.email') }}</b></label>
+                            <input  v-model="form.email" type="email" :class="['form-control', errors.email ? 'is-invalid' : '']" name="email" :placeholder="__('validation.attributes.email')" :disabled="modalType=='show'">
                             <small v-if="errors.email" class="form-control-feedback text-danger">
                                 {{ errors.email[0] }}
                             </small>
                         </div>
                         <div class="form-group col-sm-6 col-md-4">
-                            <label :class="['control-label', errors.phone ? 'text-danger' : '']"><b>TELEFONO</b></label>
-                            <input v-model="form.phone" type="text" :class="['form-control', errors.phone ? 'is-invalid' : '']" name="phone" placeholder="TELEFONO">
+                            <label :class="['control-label', errors.phone ? 'text-danger' : '']"><b>{{ __('validation.attributes.phone') }}</b></label>
+                            <input v-model="form.phone" type="text" :class="['form-control', errors.phone ? 'is-invalid' : '']" name="phone" :placeholder="__('validation.attributes.phone')" :disabled="modalType=='show'">
                             <small v-if="errors.phone" class="form-control-feedback text-danger">
                                 {{ errors.phone[0] }}
                             </small>
                         </div>
                         <div class="form-group col-md-4">
-                            <label :class="['control-label', errors.password ? 'text-danger' : '']"><b>PASSWORD</b></label>
-                            <input  v-model="form.password" type="password" :class="['form-control', errors.password ? 'is-invalid' : '']" name="password" placeholder="PASSWORD">
+                            <label :class="['control-label', errors.password ? 'text-danger' : '']"><b>{{ __('validation.attributes.password') }}</b></label>
+                            <div class="input-group">
+                                <input  v-model="form.password" :type="[hasVisiblePassword ? 'text' : 'password']" :class="['form-control', errors.password ? 'is-invalid' : '']" name="password" :placeholder="__('validation.attributes.password')" :disabled="modalType=='show'">
+                                <div class="input-group-append">
+                                    <span @click="hasVisiblePassword = !hasVisiblePassword" class="input-group-text" style="cursor: pointer">
+                                        <i v-if="hasVisiblePassword" class="la la-eye-slash icon-lg"></i>
+                                        <i v-else class="la la-eye icon-lg"></i>
+                                    </span>
+                                </div>
+                            </div>
                             <small v-if="errors.password" class="form-control-feedback text-danger">
                                 {{ errors.password[0] }}
                             </small>
@@ -56,26 +65,32 @@
 
                     <div class="form-row">
                         <div class="form-group col-sm-6">
-                            <label :class="['control-label', errors.offices ? 'text-danger' : '']"><b>ROL</b></label>
-                            <vs-select filter placeholder="Seleciona" v-model="form.role" :key="roles.length" state="primary">
+                            <label :class="['control-label', errors.offices ? 'text-danger' : '']"><b>{{ __('validation.attributes.role') }}</b></label>
+                            <vs-select :key="roles.length" filter :placeholder="__('Select')" v-model="form.role" state="primary" :disabled="modalType=='show'">
                                 <vs-option v-for="role in roles" :key="role.id" :label="role.name" :value="role.id">
                                     {{ role.name }}
                                 </vs-option>
                             </vs-select>
+                            <small v-if="errors.role" class="form-control-feedback text-danger">
+                                {{ errors.role[0] }}
+                            </small>
                         </div>
 
                         <div v-if="form.role != 1" class="form-group col-sm-6">
-                            <label :class="['control-label', errors.offices ? 'text-danger' : '']"><b>SUCURSALES</b></label>
-                            <vs-select :key="offices.length" filter v-model="form.offices" multiple placeholder="Seleciona" state="primary">
+                            <label :class="['control-label', errors.offices ? 'text-danger' : '']"><b>{{ __('validation.attributes.offices') }}</b></label>
+                            <vs-select :key="offices.length" filter v-model="form.offices" multiple :placeholder="__('Select')" state="primary" :disabled="modalType=='show'">
                                 <vs-option v-for="office in offices" :key="office.id" :label="office.name" :value="office.id">{{ office.name }}</vs-option>
                             </vs-select>
                         </div>
+                        <small v-if="errors.offices" class="form-control-feedback text-danger">
+                            {{ errors.offices[0] }}
+                        </small>
                     </div>
 
                     <div class="form-row">
                         <div class="form-group col-12">
-                            <label :class="['control-label', errors.extra_info ? 'text-danger' : '']"><b>INFORMACION ADICIONAL</b></label>
-                            <input v-model="form.extra_info" type="text" :class="['form-control', errors.extra_info ? 'is-invalid' : '']" name="extra_info">
+                            <label :class="['control-label', errors.extra_info ? 'text-danger' : '']"><b>{{ __('validation.attributes.extra_information') }}</b></label>
+                            <input v-model="form.extra_info" type="text" :class="['form-control', errors.extra_info ? 'is-invalid' : '']" name="extra_info" :disabled="modalType=='show'" :placeholder="__('validation.attributes.extra_information')">
                             <small v-if="errors.extra_info" class="form-control-feedback text-danger">
                                 {{ errors.extra_info[0] }}
                             </small>
@@ -83,9 +98,9 @@
                     </div>
 
             </div>
-            <div class="modal-footer">
-                <button type="button" @click="actionStoreUpdate()" class="btn btn-primary">Guardar</button>
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+            <div v-if="modalType!='show'" class="modal-footer">
+                <button type="button" @click="actionStoreUpdate()" class="btn btn-primary">{{ __('Save') }}</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ __('Cancel') }}</button>
             </div>
             </form>
         </div>
@@ -117,7 +132,9 @@ export default {
                 role: '',
                 id: ''
             },
-            errors: {}
+            errors: {},
+
+            hasVisiblePassword: false
         }
     },
 
@@ -151,7 +168,7 @@ export default {
             }
 
             this.modalType = action;
-            if(this.modalType === 'edit' && employee) {
+            if( employee && (action.includes('edit') || action.includes('show'))) {
                 this.form = {
                     name: employee.name,
                     last_name: employee.last_name,
@@ -268,5 +285,8 @@ export default {
 <style>
 .vs-select-content {
     max-width: none;
+}
+form label {
+    text-transform: uppercase;
 }
 </style>

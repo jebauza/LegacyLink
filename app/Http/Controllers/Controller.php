@@ -65,7 +65,7 @@ class Controller extends BaseController
     {
     	$response = [
             'success' => true,
-            'message' => $message ?? 'Request processed successfully.',
+            'message' => $message ?? __('Request processed successfully.'),
         ];
 
         if($result !== null){
@@ -105,7 +105,7 @@ class Controller extends BaseController
     {
     	$response = [
             'success' => false,
-            'message' => 'Internal Server Error',
+            'message' => __('Internal Server Error'),
             'error' => $error
         ];
 
@@ -122,7 +122,7 @@ class Controller extends BaseController
     {
     	$response = [
             'success' => false,
-            'message' => 'Not found'
+            'message' => __('Not Found')
         ];
 
         return response()->json($response, 404);

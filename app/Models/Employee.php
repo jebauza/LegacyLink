@@ -52,7 +52,7 @@ class Employee extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-
+    // SCOPES
     public function scopeFilterByRole($query)
     {
         $authUser = auth()->user();
@@ -63,9 +63,25 @@ class Employee extends Authenticatable
                 $query->whereIn('offices.id', $offices);
             });
         }
-
     }
 
+    public function scopeName($query, $param)
+    {
+        if ($param) {
+            $query->where('name', 'like', "%$param%")
+                ->orWhere('last_name', 'like', "%$param%");
+        }
+    }
+
+    public function scopeEmail($query, $param)
+    {
+        if ($param) {
+            $query->where('email', 'like', "%$param%");
+        }
+    }
+
+
+    //RELATIONS
     /**
      * The roles that belong to the Employee
      *

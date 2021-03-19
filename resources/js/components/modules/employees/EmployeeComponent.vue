@@ -3,13 +3,13 @@
     <div class="card card-custom">
         <div class="card-header flex-wrap border-0 pt-6 pb-0">
             <div class="card-title">
-                <h3 class="card-label">Empleados
-                <span class="d-block text-muted pt-2 font-size-sm">Administración de los empleados</span></h3>
+                <h3 class="card-label">{{ __('Employees') }}
+                <span class="d-block text-muted pt-2 font-size-sm">{{ __('Employee administration') }}</span></h3>
             </div>
             <div class="card-toolbar">
                 <!--begin::Button-->
-                <button @click="openModalAddEdit('add')" class="btn btn-primary font-weight-bolder">
-                    <i class="fas fa-plus-square"></i> Nuevo
+                <button @click="openModalAddEditShow('add')" class="btn btn-primary font-weight-bolder">
+                    <i class="fas fa-plus-square"></i> {{ __('Add') }}
                 </button>
                 <!--end::Button-->
             </div>
@@ -20,20 +20,26 @@
             <div class="form-row pl-3 align-items-end">
 
                 <div class="col-sm-5 form-group">
-                    <label for="nif" ><b>NOMBRE</b></label>
-                    <input type="text" class="form-control" name="nif" placeholder="NOMBRE">
+                    <label for="name" style="text-transform: uppercase;"><b>{{ __('validation.attributes.name') }}</b></label>
+                    <input v-model="searches.name" type="text" class="form-control" name="name" :placeholder="__('validation.attributes.name')">
                 </div>
 
                 <div class="col-10 col-sm-5 form-group">
-                    <label for="date" ><b>CIF</b></label>
-                    <input type="text" class="form-control" name="nif" placeholder="CIF">
+                    <label for="email" style="text-transform: uppercase;"><b>{{ __('validation.attributes.email') }}</b></label>
+                    <input v-model="searches.email" type="text" class="form-control" name="email" :placeholder="__('validation.attributes.email')">
                 </div>
 
                 <div class="col-auto form-group">
-                    <button title="Eliminar Filtros" type="button"
-                        class="btn waves-effect waves-light btn-danger float-right font-weight-bolder">
-                        <i class="fas fa-filter"></i>
-                    </button>
+
+                    <vs-tooltip top>
+                        <button @click="clearSearches" type="button"
+                            class="btn waves-effect waves-light btn-danger float-right font-weight-bolder">
+                            <i class="fas fa-filter"></i>
+                        </button>
+                        <template #tooltip>
+                            {{ __('Remove Filters') }}
+                        </template>
+                    </vs-tooltip>
                 </div>
             </div>
 
@@ -42,11 +48,11 @@
                     <thead>
                         <tr>
                             <th>#</th>
-                            <th>NOMBRE</th>
-                            <th>APELLIDOS</th>
-                            <th>EMAIL</th>
-                            <th>TELEFONO</th>
-                            <th class="text-nowrap d-flex justify-content-center">Acciones</th>
+                            <th>{{ __('validation.attributes.name') }}</th>
+                            <th>{{ __('validation.attributes.last_name') }}</th>
+                            <th>{{ __('validation.attributes.email') }}</th>
+                            <th>{{ __('validation.attributes.phone') }}</th>
+                            <th class="text-nowrap d-flex justify-content-center">{{ __('Actions') }}</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -58,15 +64,30 @@
                             <td>{{ employee.phone }}</td>
                             <td>
                                 <div class="d-flex justify-content-center">
-                                <button  class="btn btn-sm btn-clean btn-icon mr-2" title="Edit details">
-                                    <i class="far fa-eye"></i>
-                                </button>
-                                <button class="btn btn-sm btn-clean btn-icon mr-2" @click="openModalAddEdit('edit', employee)" title="Editar">
-                                    <i class="fas fa-pen"></i>
-                                </button>
-                                <button class="btn btn-sm btn-clean btn-icon mr-2" @click="askDestroy(employee)" title="Eliminar">
-                                    <i class="fas fa-trash-alt"></i>
-                                </button>
+                                    <vs-tooltip bottom>
+                                        <button  class="btn btn-sm btn-clean btn-icon mr-2" @click="openModalAddEditShow('show', employee)">
+                                            <i class="far fa-eye"></i>
+                                        </button>
+                                        <template #tooltip>
+                                            {{ __('Show') }}
+                                        </template>
+                                    </vs-tooltip>
+                                    <vs-tooltip bottom>
+                                        <button class="btn btn-sm btn-clean btn-icon mr-2" @click="openModalAddEditShow('edit', employee)">
+                                            <i class="fas fa-pen"></i>
+                                        </button>
+                                        <template #tooltip>
+                                            {{ __('Edit') }}
+                                        </template>
+                                    </vs-tooltip>
+                                    <vs-tooltip bottom>
+                                        <button class="btn btn-sm btn-clean btn-icon mr-2" @click="askDestroy(employee)">
+                                            <i class="fas fa-trash-alt"></i>
+                                        </button>
+                                        <template #tooltip>
+                                            {{ __('Delete') }}
+                                        </template>
+                                    </vs-tooltip>
                                 </div>
                             </td>
                         </tr>
@@ -76,7 +97,7 @@
                 <pagination :class="'mt-2'" :align="'center'" :limit="5" :data=" employees" @pagination-change-page="getEmployees"></pagination>
             </div>
             <div v-else class="alert alert-warning mx-2 text-center" style="margin-top: 18px;">
-                No hay ningún elemento para mostrar
+                {{ __('There is no item to display') }}
             </div>
 
         </div>
@@ -97,9 +118,23 @@ export default {
         this.getEmployees();
     },
 
+    watch: {
+        'searches.name': function (newValue, oldValue) {
+            this.getEmployees();
+        },
+        'searches.email': function (newValue, oldValue) {
+            this.getEmployees();
+        }
+    },
+
     data() {
         return {
-            employees: {data:[]}
+            employees: {data:[]},
+
+            searches: {
+                name: '',
+                email: ''
+            },
         }
     },
 
@@ -110,11 +145,12 @@ export default {
                 type: 'points',
                 color: '#187de4',
                 // background: '#7a76cb',
-                text: 'Cargando...'
+                text: this.__('Loading') + '...'
             });
 
-            axios.get(url)
-            .then(res => {
+            axios.get(url, {
+                params: this.searches
+            }).then(res => {
                 loading.close();
                 this.employees = res.data.data;
             })
@@ -123,7 +159,7 @@ export default {
                 console.error(err);
             })
         },
-        openModalAddEdit(action, employee = null) {
+        openModalAddEditShow(action, employee = null) {
             this.$refs.employeeFormAddEdit.showForm(action, employee);
         },
         updateList(action = null) {
@@ -132,14 +168,14 @@ export default {
         askDestroy(employee) {
             const self = this;
             Swal.fire({
-                title: '¿Estas seguro que deseas eliminar este registro?',
-                text: "Si eliminas este registro, no podras recuperarlo",
+                title: this.__('Are you sure you want to delete this record?'),
+                text: this.__('If you delete this record, you will not be able to recover it'),
                 icon: 'warning',
                 showCancelButton: true,
                 confirmButtonColor: '#187de4',
                 cancelButtonColor: '#d33',
-                confirmButtonText: '¡Si, estoy seguro!',
-                cancelButtonText: "Cancelar",
+                confirmButtonText: this.__("Yes, I'm sure!"),
+                cancelButtonText: this.__('Cancel'),
             }).then((result) => {
                 if (result.isConfirmed) {
                     self.destroy(employee.id);
@@ -152,7 +188,7 @@ export default {
                 type: 'points',
                 color: '#187de4',
                 // background: '#7a76cb',
-                text: 'Eliminando...'
+                text: this.__('Deleting') + '...'
             });
 
             axios.delete(url)
@@ -177,12 +213,20 @@ export default {
                     });
                 }
             });
-        }
+        },
+        clearSearches() {
+            this.searches = {
+                name: '',
+                email: '',
+            };
+        },
 
     }
 }
 </script>
 
 <style>
-
+th {
+    text-transform: uppercase;
+}
 </style>
