@@ -3,8 +3,8 @@
     <div class="card card-custom">
         <div class="card-header flex-wrap border-0 pt-6 pb-0">
             <div class="card-title">
-                <h3 class="card-label">{{ __('Branch Offices') }}
-                <span class="d-block text-muted pt-2 font-size-sm">{{ __('Office administration') }}</span></h3>
+                <h3 class="card-label">Webs
+                <span class="d-block text-muted pt-2 font-size-sm">{{ __('Employee administration') }}</span></h3>
             </div>
             <div class="card-toolbar">
                 <!--begin::Button-->
@@ -25,8 +25,8 @@
                 </div>
 
                 <div class="col-10 col-sm-5 form-group">
-                    <label for="email" style="text-transform: uppercase;"><b>{{ __('validation.attributes.address') }}</b></label>
-                    <input v-model="searches.address" type="text" class="form-control" name="email" :placeholder="__('validation.attributes.address')">
+                    <label for="email" style="text-transform: uppercase;"><b>{{ __('validation.attributes.email') }}</b></label>
+                    <input v-model="searches.email" type="text" class="form-control" name="email" :placeholder="__('validation.attributes.email')">
                 </div>
 
                 <div class="col-auto form-group">
@@ -43,33 +43,23 @@
                 </div>
             </div>
 
-            <div v-if="offices.data.length" class="table-responsive">
+            <div v-if="deceasedProfiles.data.length" class="table-responsive">
                 <table class="table table-hover">
                     <thead>
                         <tr>
                             <th>#</th>
-                            <th>CIF</th>
                             <th>{{ __('validation.attributes.name') }}</th>
-                            <th>{{ __('validation.attributes.address') }}</th>
-                            <th>{{ __('validation.attributes.email') }}</th>
-                            <th>{{ __('validation.attributes.phone') }}</th>
-                            <th>{{ __('validation.attributes.contact_person') }}</th>
                             <th class="text-nowrap d-flex justify-content-center">{{ __('Actions') }}</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr v-for="(office, index) in offices.data" :key="index">
+                        <tr v-for="(profile, index) in deceasedProfiles.data" :key="index">
                             <th>{{ index + 1 }}</th>
-                            <td>{{ office.cif }}</td>
-                            <td>{{ office.name }}</td>
-                            <td>{{ office.address }}</td>
-                            <td>{{ office.email }}</td>
-                            <td>{{ office.phone }}</td>
-                            <td>{{ office.contact_person }}</td>
+                            <td>{{ profile.name }}</td>
                             <td>
                                 <div class="d-flex justify-content-center">
                                     <vs-tooltip bottom>
-                                        <button  class="btn btn-sm btn-clean btn-icon mr-2" @click="openModalAddEditShow('show', employee)">
+                                        <button  class="btn btn-sm btn-clean btn-icon mr-2" @click="openModalAddEditShow('show', profile)">
                                             <i class="far fa-eye"></i>
                                         </button>
                                         <template #tooltip>
@@ -77,7 +67,7 @@
                                         </template>
                                     </vs-tooltip>
                                     <vs-tooltip bottom>
-                                        <button class="btn btn-sm btn-clean btn-icon mr-2" @click="openModalAddEditShow('edit', employee)">
+                                        <button class="btn btn-sm btn-clean btn-icon mr-2" @click="openModalAddEditShow('edit', profile)">
                                             <i class="fas fa-pen"></i>
                                         </button>
                                         <template #tooltip>
@@ -85,7 +75,7 @@
                                         </template>
                                     </vs-tooltip>
                                     <vs-tooltip bottom>
-                                        <button class="btn btn-sm btn-clean btn-icon mr-2" @click="askDestroy(employee)">
+                                        <button class="btn btn-sm btn-clean btn-icon mr-2" @click="askDestroy(profile)">
                                             <i class="fas fa-trash-alt"></i>
                                         </button>
                                         <template #tooltip>
@@ -98,7 +88,7 @@
                     </tbody>
                 </table>
 
-                <pagination :class="'mt-2'" :align="'center'" :limit="5" :data="offices" @pagination-change-page="getOffices"></pagination>
+                <pagination :class="'mt-2'" :align="'center'" :limit="5" :data="deceasedProfiles" @pagination-change-page="getDeceasedProfiles"></pagination>
             </div>
             <div v-else class="alert alert-warning mx-2 text-center" style="margin-top: 18px;">
                 {{ __('There is no item to display') }}
@@ -106,49 +96,48 @@
 
         </div>
 
-        <office-form-add-edit ref="officeFormAddEdit" @updateOfficeList="updateList()"></office-form-add-edit>
+        <deceased-profile-form-add-edit ref="deceasedProfileFormAddEdit" @updateDeceasedProfileList="updateList()"></deceased-profile-form-add-edit>
 
     </div>
 <!--end::Card-->
 </template>
 
 <script>
-import OfficeFormAddEdit from './OfficeFormAddEditComponent';
+import DeceasedProfileFormAddEdit from './DeceasedProfileFormAddEditComponent';
 
 export default {
-    components: {OfficeFormAddEdit},
+    components: {DeceasedProfileFormAddEdit},
 
     created() {
-        this.getOffices();
+        this.getDeceasedProfiles();
     },
 
     watch: {
         'searches.name': function (newValue, oldValue) {
-            this.getOffices();
+            this.getDeceasedProfiles();
         },
-        'searches.address': function (newValue, oldValue) {
-            this.getOffices();
+        'searches.email': function (newValue, oldValue) {
+            this.getDeceasedProfiles();
         }
     },
 
     data() {
         return {
-            offices: {data:[]},
+            deceasedProfiles: {data:[]},
 
             searches: {
                 name: '',
-                address: ''
+                email: ''
             },
         }
     },
 
     methods: {
-        getOffices(page = 1) {
-            const url = `admin/ajax/offices/paginate?page=${page}`;
+        getDeceasedProfiles(page = 1) {
+            const url = `admin/ajax/deceased_profiles/paginate?page=${page}`;
             const loading = this.$vs.loading({
                 type: 'points',
                 color: '#187de4',
-                // background: '#7a76cb',
                 text: this.__('Loading') + '...'
             });
 
@@ -156,20 +145,20 @@ export default {
                 params: this.searches
             }).then(res => {
                 loading.close();
-                this.offices = res.data.data;
+                this.deceasedProfiles = res.data.data;
             })
             .catch(err => {
                 loading.close();
                 console.error(err);
             })
         },
-        openModalAddEditShow(action, office = null) {
-            this.$refs.officeFormAddEdit.showForm(action, office);
+        openModalAddEditShow(action, employee = null) {
+            this.$refs.deceasedProfileFormAddEdit.showForm(action, employee);
         },
         updateList(action = null) {
-            this.getOffices(this.offices.current_page ?? 1 );
+            this.getDeceasedProfiles(this.deceasedProfiles.current_page ?? 1 );
         },
-        askDestroy(office) {
+        /* askDestroy(employee) {
             const self = this;
             Swal.fire({
                 title: this.__('Are you sure you want to delete this record?'),
@@ -182,16 +171,15 @@ export default {
                 cancelButtonText: this.__('Cancel'),
             }).then((result) => {
                 if (result.isConfirmed) {
-                    self.destroy(office.id);
+                    self.destroy(employee.id);
                 }
             });
         },
         destroy(id) {
-            const url = `/admin/ajax/offices/${id}/destroy`;
+            const url = `/admin/ajax/employees/${id}/destroy`;
             const loading = this.$vs.loading({
                 type: 'points',
                 color: '#187de4',
-                // background: '#7a76cb',
                 text: this.__('Deleting') + '...'
             });
 
@@ -204,7 +192,7 @@ export default {
                     timer: 1500,
                     showConfirmButton: false
                 });
-                this.getOffices();
+                this.getEmployees();
             }).catch(err => {
                 loading.close();
                 if(err.response.data.message) {
@@ -217,14 +205,15 @@ export default {
                     });
                 }
             });
-        },
+        }, */
         clearSearches() {
             this.searches = {
                 name: '',
-                address: '',
+                email: '',
             };
         },
-    },
+
+    }
 }
 </script>
 

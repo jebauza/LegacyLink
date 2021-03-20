@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class DeceasedProfile extends Model
 {
@@ -24,6 +25,19 @@ class DeceasedProfile extends Model
         'birthday' => 'date',
         'death' => 'date',
     ];
+
+    // SCOPES
+    public function scopeFilterByRole($query)
+    {
+        $authUser = auth()->user();
+
+        if (!$authUser->hasRole('Super Admin')) {
+            $offices = $authUser->offices()->pluck('offices.id');
+            return $query->whereHas('office', function (Builder $query) use ($offices){
+                $query->whereIn('office_id', $offices);
+            });
+        }
+    }
 
     public function ceremonies()
     {
