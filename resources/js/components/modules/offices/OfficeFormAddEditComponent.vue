@@ -3,8 +3,9 @@
     <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 v-if="modalType=='add'" class="modal-title">Nueva Sucursal</h5>
-                <h5 v-else class="modal-title">Editar Sucursal</h5>
+                <h5 v-if="modalType=='add'" class="modal-title" style="text-transform: uppercase;">{{ __('Add') }} {{ __('Branch Office') }}</h5>
+                <h5 v-else-if="modalType=='edit'" class="modal-title">{{ __('Edit') }} {{ __('Branch Office') }}</h5>
+                <h5 v-else class="modal-title">{{ __('Branch Office') }}</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -21,29 +22,29 @@
                             </small>
                         </div>
                         <div class="form-group col-sm-6 col-lg-3">
-                            <label :class="['control-label', errors.name ? 'text-danger' : '']"><b>NOMBRE</b></label>
-                            <input v-model="form.name" type="text" :class="['form-control', errors.name ? 'is-invalid' : '']" name="name" placeholder="NOMBRE" required>
+                            <label :class="['control-label', errors.name ? 'text-danger' : '']"><b>{{ __('validation.attributes.name') }}</b></label>
+                            <input v-model="form.name" type="text" :class="['form-control', errors.name ? 'is-invalid' : '']" name="name" :placeholder="__('validation.attributes.name')" required>
                             <small v-if="errors.name" class="form-control-feedback text-danger">
                                 {{ errors.name[0] }}
                             </small>
                         </div>
                         <div class="form-group col-6 col-md-6 col-lg-2">
-                            <label :class="['control-label', errors.email ? 'text-danger' : '']"><b>EMAIL</b></label>
-                            <input  v-model="form.email" type="email" :class="['form-control', errors.email ? 'is-invalid' : '']" name="email" placeholder="EMAIL">
+                            <label :class="['control-label', errors.email ? 'text-danger' : '']"><b>{{ __('validation.attributes.email') }}</b></label>
+                            <input  v-model="form.email" type="email" :class="['form-control', errors.email ? 'is-invalid' : '']" name="email" :placeholder="__('validation.attributes.email')">
                             <small v-if="errors.email" class="form-control-feedback text-danger">
                                 {{ errors.email[0] }}
                             </small>
                         </div>
                         <div class="form-group col-6 col-md-6 col-lg-2">
-                            <label :class="['control-label', errors.phone ? 'text-danger' : '']"><b>TELEFONO</b></label>
-                            <input v-model="form.phone" type="text" :class="['form-control', errors.phone ? 'is-invalid' : '']" name="phone">
+                            <label :class="['control-label', errors.phone ? 'text-danger' : '']"><b>{{ __('validation.attributes.phone') }}</b></label>
+                            <input v-model="form.phone" type="text" :class="['form-control', errors.phone ? 'is-invalid' : '']" name="phone" :placeholder="__('validation.attributes.phone')">
                             <small v-if="errors.phone" class="form-control-feedback text-danger">
                                 {{ errors.phone[0] }}
                             </small>
                         </div>
                         <div class="form-group col-md-12 col-lg-3">
-                            <label :class="['control-label', errors.contact_person ? 'text-danger' : '']"><b>GERENTE</b></label>
-                            <input v-model="form.contact_person" type="text" :class="['form-control', errors.contact_person ? 'is-invalid' : '']" name="contact_person">
+                            <label :class="['control-label', errors.contact_person ? 'text-danger' : '']"><b>{{ __('validation.attributes.contact_person') }}</b></label>
+                            <input v-model="form.contact_person" type="text" :class="['form-control', errors.contact_person ? 'is-invalid' : '']" name="contact_person" :placeholder="__('validation.attributes.contact_person')">
                             <small v-if="errors.phone" class="form-control-feedback text-danger">
                                 {{ errors.phone[0] }}
                             </small>
@@ -53,15 +54,15 @@
 
                     <div class="form-row">
                         <div class="form-group col-md-6">
-                            <label :class="['control-label', errors.address ? 'text-danger' : '']"><b>DIRECCION</b></label>
-                            <input v-model="form.address" type="text" :class="['form-control', errors.address ? 'is-invalid' : '']" name="address" placeholder="DIRECCION">
+                            <label :class="['control-label', errors.address ? 'text-danger' : '']"><b>{{ __('validation.attributes.address') }}</b></label>
+                            <input v-model="form.address" type="text" :class="['form-control', errors.address ? 'is-invalid' : '']" name="address" :placeholder="__('validation.attributes.address')">
                             <small v-if="errors.address" class="form-control-feedback text-danger">
                                 {{ errors.address[0] }}
                             </small>
                         </div>
                         <div class="form-group col-md-6">
-                            <label :class="['control-label', errors.extra_address ? 'text-danger' : '']"><b>DIRECCION EXTRA</b></label>
-                            <input v-model="form.extra_address" type="text" :class="['form-control', errors.extra_address ? 'is-invalid' : '']" name="extra_address" placeholder="DIRECCION EXTRA">
+                            <label :class="['control-label', errors.extra_address ? 'text-danger' : '']"><b>{{ __('validation.attributes.extra_address') }}</b></label>
+                            <input v-model="form.extra_address" type="text" :class="['form-control', errors.extra_address ? 'is-invalid' : '']" name="extra_address" :placeholder="__('validation.attributes.extra_address')">
                             <small v-if="errors.extra_address" class="form-control-feedback text-danger">
                                 {{ errors.extra_address[0] }}
                             </small>
@@ -70,29 +71,29 @@
 
                     <div class="form-row">
                         <div class="form-group col-6 col-md-3">
-                            <label :class="['control-label', errors.city ? 'text-danger' : '']"><b>CIUDAD</b></label>
-                            <input v-model="form.city" type="text" :class="['form-control', errors.city ? 'is-invalid' : '']" name="city">
+                            <label :class="['control-label', errors.city ? 'text-danger' : '']"><b>{{ __('validation.attributes.city') }}</b></label>
+                            <input v-model="form.city" type="text" :class="['form-control', errors.city ? 'is-invalid' : '']" name="city" :placeholder="__('validation.attributes.city')">
                             <small v-if="errors.city" class="form-control-feedback text-danger">
                                 {{ errors.city[0] }}
                             </small>
                         </div>
                         <div class="form-group col-6 col-md-3">
                             <label :class="['control-label', errors.cp ? 'text-danger' : '']"><b>CP</b></label>
-                            <input v-model="form.cp" type="text" :class="['form-control', errors.cp ? 'is-invalid' : '']" name="cp">
+                            <input v-model="form.cp" type="text" :class="['form-control', errors.cp ? 'is-invalid' : '']" name="cp" placeholder="CP">
                             <small v-if="errors.cp" class="form-control-feedback text-danger">
                                 {{ errors.cp[0] }}
                             </small>
                         </div>
                         <div class="form-group col-6 col-md-3">
-                            <label :class="['control-label', errors.province ? 'text-danger' : '']"><b>PROVINCIA</b></label>
-                            <input v-model="form.province" type="text" :class="['form-control', errors.province ? 'is-invalid' : '']" name="province">
+                            <label :class="['control-label', errors.province ? 'text-danger' : '']"><b>{{ __('validation.attributes.state') }}</b></label>
+                            <input v-model="form.province" type="text" :class="['form-control', errors.province ? 'is-invalid' : '']" name="province" :placeholder="__('validation.attributes.state')">
                             <small v-if="errors.province" class="form-control-feedback text-danger">
                                 {{ errors.province[0] }}
                             </small>
                         </div>
                         <div class="form-group col-6 col-md-3">
-                            <label :class="['control-label', errors.country ? 'text-danger' : '']"><b>PAIS</b></label>
-                            <input v-model="form.country" type="text" :class="['form-control', errors.country ? 'is-invalid' : '']" name="country">
+                            <label :class="['control-label', errors.country ? 'text-danger' : '']"><b>{{ __('validation.attributes.country') }}</b></label>
+                            <input v-model="form.country" type="text" :class="['form-control', errors.country ? 'is-invalid' : '']" name="country" :placeholder="__('validation.attributes.country')">
                             <small v-if="errors.country" class="form-control-feedback text-danger">
                                 {{ errors.country[0] }}
                             </small>
@@ -101,8 +102,8 @@
 
             </div>
             <div class="modal-footer">
-                <button type="submit" class="btn btn-primary">Guardar</button>
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                <button type="submit" class="btn btn-primary">{{ __('Save') }}</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ __('Cancel') }}</button>
             </div>
             </form>
         </div>
@@ -228,7 +229,7 @@ export default {
                 type: 'points',
                 color: '#187de4',
                 // background: '#7a76cb',
-                text: 'Cargando...'
+                text: this.__('Loading') + '...'
             });
 
             axios.put(url, this.form)
@@ -263,5 +264,7 @@ export default {
 </script>
 
 <style>
-
+form label {
+    text-transform: uppercase;
+}
 </style>

@@ -30,9 +30,11 @@ class OfficeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $offices = Office::filterByRole()->orderBy('name')->get();
+        $offices = Office::filterByRole()
+                    ->orderBy('name')
+                    ->get();
 
         return $this->sendResponse(null, OfficeResource::collection($offices));
     }
@@ -42,9 +44,14 @@ class OfficeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function paginate()
+    public function paginate(Request $request)
     {
-        $officesPaginate = Office::orderBy('name')->paginate();
+        $officesPaginate = Office::filterByRole()
+                            ->name($request->name)
+                            ->address($request->address)
+                            ->orderBy('name')
+                            ->paginate();
+
         $officesPaginate->setCollection(OfficeResource::collection($officesPaginate->getCollection())->collection);
 
         return $this->sendResponse(null, $officesPaginate);
@@ -66,7 +73,7 @@ class OfficeController extends Controller
             $newOffice->save();
 
             DB::commit();
-            return $this->sendResponse("Save successfully", (new OfficeResource($newOffice)), 201);
+            return $this->sendResponse(__('Saved successfully'), (new OfficeResource($newOffice)), 201);
 
         } catch (\Exception $e) {
             DB::rollBack();
@@ -109,7 +116,7 @@ class OfficeController extends Controller
             $office->save();
 
             DB::commit();
-            return $this->sendResponse('Update successfully', (new OfficeResource($office)));
+            return $this->sendResponse(__('Updated successfully'), (new OfficeResource($office)));
 
         } catch (\Exception $e) {
             DB::rollBack();
@@ -134,7 +141,7 @@ class OfficeController extends Controller
             $office->delete();
 
             DB::commit();
-            return $this->sendResponse('Deleted successfully', (new OfficeResource($office)));
+            return $this->sendResponse(__('Deleted successfully'), (new OfficeResource($office)));
 
         } catch (\Exception $e) {
             DB::rollBack();

@@ -159,7 +159,7 @@ return [
         'date'                  => 'fecha',
         'day'                   => 'día',
         'description'           => 'descripción',
-        'email'                 => 'correo electrónico',
+        'email'                 => 'correo',
         'excerpt'               => 'extracto',
         'first_name'            => 'nombre',
         'gender'                => 'género',
@@ -184,6 +184,12 @@ return [
         'year'                  => 'año',
         'role'                  => 'rol',
         'offices'               => 'sucursales',
-        'extra_information'     => 'información extra',
+        'extra_info'            => 'información extra',
+        'contact_person'        => 'pers. contacto',
+        'extra_address'         => 'dirección extra',
+        'city'                  => 'ciudad',
+        'state'                 => 'provincia',
+        'country'               => 'país',
+
     ],
 ];

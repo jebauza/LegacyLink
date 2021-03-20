@@ -149,7 +149,7 @@ class EmployeeController extends Controller
             }
 
             DB::commit();
-            return $this->sendResponse(__('Edited successfully'), (new EmployeeResource($employee)));
+            return $this->sendResponse(__('Updated successfully'), (new EmployeeResource($employee)));
 
         } catch (\Exception $e) {
             DB::rollBack();

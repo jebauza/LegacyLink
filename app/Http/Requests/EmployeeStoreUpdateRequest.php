@@ -54,12 +54,12 @@ class EmployeeStoreUpdateRequest extends FormRequest
     public function checkOffices($validator)
     {
         if (empty($this->offices)) {
-            $validator->errors()->add('offices', 'Selecione al menos una officina');
+            $validator->errors()->add('offices', __('You must select at least one :office', ['office' => __('Branch Office')]));
         }
 
         $offices = $this->user()->offices()->whereIn('offices.id', $this->offices)->get();
         if ($offices->count() != count($this->offices)) {
-            $validator->errors()->add('offices', 'No tiene permisos para agregar el emplado a la sucursal selecionada');
+            $validator->errors()->add('offices', __('The selected :office is invalid', ['office' => __('Branch Office')]));
         }
     }
 
@@ -67,7 +67,7 @@ class EmployeeStoreUpdateRequest extends FormRequest
     {
         $canAssign = $this->user()->getCanAssignRoles()->pluck('id')->contains($this->role);
         if (!$canAssign) {
-            $validator->errors()->add('role', 'No tiene permisos para asignar este rol');
+            $validator->errors()->add('role', __('The selected role is invalid'));
         }
     }
 }
