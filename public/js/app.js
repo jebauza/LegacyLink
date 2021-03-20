@@ -2302,7 +2302,7 @@ __webpack_require__.r(__webpack_exports__);
         type: 'points',
         color: '#187de4',
         // background: '#7a76cb',
-        text: 'Cargando...'
+        text: this.__('Loading') + '...'
       });
       axios.post(url, this.form).then(function (res) {
         loading.close();
@@ -2482,6 +2482,27 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {
@@ -2490,10 +2511,22 @@ __webpack_require__.r(__webpack_exports__);
   created: function created() {
     this.getOffices();
   },
+  watch: {
+    'searches.name': function searchesName(newValue, oldValue) {
+      this.getOffices();
+    },
+    'searches.address': function searchesAddress(newValue, oldValue) {
+      this.getOffices();
+    }
+  },
   data: function data() {
     return {
       offices: {
         data: []
+      },
+      searches: {
+        name: '',
+        address: ''
       }
     };
   },
@@ -2507,9 +2540,11 @@ __webpack_require__.r(__webpack_exports__);
         type: 'points',
         color: '#187de4',
         // background: '#7a76cb',
-        text: 'Cargando...'
+        text: this.__('Loading') + '...'
       });
-      axios.get(url).then(function (res) {
+      axios.get(url, {
+        params: this.searches
+      }).then(function (res) {
         loading.close();
         _this.offices = res.data.data;
       })["catch"](function (err) {
@@ -2517,7 +2552,7 @@ __webpack_require__.r(__webpack_exports__);
         console.error(err);
       });
     },
-    openModalAddEdit: function openModalAddEdit(action) {
+    openModalAddEditShow: function openModalAddEditShow(action) {
       var office = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
       this.$refs.officeFormAddEdit.showForm(action, office);
     },
@@ -2530,14 +2565,14 @@ __webpack_require__.r(__webpack_exports__);
     askDestroy: function askDestroy(office) {
       var self = this;
       Swal.fire({
-        title: '¿Estas seguro que deseas eliminar este registro?',
-        text: "Si eliminas este registro, no podras recuperarlo",
+        title: this.__('Are you sure you want to delete this record?'),
+        text: this.__('If you delete this record, you will not be able to recover it'),
         icon: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#187de4',
         cancelButtonColor: '#d33',
-        confirmButtonText: '¡Si, estoy seguro!',
-        cancelButtonText: "Cancelar"
+        confirmButtonText: this.__("Yes, I'm sure!"),
+        cancelButtonText: this.__('Cancel')
       }).then(function (result) {
         if (result.isConfirmed) {
           self.destroy(office.id);
@@ -2552,7 +2587,7 @@ __webpack_require__.r(__webpack_exports__);
         type: 'points',
         color: '#187de4',
         // background: '#7a76cb',
-        text: 'Eliminando...'
+        text: this.__('Deleting') + '...'
       });
       axios["delete"](url).then(function (res) {
         loading.close();
@@ -2577,6 +2612,12 @@ __webpack_require__.r(__webpack_exports__);
           });
         }
       });
+    },
+    clearSearches: function clearSearches() {
+      this.searches = {
+        name: '',
+        address: ''
+      };
     }
   }
 });
@@ -2594,6 +2635,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+//
 //
 //
 //
@@ -2829,7 +2871,7 @@ __webpack_require__.r(__webpack_exports__);
         type: 'points',
         color: '#187de4',
         // background: '#7a76cb',
-        text: 'Cargando...'
+        text: this.__('Loading') + '...'
       });
       axios.put(url, this.form).then(function (res) {
         loading.close();
@@ -7439,7 +7481,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\nth {\n    text-transform: uppercase;\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\nth {\r\n    text-transform: uppercase;\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -7464,6 +7506,54 @@ __webpack_require__.r(__webpack_exports__);
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
 ___CSS_LOADER_EXPORT___.push([module.id, "\n.vs-select-content {\n    max-width: none;\n}\nform label {\n    text-transform: uppercase;\n}\n", ""]);
+// Exports
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
+
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/dist/cjs.js??clonedRuleSet-8[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-8[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/modules/offices/OfficeComponent.vue?vue&type=style&index=0&lang=css&":
+/*!**********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js??clonedRuleSet-8[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-8[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/modules/offices/OfficeComponent.vue?vue&type=style&index=0&lang=css& ***!
+  \**********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__);
+// Imports
+
+var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
+// Module
+___CSS_LOADER_EXPORT___.push([module.id, "\nth {\n    text-transform: uppercase;\n}\n", ""]);
+// Exports
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
+
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/dist/cjs.js??clonedRuleSet-8[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-8[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/modules/offices/OfficeFormAddEditComponent.vue?vue&type=style&index=0&lang=css&":
+/*!*********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js??clonedRuleSet-8[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-8[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/modules/offices/OfficeFormAddEditComponent.vue?vue&type=style&index=0&lang=css& ***!
+  \*********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__);
+// Imports
+
+var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
+// Module
+___CSS_LOADER_EXPORT___.push([module.id, "\nform label {\n    text-transform: uppercase;\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -39157,6 +39247,66 @@ var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js
 
 /***/ }),
 
+/***/ "./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-8[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-8[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/modules/offices/OfficeComponent.vue?vue&type=style&index=0&lang=css&":
+/*!**************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-8[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-8[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/modules/offices/OfficeComponent.vue?vue&type=style&index=0&lang=css& ***!
+  \**************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !../../../../../node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js */ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _node_modules_css_loader_dist_cjs_js_clonedRuleSet_8_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_8_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_OfficeComponent_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !!../../../../../node_modules/css-loader/dist/cjs.js??clonedRuleSet-8[0].rules[0].use[1]!../../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../../node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-8[0].rules[0].use[2]!../../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./OfficeComponent.vue?vue&type=style&index=0&lang=css& */ "./node_modules/css-loader/dist/cjs.js??clonedRuleSet-8[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-8[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/modules/offices/OfficeComponent.vue?vue&type=style&index=0&lang=css&");
+
+            
+
+var options = {};
+
+options.insert = "head";
+options.singleton = false;
+
+var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default()(_node_modules_css_loader_dist_cjs_js_clonedRuleSet_8_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_8_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_OfficeComponent_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_1__.default, options);
+
+
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_css_loader_dist_cjs_js_clonedRuleSet_8_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_8_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_OfficeComponent_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_1__.default.locals || {});
+
+/***/ }),
+
+/***/ "./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-8[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-8[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/modules/offices/OfficeFormAddEditComponent.vue?vue&type=style&index=0&lang=css&":
+/*!*************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-8[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-8[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/modules/offices/OfficeFormAddEditComponent.vue?vue&type=style&index=0&lang=css& ***!
+  \*************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !../../../../../node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js */ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _node_modules_css_loader_dist_cjs_js_clonedRuleSet_8_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_8_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_OfficeFormAddEditComponent_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !!../../../../../node_modules/css-loader/dist/cjs.js??clonedRuleSet-8[0].rules[0].use[1]!../../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../../node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-8[0].rules[0].use[2]!../../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./OfficeFormAddEditComponent.vue?vue&type=style&index=0&lang=css& */ "./node_modules/css-loader/dist/cjs.js??clonedRuleSet-8[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-8[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/modules/offices/OfficeFormAddEditComponent.vue?vue&type=style&index=0&lang=css&");
+
+            
+
+var options = {};
+
+options.insert = "head";
+options.singleton = false;
+
+var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default()(_node_modules_css_loader_dist_cjs_js_clonedRuleSet_8_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_8_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_OfficeFormAddEditComponent_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_1__.default, options);
+
+
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_css_loader_dist_cjs_js_clonedRuleSet_8_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_8_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_OfficeFormAddEditComponent_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_1__.default.locals || {});
+
+/***/ }),
+
 /***/ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js":
 /*!****************************************************************************!*\
   !*** ./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js ***!
@@ -39531,15 +39681,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _OfficeComponent_vue_vue_type_template_id_ecc13fb4___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./OfficeComponent.vue?vue&type=template&id=ecc13fb4& */ "./resources/js/components/modules/offices/OfficeComponent.vue?vue&type=template&id=ecc13fb4&");
 /* harmony import */ var _OfficeComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./OfficeComponent.vue?vue&type=script&lang=js& */ "./resources/js/components/modules/offices/OfficeComponent.vue?vue&type=script&lang=js&");
-/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+/* harmony import */ var _OfficeComponent_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./OfficeComponent.vue?vue&type=style&index=0&lang=css& */ "./resources/js/components/modules/offices/OfficeComponent.vue?vue&type=style&index=0&lang=css&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! !../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
 
+;
 
 
 /* normalize component */
-;
-var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__.default)(
+
+var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__.default)(
   _OfficeComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__.default,
   _OfficeComponent_vue_vue_type_template_id_ecc13fb4___WEBPACK_IMPORTED_MODULE_0__.render,
   _OfficeComponent_vue_vue_type_template_id_ecc13fb4___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
@@ -39570,15 +39722,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _OfficeFormAddEditComponent_vue_vue_type_template_id_6c8a3886___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./OfficeFormAddEditComponent.vue?vue&type=template&id=6c8a3886& */ "./resources/js/components/modules/offices/OfficeFormAddEditComponent.vue?vue&type=template&id=6c8a3886&");
 /* harmony import */ var _OfficeFormAddEditComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./OfficeFormAddEditComponent.vue?vue&type=script&lang=js& */ "./resources/js/components/modules/offices/OfficeFormAddEditComponent.vue?vue&type=script&lang=js&");
-/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+/* harmony import */ var _OfficeFormAddEditComponent_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./OfficeFormAddEditComponent.vue?vue&type=style&index=0&lang=css& */ "./resources/js/components/modules/offices/OfficeFormAddEditComponent.vue?vue&type=style&index=0&lang=css&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! !../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
 
+;
 
 
 /* normalize component */
-;
-var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__.default)(
+
+var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__.default)(
   _OfficeFormAddEditComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__.default,
   _OfficeFormAddEditComponent_vue_vue_type_template_id_6c8a3886___WEBPACK_IMPORTED_MODULE_0__.render,
   _OfficeFormAddEditComponent_vue_vue_type_template_id_6c8a3886___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
@@ -39686,6 +39840,32 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/modules/offices/OfficeComponent.vue?vue&type=style&index=0&lang=css&":
+/*!******************************************************************************************************!*\
+  !*** ./resources/js/components/modules/offices/OfficeComponent.vue?vue&type=style&index=0&lang=css& ***!
+  \******************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_style_loader_dist_cjs_js_node_modules_css_loader_dist_cjs_js_clonedRuleSet_8_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_8_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_OfficeComponent_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/style-loader/dist/cjs.js!../../../../../node_modules/css-loader/dist/cjs.js??clonedRuleSet-8[0].rules[0].use[1]!../../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../../node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-8[0].rules[0].use[2]!../../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./OfficeComponent.vue?vue&type=style&index=0&lang=css& */ "./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-8[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-8[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/modules/offices/OfficeComponent.vue?vue&type=style&index=0&lang=css&");
+
+
+/***/ }),
+
+/***/ "./resources/js/components/modules/offices/OfficeFormAddEditComponent.vue?vue&type=style&index=0&lang=css&":
+/*!*****************************************************************************************************************!*\
+  !*** ./resources/js/components/modules/offices/OfficeFormAddEditComponent.vue?vue&type=style&index=0&lang=css& ***!
+  \*****************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_style_loader_dist_cjs_js_node_modules_css_loader_dist_cjs_js_clonedRuleSet_8_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_8_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_OfficeFormAddEditComponent_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/style-loader/dist/cjs.js!../../../../../node_modules/css-loader/dist/cjs.js??clonedRuleSet-8[0].rules[0].use[1]!../../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../../node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-8[0].rules[0].use[2]!../../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./OfficeFormAddEditComponent.vue?vue&type=style&index=0&lang=css& */ "./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-8[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-8[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/modules/offices/OfficeFormAddEditComponent.vue?vue&type=style&index=0&lang=css&");
+
+
+/***/ }),
+
 /***/ "./resources/js/components/modules/employees/EmployeeComponent.vue?vue&type=template&id=1b25467c&":
 /*!********************************************************************************************************!*\
   !*** ./resources/js/components/modules/employees/EmployeeComponent.vue?vue&type=template&id=1b25467c& ***!
@@ -39777,7 +39957,7 @@ var render = function() {
       _c("div", { staticClass: "card-header flex-wrap border-0 pt-6 pb-0" }, [
         _c("div", { staticClass: "card-title" }, [
           _c("h3", { staticClass: "card-label" }, [
-            _vm._v(_vm._s(_vm.__("Employees")) + "\n                "),
+            _vm._v(_vm._s(_vm.__("Employees")) + "\r\n                "),
             _c(
               "span",
               { staticClass: "d-block text-muted pt-2 font-size-sm" },
@@ -39799,7 +39979,7 @@ var render = function() {
             },
             [
               _c("i", { staticClass: "fas fa-plus-square" }),
-              _vm._v(" " + _vm._s(_vm.__("Add")) + "\n                ")
+              _vm._v(" " + _vm._s(_vm.__("Add")) + "\r\n                ")
             ]
           )
         ])
@@ -39895,9 +40075,9 @@ var render = function() {
                       fn: function() {
                         return [
                           _vm._v(
-                            "\n                            " +
+                            "\r\n                            " +
                               _vm._s(_vm.__("Remove Filters")) +
-                              "\n                        "
+                              "\r\n                        "
                           )
                         ]
                       },
@@ -39992,9 +40172,9 @@ var render = function() {
                                         fn: function() {
                                           return [
                                             _vm._v(
-                                              "\n                                            " +
+                                              "\r\n                                            " +
                                                 _vm._s(_vm.__("Show")) +
-                                                "\n                                        "
+                                                "\r\n                                        "
                                             )
                                           ]
                                         },
@@ -40036,9 +40216,9 @@ var render = function() {
                                         fn: function() {
                                           return [
                                             _vm._v(
-                                              "\n                                            " +
+                                              "\r\n                                            " +
                                                 _vm._s(_vm.__("Edit")) +
-                                                "\n                                        "
+                                                "\r\n                                        "
                                             )
                                           ]
                                         },
@@ -40080,9 +40260,9 @@ var render = function() {
                                         fn: function() {
                                           return [
                                             _vm._v(
-                                              "\n                                            " +
+                                              "\r\n                                            " +
                                                 _vm._s(_vm.__("Delete")) +
-                                                "\n                                        "
+                                                "\r\n                                        "
                                             )
                                           ]
                                         },
@@ -40139,9 +40319,9 @@ var render = function() {
               },
               [
                 _vm._v(
-                  "\n                " +
+                  "\r\n                " +
                     _vm._s(_vm.__("There is no item to display")) +
-                    "\n            "
+                    "\r\n            "
                 )
               ]
             )
@@ -40747,23 +40927,26 @@ var render = function() {
                                 )
                               }),
                               1
-                            )
+                            ),
+                            _vm._v(" "),
+                            _vm.errors.offices
+                              ? _c(
+                                  "small",
+                                  {
+                                    staticClass:
+                                      "form-control-feedback text-danger"
+                                  },
+                                  [
+                                    _vm._v(
+                                      "\n                                " +
+                                        _vm._s(_vm.errors.offices[0]) +
+                                        "\n                            "
+                                    )
+                                  ]
+                                )
+                              : _vm._e()
                           ],
                           1
-                        )
-                      : _vm._e(),
-                    _vm._v(" "),
-                    _vm.errors.offices
-                      ? _c(
-                          "small",
-                          { staticClass: "form-control-feedback text-danger" },
-                          [
-                            _vm._v(
-                              "\n                            " +
-                                _vm._s(_vm.errors.offices[0]) +
-                                "\n                        "
-                            )
-                          ]
                         )
                       : _vm._e()
                   ]),
@@ -40781,11 +40964,7 @@ var render = function() {
                         [
                           _c("b", [
                             _vm._v(
-                              _vm._s(
-                                _vm.__(
-                                  "validation.attributes.extra_information"
-                                )
-                              )
+                              _vm._s(_vm.__("validation.attributes.extra_info"))
                             )
                           ])
                         ]
@@ -40809,7 +40988,7 @@ var render = function() {
                           name: "extra_info",
                           disabled: _vm.modalType == "show",
                           placeholder: _vm.__(
-                            "validation.attributes.extra_information"
+                            "validation.attributes.extra_info"
                           )
                         },
                         domProps: { value: _vm.form.extra_info },
@@ -40926,7 +41105,16 @@ var render = function() {
     { staticClass: "card card-custom" },
     [
       _c("div", { staticClass: "card-header flex-wrap border-0 pt-6 pb-0" }, [
-        _vm._m(0),
+        _c("div", { staticClass: "card-title" }, [
+          _c("h3", { staticClass: "card-label" }, [
+            _vm._v(_vm._s(_vm.__("Branch Offices")) + "\n                "),
+            _c(
+              "span",
+              { staticClass: "d-block text-muted pt-2 font-size-sm" },
+              [_vm._v(_vm._s(_vm.__("Office administration")))]
+            )
+          ])
+        ]),
         _vm._v(" "),
         _c("div", { staticClass: "card-toolbar" }, [
           _c(
@@ -40941,14 +41129,133 @@ var render = function() {
             },
             [
               _c("i", { staticClass: "fas fa-plus-square" }),
-              _vm._v(" Nuevo\r\n                ")
+              _vm._v(" " + _vm._s(_vm.__("Add")) + "\n                ")
             ]
           )
         ])
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "card-body" }, [
-        _vm._m(1),
+        _c("div", { staticClass: "form-row pl-3 align-items-end" }, [
+          _c("div", { staticClass: "col-sm-5 form-group" }, [
+            _c(
+              "label",
+              {
+                staticStyle: { "text-transform": "uppercase" },
+                attrs: { for: "name" }
+              },
+              [_c("b", [_vm._v(_vm._s(_vm.__("validation.attributes.name")))])]
+            ),
+            _vm._v(" "),
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.searches.name,
+                  expression: "searches.name"
+                }
+              ],
+              staticClass: "form-control",
+              attrs: {
+                type: "text",
+                name: "name",
+                placeholder: _vm.__("validation.attributes.name")
+              },
+              domProps: { value: _vm.searches.name },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.$set(_vm.searches, "name", $event.target.value)
+                }
+              }
+            })
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-10 col-sm-5 form-group" }, [
+            _c(
+              "label",
+              {
+                staticStyle: { "text-transform": "uppercase" },
+                attrs: { for: "email" }
+              },
+              [
+                _c("b", [
+                  _vm._v(_vm._s(_vm.__("validation.attributes.address")))
+                ])
+              ]
+            ),
+            _vm._v(" "),
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.searches.address,
+                  expression: "searches.address"
+                }
+              ],
+              staticClass: "form-control",
+              attrs: {
+                type: "text",
+                name: "email",
+                placeholder: _vm.__("validation.attributes.address")
+              },
+              domProps: { value: _vm.searches.address },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.$set(_vm.searches, "address", $event.target.value)
+                }
+              }
+            })
+          ]),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "col-auto form-group" },
+            [
+              _c(
+                "vs-tooltip",
+                {
+                  attrs: { top: "" },
+                  scopedSlots: _vm._u([
+                    {
+                      key: "tooltip",
+                      fn: function() {
+                        return [
+                          _vm._v(
+                            "\n                            " +
+                              _vm._s(_vm.__("Remove Filters")) +
+                              "\n                        "
+                          )
+                        ]
+                      },
+                      proxy: true
+                    }
+                  ])
+                },
+                [
+                  _c(
+                    "button",
+                    {
+                      staticClass:
+                        "btn waves-effect waves-light btn-danger float-right font-weight-bolder",
+                      attrs: { type: "button" },
+                      on: { click: _vm.clearSearches }
+                    },
+                    [_c("i", { staticClass: "fas fa-filter" })]
+                  )
+                ]
+              )
+            ],
+            1
+          )
+        ]),
         _vm._v(" "),
         _vm.offices.data.length
           ? _c(
@@ -40956,7 +41263,44 @@ var render = function() {
               { staticClass: "table-responsive" },
               [
                 _c("table", { staticClass: "table table-hover" }, [
-                  _vm._m(2),
+                  _c("thead", [
+                    _c("tr", [
+                      _c("th", [_vm._v("#")]),
+                      _vm._v(" "),
+                      _c("th", [_vm._v("CIF")]),
+                      _vm._v(" "),
+                      _c("th", [
+                        _vm._v(_vm._s(_vm.__("validation.attributes.name")))
+                      ]),
+                      _vm._v(" "),
+                      _c("th", [
+                        _vm._v(_vm._s(_vm.__("validation.attributes.address")))
+                      ]),
+                      _vm._v(" "),
+                      _c("th", [
+                        _vm._v(_vm._s(_vm.__("validation.attributes.email")))
+                      ]),
+                      _vm._v(" "),
+                      _c("th", [
+                        _vm._v(_vm._s(_vm.__("validation.attributes.phone")))
+                      ]),
+                      _vm._v(" "),
+                      _c("th", [
+                        _vm._v(
+                          _vm._s(_vm.__("validation.attributes.contact_person"))
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c(
+                        "th",
+                        {
+                          staticClass:
+                            "text-nowrap d-flex justify-content-center"
+                        },
+                        [_vm._v(_vm._s(_vm.__("Actions")))]
+                      )
+                    ])
+                  ]),
                   _vm._v(" "),
                   _c(
                     "tbody",
@@ -40981,41 +41325,140 @@ var render = function() {
                             "div",
                             { staticClass: "d-flex justify-content-center" },
                             [
-                              _vm._m(3, true),
-                              _vm._v(" "),
                               _c(
-                                "button",
+                                "vs-tooltip",
                                 {
-                                  staticClass:
-                                    "btn btn-sm btn-clean btn-icon mr-2",
-                                  attrs: { title: "Editar" },
-                                  on: {
-                                    click: function($event) {
-                                      return _vm.openModalAddEdit(
-                                        "edit",
-                                        office
-                                      )
-                                    }
-                                  }
+                                  attrs: { bottom: "" },
+                                  scopedSlots: _vm._u(
+                                    [
+                                      {
+                                        key: "tooltip",
+                                        fn: function() {
+                                          return [
+                                            _vm._v(
+                                              "\n                                            " +
+                                                _vm._s(_vm.__("Show")) +
+                                                "\n                                        "
+                                            )
+                                          ]
+                                        },
+                                        proxy: true
+                                      }
+                                    ],
+                                    null,
+                                    true
+                                  )
                                 },
-                                [_c("i", { staticClass: "fas fa-pen" })]
+                                [
+                                  _c(
+                                    "button",
+                                    {
+                                      staticClass:
+                                        "btn btn-sm btn-clean btn-icon mr-2",
+                                      on: {
+                                        click: function($event) {
+                                          return _vm.openModalAddEditShow(
+                                            "show",
+                                            _vm.employee
+                                          )
+                                        }
+                                      }
+                                    },
+                                    [_c("i", { staticClass: "far fa-eye" })]
+                                  )
+                                ]
                               ),
                               _vm._v(" "),
                               _c(
-                                "button",
+                                "vs-tooltip",
                                 {
-                                  staticClass:
-                                    "btn btn-sm btn-clean btn-icon mr-2",
-                                  attrs: { title: "Eliminar" },
-                                  on: {
-                                    click: function($event) {
-                                      return _vm.askDestroy(office)
-                                    }
-                                  }
+                                  attrs: { bottom: "" },
+                                  scopedSlots: _vm._u(
+                                    [
+                                      {
+                                        key: "tooltip",
+                                        fn: function() {
+                                          return [
+                                            _vm._v(
+                                              "\n                                            " +
+                                                _vm._s(_vm.__("Edit")) +
+                                                "\n                                        "
+                                            )
+                                          ]
+                                        },
+                                        proxy: true
+                                      }
+                                    ],
+                                    null,
+                                    true
+                                  )
                                 },
-                                [_c("i", { staticClass: "fas fa-trash-alt" })]
+                                [
+                                  _c(
+                                    "button",
+                                    {
+                                      staticClass:
+                                        "btn btn-sm btn-clean btn-icon mr-2",
+                                      on: {
+                                        click: function($event) {
+                                          return _vm.openModalAddEditShow(
+                                            "edit",
+                                            _vm.employee
+                                          )
+                                        }
+                                      }
+                                    },
+                                    [_c("i", { staticClass: "fas fa-pen" })]
+                                  )
+                                ]
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "vs-tooltip",
+                                {
+                                  attrs: { bottom: "" },
+                                  scopedSlots: _vm._u(
+                                    [
+                                      {
+                                        key: "tooltip",
+                                        fn: function() {
+                                          return [
+                                            _vm._v(
+                                              "\n                                            " +
+                                                _vm._s(_vm.__("Delete")) +
+                                                "\n                                        "
+                                            )
+                                          ]
+                                        },
+                                        proxy: true
+                                      }
+                                    ],
+                                    null,
+                                    true
+                                  )
+                                },
+                                [
+                                  _c(
+                                    "button",
+                                    {
+                                      staticClass:
+                                        "btn btn-sm btn-clean btn-icon mr-2",
+                                      on: {
+                                        click: function($event) {
+                                          return _vm.askDestroy(_vm.employee)
+                                        }
+                                      }
+                                    },
+                                    [
+                                      _c("i", {
+                                        staticClass: "fas fa-trash-alt"
+                                      })
+                                    ]
+                                  )
+                                ]
                               )
-                            ]
+                            ],
+                            1
                           )
                         ])
                       ])
@@ -41040,7 +41483,9 @@ var render = function() {
               },
               [
                 _vm._v(
-                  "\r\n                No hay ningún elemento para mostrar\r\n            "
+                  "\n                " +
+                    _vm._s(_vm.__("There is no item to display")) +
+                    "\n            "
                 )
               ]
             )
@@ -41058,96 +41503,7 @@ var render = function() {
     1
   )
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "card-title" }, [
-      _c("h3", { staticClass: "card-label" }, [
-        _vm._v("Sucursales\r\n                "),
-        _c("span", { staticClass: "d-block text-muted pt-2 font-size-sm" }, [
-          _vm._v("Administración de las sucursales")
-        ])
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "form-row pl-3 align-items-end" }, [
-      _c("div", { staticClass: "col-sm-5 form-group" }, [
-        _c("label", { attrs: { for: "nif" } }, [_c("b", [_vm._v("NOMBRE")])]),
-        _vm._v(" "),
-        _c("input", {
-          staticClass: "form-control",
-          attrs: { type: "text", name: "nif", placeholder: "NOMBRE" }
-        })
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "col-10 col-sm-5 form-group" }, [
-        _c("label", { attrs: { for: "date" } }, [_c("b", [_vm._v("CIF")])]),
-        _vm._v(" "),
-        _c("input", {
-          staticClass: "form-control",
-          attrs: { type: "text", name: "nif", placeholder: "CIF" }
-        })
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "col-auto form-group" }, [
-        _c(
-          "button",
-          {
-            staticClass:
-              "btn waves-effect waves-light btn-danger float-right font-weight-bolder",
-            attrs: { title: "Eliminar Filtros", type: "button" }
-          },
-          [_c("i", { staticClass: "fas fa-filter" })]
-        )
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("thead", [
-      _c("tr", [
-        _c("th", [_vm._v("#")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("CIF")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("NOMBRE")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("DIRECCION")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("EMAIL")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("TELEFONO")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("GERENTE")]),
-        _vm._v(" "),
-        _c("th", { staticClass: "text-nowrap d-flex justify-content-center" }, [
-          _vm._v("Acciones")
-        ])
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "button",
-      {
-        staticClass: "btn btn-sm btn-clean btn-icon mr-2",
-        attrs: { title: "Edit details" }
-      },
-      [_c("i", { staticClass: "far fa-eye" })]
-    )
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -41193,11 +41549,30 @@ var render = function() {
           _c("div", { staticClass: "modal-content" }, [
             _c("div", { staticClass: "modal-header" }, [
               _vm.modalType == "add"
+                ? _c(
+                    "h5",
+                    {
+                      staticClass: "modal-title",
+                      staticStyle: { "text-transform": "uppercase" }
+                    },
+                    [
+                      _vm._v(
+                        _vm._s(_vm.__("Add")) +
+                          " " +
+                          _vm._s(_vm.__("Branch Office"))
+                      )
+                    ]
+                  )
+                : _vm.modalType == "edit"
                 ? _c("h5", { staticClass: "modal-title" }, [
-                    _vm._v("Nueva Sucursal")
+                    _vm._v(
+                      _vm._s(_vm.__("Edit")) +
+                        " " +
+                        _vm._s(_vm.__("Branch Office"))
+                    )
                   ])
                 : _c("h5", { staticClass: "modal-title" }, [
-                    _vm._v("Editar Sucursal")
+                    _vm._v(_vm._s(_vm.__("Branch Office")))
                   ]),
               _vm._v(" "),
               _vm._m(0)
@@ -41267,9 +41642,9 @@ var render = function() {
                             },
                             [
                               _vm._v(
-                                "\r\n                                " +
+                                "\n                                " +
                                   _vm._s(_vm.errors.cif[0]) +
-                                  "\r\n                            "
+                                  "\n                            "
                               )
                             ]
                           )
@@ -41285,7 +41660,11 @@ var render = function() {
                             _vm.errors.name ? "text-danger" : ""
                           ]
                         },
-                        [_c("b", [_vm._v("NOMBRE")])]
+                        [
+                          _c("b", [
+                            _vm._v(_vm._s(_vm.__("validation.attributes.name")))
+                          ])
+                        ]
                       ),
                       _vm._v(" "),
                       _c("input", {
@@ -41304,7 +41683,7 @@ var render = function() {
                         attrs: {
                           type: "text",
                           name: "name",
-                          placeholder: "NOMBRE",
+                          placeholder: _vm.__("validation.attributes.name"),
                           required: ""
                         },
                         domProps: { value: _vm.form.name },
@@ -41326,9 +41705,9 @@ var render = function() {
                             },
                             [
                               _vm._v(
-                                "\r\n                                " +
+                                "\n                                " +
                                   _vm._s(_vm.errors.name[0]) +
-                                  "\r\n                            "
+                                  "\n                            "
                               )
                             ]
                           )
@@ -41347,7 +41726,13 @@ var render = function() {
                               _vm.errors.email ? "text-danger" : ""
                             ]
                           },
-                          [_c("b", [_vm._v("EMAIL")])]
+                          [
+                            _c("b", [
+                              _vm._v(
+                                _vm._s(_vm.__("validation.attributes.email"))
+                              )
+                            ])
+                          ]
                         ),
                         _vm._v(" "),
                         _c("input", {
@@ -41366,7 +41751,7 @@ var render = function() {
                           attrs: {
                             type: "email",
                             name: "email",
-                            placeholder: "EMAIL"
+                            placeholder: _vm.__("validation.attributes.email")
                           },
                           domProps: { value: _vm.form.email },
                           on: {
@@ -41387,9 +41772,9 @@ var render = function() {
                               },
                               [
                                 _vm._v(
-                                  "\r\n                                " +
+                                  "\n                                " +
                                     _vm._s(_vm.errors.email[0]) +
-                                    "\r\n                            "
+                                    "\n                            "
                                 )
                               ]
                             )
@@ -41409,7 +41794,13 @@ var render = function() {
                               _vm.errors.phone ? "text-danger" : ""
                             ]
                           },
-                          [_c("b", [_vm._v("TELEFONO")])]
+                          [
+                            _c("b", [
+                              _vm._v(
+                                _vm._s(_vm.__("validation.attributes.phone"))
+                              )
+                            ])
+                          ]
                         ),
                         _vm._v(" "),
                         _c("input", {
@@ -41425,7 +41816,11 @@ var render = function() {
                             "form-control",
                             _vm.errors.phone ? "is-invalid" : ""
                           ],
-                          attrs: { type: "text", name: "phone" },
+                          attrs: {
+                            type: "text",
+                            name: "phone",
+                            placeholder: _vm.__("validation.attributes.phone")
+                          },
                           domProps: { value: _vm.form.phone },
                           on: {
                             input: function($event) {
@@ -41445,9 +41840,9 @@ var render = function() {
                               },
                               [
                                 _vm._v(
-                                  "\r\n                                " +
+                                  "\n                                " +
                                     _vm._s(_vm.errors.phone[0]) +
-                                    "\r\n                            "
+                                    "\n                            "
                                 )
                               ]
                             )
@@ -41467,7 +41862,15 @@ var render = function() {
                               _vm.errors.contact_person ? "text-danger" : ""
                             ]
                           },
-                          [_c("b", [_vm._v("GERENTE")])]
+                          [
+                            _c("b", [
+                              _vm._v(
+                                _vm._s(
+                                  _vm.__("validation.attributes.contact_person")
+                                )
+                              )
+                            ])
+                          ]
                         ),
                         _vm._v(" "),
                         _c("input", {
@@ -41483,7 +41886,13 @@ var render = function() {
                             "form-control",
                             _vm.errors.contact_person ? "is-invalid" : ""
                           ],
-                          attrs: { type: "text", name: "contact_person" },
+                          attrs: {
+                            type: "text",
+                            name: "contact_person",
+                            placeholder: _vm.__(
+                              "validation.attributes.contact_person"
+                            )
+                          },
                           domProps: { value: _vm.form.contact_person },
                           on: {
                             input: function($event) {
@@ -41507,9 +41916,9 @@ var render = function() {
                               },
                               [
                                 _vm._v(
-                                  "\r\n                                " +
+                                  "\n                                " +
                                     _vm._s(_vm.errors.phone[0]) +
-                                    "\r\n                            "
+                                    "\n                            "
                                 )
                               ]
                             )
@@ -41528,7 +41937,13 @@ var render = function() {
                             _vm.errors.address ? "text-danger" : ""
                           ]
                         },
-                        [_c("b", [_vm._v("DIRECCION")])]
+                        [
+                          _c("b", [
+                            _vm._v(
+                              _vm._s(_vm.__("validation.attributes.address"))
+                            )
+                          ])
+                        ]
                       ),
                       _vm._v(" "),
                       _c("input", {
@@ -41547,7 +41962,7 @@ var render = function() {
                         attrs: {
                           type: "text",
                           name: "address",
-                          placeholder: "DIRECCION"
+                          placeholder: _vm.__("validation.attributes.address")
                         },
                         domProps: { value: _vm.form.address },
                         on: {
@@ -41568,9 +41983,9 @@ var render = function() {
                             },
                             [
                               _vm._v(
-                                "\r\n                                " +
+                                "\n                                " +
                                   _vm._s(_vm.errors.address[0]) +
-                                  "\r\n                            "
+                                  "\n                            "
                               )
                             ]
                           )
@@ -41586,7 +42001,15 @@ var render = function() {
                             _vm.errors.extra_address ? "text-danger" : ""
                           ]
                         },
-                        [_c("b", [_vm._v("DIRECCION EXTRA")])]
+                        [
+                          _c("b", [
+                            _vm._v(
+                              _vm._s(
+                                _vm.__("validation.attributes.extra_address")
+                              )
+                            )
+                          ])
+                        ]
                       ),
                       _vm._v(" "),
                       _c("input", {
@@ -41605,7 +42028,9 @@ var render = function() {
                         attrs: {
                           type: "text",
                           name: "extra_address",
-                          placeholder: "DIRECCION EXTRA"
+                          placeholder: _vm.__(
+                            "validation.attributes.extra_address"
+                          )
                         },
                         domProps: { value: _vm.form.extra_address },
                         on: {
@@ -41630,9 +42055,9 @@ var render = function() {
                             },
                             [
                               _vm._v(
-                                "\r\n                                " +
+                                "\n                                " +
                                   _vm._s(_vm.errors.extra_address[0]) +
-                                  "\r\n                            "
+                                  "\n                            "
                               )
                             ]
                           )
@@ -41650,7 +42075,11 @@ var render = function() {
                             _vm.errors.city ? "text-danger" : ""
                           ]
                         },
-                        [_c("b", [_vm._v("CIUDAD")])]
+                        [
+                          _c("b", [
+                            _vm._v(_vm._s(_vm.__("validation.attributes.city")))
+                          ])
+                        ]
                       ),
                       _vm._v(" "),
                       _c("input", {
@@ -41666,7 +42095,11 @@ var render = function() {
                           "form-control",
                           _vm.errors.city ? "is-invalid" : ""
                         ],
-                        attrs: { type: "text", name: "city" },
+                        attrs: {
+                          type: "text",
+                          name: "city",
+                          placeholder: _vm.__("validation.attributes.city")
+                        },
                         domProps: { value: _vm.form.city },
                         on: {
                           input: function($event) {
@@ -41686,9 +42119,9 @@ var render = function() {
                             },
                             [
                               _vm._v(
-                                "\r\n                                " +
+                                "\n                                " +
                                   _vm._s(_vm.errors.city[0]) +
-                                  "\r\n                            "
+                                  "\n                            "
                               )
                             ]
                           )
@@ -41720,7 +42153,7 @@ var render = function() {
                           "form-control",
                           _vm.errors.cp ? "is-invalid" : ""
                         ],
-                        attrs: { type: "text", name: "cp" },
+                        attrs: { type: "text", name: "cp", placeholder: "CP" },
                         domProps: { value: _vm.form.cp },
                         on: {
                           input: function($event) {
@@ -41740,9 +42173,9 @@ var render = function() {
                             },
                             [
                               _vm._v(
-                                "\r\n                                " +
+                                "\n                                " +
                                   _vm._s(_vm.errors.cp[0]) +
-                                  "\r\n                            "
+                                  "\n                            "
                               )
                             ]
                           )
@@ -41758,7 +42191,13 @@ var render = function() {
                             _vm.errors.province ? "text-danger" : ""
                           ]
                         },
-                        [_c("b", [_vm._v("PROVINCIA")])]
+                        [
+                          _c("b", [
+                            _vm._v(
+                              _vm._s(_vm.__("validation.attributes.state"))
+                            )
+                          ])
+                        ]
                       ),
                       _vm._v(" "),
                       _c("input", {
@@ -41774,7 +42213,11 @@ var render = function() {
                           "form-control",
                           _vm.errors.province ? "is-invalid" : ""
                         ],
-                        attrs: { type: "text", name: "province" },
+                        attrs: {
+                          type: "text",
+                          name: "province",
+                          placeholder: _vm.__("validation.attributes.state")
+                        },
                         domProps: { value: _vm.form.province },
                         on: {
                           input: function($event) {
@@ -41794,9 +42237,9 @@ var render = function() {
                             },
                             [
                               _vm._v(
-                                "\r\n                                " +
+                                "\n                                " +
                                   _vm._s(_vm.errors.province[0]) +
-                                  "\r\n                            "
+                                  "\n                            "
                               )
                             ]
                           )
@@ -41812,7 +42255,13 @@ var render = function() {
                             _vm.errors.country ? "text-danger" : ""
                           ]
                         },
-                        [_c("b", [_vm._v("PAIS")])]
+                        [
+                          _c("b", [
+                            _vm._v(
+                              _vm._s(_vm.__("validation.attributes.country"))
+                            )
+                          ])
+                        ]
                       ),
                       _vm._v(" "),
                       _c("input", {
@@ -41828,7 +42277,11 @@ var render = function() {
                           "form-control",
                           _vm.errors.country ? "is-invalid" : ""
                         ],
-                        attrs: { type: "text", name: "country" },
+                        attrs: {
+                          type: "text",
+                          name: "country",
+                          placeholder: _vm.__("validation.attributes.country")
+                        },
                         domProps: { value: _vm.form.country },
                         on: {
                           input: function($event) {
@@ -41848,9 +42301,9 @@ var render = function() {
                             },
                             [
                               _vm._v(
-                                "\r\n                                " +
+                                "\n                                " +
                                   _vm._s(_vm.errors.country[0]) +
-                                  "\r\n                            "
+                                  "\n                            "
                               )
                             ]
                           )
@@ -41859,7 +42312,25 @@ var render = function() {
                   ])
                 ]),
                 _vm._v(" "),
-                _vm._m(1)
+                _c("div", { staticClass: "modal-footer" }, [
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn btn-primary",
+                      attrs: { type: "submit" }
+                    },
+                    [_vm._v(_vm._s(_vm.__("Save")))]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn btn-secondary",
+                      attrs: { type: "button", "data-dismiss": "modal" }
+                    },
+                    [_vm._v(_vm._s(_vm.__("Cancel")))]
+                  )
+                ])
               ]
             )
           ])
@@ -41885,27 +42356,6 @@ var staticRenderFns = [
       },
       [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
     )
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "modal-footer" }, [
-      _c(
-        "button",
-        { staticClass: "btn btn-primary", attrs: { type: "submit" } },
-        [_vm._v("Guardar")]
-      ),
-      _vm._v(" "),
-      _c(
-        "button",
-        {
-          staticClass: "btn btn-secondary",
-          attrs: { type: "button", "data-dismiss": "modal" }
-        },
-        [_vm._v("Cerrar")]
-      )
-    ])
   }
 ]
 render._withStripped = true

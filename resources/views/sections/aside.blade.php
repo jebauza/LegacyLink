@@ -149,7 +149,7 @@
                                 </li>
 
                                 <li class="menu-section">
-                                    <h4 class="menu-text">Administración</h4>
+                                    <h4 class="menu-text">@lang('Administration')</h4>
                                     <i class="menu-icon ki ki-bold-more-hor icon-md"></i>
                                 </li>
 
@@ -176,7 +176,7 @@
                                             </svg>
                                             <!--end::Svg Icon-->
                                         </span>
-                                        <span class="menu-text">Sucursales</span>
+                                        <span class="menu-text">@lang('Branch Offices')</span>
                                     </a>
                                 </li>
                                 @endcan
@@ -203,7 +203,7 @@
                                             </svg>
                                             <!--end::Svg Icon-->
                                         </span>
-                                        <span class="menu-text">Empleados</span>
+                                        <span class="menu-text">@lang('Employees')</span>
                                     </a>
                                 </li>
                                 @endcan

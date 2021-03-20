@@ -20,7 +20,15 @@
     "Internal Server Error": "Error Interno del Servidor",
     "Not Found": "No Encontrado",
     "Saved successfully": "Guardado con éxito",
-    "Edited successfully": "Editado con éxito",
-    "Remove Filters": "Eliminar Filtros"
+    "Updated successfully": "Actualizado con éxito",
+    "Remove Filters": "Eliminar Filtros",
+    "Deleted successfully": "Eliminado exitosamente",
+    "You must select at least one :office": "Debe seleccionar al menos una :office",
+    "Branch Office": "Sucursal",
+    "The selected :office is invalid": "La :office seleccionada no es válida",
+    "The selected role is invalid": "El rol seleccionado no es válido",
+    "Branch Offices": "Sucursales",
+    "Office administration": "Administración de las oficinas",
+    "Administration": "Administración"
 
 }

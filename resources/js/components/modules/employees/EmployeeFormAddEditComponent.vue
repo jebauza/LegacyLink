@@ -81,16 +81,16 @@
                             <vs-select :key="offices.length" filter v-model="form.offices" multiple :placeholder="__('Select')" state="primary" :disabled="modalType=='show'">
                                 <vs-option v-for="office in offices" :key="office.id" :label="office.name" :value="office.id">{{ office.name }}</vs-option>
                             </vs-select>
+                            <small v-if="errors.offices" class="form-control-feedback text-danger">
+                                {{ errors.offices[0] }}
+                            </small>
                         </div>
-                        <small v-if="errors.offices" class="form-control-feedback text-danger">
-                            {{ errors.offices[0] }}
-                        </small>
                     </div>
 
                     <div class="form-row">
                         <div class="form-group col-12">
-                            <label :class="['control-label', errors.extra_info ? 'text-danger' : '']"><b>{{ __('validation.attributes.extra_information') }}</b></label>
-                            <input v-model="form.extra_info" type="text" :class="['form-control', errors.extra_info ? 'is-invalid' : '']" name="extra_info" :disabled="modalType=='show'" :placeholder="__('validation.attributes.extra_information')">
+                            <label :class="['control-label', errors.extra_info ? 'text-danger' : '']"><b>{{ __('validation.attributes.extra_info') }}</b></label>
+                            <input v-model="form.extra_info" type="text" :class="['form-control', errors.extra_info ? 'is-invalid' : '']" name="extra_info" :disabled="modalType=='show'" :placeholder="__('validation.attributes.extra_info')">
                             <small v-if="errors.extra_info" class="form-control-feedback text-danger">
                                 {{ errors.extra_info[0] }}
                             </small>
@@ -211,7 +211,7 @@ export default {
                 type: 'points',
                 color: '#187de4',
                 // background: '#7a76cb',
-                text: 'Cargando...'
+                text: this.__('Loading') + '...'
             });
 
             axios.post(url, this.form)

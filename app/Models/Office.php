@@ -15,6 +15,7 @@ class Office extends Model
 
     protected $fillable = ['code','name','cif','address','extra_address','city','cp','province','country','timezone','phone','contact_person','email','latitude','longitude'];
 
+    // SCOPES
     public function scopeFilterByRole($query)
     {
         $authUser = auth()->user();
@@ -22,6 +23,21 @@ class Office extends Model
         if (!$authUser->hasRole('Super Admin')) {
             $offices = $authUser->offices()->pluck('offices.id');
             $query->whereIn('id', $offices);
+        }
+    }
+
+    public function scopeName($query, $param)
+    {
+        if ($param) {
+            $query->where('name', 'like', "%$param%");
+        }
+    }
+
+    public function scopeAddress($query, $param)
+    {
+        if ($param) {
+            $query->where('address', 'like', "%$param%")
+                ->orWhere('extra_address', 'like', "%$param%");
         }
     }
 
