@@ -192,6 +192,16 @@ return [
         'country'               => 'país',
         'dprofile_death'        => 'defunción',
         'dprofile_birthday'     => 'nacimiento',
+        'dprofile_office'       => 'sucursal',
+        'dprofile_adviser'      => 'agente',
+        'adviser'               => 'agente',
+        'dprofile_name'         => 'nombre',
+        'dprofile_lastname'     => 'apellido',
+        'client_name'           => 'name',
+        'client_lastname'       => 'apellido',
+        'client_dni'            => 'dni',
+        'client_email'          => 'correo',
+        'client_phone'          => 'teléfono',
 
     ],
 ];

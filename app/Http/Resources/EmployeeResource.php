@@ -27,4 +27,6 @@ class EmployeeResource extends JsonResource
             'role' => $this->roles->first(),
         ];
     }
+
+
 }

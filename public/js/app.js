@@ -2295,14 +2295,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   watch: {
     'form.dprofile_office': function formDprofile_office(newValue, oldValue) {
@@ -2401,7 +2393,12 @@ __webpack_require__.r(__webpack_exports__);
         dprofile_name: '',
         dprofile_lastname: '',
         dprofile_birthday: '',
-        dprofile_death: ''
+        dprofile_death: '',
+        client_name: '',
+        client_lastname: '',
+        client_dni: '',
+        client_email: '',
+        client_phone: ''
       };
       this.errors = {};
     },
@@ -2457,7 +2454,7 @@ __webpack_require__.r(__webpack_exports__);
             color: '#187de4',
             text: 'Cargando...'
         });
-          axios.put(url, this.form)
+         axios.put(url, this.form)
         .then(res => {
             loading.close();
             Swal.fire({
@@ -8169,7 +8166,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.vs-input {\r\n    width: 100%\n}\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.vs-input {\n    width: 100%\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -41716,11 +41713,11 @@ var render = function() {
                                         },
                                         [
                                           _vm._v(
-                                            "\r\n                                            " +
+                                            "\n                                            " +
                                               _vm._s(
                                                 _vm.errors.dprofile_office[0]
                                               ) +
-                                              "\r\n                                        "
+                                              "\n                                        "
                                           )
                                         ]
                                       )
@@ -41793,11 +41790,11 @@ var render = function() {
                                         },
                                         [
                                           _vm._v(
-                                            "\r\n                                            " +
+                                            "\n                                            " +
                                               _vm._s(
                                                 _vm.errors.dprofile_adviser[0]
                                               ) +
-                                              "\r\n                                        "
+                                              "\n                                        "
                                           )
                                         ]
                                       )
@@ -41880,11 +41877,11 @@ var render = function() {
                                         },
                                         [
                                           _vm._v(
-                                            "\r\n                                            " +
+                                            "\n                                            " +
                                               _vm._s(
                                                 _vm.errors.dprofile_name[0]
                                               ) +
-                                              "\r\n                                        "
+                                              "\n                                        "
                                           )
                                         ]
                                       )
@@ -41968,11 +41965,11 @@ var render = function() {
                                         },
                                         [
                                           _vm._v(
-                                            "\r\n                                            " +
+                                            "\n                                            " +
                                               _vm._s(
                                                 _vm.errors.dprofile_lastname[0]
                                               ) +
-                                              "\r\n                                        "
+                                              "\n                                        "
                                           )
                                         ]
                                       )
@@ -42034,11 +42031,11 @@ var render = function() {
                                         },
                                         [
                                           _vm._v(
-                                            "\r\n                                            " +
+                                            "\n                                            " +
                                               _vm._s(
                                                 _vm.errors.dprofile_birthday[0]
                                               ) +
-                                              "\r\n                                        "
+                                              "\n                                        "
                                           )
                                         ]
                                       )
@@ -42101,11 +42098,11 @@ var render = function() {
                                         },
                                         [
                                           _vm._v(
-                                            "\r\n                                            " +
+                                            "\n                                            " +
                                               _vm._s(
                                                 _vm.errors.dprofile_death[0]
                                               ) +
-                                              "\r\n                                        "
+                                              "\n                                        "
                                           )
                                         ]
                                       )
@@ -42127,7 +42124,7 @@ var render = function() {
                             _c("div", { staticClass: "form-row" }, [
                               _c(
                                 "div",
-                                { staticClass: "form-group col-sm-6 col-lg-4" },
+                                { staticClass: "form-group col-sm-6" },
                                 [
                                   _c(
                                     "label",
@@ -42210,7 +42207,7 @@ var render = function() {
                               _vm._v(" "),
                               _c(
                                 "div",
-                                { staticClass: "form-group col-sm-6 col-lg-4" },
+                                { staticClass: "form-group col-sm-6" },
                                 [
                                   _c(
                                     "label",
@@ -42370,78 +42367,7 @@ var render = function() {
                               _vm._v(" "),
                               _c(
                                 "div",
-                                { staticClass: "form-group col-sm-6" },
-                                [
-                                  _c(
-                                    "label",
-                                    {
-                                      class: [
-                                        "control-label",
-                                        _vm.errors.client_dni
-                                          ? "text-danger"
-                                          : ""
-                                      ]
-                                    },
-                                    [_c("b", [_vm._v("DNI")])]
-                                  ),
-                                  _vm._v(" "),
-                                  _c("input", {
-                                    directives: [
-                                      {
-                                        name: "model",
-                                        rawName: "v-model",
-                                        value: _vm.form.client_dni,
-                                        expression: "form.client_dni"
-                                      }
-                                    ],
-                                    class: [
-                                      "form-control",
-                                      _vm.errors.client_dni ? "is-invalid" : ""
-                                    ],
-                                    attrs: {
-                                      type: "text",
-                                      name: "client_dni",
-                                      placeholder: "dni",
-                                      required: "",
-                                      disabled: _vm.modalType == "show"
-                                    },
-                                    domProps: { value: _vm.form.client_dni },
-                                    on: {
-                                      input: function($event) {
-                                        if ($event.target.composing) {
-                                          return
-                                        }
-                                        _vm.$set(
-                                          _vm.form,
-                                          "client_dni",
-                                          $event.target.value
-                                        )
-                                      }
-                                    }
-                                  }),
-                                  _vm._v(" "),
-                                  _vm.errors.client_dni
-                                    ? _c(
-                                        "small",
-                                        {
-                                          staticClass:
-                                            "form-control-feedback text-danger"
-                                        },
-                                        [
-                                          _vm._v(
-                                            "\n                                            " +
-                                              _vm._s(_vm.errors.client_dni[0]) +
-                                              "\n                                        "
-                                          )
-                                        ]
-                                      )
-                                    : _vm._e()
-                                ]
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "div",
-                                { staticClass: "form-group col-sm-6 col-md-4" },
+                                { staticClass: "form-group col-sm-6 col-lg-4" },
                                 [
                                   _c(
                                     "label",
@@ -42527,7 +42453,7 @@ var render = function() {
                               _vm._v(" "),
                               _c(
                                 "div",
-                                { staticClass: "form-group col-sm-6 col-md-4" },
+                                { staticClass: "form-group col-sm-6 col-lg-4" },
                                 [
                                   _c(
                                     "label",
