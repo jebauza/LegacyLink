@@ -116,4 +116,25 @@ class DeployCommand extends Command
 
         $this->info('Updated roles and permissions');
     }
+
+    private function createUpdateCeremonyTypes() {
+
+        try {
+            $types = config('albia.ceremony_types');
+
+            foreach ($types as $t) {
+
+                DB::table('ceremony_types')->updateOrInsert(
+                                    ['email' => 'john@example.com', 'name' => 'John'],
+                                    ['votes' => '2']
+                                );
+            }
+
+        } catch (\Exception $e) {
+            $this->error($e->getMessage());
+            return;
+        }
+
+        $this->info('Updated roles and permissions');
+    }
 }

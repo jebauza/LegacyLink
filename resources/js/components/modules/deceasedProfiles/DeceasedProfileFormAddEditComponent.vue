@@ -196,7 +196,56 @@
                             </div>
 
                             <div class="tab-pane" id="kt_tab_events" role="tabpanel">
-                                <p>events</p>
+                                <div class="form-row">
+                                    <div class="form-group col-sm-6">
+                                        <vs-input
+                                            primary
+                                            v-model="value"
+                                            placeholder="Tipo" />
+                                    </div>
+
+
+                                </div>
+
+                                <div class="row">
+                                    <vs-table>
+                                        <template #thead>
+                                            <vs-tr>
+                                                <vs-th>
+                                                    Name
+                                                </vs-th>
+                                                <vs-th>
+                                                    Email
+                                                </vs-th>
+                                                <vs-th>
+                                                    Id
+                                                </vs-th>
+                                            </vs-tr>
+                                        </template>
+
+                                        <template #tbody>
+                                            <vs-tr :key="i" v-for="(tr, i) in users">
+                                                <vs-td>{{ tr.name }}</vs-td>
+                                                <vs-td>{{ tr.email }}</vs-td>
+                                                <vs-td>{{ tr.id }}</vs-td>
+
+                                                <template #expand>
+                                                    <div class="con-content">
+                                                        <div>
+                                                            <p>
+                                                                {{ tr.name }}
+                                                            </p>
+                                                        </div>
+                                                        <div>
+
+                                                        </div>
+                                                    </div>
+                                                </template>
+                                            </vs-tr>
+                                        </template>
+                                    </vs-table>
+                                </div>
+
                             </div>
 
                         </div>
@@ -247,10 +296,31 @@ export default {
                 client_lastname: '',
                 client_dni: '',
                 client_email: '',
-                client_phone: ''
+                client_phone: '',
+                ceremonies: []
             },
 
             errors: {},
+
+            users: [
+          {
+            "id": 1,
+            "name": "Leanne Graham",
+            "username": "Bret",
+            "email": "Sincere@april.biz",
+            "website": "hildegard.org",
+          },
+          {
+            "id": 2,
+            "name": "Ervin Howell",
+            "username": "Antonette",
+            "email": "Shanna@melissa.tv",
+            "website": "anastasia.net",
+          },
+
+        ],
+
+        value: '',
 
         }
     },
