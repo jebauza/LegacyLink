@@ -4,6 +4,7 @@ namespace App\Console\Commands\Deploy;
 
 use App\Models\Employee;
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\DB;
 use Spatie\Permission\Models\Role;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Artisan;
@@ -102,11 +103,17 @@ class DeployCommand extends Command
 
             $employees_admin = config('albia.employees_admin');
             foreach ($employees_admin as $e) {
-                $employee = Employee::updateOrCreate(
+                DB::table('employees')->updateOrInsert(
                     ['email' => $e['email']],
-                    ['name' => $e['name'], 'password' => Hash::make($e['password'])]
+                    [
+                        'name' => $e['name'],
+                        'password' => Hash::make($e['password']),
+                        'created_at' => now(),
+                        'updated_at' => now(),
+                    ]
                 );
-                $employee->assignRole(Role::find($e['role']));
+
+                Employee::where('email',$e['email'])->first()->assignRole(Role::find($e['role']));
             }
 
         } catch (\Exception $e) {
