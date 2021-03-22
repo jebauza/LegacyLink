@@ -2295,6 +2295,55 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   watch: {
     'form.dprofile_office': function formDprofile_office(newValue, oldValue) {
@@ -2323,9 +2372,24 @@ __webpack_require__.r(__webpack_exports__);
         client_lastname: '',
         client_dni: '',
         client_email: '',
-        client_phone: ''
+        client_phone: '',
+        ceremonies: []
       },
-      errors: {}
+      errors: {},
+      users: [{
+        "id": 1,
+        "name": "Leanne Graham",
+        "username": "Bret",
+        "email": "Sincere@april.biz",
+        "website": "hildegard.org"
+      }, {
+        "id": 2,
+        "name": "Ervin Howell",
+        "username": "Antonette",
+        "email": "Shanna@melissa.tv",
+        "website": "anastasia.net"
+      }],
+      value: ''
     };
   },
   methods: {
@@ -42540,7 +42604,144 @@ var render = function() {
                           ]
                         ),
                         _vm._v(" "),
-                        _vm._m(1)
+                        _c(
+                          "div",
+                          {
+                            staticClass: "tab-pane",
+                            attrs: { id: "kt_tab_events", role: "tabpanel" }
+                          },
+                          [
+                            _c("div", { staticClass: "form-row" }, [
+                              _c(
+                                "div",
+                                { staticClass: "form-group col-sm-6" },
+                                [
+                                  _c("vs-input", {
+                                    attrs: { primary: "", placeholder: "Tipo" },
+                                    model: {
+                                      value: _vm.value,
+                                      callback: function($$v) {
+                                        _vm.value = $$v
+                                      },
+                                      expression: "value"
+                                    }
+                                  })
+                                ],
+                                1
+                              )
+                            ]),
+                            _vm._v(" "),
+                            _c(
+                              "div",
+                              { staticClass: "row" },
+                              [
+                                _c("vs-table", {
+                                  scopedSlots: _vm._u([
+                                    {
+                                      key: "thead",
+                                      fn: function() {
+                                        return [
+                                          _c(
+                                            "vs-tr",
+                                            [
+                                              _c("vs-th", [
+                                                _vm._v(
+                                                  "\n                                                    Name\n                                                "
+                                                )
+                                              ]),
+                                              _vm._v(" "),
+                                              _c("vs-th", [
+                                                _vm._v(
+                                                  "\n                                                    Email\n                                                "
+                                                )
+                                              ]),
+                                              _vm._v(" "),
+                                              _c("vs-th", [
+                                                _vm._v(
+                                                  "\n                                                    Id\n                                                "
+                                                )
+                                              ])
+                                            ],
+                                            1
+                                          )
+                                        ]
+                                      },
+                                      proxy: true
+                                    },
+                                    {
+                                      key: "tbody",
+                                      fn: function() {
+                                        return _vm._l(_vm.users, function(
+                                          tr,
+                                          i
+                                        ) {
+                                          return _c(
+                                            "vs-tr",
+                                            {
+                                              key: i,
+                                              scopedSlots: _vm._u(
+                                                [
+                                                  {
+                                                    key: "expand",
+                                                    fn: function() {
+                                                      return [
+                                                        _c(
+                                                          "div",
+                                                          {
+                                                            staticClass:
+                                                              "con-content"
+                                                          },
+                                                          [
+                                                            _c("div", [
+                                                              _c("p", [
+                                                                _vm._v(
+                                                                  "\n                                                                " +
+                                                                    _vm._s(
+                                                                      tr.name
+                                                                    ) +
+                                                                    "\n                                                            "
+                                                                )
+                                                              ])
+                                                            ]),
+                                                            _vm._v(" "),
+                                                            _c("div")
+                                                          ]
+                                                        )
+                                                      ]
+                                                    },
+                                                    proxy: true
+                                                  }
+                                                ],
+                                                null,
+                                                true
+                                              )
+                                            },
+                                            [
+                                              _c("vs-td", [
+                                                _vm._v(_vm._s(tr.name))
+                                              ]),
+                                              _vm._v(" "),
+                                              _c("vs-td", [
+                                                _vm._v(_vm._s(tr.email))
+                                              ]),
+                                              _vm._v(" "),
+                                              _c("vs-td", [
+                                                _vm._v(_vm._s(tr.id))
+                                              ])
+                                            ],
+                                            1
+                                          )
+                                        })
+                                      },
+                                      proxy: true
+                                    }
+                                  ])
+                                })
+                              ],
+                              1
+                            )
+                          ]
+                        )
                       ])
                     ])
                   ])
@@ -42596,19 +42797,6 @@ var staticRenderFns = [
         }
       },
       [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
-    )
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      {
-        staticClass: "tab-pane",
-        attrs: { id: "kt_tab_events", role: "tabpanel" }
-      },
-      [_c("p", [_vm._v("events")])]
     )
   }
 ]
