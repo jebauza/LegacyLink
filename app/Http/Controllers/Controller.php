@@ -23,7 +23,17 @@ use Illuminate\Routing\Controller as BaseController;
  * )
  *
  * @OA\Server(
- *      url="{schema}://laravel8.local/api",
+ *      url="{schema}://albia.celebrasuvida.es/api",
+ *      description="development server",
+ *      @OA\ServerVariable(
+ *          serverVariable="schema",
+ *          enum={"https", "http"},
+ *          default="https"
+ *      )
+ * )
+ *
+ * @OA\Server(
+ *      url="{schema}://albia.local/api",
  *      description="development server local",
  *      @OA\ServerVariable(
  *          serverVariable="schema",
@@ -32,15 +42,6 @@ use Illuminate\Routing\Controller as BaseController;
  *      )
  * )
  *
- * @OA\Server(
- *      url="{schema}://laravel8.com/api",
- *      description="development server",
- *      @OA\ServerVariable(
- *          serverVariable="schema",
- *          enum={"https", "http"},
- *          default="https"
- *      )
- * )
  *
  *
  * @OA\SecurityScheme(
@@ -165,13 +166,15 @@ class Controller extends BaseController
  *
  * @OA\RequestBody(request="response_404", description="Error: Not Found",
  *      @OA\JsonContent(
- *          @OA\Property(property="message", example="No encontrado")
+ *          @OA\Property(property="success", example=false),
+ *          @OA\Property(property="message", example="No Encontrado")
  *      )
  * )
  *
  * @OA\RequestBody(request="response_500", description="Error: Internal Server Error",
  *      @OA\JsonContent(
- *          @OA\Property(property="message", example="Error Interno del Servidor")
+ *          @OA\Property(property="success", example=false),
+ *          @OA\Property(property="message", example="Internal Server Error")
  *      )
  * )
  */

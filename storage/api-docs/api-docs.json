@@ -10,20 +10,7 @@
     },
     "servers": [
         {
-            "url": "{schema}://laravel8.local/api",
-            "description": "development server local",
-            "variables": {
-                "schema": {
-                    "enum": [
-                        "https",
-                        "http"
-                    ],
-                    "default": "http"
-                }
-            }
-        },
-        {
-            "url": "{schema}://laravel8.com/api",
+            "url": "{schema}://albia.celebrasuvida.es/api",
             "description": "development server",
             "variables": {
                 "schema": {
@@ -32,6 +19,19 @@
                         "http"
                     ],
                     "default": "https"
+                }
+            }
+        },
+        {
+            "url": "{schema}://albia.local/api",
+            "description": "development server local",
+            "variables": {
+                "schema": {
+                    "enum": [
+                        "https",
+                        "http"
+                    ],
+                    "default": "http"
                 }
             }
         }
@@ -155,7 +155,7 @@
         "/public/profile/{profile_id}/events": {
             "get": {
                 "tags": [
-                    "Public ceremonies list"
+                    "Public ceremonia"
                 ],
                 "summary": "Get the public ceremonies list",
                 "description": "Return the list of ceremonies associated with a specific profile",
@@ -182,12 +182,24 @@
                                         },
                                         "message": {
                                             "example": "User login successfully."
+                                        },
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/components/schemas/CeremonyResource"
+                                            }
                                         }
                                     },
                                     "type": "object"
                                 }
                             }
                         }
+                    },
+                    "404": {
+                        "$ref": "#/components/requestBodies/response_404"
+                    },
+                    "500": {
+                        "$ref": "#/components/requestBodies/response_500"
                     }
                 }
             }
@@ -222,18 +234,127 @@
                                         },
                                         "message": {
                                             "example": "User login successfully."
+                                        },
+                                        "data": {
+                                            "$ref": "#/components/schemas/DeceasedProfileResource"
                                         }
                                     },
                                     "type": "object"
                                 }
                             }
                         }
+                    },
+                    "404": {
+                        "$ref": "#/components/requestBodies/response_404"
+                    },
+                    "500": {
+                        "$ref": "#/components/requestBodies/response_500"
                     }
                 }
             }
         }
     },
     "components": {
+        "schemas": {
+            "AdviserResource": {
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "example": 161
+                    },
+                    "name": {
+                        "type": "string",
+                        "example": "Alberto"
+                    },
+                    "last_name": {
+                        "type": "string",
+                        "example": "Perez"
+                    },
+                    "email": {
+                        "type": "string",
+                        "example": "alberto@albia.es"
+                    },
+                    "phone": {
+                        "type": "string",
+                        "example": "+34622452513"
+                    }
+                },
+                "type": "object"
+            },
+            "CeremonyResource": {
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "example": 161
+                    },
+                    "type": {
+                        "type": "string",
+                        "example": "Carlos"
+                    },
+                    "profile_id": {
+                        "type": "integer",
+                        "example": 161
+                    },
+                    "main": {
+                        "type": "boolean",
+                        "example": true
+                    },
+                    "start": {
+                        "type": "date",
+                        "example": "2021-03-20 08:00:00"
+                    },
+                    "end": {
+                        "type": "date",
+                        "example": "2021-03-20 16:00:00"
+                    },
+                    "address": {
+                        "type": "string",
+                        "example": "Carrer del Campament, 80, 46035 València, Valencia"
+                    },
+                    "room_name": {
+                        "type": "string",
+                        "example": "Sala 03"
+                    },
+                    "additional_info": {
+                        "type": "string",
+                        "example": "Informacion adicional"
+                    }
+                },
+                "type": "object"
+            },
+            "DeceasedProfileResource": {
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "example": 161
+                    },
+                    "user_id": {
+                        "type": "integer",
+                        "example": 6
+                    },
+                    "name": {
+                        "type": "string",
+                        "example": "Carlos"
+                    },
+                    "last_name": {
+                        "type": "string",
+                        "example": "Perez Perez"
+                    },
+                    "birthday": {
+                        "type": "date",
+                        "example": "1965-08-11"
+                    },
+                    "death": {
+                        "type": "date",
+                        "example": "2021-03-20"
+                    },
+                    "adviser": {
+                        "$ref": "#/components/schemas/AdviserResource"
+                    }
+                },
+                "type": "object"
+            }
+        },
         "requestBodies": {
             "response_200": {
                 "description": "OK",
@@ -322,8 +443,11 @@
                     "application/json": {
                         "schema": {
                             "properties": {
+                                "success": {
+                                    "example": false
+                                },
                                 "message": {
-                                    "example": "No encontrado"
+                                    "example": "No Encontrado"
                                 }
                             },
                             "type": "object"
@@ -337,11 +461,24 @@
                     "application/json": {
                         "schema": {
                             "properties": {
+                                "success": {
+                                    "example": false
+                                },
                                 "message": {
-                                    "example": "Error Interno del Servidor"
+                                    "example": "Internal Server Error"
                                 }
                             },
                             "type": "object"
+                        }
+                    }
+                }
+            },
+            "deceasedProfile_show_response_200": {
+                "description": "OK",
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "$ref": "#/components/schemas/DeceasedProfileResource"
                         }
                     }
                 }
@@ -362,7 +499,7 @@
             "description": "API Endpoints of Auth"
         },
         {
-            "name": "Public agenda",
+            "name": "Public ceremonia",
             "description": "API Endpoints of public ceremonies list"
         },
         {

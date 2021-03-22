@@ -84,19 +84,21 @@ class DeceasedProfileController extends Controller
             $newDProfile->adviser_id = $request->dprofile_adviser;
             $newDProfile->office_id = $request->dprofile_office;
             if ($newDProfile->save()) {
-                /* if (!$client = User::where('email', $request->client_email)->first()) {
+                if (!$client = User::where('email', $request->client_email)->first()) {
                     $client = new User();
                 }
-                $client->name = $request->client_name;
-                $client->email = $request->client_email;
                 $client->dni = $request->client_dni;
+                $client->name = $request->client_name;
+                $client->lastname = $request->client_lastname;
+                $client->email = $request->client_email;
                 $client->phone = $request->client_phone;
                 $client->password = Hash::make(Str::random(8));
                 if ($client->save()) {
                     $newDProfile->clients()->attach($client->id, [
-                        'role' => 'admin'
+                        'role' => 'admin',
+                        'declarant' => true
                     ]);
-                } */
+                }
             }
 
             DB::commit();
