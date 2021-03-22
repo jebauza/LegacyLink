@@ -1,6 +1,6 @@
 <?php
+namespace App\Http\Controllers\Admin\DeceasedProfile;
 
-namespace App\Http\Controllers\Admin\Deceased_profiles;
 
 use App\Models\User;
 use Illuminate\Support\Str;

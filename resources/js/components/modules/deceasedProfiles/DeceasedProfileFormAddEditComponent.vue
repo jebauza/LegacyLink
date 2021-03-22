@@ -198,13 +198,13 @@
                             <div class="tab-pane" id="kt_tab_events" role="tabpanel">
                                 <div class="form-row">
                                     <div class="form-group col-sm-6">
-                                        <vs-input
-                                            primary
-                                            v-model="value"
-                                            placeholder="Tipo" />
+                                        <vs-select :key="ceremony_types.length" filter v-model="ceremony.type" :placeholder="__('Select')" state="primary" :disabled="disableCeremonyTypes">
+                                            <vs-option v-for="ceremony in ceremony_types" :key="ceremony.id" :label="ceremony.name" :value="ceremony.id">{{ ceremony.name }}</vs-option>
+                                        </vs-select>
                                     </div>
+                                    <div class="form-group col-sm-6">
 
-
+                                    </div>
                                 </div>
 
                                 <div class="row">
@@ -224,16 +224,16 @@
                                         </template>
 
                                         <template #tbody>
-                                            <vs-tr :key="i" v-for="(tr, i) in users">
-                                                <vs-td>{{ tr.name }}</vs-td>
-                                                <vs-td>{{ tr.email }}</vs-td>
-                                                <vs-td>{{ tr.id }}</vs-td>
+                                            <vs-tr :key="i" v-for="(ceremony, i) in form.ceremonies">
+                                                <vs-td>{{ ceremony.name }}</vs-td>
+                                                <vs-td>{{ ceremony.email }}</vs-td>
+                                                <vs-td>{{ ceremony.id }}</vs-td>
 
                                                 <template #expand>
                                                     <div class="con-content">
                                                         <div>
                                                             <p>
-                                                                {{ tr.name }}
+                                                                {{ ceremony.name }}
                                                             </p>
                                                         </div>
                                                         <div>
@@ -276,6 +276,7 @@ export default {
     created() {
         this.getOffices();
         this.getAdvisers();
+        this.getCeremonyTypes();
     },
 
     data() {
@@ -283,6 +284,7 @@ export default {
             modalType: 'add', //add, edit
             offices: [],
             advisers: [],
+            ceremony_types: [],
 
             form: {
                 dprofile_office: '',
@@ -299,28 +301,16 @@ export default {
                 client_phone: '',
                 ceremonies: []
             },
-
             errors: {},
 
-            users: [
-          {
-            "id": 1,
-            "name": "Leanne Graham",
-            "username": "Bret",
-            "email": "Sincere@april.biz",
-            "website": "hildegard.org",
-          },
-          {
-            "id": 2,
-            "name": "Ervin Howell",
-            "username": "Antonette",
-            "email": "Shanna@melissa.tv",
-            "website": "anastasia.net",
-          },
-
-        ],
-
-        value: '',
+            ceremony: {
+                type: '',
+                main: '',
+                start: '',
+                end: '',
+                additional_info: '',
+                address: '',
+            },
 
         }
     },
@@ -352,6 +342,17 @@ export default {
                 if (this.advisers.length == 1) {
                     this.form.dprofile_adviser = this.advisers[0].id
                 }
+            })
+            .catch(err => {
+                console.error(err);
+            })
+        },
+        getCeremonyTypes() {
+            const url = `/admin/ajax/ceremony_types`;
+
+            axios.get(url, )
+            .then(res => {
+                this.ceremony_types = res.data;
             })
             .catch(err => {
                 console.error(err);
@@ -482,6 +483,9 @@ export default {
         },
         disableAdviser() {
             return this.advisers.length < 2;
+        },
+        disableCeremonyTypes() {
+            return this.ceremony_types.length < 2;
         },
     },
 }

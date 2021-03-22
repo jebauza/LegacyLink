@@ -2341,9 +2341,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   watch: {
     'form.dprofile_office': function formDprofile_office(newValue, oldValue) {
@@ -2354,6 +2351,7 @@ __webpack_require__.r(__webpack_exports__);
   created: function created() {
     this.getOffices();
     this.getAdvisers();
+    this.getCeremonyTypes();
   },
   data: function data() {
     return {
@@ -2361,6 +2359,7 @@ __webpack_require__.r(__webpack_exports__);
       //add, edit
       offices: [],
       advisers: [],
+      ceremony_types: [],
       form: {
         dprofile_office: '',
         dprofile_adviser: '',
@@ -2376,20 +2375,14 @@ __webpack_require__.r(__webpack_exports__);
         ceremonies: []
       },
       errors: {},
-      users: [{
-        "id": 1,
-        "name": "Leanne Graham",
-        "username": "Bret",
-        "email": "Sincere@april.biz",
-        "website": "hildegard.org"
-      }, {
-        "id": 2,
-        "name": "Ervin Howell",
-        "username": "Antonette",
-        "email": "Shanna@melissa.tv",
-        "website": "anastasia.net"
-      }],
-      value: ''
+      ceremony: {
+        type: '',
+        main: '',
+        start: '',
+        end: '',
+        additional_info: '',
+        address: ''
+      }
     };
   },
   methods: {
@@ -2421,6 +2414,16 @@ __webpack_require__.r(__webpack_exports__);
         if (_this2.advisers.length == 1) {
           _this2.form.dprofile_adviser = _this2.advisers[0].id;
         }
+      })["catch"](function (err) {
+        console.error(err);
+      });
+    },
+    getCeremonyTypes: function getCeremonyTypes() {
+      var _this3 = this;
+
+      var url = "/admin/ajax/ceremony_types";
+      axios.get(url).then(function (res) {
+        _this3.ceremony_types = res.data;
       })["catch"](function (err) {
         console.error(err);
       });
@@ -2474,7 +2477,7 @@ __webpack_require__.r(__webpack_exports__);
       }
     },
     store: function store() {
-      var _this3 = this;
+      var _this4 = this;
 
       var url = '/admin/ajax/webs/store';
       var loading = this.$vs.loading({
@@ -2492,14 +2495,14 @@ __webpack_require__.r(__webpack_exports__);
         });
         $('#modalAddEditDeceasedProfile').modal('hide');
 
-        _this3.clearForm();
+        _this4.clearForm();
 
-        _this3.$emit('updateDeceasedProfileList', 'add');
+        _this4.$emit('updateDeceasedProfileList', 'add');
       })["catch"](function (err) {
         loading.close();
 
         if (err.response && err.response.status == 422) {
-          _this3.errors = err.response.data.errors;
+          _this4.errors = err.response.data.errors;
         } else if (err.response.data.message) {
           Swal.fire({
             title: 'Error!',
@@ -2553,6 +2556,9 @@ __webpack_require__.r(__webpack_exports__);
     },
     disableAdviser: function disableAdviser() {
       return this.advisers.length < 2;
+    },
+    disableCeremonyTypes: function disableCeremonyTypes() {
+      return this.ceremony_types.length < 2;
     }
   }
 });
@@ -42616,16 +42622,41 @@ var render = function() {
                                 "div",
                                 { staticClass: "form-group col-sm-6" },
                                 [
-                                  _c("vs-input", {
-                                    attrs: { primary: "", placeholder: "Tipo" },
-                                    model: {
-                                      value: _vm.value,
-                                      callback: function($$v) {
-                                        _vm.value = $$v
+                                  _c(
+                                    "vs-select",
+                                    {
+                                      key: _vm.ceremony_types.length,
+                                      attrs: {
+                                        filter: "",
+                                        placeholder: _vm.__("Select"),
+                                        state: "primary",
+                                        disabled: _vm.disableCeremonyTypes
                                       },
-                                      expression: "value"
-                                    }
-                                  })
+                                      model: {
+                                        value: _vm.ceremony.type,
+                                        callback: function($$v) {
+                                          _vm.$set(_vm.ceremony, "type", $$v)
+                                        },
+                                        expression: "ceremony.type"
+                                      }
+                                    },
+                                    _vm._l(_vm.ceremony_types, function(
+                                      ceremony
+                                    ) {
+                                      return _c(
+                                        "vs-option",
+                                        {
+                                          key: ceremony.id,
+                                          attrs: {
+                                            label: ceremony.name,
+                                            value: ceremony.id
+                                          }
+                                        },
+                                        [_vm._v(_vm._s(ceremony.name))]
+                                      )
+                                    }),
+                                    1
+                                  )
                                 ],
                                 1
                               )
@@ -42671,67 +42702,67 @@ var render = function() {
                                     {
                                       key: "tbody",
                                       fn: function() {
-                                        return _vm._l(_vm.users, function(
-                                          tr,
-                                          i
-                                        ) {
-                                          return _c(
-                                            "vs-tr",
-                                            {
-                                              key: i,
-                                              scopedSlots: _vm._u(
-                                                [
-                                                  {
-                                                    key: "expand",
-                                                    fn: function() {
-                                                      return [
-                                                        _c(
-                                                          "div",
-                                                          {
-                                                            staticClass:
-                                                              "con-content"
-                                                          },
-                                                          [
-                                                            _c("div", [
-                                                              _c("p", [
-                                                                _vm._v(
-                                                                  "\n                                                                " +
-                                                                    _vm._s(
-                                                                      tr.name
-                                                                    ) +
-                                                                    "\n                                                            "
-                                                                )
-                                                              ])
-                                                            ]),
-                                                            _vm._v(" "),
-                                                            _c("div")
-                                                          ]
-                                                        )
-                                                      ]
-                                                    },
-                                                    proxy: true
-                                                  }
-                                                ],
-                                                null,
-                                                true
-                                              )
-                                            },
-                                            [
-                                              _c("vs-td", [
-                                                _vm._v(_vm._s(tr.name))
-                                              ]),
-                                              _vm._v(" "),
-                                              _c("vs-td", [
-                                                _vm._v(_vm._s(tr.email))
-                                              ]),
-                                              _vm._v(" "),
-                                              _c("vs-td", [
-                                                _vm._v(_vm._s(tr.id))
-                                              ])
-                                            ],
-                                            1
-                                          )
-                                        })
+                                        return _vm._l(
+                                          _vm.form.ceremonies,
+                                          function(ceremony, i) {
+                                            return _c(
+                                              "vs-tr",
+                                              {
+                                                key: i,
+                                                scopedSlots: _vm._u(
+                                                  [
+                                                    {
+                                                      key: "expand",
+                                                      fn: function() {
+                                                        return [
+                                                          _c(
+                                                            "div",
+                                                            {
+                                                              staticClass:
+                                                                "con-content"
+                                                            },
+                                                            [
+                                                              _c("div", [
+                                                                _c("p", [
+                                                                  _vm._v(
+                                                                    "\n                                                                " +
+                                                                      _vm._s(
+                                                                        ceremony.name
+                                                                      ) +
+                                                                      "\n                                                            "
+                                                                  )
+                                                                ])
+                                                              ]),
+                                                              _vm._v(" "),
+                                                              _c("div")
+                                                            ]
+                                                          )
+                                                        ]
+                                                      },
+                                                      proxy: true
+                                                    }
+                                                  ],
+                                                  null,
+                                                  true
+                                                )
+                                              },
+                                              [
+                                                _c("vs-td", [
+                                                  _vm._v(_vm._s(ceremony.name))
+                                                ]),
+                                                _vm._v(" "),
+                                                _c("vs-td", [
+                                                  _vm._v(_vm._s(ceremony.email))
+                                                ]),
+                                                _vm._v(" "),
+                                                _c("vs-td", [
+                                                  _vm._v(_vm._s(ceremony.id))
+                                                ])
+                                              ],
+                                              1
+                                            )
+                                          }
+                                        )
                                       },
                                       proxy: true
                                     }
