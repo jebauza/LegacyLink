@@ -150,7 +150,57 @@
                             </div>
 
                             <div class="tab-pane" id="kt_tab_client" role="tabpanel">
-                                <p>cliente</p>
+                                <div class="form-row">
+                                    <div class="form-group col-sm-6 col-lg-4">
+                                        <label :class="['control-label', errors.client_name ? 'text-danger' : '']"><b>{{ __('validation.attributes.name') }}</b></label>
+                                        <input v-model="form.client_name" type="text" :class="['form-control', errors.client_name ? 'is-invalid' : '']" name="client_name" :placeholder="__('validation.attributes.name')" required :disabled="modalType=='show'">
+                                        <small v-if="errors.client_name" class="form-control-feedback text-danger">
+                                            {{ errors.client_name[0] }}
+                                        </small>
+                                    </div>
+
+                                    <div class="form-group col-sm-6 col-lg-4">
+                                        <label :class="['control-label', errors.client_lastname ? 'text-danger' : '']"><b>{{ __('validation.attributes.last_name') }}</b></label>
+                                        <input v-model="form.client_lastname" type="text" :class="['form-control', errors.client_lastname ? 'is-invalid' : '']" name="client_lastname" :placeholder="__('validation.attributes.last_name')" required :disabled="modalType=='show'">
+                                        <small v-if="errors.client_lastname" class="form-control-feedback text-danger">
+                                            {{ errors.client_lastname[0] }}
+                                        </small>
+                                    </div>
+
+                                    <div class="form-group col-sm-6 col-lg-4">
+                                        <label :class="['control-label', errors.client_dni ? 'text-danger' : '']"><b>DNI</b></label>
+                                        <input v-model="form.client_dni" type="text" :class="['form-control', errors.client_dni ? 'is-invalid' : '']" name="client_dni" placeholder="dni" required :disabled="modalType=='show'">
+                                        <small v-if="errors.client_dni" class="form-control-feedback text-danger">
+                                            {{ errors.client_dni[0] }}
+                                        </small>
+                                    </div>
+
+                                    <div class="form-group col-sm-6">
+                                        <label :class="['control-label', errors.client_dni ? 'text-danger' : '']"><b>DNI</b></label>
+                                        <input v-model="form.client_dni" type="text" :class="['form-control', errors.client_dni ? 'is-invalid' : '']" name="client_dni" placeholder="dni" required :disabled="modalType=='show'">
+                                        <small v-if="errors.client_dni" class="form-control-feedback text-danger">
+                                            {{ errors.client_dni[0] }}
+                                        </small>
+                                    </div>
+
+                                    <div class="form-group col-sm-6 col-md-4">
+                                        <label :class="['control-label', errors.client_email ? 'text-danger' : '']"><b>{{ __('validation.attributes.email') }}</b></label>
+                                        <input  v-model="form.client_email" type="email" :class="['form-control', errors.client_email ? 'is-invalid' : '']" name="client_email" :placeholder="__('validation.attributes.email')" :disabled="modalType=='show'">
+                                        <small v-if="errors.client_email" class="form-control-feedback text-danger">
+                                            {{ errors.client_email[0] }}
+                                        </small>
+                                    </div>
+
+                                    <div class="form-group col-sm-6 col-md-4">
+                                        <label :class="['control-label', errors.client_phone ? 'text-danger' : '']"><b>{{ __('validation.attributes.phone') }}</b></label>
+                                        <input v-model="form.client_phone" type="text" :class="['form-control', errors.client_phone ? 'is-invalid' : '']" name="client_phone" :placeholder="__('validation.attributes.phone')" :disabled="modalType=='show'">
+                                        <small v-if="errors.client_phone" class="form-control-feedback text-danger">
+                                            {{ errors.client_phone[0] }}
+                                        </small>
+                                    </div>
+                                </div>
+
+
                             </div>
 
                             <div class="tab-pane" id="kt_tab_events" role="tabpanel">
@@ -200,6 +250,12 @@ export default {
                 dprofile_lastname: '',
                 dprofile_birthday: '',
                 dprofile_death: '',
+
+                client_name: '',
+                client_lastname: '',
+                client_dni: '',
+                client_email: '',
+                client_phone: ''
             },
 
             errors: {},

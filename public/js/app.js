@@ -2253,6 +2253,56 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   watch: {
     'form.dprofile_office': function formDprofile_office(newValue, oldValue) {
@@ -2276,7 +2326,12 @@ __webpack_require__.r(__webpack_exports__);
         dprofile_name: '',
         dprofile_lastname: '',
         dprofile_birthday: '',
-        dprofile_death: ''
+        dprofile_death: '',
+        client_name: '',
+        client_lastname: '',
+        client_dni: '',
+        client_email: '',
+        client_phone: ''
       },
       errors: {}
     };
@@ -42062,9 +42117,504 @@ var render = function() {
                           ]
                         ),
                         _vm._v(" "),
-                        _vm._m(1),
+                        _c(
+                          "div",
+                          {
+                            staticClass: "tab-pane",
+                            attrs: { id: "kt_tab_client", role: "tabpanel" }
+                          },
+                          [
+                            _c("div", { staticClass: "form-row" }, [
+                              _c(
+                                "div",
+                                { staticClass: "form-group col-sm-6 col-lg-4" },
+                                [
+                                  _c(
+                                    "label",
+                                    {
+                                      class: [
+                                        "control-label",
+                                        _vm.errors.client_name
+                                          ? "text-danger"
+                                          : ""
+                                      ]
+                                    },
+                                    [
+                                      _c("b", [
+                                        _vm._v(
+                                          _vm._s(
+                                            _vm.__("validation.attributes.name")
+                                          )
+                                        )
+                                      ])
+                                    ]
+                                  ),
+                                  _vm._v(" "),
+                                  _c("input", {
+                                    directives: [
+                                      {
+                                        name: "model",
+                                        rawName: "v-model",
+                                        value: _vm.form.client_name,
+                                        expression: "form.client_name"
+                                      }
+                                    ],
+                                    class: [
+                                      "form-control",
+                                      _vm.errors.client_name ? "is-invalid" : ""
+                                    ],
+                                    attrs: {
+                                      type: "text",
+                                      name: "client_name",
+                                      placeholder: _vm.__(
+                                        "validation.attributes.name"
+                                      ),
+                                      required: "",
+                                      disabled: _vm.modalType == "show"
+                                    },
+                                    domProps: { value: _vm.form.client_name },
+                                    on: {
+                                      input: function($event) {
+                                        if ($event.target.composing) {
+                                          return
+                                        }
+                                        _vm.$set(
+                                          _vm.form,
+                                          "client_name",
+                                          $event.target.value
+                                        )
+                                      }
+                                    }
+                                  }),
+                                  _vm._v(" "),
+                                  _vm.errors.client_name
+                                    ? _c(
+                                        "small",
+                                        {
+                                          staticClass:
+                                            "form-control-feedback text-danger"
+                                        },
+                                        [
+                                          _vm._v(
+                                            "\n                                            " +
+                                              _vm._s(
+                                                _vm.errors.client_name[0]
+                                              ) +
+                                              "\n                                        "
+                                          )
+                                        ]
+                                      )
+                                    : _vm._e()
+                                ]
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "div",
+                                { staticClass: "form-group col-sm-6 col-lg-4" },
+                                [
+                                  _c(
+                                    "label",
+                                    {
+                                      class: [
+                                        "control-label",
+                                        _vm.errors.client_lastname
+                                          ? "text-danger"
+                                          : ""
+                                      ]
+                                    },
+                                    [
+                                      _c("b", [
+                                        _vm._v(
+                                          _vm._s(
+                                            _vm.__(
+                                              "validation.attributes.last_name"
+                                            )
+                                          )
+                                        )
+                                      ])
+                                    ]
+                                  ),
+                                  _vm._v(" "),
+                                  _c("input", {
+                                    directives: [
+                                      {
+                                        name: "model",
+                                        rawName: "v-model",
+                                        value: _vm.form.client_lastname,
+                                        expression: "form.client_lastname"
+                                      }
+                                    ],
+                                    class: [
+                                      "form-control",
+                                      _vm.errors.client_lastname
+                                        ? "is-invalid"
+                                        : ""
+                                    ],
+                                    attrs: {
+                                      type: "text",
+                                      name: "client_lastname",
+                                      placeholder: _vm.__(
+                                        "validation.attributes.last_name"
+                                      ),
+                                      required: "",
+                                      disabled: _vm.modalType == "show"
+                                    },
+                                    domProps: {
+                                      value: _vm.form.client_lastname
+                                    },
+                                    on: {
+                                      input: function($event) {
+                                        if ($event.target.composing) {
+                                          return
+                                        }
+                                        _vm.$set(
+                                          _vm.form,
+                                          "client_lastname",
+                                          $event.target.value
+                                        )
+                                      }
+                                    }
+                                  }),
+                                  _vm._v(" "),
+                                  _vm.errors.client_lastname
+                                    ? _c(
+                                        "small",
+                                        {
+                                          staticClass:
+                                            "form-control-feedback text-danger"
+                                        },
+                                        [
+                                          _vm._v(
+                                            "\n                                            " +
+                                              _vm._s(
+                                                _vm.errors.client_lastname[0]
+                                              ) +
+                                              "\n                                        "
+                                          )
+                                        ]
+                                      )
+                                    : _vm._e()
+                                ]
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "div",
+                                { staticClass: "form-group col-sm-6 col-lg-4" },
+                                [
+                                  _c(
+                                    "label",
+                                    {
+                                      class: [
+                                        "control-label",
+                                        _vm.errors.client_dni
+                                          ? "text-danger"
+                                          : ""
+                                      ]
+                                    },
+                                    [_c("b", [_vm._v("DNI")])]
+                                  ),
+                                  _vm._v(" "),
+                                  _c("input", {
+                                    directives: [
+                                      {
+                                        name: "model",
+                                        rawName: "v-model",
+                                        value: _vm.form.client_dni,
+                                        expression: "form.client_dni"
+                                      }
+                                    ],
+                                    class: [
+                                      "form-control",
+                                      _vm.errors.client_dni ? "is-invalid" : ""
+                                    ],
+                                    attrs: {
+                                      type: "text",
+                                      name: "client_dni",
+                                      placeholder: "dni",
+                                      required: "",
+                                      disabled: _vm.modalType == "show"
+                                    },
+                                    domProps: { value: _vm.form.client_dni },
+                                    on: {
+                                      input: function($event) {
+                                        if ($event.target.composing) {
+                                          return
+                                        }
+                                        _vm.$set(
+                                          _vm.form,
+                                          "client_dni",
+                                          $event.target.value
+                                        )
+                                      }
+                                    }
+                                  }),
+                                  _vm._v(" "),
+                                  _vm.errors.client_dni
+                                    ? _c(
+                                        "small",
+                                        {
+                                          staticClass:
+                                            "form-control-feedback text-danger"
+                                        },
+                                        [
+                                          _vm._v(
+                                            "\n                                            " +
+                                              _vm._s(_vm.errors.client_dni[0]) +
+                                              "\n                                        "
+                                          )
+                                        ]
+                                      )
+                                    : _vm._e()
+                                ]
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "div",
+                                { staticClass: "form-group col-sm-6" },
+                                [
+                                  _c(
+                                    "label",
+                                    {
+                                      class: [
+                                        "control-label",
+                                        _vm.errors.client_dni
+                                          ? "text-danger"
+                                          : ""
+                                      ]
+                                    },
+                                    [_c("b", [_vm._v("DNI")])]
+                                  ),
+                                  _vm._v(" "),
+                                  _c("input", {
+                                    directives: [
+                                      {
+                                        name: "model",
+                                        rawName: "v-model",
+                                        value: _vm.form.client_dni,
+                                        expression: "form.client_dni"
+                                      }
+                                    ],
+                                    class: [
+                                      "form-control",
+                                      _vm.errors.client_dni ? "is-invalid" : ""
+                                    ],
+                                    attrs: {
+                                      type: "text",
+                                      name: "client_dni",
+                                      placeholder: "dni",
+                                      required: "",
+                                      disabled: _vm.modalType == "show"
+                                    },
+                                    domProps: { value: _vm.form.client_dni },
+                                    on: {
+                                      input: function($event) {
+                                        if ($event.target.composing) {
+                                          return
+                                        }
+                                        _vm.$set(
+                                          _vm.form,
+                                          "client_dni",
+                                          $event.target.value
+                                        )
+                                      }
+                                    }
+                                  }),
+                                  _vm._v(" "),
+                                  _vm.errors.client_dni
+                                    ? _c(
+                                        "small",
+                                        {
+                                          staticClass:
+                                            "form-control-feedback text-danger"
+                                        },
+                                        [
+                                          _vm._v(
+                                            "\n                                            " +
+                                              _vm._s(_vm.errors.client_dni[0]) +
+                                              "\n                                        "
+                                          )
+                                        ]
+                                      )
+                                    : _vm._e()
+                                ]
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "div",
+                                { staticClass: "form-group col-sm-6 col-md-4" },
+                                [
+                                  _c(
+                                    "label",
+                                    {
+                                      class: [
+                                        "control-label",
+                                        _vm.errors.client_email
+                                          ? "text-danger"
+                                          : ""
+                                      ]
+                                    },
+                                    [
+                                      _c("b", [
+                                        _vm._v(
+                                          _vm._s(
+                                            _vm.__(
+                                              "validation.attributes.email"
+                                            )
+                                          )
+                                        )
+                                      ])
+                                    ]
+                                  ),
+                                  _vm._v(" "),
+                                  _c("input", {
+                                    directives: [
+                                      {
+                                        name: "model",
+                                        rawName: "v-model",
+                                        value: _vm.form.client_email,
+                                        expression: "form.client_email"
+                                      }
+                                    ],
+                                    class: [
+                                      "form-control",
+                                      _vm.errors.client_email
+                                        ? "is-invalid"
+                                        : ""
+                                    ],
+                                    attrs: {
+                                      type: "email",
+                                      name: "client_email",
+                                      placeholder: _vm.__(
+                                        "validation.attributes.email"
+                                      ),
+                                      disabled: _vm.modalType == "show"
+                                    },
+                                    domProps: { value: _vm.form.client_email },
+                                    on: {
+                                      input: function($event) {
+                                        if ($event.target.composing) {
+                                          return
+                                        }
+                                        _vm.$set(
+                                          _vm.form,
+                                          "client_email",
+                                          $event.target.value
+                                        )
+                                      }
+                                    }
+                                  }),
+                                  _vm._v(" "),
+                                  _vm.errors.client_email
+                                    ? _c(
+                                        "small",
+                                        {
+                                          staticClass:
+                                            "form-control-feedback text-danger"
+                                        },
+                                        [
+                                          _vm._v(
+                                            "\n                                            " +
+                                              _vm._s(
+                                                _vm.errors.client_email[0]
+                                              ) +
+                                              "\n                                        "
+                                          )
+                                        ]
+                                      )
+                                    : _vm._e()
+                                ]
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "div",
+                                { staticClass: "form-group col-sm-6 col-md-4" },
+                                [
+                                  _c(
+                                    "label",
+                                    {
+                                      class: [
+                                        "control-label",
+                                        _vm.errors.client_phone
+                                          ? "text-danger"
+                                          : ""
+                                      ]
+                                    },
+                                    [
+                                      _c("b", [
+                                        _vm._v(
+                                          _vm._s(
+                                            _vm.__(
+                                              "validation.attributes.phone"
+                                            )
+                                          )
+                                        )
+                                      ])
+                                    ]
+                                  ),
+                                  _vm._v(" "),
+                                  _c("input", {
+                                    directives: [
+                                      {
+                                        name: "model",
+                                        rawName: "v-model",
+                                        value: _vm.form.client_phone,
+                                        expression: "form.client_phone"
+                                      }
+                                    ],
+                                    class: [
+                                      "form-control",
+                                      _vm.errors.client_phone
+                                        ? "is-invalid"
+                                        : ""
+                                    ],
+                                    attrs: {
+                                      type: "text",
+                                      name: "client_phone",
+                                      placeholder: _vm.__(
+                                        "validation.attributes.phone"
+                                      ),
+                                      disabled: _vm.modalType == "show"
+                                    },
+                                    domProps: { value: _vm.form.client_phone },
+                                    on: {
+                                      input: function($event) {
+                                        if ($event.target.composing) {
+                                          return
+                                        }
+                                        _vm.$set(
+                                          _vm.form,
+                                          "client_phone",
+                                          $event.target.value
+                                        )
+                                      }
+                                    }
+                                  }),
+                                  _vm._v(" "),
+                                  _vm.errors.client_phone
+                                    ? _c(
+                                        "small",
+                                        {
+                                          staticClass:
+                                            "form-control-feedback text-danger"
+                                        },
+                                        [
+                                          _vm._v(
+                                            "\n                                            " +
+                                              _vm._s(
+                                                _vm.errors.client_phone[0]
+                                              ) +
+                                              "\n                                        "
+                                          )
+                                        ]
+                                      )
+                                    : _vm._e()
+                                ]
+                              )
+                            ])
+                          ]
+                        ),
                         _vm._v(" "),
-                        _vm._m(2)
+                        _vm._m(1)
                       ])
                     ])
                   ])
@@ -42120,19 +42670,6 @@ var staticRenderFns = [
         }
       },
       [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
-    )
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      {
-        staticClass: "tab-pane",
-        attrs: { id: "kt_tab_client", role: "tabpanel" }
-      },
-      [_c("p", [_vm._v("cliente")])]
     )
   },
   function() {
