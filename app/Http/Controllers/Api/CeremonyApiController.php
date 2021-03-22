@@ -11,7 +11,7 @@ use Illuminate\Http\Request;
 
 /**
  * @OA\Tag(
- *     name="Public agenda",
+ *     name="Public ceremonia",
  *     description="API Endpoints of public ceremonies list"
  * )
  */
@@ -21,7 +21,7 @@ class CeremonyApiController extends Controller
      * @OA\Get(
      *      path="/public/profile/{profile_id}/events",
      *      operationId="/public/profile/{profile_id}/events",
-     *      tags={"Public ceremonies list"},
+     *      tags={"Public ceremonia"},
      *      summary="Get the public ceremonies list",
      *      description="Return the list of ceremonies associated with a specific profile",
      *
@@ -38,18 +38,29 @@ class CeremonyApiController extends Controller
      *          @OA\JsonContent(
      *              @OA\Property(property="success", example=true),
      *              @OA\Property(property="message", example="User login successfully."),
+     *              @OA\Property(property="data", type="array",
+     *                  @OA\Items(ref="#/components/schemas/CeremonyResource")
+     *              ),
      *          )
      *      ),
+     *
+     *      @OA\Response(response=404, ref="#/components/requestBodies/response_404"),
+     *
+     *      @OA\Response(response=500, ref="#/components/requestBodies/response_500"),
      * )
      *  @param int $profile_id
      *  @return CeremonyResource
      */
     public function agenda($profile_id)
     {
-        $ceremonies=Ceremony::where('profile_id',$profile_id)
+        if(!$profile=DeceasedProfile::find($profile_id)){
+            return $this->sendError404();
+        }
+
+        $ceremonies=Ceremony::where('profile_id',$profile->id)
             ->orderBy('start')
             ->get();
-    
-        return $this->sendResponse("Successful operation", (CeremonyResource::collection($ceremonies)));
+
+        return $this->sendResponse(null, (CeremonyResource::collection($ceremonies)));
     }
 }

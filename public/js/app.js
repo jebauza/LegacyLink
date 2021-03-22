@@ -2033,7 +2033,7 @@ __webpack_require__.r(__webpack_exports__);
             color: '#187de4',
             text: this.__('Deleting') + '...'
         });
-         axios.delete(url)
+          axios.delete(url)
         .then(res => {
             loading.close();
             Swal.fire({
@@ -2253,6 +2253,48 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   watch: {
     'form.dprofile_office': function formDprofile_office(newValue, oldValue) {
@@ -2276,7 +2318,12 @@ __webpack_require__.r(__webpack_exports__);
         dprofile_name: '',
         dprofile_lastname: '',
         dprofile_birthday: '',
-        dprofile_death: ''
+        dprofile_death: '',
+        client_name: '',
+        client_lastname: '',
+        client_dni: '',
+        client_email: '',
+        client_phone: ''
       },
       errors: {}
     };
@@ -2346,7 +2393,12 @@ __webpack_require__.r(__webpack_exports__);
         dprofile_name: '',
         dprofile_lastname: '',
         dprofile_birthday: '',
-        dprofile_death: ''
+        dprofile_death: '',
+        client_name: '',
+        client_lastname: '',
+        client_dni: '',
+        client_email: '',
+        client_phone: ''
       };
       this.errors = {};
     },
@@ -8090,7 +8142,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\nth {\n    text-transform: uppercase;\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\nth {\r\n    text-transform: uppercase;\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -8162,7 +8214,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.vs-select-content {\n    max-width: none;\n}\nform label {\n    text-transform: uppercase;\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.vs-select-content {\r\n    max-width: none;\n}\nform label {\r\n    text-transform: uppercase;\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -8186,7 +8238,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\nth {\n    text-transform: uppercase;\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\nth {\r\n    text-transform: uppercase;\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -40848,7 +40900,7 @@ var render = function() {
       _c("div", { staticClass: "card-header flex-wrap border-0 pt-6 pb-0" }, [
         _c("div", { staticClass: "card-title" }, [
           _c("h3", { staticClass: "card-label" }, [
-            _vm._v("Webs\n                "),
+            _vm._v("Webs\r\n                "),
             _c(
               "span",
               { staticClass: "d-block text-muted pt-2 font-size-sm" },
@@ -40870,7 +40922,7 @@ var render = function() {
             },
             [
               _c("i", { staticClass: "fas fa-plus-square" }),
-              _vm._v(" " + _vm._s(_vm.__("Add")) + "\n                ")
+              _vm._v(" " + _vm._s(_vm.__("Add")) + "\r\n                ")
             ]
           )
         ])
@@ -40966,9 +41018,9 @@ var render = function() {
                       fn: function() {
                         return [
                           _vm._v(
-                            "\n                            " +
+                            "\r\n                            " +
                               _vm._s(_vm.__("Remove Filters")) +
-                              "\n                        "
+                              "\r\n                        "
                           )
                         ]
                       },
@@ -41043,9 +41095,9 @@ var render = function() {
                                         fn: function() {
                                           return [
                                             _vm._v(
-                                              "\n                                            " +
+                                              "\r\n                                            " +
                                                 _vm._s(_vm.__("Show")) +
-                                                "\n                                        "
+                                                "\r\n                                        "
                                             )
                                           ]
                                         },
@@ -41087,9 +41139,9 @@ var render = function() {
                                         fn: function() {
                                           return [
                                             _vm._v(
-                                              "\n                                            " +
+                                              "\r\n                                            " +
                                                 _vm._s(_vm.__("Edit")) +
-                                                "\n                                        "
+                                                "\r\n                                        "
                                             )
                                           ]
                                         },
@@ -41131,9 +41183,9 @@ var render = function() {
                                         fn: function() {
                                           return [
                                             _vm._v(
-                                              "\n                                            " +
+                                              "\r\n                                            " +
                                                 _vm._s(_vm.__("Delete")) +
-                                                "\n                                        "
+                                                "\r\n                                        "
                                             )
                                           ]
                                         },
@@ -41194,9 +41246,9 @@ var render = function() {
               },
               [
                 _vm._v(
-                  "\n                " +
+                  "\r\n                " +
                     _vm._s(_vm.__("There is no item to display")) +
-                    "\n            "
+                    "\r\n            "
                 )
               ]
             )
@@ -42062,9 +42114,433 @@ var render = function() {
                           ]
                         ),
                         _vm._v(" "),
-                        _vm._m(1),
+                        _c(
+                          "div",
+                          {
+                            staticClass: "tab-pane",
+                            attrs: { id: "kt_tab_client", role: "tabpanel" }
+                          },
+                          [
+                            _c("div", { staticClass: "form-row" }, [
+                              _c(
+                                "div",
+                                { staticClass: "form-group col-sm-6" },
+                                [
+                                  _c(
+                                    "label",
+                                    {
+                                      class: [
+                                        "control-label",
+                                        _vm.errors.client_name
+                                          ? "text-danger"
+                                          : ""
+                                      ]
+                                    },
+                                    [
+                                      _c("b", [
+                                        _vm._v(
+                                          _vm._s(
+                                            _vm.__("validation.attributes.name")
+                                          )
+                                        )
+                                      ])
+                                    ]
+                                  ),
+                                  _vm._v(" "),
+                                  _c("input", {
+                                    directives: [
+                                      {
+                                        name: "model",
+                                        rawName: "v-model",
+                                        value: _vm.form.client_name,
+                                        expression: "form.client_name"
+                                      }
+                                    ],
+                                    class: [
+                                      "form-control",
+                                      _vm.errors.client_name ? "is-invalid" : ""
+                                    ],
+                                    attrs: {
+                                      type: "text",
+                                      name: "client_name",
+                                      placeholder: _vm.__(
+                                        "validation.attributes.name"
+                                      ),
+                                      required: "",
+                                      disabled: _vm.modalType == "show"
+                                    },
+                                    domProps: { value: _vm.form.client_name },
+                                    on: {
+                                      input: function($event) {
+                                        if ($event.target.composing) {
+                                          return
+                                        }
+                                        _vm.$set(
+                                          _vm.form,
+                                          "client_name",
+                                          $event.target.value
+                                        )
+                                      }
+                                    }
+                                  }),
+                                  _vm._v(" "),
+                                  _vm.errors.client_name
+                                    ? _c(
+                                        "small",
+                                        {
+                                          staticClass:
+                                            "form-control-feedback text-danger"
+                                        },
+                                        [
+                                          _vm._v(
+                                            "\n                                            " +
+                                              _vm._s(
+                                                _vm.errors.client_name[0]
+                                              ) +
+                                              "\n                                        "
+                                          )
+                                        ]
+                                      )
+                                    : _vm._e()
+                                ]
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "div",
+                                { staticClass: "form-group col-sm-6" },
+                                [
+                                  _c(
+                                    "label",
+                                    {
+                                      class: [
+                                        "control-label",
+                                        _vm.errors.client_lastname
+                                          ? "text-danger"
+                                          : ""
+                                      ]
+                                    },
+                                    [
+                                      _c("b", [
+                                        _vm._v(
+                                          _vm._s(
+                                            _vm.__(
+                                              "validation.attributes.last_name"
+                                            )
+                                          )
+                                        )
+                                      ])
+                                    ]
+                                  ),
+                                  _vm._v(" "),
+                                  _c("input", {
+                                    directives: [
+                                      {
+                                        name: "model",
+                                        rawName: "v-model",
+                                        value: _vm.form.client_lastname,
+                                        expression: "form.client_lastname"
+                                      }
+                                    ],
+                                    class: [
+                                      "form-control",
+                                      _vm.errors.client_lastname
+                                        ? "is-invalid"
+                                        : ""
+                                    ],
+                                    attrs: {
+                                      type: "text",
+                                      name: "client_lastname",
+                                      placeholder: _vm.__(
+                                        "validation.attributes.last_name"
+                                      ),
+                                      required: "",
+                                      disabled: _vm.modalType == "show"
+                                    },
+                                    domProps: {
+                                      value: _vm.form.client_lastname
+                                    },
+                                    on: {
+                                      input: function($event) {
+                                        if ($event.target.composing) {
+                                          return
+                                        }
+                                        _vm.$set(
+                                          _vm.form,
+                                          "client_lastname",
+                                          $event.target.value
+                                        )
+                                      }
+                                    }
+                                  }),
+                                  _vm._v(" "),
+                                  _vm.errors.client_lastname
+                                    ? _c(
+                                        "small",
+                                        {
+                                          staticClass:
+                                            "form-control-feedback text-danger"
+                                        },
+                                        [
+                                          _vm._v(
+                                            "\n                                            " +
+                                              _vm._s(
+                                                _vm.errors.client_lastname[0]
+                                              ) +
+                                              "\n                                        "
+                                          )
+                                        ]
+                                      )
+                                    : _vm._e()
+                                ]
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "div",
+                                { staticClass: "form-group col-sm-6 col-lg-4" },
+                                [
+                                  _c(
+                                    "label",
+                                    {
+                                      class: [
+                                        "control-label",
+                                        _vm.errors.client_dni
+                                          ? "text-danger"
+                                          : ""
+                                      ]
+                                    },
+                                    [_c("b", [_vm._v("DNI")])]
+                                  ),
+                                  _vm._v(" "),
+                                  _c("input", {
+                                    directives: [
+                                      {
+                                        name: "model",
+                                        rawName: "v-model",
+                                        value: _vm.form.client_dni,
+                                        expression: "form.client_dni"
+                                      }
+                                    ],
+                                    class: [
+                                      "form-control",
+                                      _vm.errors.client_dni ? "is-invalid" : ""
+                                    ],
+                                    attrs: {
+                                      type: "text",
+                                      name: "client_dni",
+                                      placeholder: "dni",
+                                      required: "",
+                                      disabled: _vm.modalType == "show"
+                                    },
+                                    domProps: { value: _vm.form.client_dni },
+                                    on: {
+                                      input: function($event) {
+                                        if ($event.target.composing) {
+                                          return
+                                        }
+                                        _vm.$set(
+                                          _vm.form,
+                                          "client_dni",
+                                          $event.target.value
+                                        )
+                                      }
+                                    }
+                                  }),
+                                  _vm._v(" "),
+                                  _vm.errors.client_dni
+                                    ? _c(
+                                        "small",
+                                        {
+                                          staticClass:
+                                            "form-control-feedback text-danger"
+                                        },
+                                        [
+                                          _vm._v(
+                                            "\n                                            " +
+                                              _vm._s(_vm.errors.client_dni[0]) +
+                                              "\n                                        "
+                                          )
+                                        ]
+                                      )
+                                    : _vm._e()
+                                ]
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "div",
+                                { staticClass: "form-group col-sm-6 col-lg-4" },
+                                [
+                                  _c(
+                                    "label",
+                                    {
+                                      class: [
+                                        "control-label",
+                                        _vm.errors.client_email
+                                          ? "text-danger"
+                                          : ""
+                                      ]
+                                    },
+                                    [
+                                      _c("b", [
+                                        _vm._v(
+                                          _vm._s(
+                                            _vm.__(
+                                              "validation.attributes.email"
+                                            )
+                                          )
+                                        )
+                                      ])
+                                    ]
+                                  ),
+                                  _vm._v(" "),
+                                  _c("input", {
+                                    directives: [
+                                      {
+                                        name: "model",
+                                        rawName: "v-model",
+                                        value: _vm.form.client_email,
+                                        expression: "form.client_email"
+                                      }
+                                    ],
+                                    class: [
+                                      "form-control",
+                                      _vm.errors.client_email
+                                        ? "is-invalid"
+                                        : ""
+                                    ],
+                                    attrs: {
+                                      type: "email",
+                                      name: "client_email",
+                                      placeholder: _vm.__(
+                                        "validation.attributes.email"
+                                      ),
+                                      disabled: _vm.modalType == "show"
+                                    },
+                                    domProps: { value: _vm.form.client_email },
+                                    on: {
+                                      input: function($event) {
+                                        if ($event.target.composing) {
+                                          return
+                                        }
+                                        _vm.$set(
+                                          _vm.form,
+                                          "client_email",
+                                          $event.target.value
+                                        )
+                                      }
+                                    }
+                                  }),
+                                  _vm._v(" "),
+                                  _vm.errors.client_email
+                                    ? _c(
+                                        "small",
+                                        {
+                                          staticClass:
+                                            "form-control-feedback text-danger"
+                                        },
+                                        [
+                                          _vm._v(
+                                            "\n                                            " +
+                                              _vm._s(
+                                                _vm.errors.client_email[0]
+                                              ) +
+                                              "\n                                        "
+                                          )
+                                        ]
+                                      )
+                                    : _vm._e()
+                                ]
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "div",
+                                { staticClass: "form-group col-sm-6 col-lg-4" },
+                                [
+                                  _c(
+                                    "label",
+                                    {
+                                      class: [
+                                        "control-label",
+                                        _vm.errors.client_phone
+                                          ? "text-danger"
+                                          : ""
+                                      ]
+                                    },
+                                    [
+                                      _c("b", [
+                                        _vm._v(
+                                          _vm._s(
+                                            _vm.__(
+                                              "validation.attributes.phone"
+                                            )
+                                          )
+                                        )
+                                      ])
+                                    ]
+                                  ),
+                                  _vm._v(" "),
+                                  _c("input", {
+                                    directives: [
+                                      {
+                                        name: "model",
+                                        rawName: "v-model",
+                                        value: _vm.form.client_phone,
+                                        expression: "form.client_phone"
+                                      }
+                                    ],
+                                    class: [
+                                      "form-control",
+                                      _vm.errors.client_phone
+                                        ? "is-invalid"
+                                        : ""
+                                    ],
+                                    attrs: {
+                                      type: "text",
+                                      name: "client_phone",
+                                      placeholder: _vm.__(
+                                        "validation.attributes.phone"
+                                      ),
+                                      disabled: _vm.modalType == "show"
+                                    },
+                                    domProps: { value: _vm.form.client_phone },
+                                    on: {
+                                      input: function($event) {
+                                        if ($event.target.composing) {
+                                          return
+                                        }
+                                        _vm.$set(
+                                          _vm.form,
+                                          "client_phone",
+                                          $event.target.value
+                                        )
+                                      }
+                                    }
+                                  }),
+                                  _vm._v(" "),
+                                  _vm.errors.client_phone
+                                    ? _c(
+                                        "small",
+                                        {
+                                          staticClass:
+                                            "form-control-feedback text-danger"
+                                        },
+                                        [
+                                          _vm._v(
+                                            "\n                                            " +
+                                              _vm._s(
+                                                _vm.errors.client_phone[0]
+                                              ) +
+                                              "\n                                        "
+                                          )
+                                        ]
+                                      )
+                                    : _vm._e()
+                                ]
+                              )
+                            ])
+                          ]
+                        ),
                         _vm._v(" "),
-                        _vm._m(2)
+                        _vm._m(1)
                       ])
                     ])
                   ])
@@ -42120,19 +42596,6 @@ var staticRenderFns = [
         }
       },
       [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
-    )
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      {
-        staticClass: "tab-pane",
-        attrs: { id: "kt_tab_client", role: "tabpanel" }
-      },
-      [_c("p", [_vm._v("cliente")])]
     )
   },
   function() {
@@ -42700,9 +43163,9 @@ var render = function() {
                             },
                             [
                               _vm._v(
-                                "\n                                " +
+                                "\r\n                                " +
                                   _vm._s(_vm.errors.name[0]) +
-                                  "\n                            "
+                                  "\r\n                            "
                               )
                             ]
                           )
@@ -42768,9 +43231,9 @@ var render = function() {
                             },
                             [
                               _vm._v(
-                                "\n                                " +
+                                "\r\n                                " +
                                   _vm._s(_vm.errors.last_name[0]) +
-                                  "\n                            "
+                                  "\r\n                            "
                               )
                             ]
                           )
@@ -42835,9 +43298,9 @@ var render = function() {
                             },
                             [
                               _vm._v(
-                                "\n                                " +
+                                "\r\n                                " +
                                   _vm._s(_vm.errors.email[0]) +
-                                  "\n                            "
+                                  "\r\n                            "
                               )
                             ]
                           )
@@ -42900,9 +43363,9 @@ var render = function() {
                             },
                             [
                               _vm._v(
-                                "\n                                " +
+                                "\r\n                                " +
                                   _vm._s(_vm.errors.phone[0]) +
-                                  "\n                            "
+                                  "\r\n                            "
                               )
                             ]
                           )
@@ -43003,9 +43466,9 @@ var render = function() {
                             },
                             [
                               _vm._v(
-                                "\n                                " +
+                                "\r\n                                " +
                                   _vm._s(_vm.errors.password[0]) +
-                                  "\n                            "
+                                  "\r\n                            "
                               )
                             ]
                           )
@@ -43062,9 +43525,9 @@ var render = function() {
                               },
                               [
                                 _vm._v(
-                                  "\n                                    " +
+                                  "\r\n                                    " +
                                     _vm._s(role.name) +
-                                    "\n                                "
+                                    "\r\n                                "
                                 )
                               ]
                             )
@@ -43080,9 +43543,9 @@ var render = function() {
                               },
                               [
                                 _vm._v(
-                                  "\n                                " +
+                                  "\r\n                                " +
                                     _vm._s(_vm.errors.role[0]) +
-                                    "\n                            "
+                                    "\r\n                            "
                                 )
                               ]
                             )
@@ -43159,9 +43622,9 @@ var render = function() {
                                   },
                                   [
                                     _vm._v(
-                                      "\n                                " +
+                                      "\r\n                                " +
                                         _vm._s(_vm.errors.offices[0]) +
-                                        "\n                            "
+                                        "\r\n                            "
                                     )
                                   ]
                                 )
@@ -43235,9 +43698,9 @@ var render = function() {
                             },
                             [
                               _vm._v(
-                                "\n                                " +
+                                "\r\n                                " +
                                   _vm._s(_vm.errors.extra_info[0]) +
-                                  "\n                            "
+                                  "\r\n                            "
                               )
                             ]
                           )
@@ -43328,7 +43791,7 @@ var render = function() {
       _c("div", { staticClass: "card-header flex-wrap border-0 pt-6 pb-0" }, [
         _c("div", { staticClass: "card-title" }, [
           _c("h3", { staticClass: "card-label" }, [
-            _vm._v(_vm._s(_vm.__("Branch Offices")) + "\n                "),
+            _vm._v(_vm._s(_vm.__("Branch Offices")) + "\r\n                "),
             _c(
               "span",
               { staticClass: "d-block text-muted pt-2 font-size-sm" },
@@ -43350,7 +43813,7 @@ var render = function() {
             },
             [
               _c("i", { staticClass: "fas fa-plus-square" }),
-              _vm._v(" " + _vm._s(_vm.__("Add")) + "\n                ")
+              _vm._v(" " + _vm._s(_vm.__("Add")) + "\r\n                ")
             ]
           )
         ])
@@ -43450,9 +43913,9 @@ var render = function() {
                       fn: function() {
                         return [
                           _vm._v(
-                            "\n                            " +
+                            "\r\n                            " +
                               _vm._s(_vm.__("Remove Filters")) +
-                              "\n                        "
+                              "\r\n                        "
                           )
                         ]
                       },
@@ -43557,9 +44020,9 @@ var render = function() {
                                         fn: function() {
                                           return [
                                             _vm._v(
-                                              "\n                                            " +
+                                              "\r\n                                            " +
                                                 _vm._s(_vm.__("Show")) +
-                                                "\n                                        "
+                                                "\r\n                                        "
                                             )
                                           ]
                                         },
@@ -43601,9 +44064,9 @@ var render = function() {
                                         fn: function() {
                                           return [
                                             _vm._v(
-                                              "\n                                            " +
+                                              "\r\n                                            " +
                                                 _vm._s(_vm.__("Edit")) +
-                                                "\n                                        "
+                                                "\r\n                                        "
                                             )
                                           ]
                                         },
@@ -43645,9 +44108,9 @@ var render = function() {
                                         fn: function() {
                                           return [
                                             _vm._v(
-                                              "\n                                            " +
+                                              "\r\n                                            " +
                                                 _vm._s(_vm.__("Delete")) +
-                                                "\n                                        "
+                                                "\r\n                                        "
                                             )
                                           ]
                                         },
@@ -43704,9 +44167,9 @@ var render = function() {
               },
               [
                 _vm._v(
-                  "\n                " +
+                  "\r\n                " +
                     _vm._s(_vm.__("There is no item to display")) +
-                    "\n            "
+                    "\r\n            "
                 )
               ]
             )

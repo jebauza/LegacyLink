@@ -37,8 +37,13 @@ class DeceasedProfileApiController extends Controller
      *          @OA\JsonContent(
      *              @OA\Property(property="success", example=true),
      *              @OA\Property(property="message", example="User login successfully."),
+     *              @OA\Property(property="data", ref="#/components/schemas/DeceasedProfileResource"),
      *          )
      *      ),
+     *
+     *      @OA\Response(response=404, ref="#/components/requestBodies/response_404"),
+     * 
+     *      @OA\Response(response=500, ref="#/components/requestBodies/response_500"),
      * )
      * @param int $profile_id
      */
@@ -50,6 +55,6 @@ class DeceasedProfileApiController extends Controller
             return $this->sendError404();
         }
 
-        return $this->sendResponse("Successful operation", (new DeceasedProfileResource($profile)));
+        return $this->sendResponse(null, (new DeceasedProfileResource($profile)));
     }
 }

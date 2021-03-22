@@ -31,7 +31,13 @@ class DeceasedProfileStoreUpdateRequest extends FormRequest
             'dprofile_name' => 'required|string|max:255',
             'dprofile_lastname' => 'required|string|max:255',
             'dprofile_birthday' => 'required|date|date_format:Y-m-d',
-            'dprofile_death' => 'required|date|date_format:Y-m-d|after:dprofile_birthday'
+            'dprofile_death' => 'required|date|date_format:Y-m-d|after:dprofile_birthday',
+
+            'client_name' => 'required|string|max:255',
+            'client_lastname' => 'required|string|max:255',
+            'client_dni' => 'required|string|max:255|unique:users,dni',
+            'client_email' => 'required|string|max:255|unique:users,email',
+            'client_phone' => 'required|string|max:255',
         ];
     }
 }
