@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Resources\DeceasedProfileResource;
 use App\Models\DeceasedProfile;
 use Illuminate\Http\Request;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 /**
  * @OA\Tag(
@@ -39,14 +40,16 @@ class DeceasedProfileApiController extends Controller
      *          )
      *      ),
      * )
+     * @param int $profile_id
      */
-    public function byId( DeceasedProfile $profile)
+    public function byId(  $profile_id)
     {
-        return (new DeceasedProfileResource($profile))
-            ->additional(
-                [
-                    'suscess'=>true,
-                    'message'=>"Successful operation"
-                ]);
+        $profile=DeceasedProfile::find($profile_id);
+
+        if(!$profile){
+            return $this->sendError404();
+        }
+
+        return $this->sendResponse("Successful operation", (new DeceasedProfileResource($profile)));
     }
 }

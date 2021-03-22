@@ -3,7 +3,7 @@
     <div class="card card-custom">
         <div class="card-header flex-wrap border-0 pt-6 pb-0">
             <div class="card-title">
-                <h3 class="card-label">{{ __('Employees') }}
+                <h3 class="card-label">Webs
                 <span class="d-block text-muted pt-2 font-size-sm">{{ __('Employee administration') }}</span></h3>
             </div>
             <div class="card-toolbar">
@@ -43,29 +43,23 @@
                 </div>
             </div>
 
-            <div v-if="employees.data.length" class="table-responsive">
+            <div v-if="deceasedProfiles.data.length" class="table-responsive">
                 <table class="table table-hover">
                     <thead>
                         <tr>
                             <th>#</th>
                             <th>{{ __('validation.attributes.name') }}</th>
-                            <th>{{ __('validation.attributes.last_name') }}</th>
-                            <th>{{ __('validation.attributes.email') }}</th>
-                            <th>{{ __('validation.attributes.phone') }}</th>
                             <th class="text-nowrap d-flex justify-content-center">{{ __('Actions') }}</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr v-for="(employee, index) in employees.data" :key="index">
+                        <tr v-for="(profile, index) in deceasedProfiles.data" :key="index">
                             <th>{{ index + 1 }}</th>
-                            <td>{{ employee.name }}</td>
-                            <td>{{ employee.last_name }}</td>
-                            <td>{{ employee.email }}</td>
-                            <td>{{ employee.phone }}</td>
+                            <td>{{ profile.name }}</td>
                             <td>
                                 <div class="d-flex justify-content-center">
                                     <vs-tooltip bottom>
-                                        <button  class="btn btn-sm btn-clean btn-icon mr-2" @click="openModalAddEditShow('show', employee)">
+                                        <button  class="btn btn-sm btn-clean btn-icon mr-2" @click="openModalAddEditShow('show', profile)">
                                             <i class="far fa-eye"></i>
                                         </button>
                                         <template #tooltip>
@@ -73,7 +67,7 @@
                                         </template>
                                     </vs-tooltip>
                                     <vs-tooltip bottom>
-                                        <button class="btn btn-sm btn-clean btn-icon mr-2" @click="openModalAddEditShow('edit', employee)">
+                                        <button class="btn btn-sm btn-clean btn-icon mr-2" @click="openModalAddEditShow('edit', profile)">
                                             <i class="fas fa-pen"></i>
                                         </button>
                                         <template #tooltip>
@@ -81,7 +75,7 @@
                                         </template>
                                     </vs-tooltip>
                                     <vs-tooltip bottom>
-                                        <button class="btn btn-sm btn-clean btn-icon mr-2" @click="askDestroy(employee)">
+                                        <button class="btn btn-sm btn-clean btn-icon mr-2" @click="askDestroy(profile)">
                                             <i class="fas fa-trash-alt"></i>
                                         </button>
                                         <template #tooltip>
@@ -94,7 +88,7 @@
                     </tbody>
                 </table>
 
-                <pagination :class="'mt-2'" :align="'center'" :limit="5" :data=" employees" @pagination-change-page="getEmployees"></pagination>
+                <pagination :class="'mt-2'" :align="'center'" :limit="5" :data="deceasedProfiles" @pagination-change-page="getDeceasedProfiles"></pagination>
             </div>
             <div v-else class="alert alert-warning mx-2 text-center" style="margin-top: 18px;">
                 {{ __('There is no item to display') }}
@@ -102,34 +96,34 @@
 
         </div>
 
-        <employee-form-add-edit ref="employeeFormAddEdit" @updateEmployeeList="updateList()"></employee-form-add-edit>
+        <deceased-profile-form-add-edit ref="deceasedProfileFormAddEdit" @updateDeceasedProfileList="updateList()"></deceased-profile-form-add-edit>
 
     </div>
 <!--end::Card-->
 </template>
 
 <script>
-import EmployeeFormAddEdit from './EmployeeFormAddEditComponent';
+import DeceasedProfileFormAddEdit from './DeceasedProfileFormAddEditComponent';
 
 export default {
-    components: {EmployeeFormAddEdit},
+    components: {DeceasedProfileFormAddEdit},
 
     created() {
-        this.getEmployees();
+        this.getDeceasedProfiles();
     },
 
     watch: {
         'searches.name': function (newValue, oldValue) {
-            this.getEmployees();
+            this.getDeceasedProfiles();
         },
         'searches.email': function (newValue, oldValue) {
-            this.getEmployees();
+            this.getDeceasedProfiles();
         }
     },
 
     data() {
         return {
-            employees: {data:[]},
+            deceasedProfiles: {data:[]},
 
             searches: {
                 name: '',
@@ -139,12 +133,11 @@ export default {
     },
 
     methods: {
-        getEmployees(page = 1) {
-            const url = `admin/ajax/employees/paginate?page=${page}`;
+        getDeceasedProfiles(page = 1) {
+            const url = `admin/ajax/webs/paginate?page=${page}`;
             const loading = this.$vs.loading({
                 type: 'points',
                 color: '#187de4',
-                // background: '#7a76cb',
                 text: this.__('Loading') + '...'
             });
 
@@ -152,7 +145,7 @@ export default {
                 params: this.searches
             }).then(res => {
                 loading.close();
-                this.employees = res.data.data;
+                this.deceasedProfiles = res.data.data;
             })
             .catch(err => {
                 loading.close();
@@ -160,12 +153,12 @@ export default {
             })
         },
         openModalAddEditShow(action, employee = null) {
-            this.$refs.employeeFormAddEdit.showForm(action, employee);
+            this.$refs.deceasedProfileFormAddEdit.showForm(action, employee);
         },
         updateList(action = null) {
-            this.getEmployees(this.employees.current_page ?? 1 );
+            this.getDeceasedProfiles(this.deceasedProfiles.current_page ?? 1 );
         },
-        askDestroy(employee) {
+        /* askDestroy(employee) {
             const self = this;
             Swal.fire({
                 title: this.__('Are you sure you want to delete this record?'),
@@ -187,7 +180,6 @@ export default {
             const loading = this.$vs.loading({
                 type: 'points',
                 color: '#187de4',
-                // background: '#7a76cb',
                 text: this.__('Deleting') + '...'
             });
 
@@ -213,7 +205,7 @@ export default {
                     });
                 }
             });
-        },
+        }, */
         clearSearches() {
             this.searches = {
                 name: '',

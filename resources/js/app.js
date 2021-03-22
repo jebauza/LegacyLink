@@ -2,6 +2,8 @@ require('./bootstrap');
 
 window.Vue = require('vue').default;
 
+Vue.mixin(require('./trans'))
+
 /* Vuesax - Biblioteca para interfaz de usuario */
 import Vuesax from 'vuesax';
 import 'vuesax/dist/vuesax.css';
@@ -21,6 +23,7 @@ Vue.component('pagination', require('laravel-vue-pagination'));
 
 Vue.component('office', require('./components/modules/offices/OfficeComponent').default);
 Vue.component('employee', require('./components/modules/employees/EmployeeComponent').default);
+Vue.component('deceasedProfile', require('./components/modules/deceasedProfiles/DeceasedProfileComponent').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
