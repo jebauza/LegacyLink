@@ -14,14 +14,30 @@
             <form class="needs-validation" v-on:submit.prevent="'actionStoreUpdate()'">
             <div class="modal-body">
 
-
                 <div class="card card-custom">
 
                     <div class="card-header card-header-tabs-line">
                         <div class="card-toolbar">
                             <ul class="nav nav-tabs nav-tabs-space-lg nav-tabs-line nav-tabs-bold nav-tabs-line-3x" role="tablist">
                                 <li class="nav-item mr-3">
-                                    <a class="nav-link active" data-toggle="tab" href="#kt_tab_client">
+                                    <a class="nav-link active" data-toggle="tab" href="#kt_tab_web">
+                                        <span class="nav-icon mr-2">
+                                            <span class="svg-icon mr-3">
+                                                <!--begin::Svg Icon | path:C:\wamp64\www\keenthemes\themes\metronic\theme\html\demo3\dist/../src/media/svg/icons\Devices\Display1.svg-->
+                                                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+                                                    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                                        <rect x="0" y="0" width="24" height="24"/>
+                                                        <path d="M11,20 L11,17 C11,16.4477153 11.4477153,16 12,16 C12.5522847,16 13,16.4477153 13,17 L13,20 L15.5,20 C15.7761424,20 16,20.2238576 16,20.5 C16,20.7761424 15.7761424,21 15.5,21 L8.5,21 C8.22385763,21 8,20.7761424 8,20.5 C8,20.2238576 8.22385763,20 8.5,20 L11,20 Z" fill="#000000" opacity="0.3"/>
+                                                        <path d="M3,5 L21,5 C21.5522847,5 22,5.44771525 22,6 L22,16 C22,16.5522847 21.5522847,17 21,17 L3,17 C2.44771525,17 2,16.5522847 2,16 L2,6 C2,5.44771525 2.44771525,5 3,5 Z M4.5,8 C4.22385763,8 4,8.22385763 4,8.5 C4,8.77614237 4.22385763,9 4.5,9 L13.5,9 C13.7761424,9 14,8.77614237 14,8.5 C14,8.22385763 13.7761424,8 13.5,8 L4.5,8 Z M4.5,10 C4.22385763,10 4,10.2238576 4,10.5 C4,10.7761424 4.22385763,11 4.5,11 L7.5,11 C7.77614237,11 8,10.7761424 8,10.5 C8,10.2238576 7.77614237,10 7.5,10 L4.5,10 Z" fill="#000000"/>
+                                                    </g>
+                                                </svg><!--end::Svg Icon-->
+                                            </span>
+                                        </span>
+                                        <span class="nav-text font-weight-bold">Web</span>
+                                    </a>
+                                </li>
+                                <li class="nav-item mr-3">
+                                    <a class="nav-link " data-toggle="tab" href="#kt_tab_client">
                                         <span class="nav-icon mr-2">
                                             <span class="svg-icon mr-3">
                                                 <!--begin::Svg Icon | path:C:\wamp64\www\keenthemes\themes\metronic\theme\html\demo3\dist/../src/media/svg/icons\General\User.svg-->
@@ -35,23 +51,6 @@
                                             </span>
                                         </span>
                                         <span class="nav-text font-weight-bold">Cliente</span>
-                                    </a>
-                                </li>
-                                <li class="nav-item mr-3">
-                                    <a class="nav-link" data-toggle="tab" href="#kt_tab_web">
-                                        <span class="nav-icon mr-2">
-                                            <span class="svg-icon mr-3">
-                                                <!--begin::Svg Icon | path:C:\wamp64\www\keenthemes\themes\metronic\theme\html\demo3\dist/../src/media/svg/icons\Devices\Display1.svg-->
-                                                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
-                                                    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-                                                        <rect x="0" y="0" width="24" height="24"/>
-                                                        <path d="M11,20 L11,17 C11,16.4477153 11.4477153,16 12,16 C12.5522847,16 13,16.4477153 13,17 L13,20 L15.5,20 C15.7761424,20 16,20.2238576 16,20.5 C16,20.7761424 15.7761424,21 15.5,21 L8.5,21 C8.22385763,21 8,20.7761424 8,20.5 C8,20.2238576 8.22385763,20 8.5,20 L11,20 Z" fill="#000000" opacity="0.3"/>
-                                                        <path d="M3,5 L21,5 C21.5522847,5 22,5.44771525 22,6 L22,16 C22,16.5522847 21.5522847,17 21,17 L3,17 C2.44771525,17 2,16.5522847 2,16 L2,6 C2,5.44771525 2.44771525,5 3,5 Z M4.5,8 C4.22385763,8 4,8.22385763 4,8.5 C4,8.77614237 4.22385763,9 4.5,9 L13.5,9 C13.7761424,9 14,8.77614237 14,8.5 C14,8.22385763 13.7761424,8 13.5,8 L4.5,8 Z M4.5,10 C4.22385763,10 4,10.2238576 4,10.5 C4,10.7761424 4.22385763,11 4.5,11 L7.5,11 C7.77614237,11 8,10.7761424 8,10.5 C8,10.2238576 7.77614237,10 7.5,10 L4.5,10 Z" fill="#000000"/>
-                                                    </g>
-                                                </svg><!--end::Svg Icon-->
-                                            </span>
-                                        </span>
-                                        <span class="nav-text font-weight-bold">Web detalles</span>
                                     </a>
                                 </li>
                                 <li class="nav-item mr-3">
@@ -78,12 +77,80 @@
 
                     <div class="card-body">
                         <div class="tab-content pt-5">
-                            <div class="tab-pane active" id="kt_tab_client" role="tabpanel">
-                                <p>cliente</p>
+
+                            <div class="tab-pane active" id="kt_tab_web" role="tabpanel">
+                                <div class="form-row">
+                                    <div class="form-group col-sm-6">
+                                        <label :class="['control-label', errors.dprofile_office ? 'text-danger' : '']"><b>Sucursal</b></label>
+                                        <vs-select :key="offices.length" filter v-model="form.dprofile_office" :placeholder="__('Select')" state="primary" :disabled="disableOffice">
+                                            <vs-option v-for="office in offices" :key="office.id" :label="office.name" :value="office.id">{{ office.name }}</vs-option>
+                                        </vs-select>
+                                        <small v-if="errors.dprofile_office" class="form-control-feedback text-danger">
+                                            {{ errors.dprofile_office[0] }}
+                                        </small>
+                                    </div>
+
+                                    <div class="form-group col-sm-6">
+                                        <label :class="['control-label', errors.dprofile_adviser ? 'text-danger' : '']"><b>Agente</b></label>
+                                        <vs-select :key="advisers.length" filter v-model="form.dprofile_adviser" :placeholder="__('Select')" state="primary" :disabled="disableAdviser">
+                                            <vs-option v-for="adviser in advisers" :key="adviser.id" :label="adviser.fullName" :value="adviser.id">{{ adviser.fullName }}</vs-option>
+                                        </vs-select>
+                                        <small v-if="errors.dprofile_adviser" class="form-control-feedback text-danger">
+                                            {{ errors.dprofile_adviser[0] }}
+                                        </small>
+                                    </div>
+                                </div>
+
+                                <div class="form-row">
+                                    <div class="form-group col-sm-6 col-xl-3">
+                                        <label :class="['control-label', errors.dprofile_name ? 'text-danger' : '']"><b>{{ __('validation.attributes.name') }}</b></label>
+                                        <input  v-model="form.dprofile_name" type="text" :class="['form-control', errors.dprofile_name ? 'is-invalid' : '']" name="name" :placeholder="__('validation.attributes.name')" :disabled="modalType=='show'">
+                                        <small v-if="errors.dprofile_name" class="form-control-feedback text-danger">
+                                            {{ errors.dprofile_name[0] }}
+                                        </small>
+                                    </div>
+                                    <div class="form-group col-sm-6 col-xl-3">
+                                        <label :class="['control-label', errors.dprofile_lastname ? 'text-danger' : '']"><b>{{ __('validation.attributes.last_name') }}</b></label>
+                                        <input v-model="form.dprofile_lastname" type="text" :class="['form-control', errors.dprofile_lastname ? 'is-invalid' : '']" name="lastname" :placeholder="__('validation.attributes.last_name')" :disabled="modalType=='show'">
+                                        <small v-if="errors.dprofile_lastname" class="form-control-feedback text-danger">
+                                            {{ errors.dprofile_lastname[0] }}
+                                        </small>
+                                    </div>
+                                    <div class="form-group col-sm-6 col-xl-3">
+                                        <label :class="['control-label', errors.dprofile_birthday ? 'text-danger' : '']"><b>Nacimiento</b></label>
+                                        <vs-input
+                                            type="date"
+                                            v-model="form.dprofile_birthday"
+                                            icon-after>
+                                            <template #icon>
+                                                <i class="ki ki-calendar"></i>
+                                            </template>
+                                        </vs-input>
+                                        <small v-if="errors.dprofile_birthday" class="form-control-feedback text-danger">
+                                            {{ errors.dprofile_birthday[0] }}
+                                        </small>
+                                    </div>
+                                    <div class="form-group col-sm-6 col-xl-3">
+                                        <label :class="['control-label', errors.dprofile_death ? 'text-danger' : '']"><b>Defunción</b></label>
+                                        <vs-input
+                                            type="date"
+                                            v-model="form.dprofile_death"
+                                            icon-after>
+                                            <template #icon>
+                                                <i class="ki ki-calendar"></i>
+                                            </template>
+                                        </vs-input>
+                                        <small v-if="errors.dprofile_death" class="form-control-feedback text-danger">
+                                            {{ errors.dprofile_death[0] }}
+                                        </small>
+                                    </div>
+                                </div>
+
+
                             </div>
 
-                            <div class="tab-pane" id="kt_tab_web" role="tabpanel">
-                                <p>web</p>
+                            <div class="tab-pane" id="kt_tab_client" role="tabpanel">
+                                <p>cliente</p>
                             </div>
 
                             <div class="tab-pane" id="kt_tab_events" role="tabpanel">
@@ -94,8 +161,6 @@
                     </div>
 
                 </div>
-
-
 
             </div>
             <div v-if="modalType!='show'" class="modal-footer">
@@ -110,25 +175,70 @@
 
 <script>
 export default {
-    created() {
-
+    watch: {
+        'form.dprofile_office': function (newValue, oldValue) {
+            this.form.dprofile_adviser = '';
+            this.getAdvisers();
+        }
     },
+
+    created() {
+        this.getOffices();
+        this.getAdvisers();
+    },
+
     data() {
         return {
             modalType: 'add', //add, edit
+            offices: [],
+            advisers: [],
 
             form: {
-                clientName: '',
-                clientEmail: '',
-                dProfileName: '',
-                events: []
+                dprofile_office: '',
+                dprofile_adviser: '',
+                dprofile_name: '',
+                dprofile_lastname: '',
+                dprofile_birthday: '',
+                dprofile_death: '',
             },
+
             errors: {},
 
         }
     },
 
     methods: {
+        getOffices() {
+            const url = `/admin/ajax/offices`;
+
+            axios.get(url)
+            .then(res => {
+                this.offices = res.data.data;
+                if (this.offices.length == 1) {
+                    this.form.dprofile_office = this.offices[0].id
+                }
+                $('#kt_datetimepicker_3').datetimepicker({
+                    format: 'L'
+                });
+            })
+            .catch(err => {
+                console.error(err);
+            })
+        },
+        getAdvisers() {
+            const url = `/admin/ajax/employees?role=3&office=${this.form.dprofile_office}`;
+
+            axios.get(url, )
+            .then(res => {
+                this.advisers = res.data.data;
+                if (this.advisers.length == 1) {
+                    this.form.dprofile_adviser = this.advisers[0].id
+                }
+            })
+            .catch(err => {
+                console.error(err);
+            })
+        },
         showForm(action, employee = null) {
 
             if(this.modalType != action) {
@@ -154,22 +264,24 @@ export default {
         },
         clearForm() {
             this.form = {
-                clientName: '',
-                clientEmail: '',
-                dProfileName: '',
-                events: []
+                dprofile_office: '',
+                dprofile_adviser: '',
+                dprofile_name: '',
+                dprofile_lastname: '',
+                dprofile_birthday: '',
+                dprofile_death: '',
             };
             this.errors = {};
         },
         actionStoreUpdate() {
-            /* if(this.modalType == 'add') {
+            if(this.modalType == 'add') {
                 this.store();
             } else if(this.modalType == 'edit') {
                 this.update();
-            } */
+            }
         },
-        /* store() {
-            const url = '/admin/ajax/employees/store';
+        store() {
+            const url = '/admin/ajax/webs/store';
             const loading = this.$vs.loading({
                 type: 'points',
                 color: '#187de4',
@@ -185,9 +297,9 @@ export default {
                     timer: 1500,
                     showConfirmButton: false
                 });
-                $('#modalAddEditEmployee').modal('hide');
+                $('#modalAddEditDeceasedProfile').modal('hide');
                 this.clearForm();
-                this.$emit('updateEmployeeList', 'add');
+                this.$emit('updateDeceasedProfileList', 'add');
             })
             .catch(err => {
                 loading.close();
@@ -204,7 +316,7 @@ export default {
                 }
             })
         },
-        update() {
+        /* update() {
             const url = `/admin/ajax/employees/${this.form.id}/update`;
             const loading = this.$vs.loading({
                 type: 'points',
@@ -240,9 +352,20 @@ export default {
             });
         }, */
     },
+
+    computed: {
+        disableOffice() {
+            return this.offices.length < 2;
+        },
+        disableAdviser() {
+            return this.advisers.length < 2;
+        },
+    },
 }
 </script>
 
 <style>
-
+.vs-input {
+    width: 100%
+}
 </style>

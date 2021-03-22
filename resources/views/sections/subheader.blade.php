@@ -3,7 +3,7 @@
     <div class="container-fluid d-flex align-items-center justify-content-between flex-wrap flex-sm-nowrap">
 
         <!--begin::Info-->
-        <div class="d-flex align-items-center flex-wrap mr-2">
+        {{--  <div class="d-flex align-items-center flex-wrap mr-2">
             <!--begin::Dropdowns-->
             <div class="input-group input-group-sm input-group-solid max-w-175px">
                 <input type="text" class="form-control pl-4" placeholder="Search..." />
@@ -32,12 +32,12 @@
             </div>
 
             <!--end::Dropdowns-->
-        </div>
+        </div>  --}}
 
         <!--end::Info-->
 
         <!--begin::Toolbar-->
-        <div class="d-flex align-items-center">
+        {{--  <div class="d-flex align-items-center">
 
             <!--begin::Actions-->
             <a href="#" class="btn btn-light btn-hover-primary btn-sm btn-icon mr-2">
@@ -119,7 +119,7 @@
             </div>
 
             <!--end::Dropdowns-->
-        </div>
+        </div>  --}}
 
         <!--end::Toolbar-->
     </div>

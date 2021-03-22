@@ -52,6 +52,14 @@ class Employee extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    protected $appends = ['fullName'];
+
+    // Attributes
+    function getFullNameAttribute()
+    {
+        return $this->name . ($this->last_name ? ' ' . $this->last_name : '');
+    }
+
     // SCOPES
     public function scopeFilterByRole($query)
     {
@@ -61,6 +69,24 @@ class Employee extends Authenticatable
             $offices = $authUser->offices()->pluck('offices.id');
             return $query->whereHas('offices', function (Builder $query) use ($offices){
                 $query->whereIn('offices.id', $offices);
+            });
+        }
+    }
+
+    public function scopeRole($query, $param)
+    {
+        if ($param) {
+            $query->whereHas('roles', function (Builder $query) use ($param){
+                $query->where('id', $param);
+            });
+        }
+    }
+
+    public function scopeOffice($query, $param)
+    {
+        if ($param) {
+            $query->whereHas('offices', function (Builder $query) use ($param){
+                $query->where('offices.id', $param);
             });
         }
     }

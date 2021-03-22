@@ -35,7 +35,7 @@ Route::name('admin.')->group(function () {
 
         Route::get('offices', [OfficeController::class, 'indexView'])->name('offices.indexView')->middleware('permission:offices.view');
         Route::get('employees', [EmployeeController::class, 'indexView'])->name('employees.indexView');
-        Route::get('deceased_profiles', [DeceasedProfileController::class, 'indexView'])->name('deceased_profiles.indexView');
+        Route::get('webs', [DeceasedProfileController::class, 'indexView'])->name('webs.indexView');
 
         Route::prefix('ajax')->name('ajax.')->middleware('ajax')->group(function () {
 
@@ -63,8 +63,8 @@ Route::name('admin.')->group(function () {
 
             });
 
-            // Deceased_profiles
-            Route::prefix('deceased_profiles')->name('deceased_profiles.')->group(function () {
+            // Webs
+            Route::prefix('webs')->name('webs.')->group(function () {
 
                 Route::get('/', [DeceasedProfileController::class, 'index'])->name('index');
                 Route::get('/paginate', [DeceasedProfileController::class, 'paginate'])->name('paginate');

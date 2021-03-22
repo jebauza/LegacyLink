@@ -39,18 +39,44 @@ class DeceasedProfile extends Model
         }
     }
 
+    /**
+     * Get all of the ceremonies for the DeceasedProfile
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function ceremonies()
     {
-        return $this->hasMany(Ceremony::class,'profile_id');
+        return $this->hasMany(Ceremony::class, 'profile_id', 'id');
     }
 
+    /**
+     * Get the office that owns the DeceasedProfile
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
     public function office()
     {
-        return $this->belongsTo(Office::class);
+        return $this->belongsTo(Office::class, 'office_id', 'id');
     }
 
+    /**
+     * Get the adviser that owns the DeceasedProfile
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
     public function adviser()
     {
-        return $this->belongsTo(Employee::class);
+        return $this->belongsTo(Employee::class, 'adviser_id', 'id');
+    }
+
+    /**
+     * The clients that belong to the DeceasedProfile
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function clients()
+    {
+        return $this->belongsToMany(Users::class, 'deceased_profile_user', 'profile_id', 'user_id')
+                    ->withPivot('profile_id','user_id','role')->withTimestamps();
     }
 }

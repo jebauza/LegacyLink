@@ -190,6 +190,8 @@ return [
         'city'                  => 'ciudad',
         'state'                 => 'provincia',
         'country'               => 'país',
+        'dprofile_death'        => 'defunción',
+        'dprofile_birthday'     => 'nacimiento',
 
     ],
 ];

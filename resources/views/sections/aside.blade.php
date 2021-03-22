@@ -208,9 +208,9 @@
                                 </li>
                                 @endcan
 
-                                <li class="menu-item @if(Route::is('admin.deceased_profiles.indexView')) menu-item-active @endif"
+                                <li class="menu-item @if(Route::is('admin.webs.indexView')) menu-item-active @endif"
                                     aria-haspopup="true">
-                                    <a href="{{ route('admin.deceased_profiles.indexView') }}" class="menu-link">
+                                    <a href="{{ route('admin.webs.indexView') }}" class="menu-link">
                                         <span class="svg-icon menu-icon">
 
                                             <!--begin::Svg Icon | path:C:\wamp64\www\keenthemes\themes\metronic\theme\html\demo3\dist/../src/media/svg/icons\Devices\Server.svg-->

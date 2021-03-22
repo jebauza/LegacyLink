@@ -134,7 +134,7 @@ export default {
 
     methods: {
         getDeceasedProfiles(page = 1) {
-            const url = `admin/ajax/deceased_profiles/paginate?page=${page}`;
+            const url = `admin/ajax/webs/paginate?page=${page}`;
             const loading = this.$vs.loading({
                 type: 'points',
                 color: '#187de4',

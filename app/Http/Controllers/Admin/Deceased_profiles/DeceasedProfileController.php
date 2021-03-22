@@ -2,11 +2,15 @@
 
 namespace App\Http\Controllers\Admin\Deceased_profiles;
 
+use App\Models\User;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Models\DeceasedProfile;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Hash;
 use App\Http\Resources\DeceasedProfileResource;
+use App\Http\Requests\DeceasedProfileStoreUpdateRequest;
 
 class DeceasedProfileController extends Controller
 {
@@ -68,23 +72,35 @@ class DeceasedProfileController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(DeceasedProfileStoreUpdateRequest $request)
     {
         try {
             DB::beginTransaction();
-            $newEmployee = new Employee($request->all());
-            $newEmployee->password = Hash::make($request->password);
-            $newEmployee->created_by = auth()->user()->id;
-            $newEmployee->updated_by = auth()->user()->id;
-            if ($newEmployee->save()) {
-                $newEmployee->syncRoles(Role::where('id', $request->role)->get());
-                if (!$newEmployee->hasRole('Super Admin')) {
-                    $newEmployee->offices()->sync($request->offices);
+            $newDProfile = new DeceasedProfile();
+            $newDProfile->name = $request->dprofile_name;
+            $newDProfile->last_name = $request->dprofile_lastname;
+            $newDProfile->birthday = $request->dprofile_birthday;
+            $newDProfile->death = $request->dprofile_death;
+            $newDProfile->adviser_id = $request->dprofile_adviser;
+            $newDProfile->office_id = $request->dprofile_office;
+            if ($newDProfile->save()) {
+                /* if (!$client = User::where('email', $request->client_email)->first()) {
+                    $client = new User();
                 }
+                $client->name = $request->client_name;
+                $client->email = $request->client_email;
+                $client->dni = $request->client_dni;
+                $client->phone = $request->client_phone;
+                $client->password = Hash::make(Str::random(8));
+                if ($client->save()) {
+                    $newDProfile->clients()->attach($client->id, [
+                        'role' => 'admin'
+                    ]);
+                } */
             }
 
             DB::commit();
-            return $this->sendResponse(__('Saved successfully'), (new EmployeeResource($newEmployee)), 201);
+            return $this->sendResponse(__('Saved successfully'), (new DeceasedProfileResource($newDProfile)), 201);
 
         } catch (\Exception $e) {
             DB::rollBack();
