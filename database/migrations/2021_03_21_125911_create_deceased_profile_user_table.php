@@ -15,6 +15,7 @@ class CreateDeceasedProfileUserTable extends Migration
     {
         Schema::create('deceased_profile_user', function (Blueprint $table) {
             $table->id();
+            $table->boolean('declarant')->default(false);
 
             $table->unsignedBigInteger('profile_id');
             $table->foreign('profile_id')->references('id')->on('deceased_profiles')->onDelete('cascade');
