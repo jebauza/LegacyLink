@@ -248,7 +248,7 @@ export default {
                 type: 'points',
                 color: '#187de4',
                 // background: '#7a76cb',
-                text: 'Cargando...'
+                text: this.__('Loading') + '...'
             });
 
             axios.put(url, this.form)

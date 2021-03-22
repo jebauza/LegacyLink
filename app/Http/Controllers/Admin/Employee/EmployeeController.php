@@ -28,9 +28,11 @@ class EmployeeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         $employyes = Employee::filterByRole()
+                            ->role($request->role)
+                            ->office($request->office)
                             ->with('offices','roles')
                             ->orderBy('name')
                             ->get();

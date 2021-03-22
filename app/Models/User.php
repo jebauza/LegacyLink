@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\DeceasedProfile;
 use Laravel\Passport\HasApiTokens;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -42,4 +43,15 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    /**
+     * The deceased_profiles that belong to the User
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function deceased_profiles()
+    {
+        return $this->belongsToMany(DeceasedProfile::class, 'deceased_profile_user', 'user_id', 'profile_id')
+                    ->withPivot('profile_id','user_id','role')->withTimestamps();
+    }
 }
