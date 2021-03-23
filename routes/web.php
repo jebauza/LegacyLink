@@ -17,5 +17,6 @@ use App\Http\Controllers\Web\AuthController;
 
 Route::get('/', function () {
     //return redirect()->route('login');
-    return view('welcome');
+    // return view('welcome');
+    return redirect()->away('https://celebrasuvida.es/');
 });

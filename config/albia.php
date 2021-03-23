@@ -30,5 +30,12 @@ return [
 
     'employees_admin' => [
         ['name' => 'Albia Admin', 'email' => 'superadmin@albia.es', 'password' => '12345678', 'role' => 1]
+    ],
+
+    'ceremony_types' => [
+        ['id' => 1, 'name' => 'Inhumación'],
+        ['id' => 2, 'name' => 'Sepelio '],
+        ['id' => 3, 'name' => 'Sepultura '],
+        ['id' => 4, 'name' => 'Incineración ']
     ]
 ];

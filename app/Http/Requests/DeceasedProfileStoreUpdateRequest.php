@@ -38,6 +38,15 @@ class DeceasedProfileStoreUpdateRequest extends FormRequest
             'client_dni' => 'required|string|max:255|unique:users,dni',
             'client_email' => 'required|string|max:255|unique:users,email',
             'client_phone' => 'required|string|max:255',
+
+            'ceremonies' => 'bail|required|array|min:1',
+            'ceremonies.*.additional_info' => 'nullable|string',
+            'ceremonies.*.address' => 'required|string|max:255',
+            'ceremonies.*.start' => 'required|date|date_format:Y-m-d H:i:s',
+            'ceremonies.*.end' => 'required|date|date_format:Y-m-d H:i:s|after:ceremonies.*.start',
+            'ceremonies.*.main' => 'required|boolean',
+            'ceremonies.*.room_name' => 'nullable|string|max:255',
+            'ceremonies.*.type_id' => 'required|integer|exists:ceremony_types,id',
         ];
     }
 }

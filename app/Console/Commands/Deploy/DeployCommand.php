@@ -51,6 +51,7 @@ class DeployCommand extends Command
         Artisan::call('clear-compiled');
 
         $this->createUpdatePermissions();
+        $this->createUpdateCeremonyTypes();
 
 
         $this->optimizeApp();
@@ -122,5 +123,28 @@ class DeployCommand extends Command
         }
 
         $this->info('Updated roles and permissions');
+    }
+
+    private function createUpdateCeremonyTypes() {
+
+        try {
+            $types = config('albia.ceremony_types');
+
+            foreach ($types as $t) {
+                DB::table('ceremony_types')->updateOrInsert(
+                            ['id' => $t['id']],
+                            [
+                                'name' => $t['name'],
+                                'created_at' => now(),
+                                'updated_at' => now()
+                            ]
+                        );
+            }
+        } catch (\Exception $e) {
+            $this->error($e->getMessage());
+            return;
+        }
+
+        $this->info('Updated ceremony_types');
     }
 }

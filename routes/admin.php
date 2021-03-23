@@ -9,7 +9,8 @@ use App\Http\Controllers\Admin\Office\OfficeController;
 use App\Http\Controllers\Admin\Employee\EmployeeController;
 use App\Http\Controllers\Admin\Auth\ResetPasswordController;
 use App\Http\Controllers\Admin\Auth\ForgotPasswordController;
-use App\Http\Controllers\Admin\Deceased_profiles\DeceasedProfileController;
+use App\Http\Controllers\Admin\CeremonyType\CeremonyTypeController;
+use App\Http\Controllers\Admin\DeceasedProfile\DeceasedProfileController;
 
 Route::name('admin.')->group(function () {
 
@@ -75,7 +76,8 @@ Route::name('admin.')->group(function () {
 
             });
 
-            Route::get('/roles', [RoleController::class, 'getRolesByAuthUserAssign'])->name('index');
+            Route::get('/roles', [RoleController::class, 'getRolesByAuthUserAssign'])->name('roles.ByAuthUserAssign');
+            Route::get('/ceremony_types', [CeremonyTypeController::class, 'index'])->name('ceremony_types.index');
 
         });
 

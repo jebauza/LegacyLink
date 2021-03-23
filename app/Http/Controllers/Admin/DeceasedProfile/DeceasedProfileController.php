@@ -1,6 +1,6 @@
 <?php
+namespace App\Http\Controllers\Admin\DeceasedProfile;
 
-namespace App\Http\Controllers\Admin\Deceased_profiles;
 
 use App\Models\User;
 use Illuminate\Support\Str;
@@ -11,6 +11,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Resources\DeceasedProfileResource;
 use App\Http\Requests\DeceasedProfileStoreUpdateRequest;
+use App\Models\Ceremony;
 
 class DeceasedProfileController extends Controller
 {
@@ -98,6 +99,12 @@ class DeceasedProfileController extends Controller
                         'role' => 'admin',
                         'declarant' => true
                     ]);
+                }
+
+                foreach ($request->ceremonies as $key => $value) {
+                    $newCeremony = new Ceremony($value);
+                    $newCeremony->profile_id =  $newDProfile->id;
+                    $newCeremony->save();
                 }
             }
 

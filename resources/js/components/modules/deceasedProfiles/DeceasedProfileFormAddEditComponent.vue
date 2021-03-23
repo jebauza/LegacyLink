@@ -196,7 +196,111 @@
                             </div>
 
                             <div class="tab-pane" id="kt_tab_events" role="tabpanel">
-                                <p>events</p>
+                                <div class="form-row">
+                                    <div class="form-group col-sm-6 col-lg-4">
+                                        <el-date-picker
+                                                v-model="ceremony.start"
+                                                type="datetime"
+                                                placeholder="Inicio">
+                                        </el-date-picker>
+                                    </div>
+                                    <div class="form-group col-sm-6 col-lg-4">
+                                        <el-date-picker
+                                                v-model="ceremony.end"
+                                                type="datetime"
+                                                placeholder="Fin">
+                                        </el-date-picker>
+                                    </div>
+                                    <div class="form-group col-sm-6 col-lg-4">
+                                        <el-select v-if="ceremony_types.length" v-model="ceremony.type_id" filterable placeholder="Select">
+                                            <el-option v-for="item in ceremony_types" :key="item.id" :label="item.name" :value="item.id"></el-option>
+                                        </el-select>
+                                    </div>
+                                    <div class="form-group col-12">
+                                        <el-input
+                                            type="textarea"
+                                            :rows="1"
+                                            placeholder="Informacion Adicional"
+                                            v-model="ceremony.additional_info">
+                                        </el-input>
+                                    </div>
+                                    <div class="form-group col-sm-6 col-lg-6 col-xl-4">
+                                        <el-input placeholder="Dirreccion" v-model="ceremony.address" clearable></el-input>
+                                    </div>
+                                    <div class="form-group col-sm-6 col-xl-4">
+                                        <el-input placeholder="Sala" v-model="ceremony.room_name" clearable></el-input>
+                                    </div>
+                                    <div class="form-group col-6 col-sm-5 col-lg-3 col-xl-2">
+                                         <el-checkbox v-model="ceremony.main" label="Principal" border></el-checkbox>
+                                    </div>
+                                    <div class="form-group col-auto">
+                                        <el-button @click="addCeremony()" type="primary" round>Adicionar</el-button>
+                                    </div>
+
+                                </div>
+
+                                <div class="row">
+                                    <vs-table class="table">
+                                        <template #thead>
+                                            <vs-tr>
+                                                <vs-th>
+                                                    #
+                                                </vs-th>
+                                                <vs-th>
+                                                    Ceremonia
+                                                </vs-th>
+                                                <vs-th>
+                                                    Duracion
+                                                </vs-th>
+                                                <vs-th>
+                                                    Dirreccion
+                                                </vs-th>
+                                                <vs-th>
+
+                                                </vs-th>
+                                            </vs-tr>
+                                        </template>
+
+                                        <template #tbody>
+                                            <vs-tr :key="index" v-for="(ceremony, index) in form.ceremonies">
+                                                <vs-td>
+                                                    <div class="d-flex align-items-center mr-1">{{ index+1 }}
+														<i v-if="ceremony.main" class="flaticon2-correct text-success icon-md ml-2"></i>
+                                                    </div>
+                                                </vs-td>
+                                                <vs-td>
+                                                    {{ ceremony.type_name }}
+                                                </vs-td>
+                                                <vs-td>{{ ceremony.start }} / {{ ceremony.end }}</vs-td>
+                                                <vs-td>{{ ceremony.address }}</vs-td>
+                                                <vs-td>
+                                                    <div class="d-flex justify-content-center">
+                                                        <vs-button icon color="danger" border @click="removeCeremony(index)">
+                                                            <i class='fas fa-trash-alt'></i>
+                                                        </vs-button>
+                                                        <vs-button v-if="!ceremony.main" icon border @click="mainCeremony(index)">
+                                                            <i class='fas fa-check'></i>
+                                                        </vs-button>
+                                                    </div>
+                                                </vs-td>
+
+                                                <template #expand>
+                                                    <div class="row con-content">
+                                                        <div class="col-10 col-lg-11">
+                                                            <p>
+                                                                {{ ceremony.additional_info }}
+                                                            </p>
+                                                        </div>
+                                                        <div class="col-auto">
+
+                                                        </div>
+                                                    </div>
+                                                </template>
+                                            </vs-tr>
+                                        </template>
+                                    </vs-table>
+                                </div>
+
                             </div>
 
                         </div>
@@ -227,6 +331,7 @@ export default {
     created() {
         this.getOffices();
         this.getAdvisers();
+        this.getCeremonyTypes();
     },
 
     data() {
@@ -234,6 +339,7 @@ export default {
             modalType: 'add', //add, edit
             offices: [],
             advisers: [],
+            ceremony_types: [],
 
             form: {
                 dprofile_office: '',
@@ -247,10 +353,20 @@ export default {
                 client_lastname: '',
                 client_dni: '',
                 client_email: '',
-                client_phone: ''
+                client_phone: '',
+                ceremonies: []
             },
-
             errors: {},
+
+            ceremony: {
+                type_id: '',
+                main: '',
+                start: '',
+                end: '',
+                additional_info: '',
+                address: '',
+                room_name: '',
+            },
 
         }
     },
@@ -282,6 +398,17 @@ export default {
                 if (this.advisers.length == 1) {
                     this.form.dprofile_adviser = this.advisers[0].id
                 }
+            })
+            .catch(err => {
+                console.error(err);
+            })
+        },
+        getCeremonyTypes() {
+            const url = `/admin/ajax/ceremony_types`;
+
+            axios.get(url, )
+            .then(res => {
+                this.ceremony_types = res.data;
             })
             .catch(err => {
                 console.error(err);
@@ -332,6 +459,48 @@ export default {
             } else if(this.modalType == 'edit') {
                 this.update();
             }
+        },
+        addCeremony() {
+            if (this.ceremony.main) {
+                this.form.ceremonies = this.form.ceremonies.map(c => {
+                    c.main = false;
+                    return c
+                });
+            }
+
+            this.form.ceremonies.push({
+                type_id: this.ceremony.type_id,
+                type_name: this.ceremony_types.find(c => this.ceremony.type_id == c.id).name,
+                main: this.ceremony.main,
+                start: moment(this.ceremony.start).format('YYYY-MM-DD HH:mm:ss'),
+                end: moment(this.ceremony.end).format('YYYY-MM-DD HH:mm:ss'),
+                additional_info: this.ceremony.additional_info,
+                address: this.ceremony.address,
+                room_name: this.ceremony.room_name,
+            });
+
+            this.ceremony= {
+                type_id: '',
+                main: '',
+                start: '',
+                end: '',
+                additional_info: '',
+                address: '',
+                room_name: '',
+            };
+        },
+        removeCeremony(index) {
+            // this.form.ceremonies.splice(index, 1);
+            this.$delete(this.form.ceremonies, index)
+        },
+        mainCeremony(index) {
+            this.form.ceremonies = this.form.ceremonies.map((ceremony, i) => {
+                ceremony.main = false;
+                if (index == i) {
+                    ceremony.main = true;
+                }
+                return ceremony
+            });
         },
         store() {
             const url = '/admin/ajax/webs/store';
@@ -413,12 +582,23 @@ export default {
         disableAdviser() {
             return this.advisers.length < 2;
         },
+        disableCeremonyTypes() {
+            return this.ceremony_types.length < 2;
+        },
     },
 }
 </script>
 
 <style>
 .vs-input {
-    width: 100%
+    width: 100%;
+}
+
+.el-input {
+    width: 100% !important;
+}
+
+i {
+    color: unset !important
 }
 </style>
