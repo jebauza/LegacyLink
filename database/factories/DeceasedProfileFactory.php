@@ -6,6 +6,7 @@ use App\Models\DeceasedProfile;
 use App\Models\Employee;
 use App\Models\Office;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Str;
 
 class DeceasedProfileFactory extends Factory
 {
@@ -30,6 +31,7 @@ class DeceasedProfileFactory extends Factory
             'death' => $this->faker->date,
             'adviser_id' => Employee::factory(),
             'office_id' => Office::factory(),
+            'token'=>Str::random(10)
         ];
     }
 }
