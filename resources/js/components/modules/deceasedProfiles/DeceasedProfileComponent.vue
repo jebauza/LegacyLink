@@ -19,12 +19,20 @@
 
             <div class="form-row pl-3 align-items-end">
 
-                <div class="col-sm-5 form-group">
+                <div class="col-sm-6 col-lg-4 form-group">
+                    <label style="text-transform: uppercase;"><b>{{ __('validation.attributes.dprofile_office') }}</b></label>
+                        <select class="form-control" v-model="searches.office">
+                            <option value=""></option>
+                            <option v-for="(o, index) in offices" :key="index" :value="o.id">{{ o.name }}</option>
+                        </select>
+                </div>
+
+                <div class="col-sm-6 col-lg-4 form-group">
                     <label for="name" style="text-transform: uppercase;"><b>{{ __('validation.attributes.name') }}</b></label>
                     <input v-model="searches.name" type="text" class="form-control" name="name" :placeholder="__('validation.attributes.name')">
                 </div>
 
-                <div class="col-10 col-sm-5 form-group">
+                <div class="col-10 col-sm-5 col-lg-3 form-group">
                     <label for="email" style="text-transform: uppercase;"><b>{{ __('validation.attributes.email') }}</b></label>
                     <input v-model="searches.email" type="text" class="form-control" name="email" :placeholder="__('validation.attributes.email')">
                 </div>
@@ -50,6 +58,7 @@
                             <th>ID</th>
                             <th>{{ __('validation.attributes.name') }}</th>
                             <th>Acesor</th>
+                            <th>Declarante</th>
                             <th class="text-nowrap d-flex justify-content-center">{{ __('Actions') }}</th>
                         </tr>
                     </thead>
@@ -57,7 +66,8 @@
                         <tr v-for="(profile, index) in deceasedProfiles.data" :key="index">
                             <th>{{ profile.id }}</th>
                             <td>{{ profile.name }} {{ profile.last_name }}</td>
-                            <td>{{ profile.name }} {{ profile.last_name }}</td>
+                            <td>{{ profile.adviser ? profile.adviser.fullName : '' }}</td>
+                            <td>{{ profile.admin ? profile.admin.fullName : '' }}</td>
                             <td>
                                 <div class="d-flex justify-content-center">
                                     <vs-tooltip bottom>
@@ -115,6 +125,9 @@ export default {
     },
 
     watch: {
+        'searches.office': function (newValue, oldValue) {
+            this.getDeceasedProfiles();
+        },
         'searches.name': function (newValue, oldValue) {
             this.getDeceasedProfiles();
         },
@@ -126,6 +139,7 @@ export default {
     data() {
         return {
             deceasedProfiles: {data:[]},
+            offices: [],
 
             searches: {
                 name: '',
@@ -147,10 +161,26 @@ export default {
                 params: this.searches
             }).then(res => {
                 loading.close();
+                this.getOffices()
                 this.deceasedProfiles = res.data.data;
+                this.deceasedProfiles.data = this.deceasedProfiles.data.map(p => {
+                    p.admin = p.clients.find(client => client.pivot.role === 'admin');
+                    return p;
+                });
             })
             .catch(err => {
                 loading.close();
+                console.error(err);
+            })
+        },
+        getOffices() {
+            const url = `/admin/ajax/offices`;
+
+            axios.get(url)
+            .then(res => {
+                this.offices = res.data.data;
+            })
+            .catch(err => {
                 console.error(err);
             })
         },

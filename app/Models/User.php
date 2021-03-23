@@ -44,6 +44,14 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    protected $appends = ['fullName'];
+
+    // Attributes
+    function getFullNameAttribute()
+    {
+        return $this->name . ($this->lastname ? ' ' . $this->lastname : '');
+    }
+
     /**
      * The deceased_profiles that belong to the User
      *

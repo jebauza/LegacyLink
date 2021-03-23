@@ -33,7 +33,7 @@ class DeceasedProfileController extends Controller
     public function index()
     {
         $dprofiles = DeceasedProfile::filterByRole()
-                            ->with('office')
+                            ->with('office', 'adviser')
                             ->orderBy('name')
                             ->get();
 
@@ -48,11 +48,13 @@ class DeceasedProfileController extends Controller
     public function paginate(Request $request)
     {
         $dprofilesPaginate = DeceasedProfile::filterByRole()
-                            ->with('office')
+                            ->office($request->office)
+                            ->name($request->name)
+                            ->with('office', 'clients', 'adviser')
                             ->orderBy('name')
                             ->paginate();
 
-        $dprofilesPaginate->setCollection(DeceasedProfileResource::collection($dprofilesPaginate->getCollection())->collection);
+        //$dprofilesPaginate->setCollection(DeceasedProfileResource::collection($dprofilesPaginate->getCollection())->collection);
 
         return $this->sendResponse(null, $dprofilesPaginate);
     }

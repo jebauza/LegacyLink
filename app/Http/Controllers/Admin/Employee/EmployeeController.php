@@ -50,6 +50,7 @@ class EmployeeController extends Controller
         $employeesPaginate = Employee::filterByRole()
                                     ->name($request->name)
                                     ->email($request->email)
+                                    ->office($request->office)
                                     ->with('offices','roles')
                                     ->orderBy('name')
                                     ->paginate();
