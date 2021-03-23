@@ -54,7 +54,7 @@
                                     </a>
                                 </li>
                                 <li class="nav-item mr-3">
-                                    <a class="nav-link" data-toggle="tab" href="#kt_tab_events">
+                                    <a class="nav-link" data-toggle="tab" href="#kt_tab_ceremonies">
                                         <span class="nav-icon mr-2">
                                             <span class="svg-icon mr-3">
                                                 <!--begin::Svg Icon | path:C:\wamp64\www\keenthemes\themes\metronic\theme\html\demo3\dist/../src/media/svg/icons\Communication\Clipboard-check.svg-->
@@ -68,7 +68,7 @@
                                                 </svg><!--end::Svg Icon-->
                                             </span>
                                         </span>
-                                        <span class="nav-text font-weight-bold">Eventos</span>
+                                        <span class="nav-text font-weight-bold">Ceremonia</span>
                                     </a>
                                 </li>
                             </ul>
@@ -195,24 +195,24 @@
 
                             </div>
 
-                            <div class="tab-pane" id="kt_tab_events" role="tabpanel">
+                            <div class="tab-pane" id="kt_tab_ceremonies" role="tabpanel">
                                 <div class="form-row">
                                     <div class="form-group col-sm-6 col-lg-4">
                                         <el-date-picker
-                                                v-model="ceremony.start"
+                                                v-model="formCeremony.start"
                                                 type="datetime"
                                                 placeholder="Inicio">
                                         </el-date-picker>
                                     </div>
                                     <div class="form-group col-sm-6 col-lg-4">
                                         <el-date-picker
-                                                v-model="ceremony.end"
+                                                v-model="formCeremony.end"
                                                 type="datetime"
                                                 placeholder="Fin">
                                         </el-date-picker>
                                     </div>
                                     <div class="form-group col-sm-6 col-lg-4">
-                                        <el-select v-if="ceremony_types.length" v-model="ceremony.type_id" filterable placeholder="Select">
+                                        <el-select v-if="ceremony_types.length" v-model="formCeremony.type_id" filterable placeholder="Select">
                                             <el-option v-for="item in ceremony_types" :key="item.id" :label="item.name" :value="item.id"></el-option>
                                         </el-select>
                                     </div>
@@ -221,22 +221,32 @@
                                             type="textarea"
                                             :rows="1"
                                             placeholder="Informacion Adicional"
-                                            v-model="ceremony.additional_info">
+                                            v-model="formCeremony.additional_info">
                                         </el-input>
                                     </div>
                                     <div class="form-group col-sm-6 col-lg-6 col-xl-4">
-                                        <el-input placeholder="Dirreccion" v-model="ceremony.address" clearable></el-input>
+                                        <el-input placeholder="Dirreccion" v-model="formCeremony.address" clearable></el-input>
                                     </div>
                                     <div class="form-group col-sm-6 col-xl-4">
-                                        <el-input placeholder="Sala" v-model="ceremony.room_name" clearable></el-input>
+                                        <el-input placeholder="Sala" v-model="formCeremony.room_name" clearable></el-input>
                                     </div>
                                     <div class="form-group col-6 col-sm-5 col-lg-3 col-xl-2">
-                                         <el-checkbox v-model="ceremony.main" label="Principal" border></el-checkbox>
+                                         <el-checkbox v-model="formCeremony.main" label="Principal" border></el-checkbox>
                                     </div>
                                     <div class="form-group col-auto">
-                                        <el-button @click="addCeremony()" type="primary" round>Adicionar</el-button>
+                                        <el-button v-if="!formCeremony.aux_id" @click="addCeremony()" type="primary" round>Adicionar</el-button>
+                                        <el-button v-else @click="updateCeremony()" type="success" round>Actualizar</el-button>
                                     </div>
 
+                                </div>
+
+                                <div v-if="errors.ceremonies" class="row mb-2">
+                                    <vs-alert color="danger" >
+                                        <template #title>
+                                            Error
+                                        </template>
+                                            {{ errors.ceremonies }}
+                                    </vs-alert>
                                 </div>
 
                                 <div class="row">
@@ -262,7 +272,7 @@
                                         </template>
 
                                         <template #tbody>
-                                            <vs-tr :key="index" v-for="(ceremony, index) in form.ceremonies">
+                                            <vs-tr :key="index" v-for="(ceremony, index) in form.ceremonies" >
                                                 <vs-td>
                                                     <div class="d-flex align-items-center mr-1">{{ index+1 }}
 														<i v-if="ceremony.main" class="flaticon2-correct text-success icon-md ml-2"></i>
@@ -275,11 +285,11 @@
                                                 <vs-td>{{ ceremony.address }}</vs-td>
                                                 <vs-td>
                                                     <div class="d-flex justify-content-center">
-                                                        <vs-button icon color="danger" border @click="removeCeremony(index)">
-                                                            <i class='fas fa-trash-alt'></i>
+                                                        <vs-button icon color="primary" border @click="loadFormCeremony(ceremony)">
+                                                            <i class='fas fa-pencil-alt'></i>
                                                         </vs-button>
-                                                        <vs-button v-if="!ceremony.main" icon border @click="mainCeremony(index)">
-                                                            <i class='fas fa-check'></i>
+                                                        <vs-button icon color="danger" border @click="removeCeremony(ceremony)">
+                                                            <i class='fas fa-trash-alt'></i>
                                                         </vs-button>
                                                     </div>
                                                 </vs-td>
@@ -358,14 +368,17 @@ export default {
             },
             errors: {},
 
-            ceremony: {
+            formCeremony: {
                 type_id: '',
-                main: '',
+                type_name: '',
+                main: false,
                 start: '',
                 end: '',
                 additional_info: '',
                 address: '',
                 room_name: '',
+                aux_id: '',
+                id: ''
             },
 
         }
@@ -453,6 +466,20 @@ export default {
             };
             this.errors = {};
         },
+        clearFormCeremony() {
+            this.formCeremony = {
+                type_id: '',
+                type_name: '',
+                main: false,
+                start: '',
+                end: '',
+                additional_info: '',
+                address: '',
+                room_name: '',
+                aux_id: ''
+            };
+            this.errors = {};
+        },
         actionStoreUpdate() {
             if(this.modalType == 'add') {
                 this.store();
@@ -461,7 +488,7 @@ export default {
             }
         },
         addCeremony() {
-            if (this.ceremony.main) {
+            if (this.formCeremony.main) {
                 this.form.ceremonies = this.form.ceremonies.map(c => {
                     c.main = false;
                     return c
@@ -469,39 +496,64 @@ export default {
             }
 
             this.form.ceremonies.push({
-                type_id: this.ceremony.type_id,
-                type_name: this.ceremony_types.find(c => this.ceremony.type_id == c.id).name,
-                main: this.ceremony.main,
-                start: moment(this.ceremony.start).format('YYYY-MM-DD HH:mm:ss'),
-                end: moment(this.ceremony.end).format('YYYY-MM-DD HH:mm:ss'),
-                additional_info: this.ceremony.additional_info,
-                address: this.ceremony.address,
-                room_name: this.ceremony.room_name,
+                type_id: this.formCeremony.type_id,
+                type_name: this.ceremony_types.find(c => this.formCeremony.type_id == c.id).name,
+                main: this.formCeremony.main,
+                start: moment(this.formCeremony.start).format('YYYY-MM-DD HH:mm:ss'),
+                end: moment(this.formCeremony.end).format('YYYY-MM-DD HH:mm:ss'),
+                additional_info: this.formCeremony.additional_info,
+                address: this.formCeremony.address,
+                room_name: this.formCeremony.room_name,
+                aux_id: Math.random().toString(36).substr(2, 5)
             });
 
-            this.ceremony= {
-                type_id: '',
-                main: '',
-                start: '',
-                end: '',
-                additional_info: '',
-                address: '',
-                room_name: '',
-            };
+            this.clearFormCeremony();
         },
-        removeCeremony(index) {
-            // this.form.ceremonies.splice(index, 1);
-            this.$delete(this.form.ceremonies, index)
-        },
-        mainCeremony(index) {
-            this.form.ceremonies = this.form.ceremonies.map((ceremony, i) => {
-                ceremony.main = false;
-                if (index == i) {
-                    ceremony.main = true;
-                }
-                return ceremony
+        updateCeremony() {
+            this.form.ceremonies = this.form.ceremonies.map(c => {
+                    if (this.formCeremony.main) {
+                        c.main = false;
+                    }
+
+                    if (c.aux_id === this.formCeremony.aux_id) {
+                        return {
+                            type_id: this.formCeremony.type_id,
+                            type_name: this.ceremony_types.find(c => this.formCeremony.type_id == c.id).name,
+                            main: this.formCeremony.main,
+                            start: moment(this.formCeremony.start).format('YYYY-MM-DD HH:mm:ss'),
+                            end: moment(this.formCeremony.end).format('YYYY-MM-DD HH:mm:ss'),
+                            additional_info: this.formCeremony.additional_info,
+                            address: this.formCeremony.address,
+                            room_name: this.formCeremony.room_name,
+                            aux_id: this.formCeremony.aux_id,
+                        }
+                    }
+
+                    return c;
             });
+
+            this.clearFormCeremony();
         },
+        removeCeremony(ceremony) {
+            // this.form.ceremonies.splice(index, 1);
+            const index = this.form.ceremonies.findIndex(c => c.aux_id === ceremony.aux_id);
+            this.$delete(this.form.ceremonies, index);
+        },
+        loadFormCeremony(ceremony) {
+            this.clearFormCeremony();
+            this.formCeremony = {
+                type_id: ceremony.type_id,
+                type_name: ceremony.type_name,
+                main: ceremony.main,
+                start: ceremony.start,
+                end: ceremony.end,
+                additional_info: ceremony.additional_info,
+                address:  ceremony.address,
+                room_name: ceremony.room_name,
+                aux_id: ceremony.aux_id ? ceremony.aux_id : ''
+            }
+        },
+
         store() {
             const url = '/admin/ajax/webs/store';
             const loading = this.$vs.loading({
@@ -527,6 +579,13 @@ export default {
                 loading.close();
                 if(err.response && err.response.status == 422) {
                     this.errors = err.response.data.errors;
+                    this.errorsCeremonies();
+                    Swal.fire({
+                        title: 'Error',
+                        icon: "error",
+                        timer: 1500,
+                        showConfirmButton: false
+                    });
                 }else if(err.response.data.message) {
                     Swal.fire({
                         title: 'Error!',
@@ -538,6 +597,25 @@ export default {
                 }
             })
         },
+        errorsCeremonies() {
+            //Buscar los errores de los elementos del array ceremonies
+            if(Object.keys(this.errors).length !== 0){
+                if(!this.errors.ceremonies){
+                    for (let i = 0; i < this.form.ceremonies.length; i++) {
+                        for (let value of Object.keys(this.formCeremony)) {
+                            if(this.errors.hasOwnProperty(`ceremonies.${i}.${value}`)){
+                                this.errors.ceremonies = `Revisar ceremonia #${i+1} ` + this.errors[`ceremonies.${i}.${value}`];
+                                break;
+                            }
+                        }
+
+                        if (this.errorCeremonies) {
+                            break;
+                        }
+                    }
+                }
+            }
+        }
         /* update() {
             const url = `/admin/ajax/employees/${this.form.id}/update`;
             const loading = this.$vs.loading({

@@ -47,15 +47,17 @@
                 <table class="table table-hover">
                     <thead>
                         <tr>
-                            <th>#</th>
+                            <th>ID</th>
                             <th>{{ __('validation.attributes.name') }}</th>
+                            <th>Acesor</th>
                             <th class="text-nowrap d-flex justify-content-center">{{ __('Actions') }}</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr v-for="(profile, index) in deceasedProfiles.data" :key="index">
-                            <th>{{ index + 1 }}</th>
-                            <td>{{ profile.name }}</td>
+                            <th>{{ profile.id }}</th>
+                            <td>{{ profile.name }} {{ profile.last_name }}</td>
+                            <td>{{ profile.name }} {{ profile.last_name }}</td>
                             <td>
                                 <div class="d-flex justify-content-center">
                                     <vs-tooltip bottom>
