@@ -40,6 +40,21 @@ class DeceasedProfile extends Model
         }
     }
 
+    public function scopeOffice($query, $param)
+    {
+        if ($param) {
+            $query->where('office_id', $param);
+        }
+    }
+
+    public function scopeName($query, $param)
+    {
+        if ($param) {
+            $query->where('name', 'like',"%$param%")
+                    ->orWhere('last_name', 'like',"%$param%");
+        }
+    }
+
     /**
      * Get all of the ceremonies for the DeceasedProfile
      *

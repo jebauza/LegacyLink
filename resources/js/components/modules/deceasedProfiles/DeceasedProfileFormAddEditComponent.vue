@@ -394,9 +394,6 @@ export default {
                 if (this.offices.length == 1) {
                     this.form.dprofile_office = this.offices[0].id
                 }
-                $('#kt_datetimepicker_3').datetimepicker({
-                    format: 'L'
-                });
             })
             .catch(err => {
                 console.error(err);
