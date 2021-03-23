@@ -17,9 +17,13 @@ Vue.use(Vuesax, {
     }
 });
 
+/* Element - Biblioteca para interfaz de usuario */
+import ElementUI from 'element-ui';
+import 'element-ui/lib/theme-chalk/index.css';
+import locale from 'element-ui/lib/locale/lang/es';
+Vue.use(ElementUI, { locale });
+
 Vue.component('pagination', require('laravel-vue-pagination'));
-
-
 
 Vue.component('office', require('./components/modules/offices/OfficeComponent').default);
 Vue.component('employee', require('./components/modules/employees/EmployeeComponent').default);
