@@ -19,12 +19,20 @@
 
             <div class="form-row pl-3 align-items-end">
 
-                <div class="col-sm-5 form-group">
+                <div class="col-sm-6 col-lg-4 form-group">
+                    <label style="text-transform: uppercase;"><b>{{ __('validation.attributes.dprofile_office') }}</b></label>
+                        <select class="form-control" v-model="searches.office">
+                            <option value=""></option>
+                            <option v-for="(o, index) in offices" :key="index" :value="o.id">{{ o.name }}</option>
+                        </select>
+                </div>
+
+                <div class="col-sm-6 col-lg-4 form-group">
                     <label for="name" style="text-transform: uppercase;"><b>{{ __('validation.attributes.name') }}</b></label>
                     <input v-model="searches.name" type="text" class="form-control" name="name" :placeholder="__('validation.attributes.name')">
                 </div>
 
-                <div class="col-10 col-sm-5 form-group">
+                <div class="col-10 col-sm-5 col-lg-3 form-group">
                     <label for="email" style="text-transform: uppercase;"><b>{{ __('validation.attributes.email') }}</b></label>
                     <input v-model="searches.email" type="text" class="form-control" name="email" :placeholder="__('validation.attributes.email')">
                 </div>
@@ -119,6 +127,9 @@ export default {
     },
 
     watch: {
+        'searches.office': function (newValue, oldValue) {
+            this.getEmployees();
+        },
         'searches.name': function (newValue, oldValue) {
             this.getEmployees();
         },
@@ -130,8 +141,10 @@ export default {
     data() {
         return {
             employees: {data:[]},
+            offices: [],
 
             searches: {
+                office: '',
                 name: '',
                 email: ''
             },
@@ -153,9 +166,21 @@ export default {
             }).then(res => {
                 loading.close();
                 this.employees = res.data.data;
+                this.getOffices();
             })
             .catch(err => {
                 loading.close();
+                console.error(err);
+            })
+        },
+        getOffices() {
+            const url = `/admin/ajax/offices`;
+
+            axios.get(url)
+            .then(res => {
+                this.offices = res.data.data;
+            })
+            .catch(err => {
                 console.error(err);
             })
         },
@@ -216,8 +241,9 @@ export default {
         },
         clearSearches() {
             this.searches = {
+                office: '',
                 name: '',
-                email: '',
+                email: ''
             };
         },
 

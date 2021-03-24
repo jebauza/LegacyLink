@@ -5,7 +5,7 @@ namespace App\Http\Requests;
 use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
 
-class DeceasedProfileStoreUpdateRequest extends FormRequest
+class DeceasedProfileStoreRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,7 +24,6 @@ class DeceasedProfileStoreUpdateRequest extends FormRequest
      */
     public function rules()
     {
-        // $office_id = $this->route('office_id') ?? null;
         return [
             'dprofile_office' => 'required|integer|exists:offices,id',
             'dprofile_adviser' => 'required|integer|exists:employees,id',

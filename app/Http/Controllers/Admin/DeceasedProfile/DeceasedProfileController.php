@@ -3,6 +3,7 @@ namespace App\Http\Controllers\Admin\DeceasedProfile;
 
 
 use App\Models\User;
+use App\Models\Ceremony;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Models\DeceasedProfile;
@@ -10,8 +11,7 @@ use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Resources\DeceasedProfileResource;
-use App\Http\Requests\DeceasedProfileStoreUpdateRequest;
-use App\Models\Ceremony;
+use App\Http\Requests\DeceasedProfileStoreRequest;
 
 class DeceasedProfileController extends Controller
 {
@@ -33,7 +33,7 @@ class DeceasedProfileController extends Controller
     public function index()
     {
         $dprofiles = DeceasedProfile::filterByRole()
-                            ->with('office')
+                            ->with('office', 'adviser')
                             ->orderBy('name')
                             ->get();
 
@@ -48,11 +48,13 @@ class DeceasedProfileController extends Controller
     public function paginate(Request $request)
     {
         $dprofilesPaginate = DeceasedProfile::filterByRole()
-                            ->with('office')
+                            ->office($request->office)
+                            ->name($request->name)
+                            ->with('office', 'clients', 'adviser')
                             ->orderBy('name')
                             ->paginate();
 
-        $dprofilesPaginate->setCollection(DeceasedProfileResource::collection($dprofilesPaginate->getCollection())->collection);
+        //$dprofilesPaginate->setCollection(DeceasedProfileResource::collection($dprofilesPaginate->getCollection())->collection);
 
         return $this->sendResponse(null, $dprofilesPaginate);
     }
@@ -73,7 +75,7 @@ class DeceasedProfileController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(DeceasedProfileStoreUpdateRequest $request)
+    public function store(DeceasedProfileStoreRequest $request)
     {
         try {
             DB::beginTransaction();
@@ -85,6 +87,8 @@ class DeceasedProfileController extends Controller
             $newDProfile->adviser_id = $request->dprofile_adviser;
             $newDProfile->office_id = $request->dprofile_office;
             if ($newDProfile->save()) {
+                $newDProfile->token = Hash::make(Str::random(5) . $newDProfile->id);
+                $newDProfile->save();
                 if (!$client = User::where('email', $request->client_email)->first()) {
                     $client = new User();
                 }
@@ -103,7 +107,7 @@ class DeceasedProfileController extends Controller
 
                 foreach ($request->ceremonies as $key => $value) {
                     $newCeremony = new Ceremony($value);
-                    $newCeremony->profile_id =  $newDProfile->id;
+                    $newCeremony->profile_id = $newDProfile->id;
                     $newCeremony->save();
                 }
             }

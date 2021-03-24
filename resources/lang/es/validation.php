@@ -202,6 +202,7 @@ return [
         'client_dni'            => 'dni',
         'client_email'          => 'correo',
         'client_phone'          => 'teléfono',
+        'ceremonies'            => 'ceremonias'
 
     ],
 ];
