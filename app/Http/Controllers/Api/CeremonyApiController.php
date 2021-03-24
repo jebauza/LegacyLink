@@ -11,7 +11,7 @@ use Illuminate\Http\Request;
 
 /**
  * @OA\Tag(
- *     name="Public ceremonia",
+ *     name="Ceremony",
  *     description="API Endpoints of public ceremonies list"
  * )
  */
@@ -19,16 +19,16 @@ class CeremonyApiController extends Controller
 {
     /**
      * @OA\Get(
-     *      path="/public/profile/{profile_id}/events",
-     *      operationId="/public/profile/{profile_id}/events",
-     *      tags={"Public ceremonia"},
+     *      path="/public/profile/{profile_id}/ceremonies",
+     *      operationId="/public/profile/{profile_id}/ceremonies",
+     *      tags={"Ceremony"},
      *      summary="Get the public ceremonies list",
      *      description="Return the list of ceremonies associated with a specific profile",
      *
      *      @OA\Parameter(
      *          name="profile_id",
      *          in="path",
-     *          description="Deceased profile id",
+     *          description="Profile_id",
      *          @OA\Schema(
      *               type="integer",
      *          ),
@@ -37,7 +37,7 @@ class CeremonyApiController extends Controller
      *      @OA\Response(response=200, description="OK",
      *          @OA\JsonContent(
      *              @OA\Property(property="success", example=true),
-     *              @OA\Property(property="message", example="User login successfully."),
+     *              @OA\Property(property="message", example="Solicitud procesada correctamente."),
      *              @OA\Property(property="data", type="array",
      *                  @OA\Items(ref="#/components/schemas/CeremonyResource")
      *              ),
@@ -48,18 +48,19 @@ class CeremonyApiController extends Controller
      *
      *      @OA\Response(response=500, ref="#/components/requestBodies/response_500"),
      * )
+     *
      *  @param int $profile_id
      *  @return CeremonyResource
      */
-    public function agenda($profile_id)
+    public function index($profile_id)
     {
-        if(!$profile=DeceasedProfile::find($profile_id)){
+        if(!$profile = DeceasedProfile::find($profile_id)){
             return $this->sendError404();
         }
 
-        $ceremonies=Ceremony::where('profile_id',$profile->id)
-            ->orderBy('start')
-            ->get();
+        $ceremonies = Ceremony::where('profile_id',$profile->id)
+                        ->orderBy('start')
+                        ->get();
 
         return $this->sendResponse(null, (CeremonyResource::collection($ceremonies)));
     }

@@ -3,8 +3,9 @@ namespace App\Http\Controllers\Api;
 
 use Carbon\Carbon;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 use App\Models\DeceasedProfile;
+use App\Http\Controllers\Controller;
+use App\Http\Resources\UserResource;
 use Illuminate\Support\Facades\Auth;
 
 /**
@@ -45,6 +46,16 @@ class AuthApiController extends Controller
      *      ),
      *
      *      @OA\Response(response=403, ref="#/components/requestBodies/response_403"),
+     *
+     *      @OA\Response(response=422, description="Error: Unprocessable Entity",
+     *          @OA\JsonContent(
+     *              @OA\Property(property="message", example="The given data was invalid."),
+     *              @OA\Property(property="errors", description="these are the fields of the request",
+     *                  @OA\Property(property="email", example={"El campo correo es obligatorio."}),
+     *                  @OA\Property(property="password", example={"El campo password es obligatorio."}),
+     *              )
+     *          )
+     *      ),
      * )
      */
 
@@ -127,7 +138,13 @@ class AuthApiController extends Controller
      *      description="",
      *      security={{"api_key": {}}},
      *
-     *      @OA\Response(response=200, ref="#/components/requestBodies/response_200"),
+     *      @OA\Response(response=200, description="OK",
+     *          @OA\JsonContent(
+     *              @OA\Property(property="success", example=true),
+     *              @OA\Property(property="message", example="User login successfully."),
+     *              @OA\Property(property="data", ref="#/components/schemas/UserResource")),
+     *          )
+     *      ),
      *
      *      @OA\Response(response=401, ref="#/components/requestBodies/response_401"),
      * )
@@ -136,21 +153,21 @@ class AuthApiController extends Controller
     {
         $user = $request->user();
 
-        return $user;
+        return $this->sendResponse(null, (new UserResource($user)));
     }
 
 
   /**
      * @OA\GET(
-     *      path="/auth/profile/{token}",
-     *      operationId="/auth/profile/{token}",
+     *      path="/auth/login/declarant",
+     *      operationId="/auth/login/declarant",
      *      tags={"Auth"},
      *      summary="Login Profile",
      *      description="",
      *
      *      @OA\Parameter(
      *          name="token",
-     *          in="path",
+     *          in="query",
      *          description="Token profile",
      *          @OA\Schema(
      *               type="string",
@@ -169,6 +186,15 @@ class AuthApiController extends Controller
      *      ),
      *
      *      @OA\Response(response=403, ref="#/components/requestBodies/response_403"),
+     *
+     *      @OA\Response(response=422, description="Error: Unprocessable Entity",
+     *          @OA\JsonContent(
+     *              @OA\Property(property="message", example="The given data was invalid."),
+     *              @OA\Property(property="errors", description="these are the fields of the request",
+     *                  @OA\Property(property="token", example={"El campo token es obligatorio."}),
+     *              )
+     *          )
+     *      ),
      * )
      */
 
@@ -179,11 +205,15 @@ class AuthApiController extends Controller
      * @param string $token
      * @return void
      */
-    public function loginProfile(Request $request,string $token)
+    public function loginProfile(Request $request)
     {
-        $profile= DeceasedProfile::where('token',$token)->first();
+        $request->validate([
+            'token' => 'required|string',
+        ]);
 
-        $user=$profile?  $profile->clients()->wherePivot('declarant', true)->first():null;
+        $profile = DeceasedProfile::where('token', $request->token)->first();
+
+        $user = $profile ? $profile->clients()->wherePivot('declarant', true)->first() : null;
 
         if(!$user) {
             return response()->json([

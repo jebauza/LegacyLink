@@ -21,6 +21,11 @@ use App\Http\Controllers\Api\DeceasedProfileApiController;
     return $request->user();
 }); */
 
+Route::prefix('public')->group(function () {
+    Route::get('profile/{profile_id}', [DeceasedProfileApiController::class, 'show'])->name('api.profile.show');
+    Route::get('profile/{profile_id}/ceremonies', [CeremonyApiController::class, 'index'])->name('api.profile.ceremonies');
+});
+
 
 Route::middleware(['auth:api'])->name('api.')->group(function() {
 
@@ -28,12 +33,13 @@ Route::middleware(['auth:api'])->name('api.')->group(function() {
     Route::prefix('auth')->name('auth.')->group(function () {
         // Route::post('register', [UserAuthController::class, 'register'])->name('register')->withoutMiddleware(['auth:api']);
         Route::post('login', [AuthApiController::class, 'login'])->name('login')->withoutMiddleware(['auth:api']);
-        Route::get('profile/{token}', [AuthApiController::class, 'loginProfile'])->name('login.profile')->withoutMiddleware(['auth:api']);
+        Route::get('login/declarant', [AuthApiController::class, 'loginProfile'])->name('login.profile')->withoutMiddleware(['auth:api']);
 
         Route::get('logout', [AuthApiController::class, 'logout'])->name('logout');
         Route::get('user', [AuthApiController::class, 'user'])->name('user');
     });
 
 });
-Route::get('public/profile/{profile_id}', [DeceasedProfileApiController::class, 'byId'])->name('api.profile.byId');
-Route::get('public/profile/{profile_id}/events', [CeremonyApiController::class, 'agenda'])->name('api.profile.agenda');
+
+
+
