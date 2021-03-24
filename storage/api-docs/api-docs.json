@@ -102,6 +102,37 @@
                     },
                     "403": {
                         "$ref": "#/components/requestBodies/response_403"
+                    },
+                    "422": {
+                        "description": "Error: Unprocessable Entity",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "example": "The given data was invalid."
+                                        },
+                                        "errors": {
+                                            "description": "these are the fields of the request",
+                                            "properties": {
+                                                "email": {
+                                                    "example": [
+                                                        "El campo correo es obligatorio."
+                                                    ]
+                                                },
+                                                "password": {
+                                                    "example": [
+                                                        "El campo password es obligatorio."
+                                                    ]
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
                     }
                 }
             }
@@ -139,10 +170,25 @@
                 "operationId": "auth/user",
                 "responses": {
                     "200": {
-                        "$ref": "#/components/requestBodies/response_200"
-                    },
-                    "401": {
-                        "$ref": "#/components/requestBodies/response_401"
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "example": true
+                                        },
+                                        "message": {
+                                            "example": "User login successfully."
+                                        },
+                                        "data": {
+                                            "$ref": "#/components/schemas/UserResource"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
                     }
                 },
                 "security": [
@@ -152,18 +198,18 @@
                 ]
             }
         },
-        "/auth/profile/{token}": {
+        "/auth/login/declarant": {
             "get": {
                 "tags": [
                     "Auth"
                 ],
                 "summary": "Login Profile",
                 "description": "",
-                "operationId": "/auth/profile/{token}",
+                "operationId": "/auth/login/declarant",
                 "parameters": [
                     {
                         "name": "token",
-                        "in": "path",
+                        "in": "query",
                         "description": "Token profile",
                         "schema": {
                             "type": "string"
@@ -203,23 +249,49 @@
                     },
                     "403": {
                         "$ref": "#/components/requestBodies/response_403"
+                    },
+                    "422": {
+                        "description": "Error: Unprocessable Entity",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "example": "The given data was invalid."
+                                        },
+                                        "errors": {
+                                            "description": "these are the fields of the request",
+                                            "properties": {
+                                                "token": {
+                                                    "example": [
+                                                        "El campo token es obligatorio."
+                                                    ]
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
                     }
                 }
             }
         },
-        "/public/profile/{profile_id}/events": {
+        "/public/profile/{profile_id}/ceremonies": {
             "get": {
                 "tags": [
-                    "Public ceremonia"
+                    "Ceremony"
                 ],
                 "summary": "Get the public ceremonies list",
                 "description": "Return the list of ceremonies associated with a specific profile",
-                "operationId": "/public/profile/{profile_id}/events",
+                "operationId": "/public/profile/{profile_id}/ceremonies",
                 "parameters": [
                     {
                         "name": "profile_id",
                         "in": "path",
-                        "description": "Deceased profile id",
+                        "description": "Profile_id",
                         "schema": {
                             "type": "integer"
                         }
@@ -236,7 +308,7 @@
                                             "example": true
                                         },
                                         "message": {
-                                            "example": "User login successfully."
+                                            "example": "Solicitud procesada correctamente."
                                         },
                                         "data": {
                                             "type": "array",
@@ -262,7 +334,7 @@
         "/public/profile/{profile_id}": {
             "get": {
                 "tags": [
-                    "Public Profile"
+                    "Profile"
                 ],
                 "summary": "Get the public details of deseased profile",
                 "description": "Return the public details of a specific profile",
@@ -271,7 +343,7 @@
                     {
                         "name": "profile_id",
                         "in": "path",
-                        "description": "Deceased profile id",
+                        "description": "Profile id",
                         "schema": {
                             "type": "integer"
                         }
@@ -288,7 +360,7 @@
                                             "example": true
                                         },
                                         "message": {
-                                            "example": "User login successfully."
+                                            "example": "Solicitud procesada correctamente."
                                         },
                                         "data": {
                                             "$ref": "#/components/schemas/DeceasedProfileResource"
@@ -408,6 +480,48 @@
                     }
                 },
                 "type": "object"
+            },
+            "UserResource": {
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "example": 161
+                    },
+                    "dni": {
+                        "type": "string",
+                        "example": "46485700M"
+                    },
+                    "name": {
+                        "type": "string",
+                        "example": "Carlos"
+                    },
+                    "lastname": {
+                        "type": "string",
+                        "example": "Perez Perez"
+                    },
+                    "fullName": {
+                        "type": "string",
+                        "example": "Carlos Perez Perez"
+                    },
+                    "email": {
+                        "type": "string",
+                        "example": "carlos@gmail.com"
+                    },
+                    "phone": {
+                        "type": "string",
+                        "example": "+34622789562"
+                    },
+                    "is_active": {
+                        "type": "boolean",
+                        "example": true
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "responses": {
+            "401": {
+                "$ref": "#/components/requestBodies/response_401"
             }
         },
         "requestBodies": {
@@ -554,12 +668,12 @@
             "description": "API Endpoints of Auth"
         },
         {
-            "name": "Public ceremonia",
+            "name": "Ceremony",
             "description": "API Endpoints of public ceremonies list"
         },
         {
-            "name": "Public Profile",
-            "description": "API Endpoints of public deceased profile"
+            "name": "Profile",
+            "description": "API Profile"
         }
     ],
     "externalDocs": {
