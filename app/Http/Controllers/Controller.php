@@ -51,7 +51,7 @@ use Illuminate\Routing\Controller as BaseController;
  * )
  *
  * @OA\Parameter(parameter="profile_id", name="profile_id", in="path", required=true,
- *      description="Profile_id",
+ *      description="Profile identifier",
  *      @OA\Schema(type="integer", example="11")
  * )
  *

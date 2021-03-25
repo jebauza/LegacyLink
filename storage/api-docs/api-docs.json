@@ -160,14 +160,19 @@
                 ]
             }
         },
-        "/auth/user": {
+        "/auth/user/{profile_id}": {
             "get": {
                 "tags": [
                     "Auth"
                 ],
                 "summary": "Authenticated user information",
                 "description": "",
-                "operationId": "auth/user",
+                "operationId": "/auth/user/{profile_id}",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/profile_id"
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "OK",
@@ -182,7 +187,7 @@
                                             "example": "User login successfully."
                                         },
                                         "data": {
-                                            "$ref": "#/components/schemas/UserResource"
+                                            "$ref": "#/components/schemas/UserAuthApiResource"
                                         }
                                     },
                                     "type": "object"
@@ -491,6 +496,133 @@
                 ]
             }
         },
+        "/profile/{profile_id}/ceremonies/{ceremony_id}/update": {
+            "put": {
+                "tags": [
+                    "Ceremony"
+                ],
+                "summary": "Update Ceremony",
+                "description": "",
+                "operationId": "/profile/{profile_id}/ceremonies/{ceremony_id}/update",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/profile_id"
+                    },
+                    {
+                        "name": "ceremony_id",
+                        "in": "path",
+                        "description": "Ceremony identifier",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "example": 2
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "$ref": "#/components/requestBodies/request_ceremony_store"
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "example": true
+                                        },
+                                        "message": {
+                                            "example": "Solicitud procesada correctamente."
+                                        },
+                                        "data": {
+                                            "$ref": "#/components/schemas/CeremonyApiResource"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "$ref": "#/components/requestBodies/response_401"
+                    },
+                    "404": {
+                        "$ref": "#/components/requestBodies/response_404"
+                    },
+                    "422": {
+                        "$ref": "#/components/requestBodies/ceremony_store_response_422"
+                    },
+                    "500": {
+                        "$ref": "#/components/requestBodies/response_500"
+                    }
+                },
+                "security": [
+                    {
+                        "api_key": []
+                    }
+                ]
+            }
+        },
+        "/profile/{profile_id}/ceremonies/{ceremony_id}/destroy": {
+            "delete": {
+                "tags": [
+                    "Ceremony"
+                ],
+                "summary": "Destroy Ceremony",
+                "description": "",
+                "operationId": "/profile/{profile_id}/ceremonies/{ceremony_id}/destroy",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/profile_id"
+                    },
+                    {
+                        "name": "ceremony_id",
+                        "in": "path",
+                        "description": "Ceremony identifier",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "example": 2
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "example": true
+                                        },
+                                        "message": {
+                                            "example": "Solicitud procesada correctamente."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "$ref": "#/components/requestBodies/response_401"
+                    },
+                    "404": {
+                        "$ref": "#/components/requestBodies/response_404"
+                    },
+                    "500": {
+                        "$ref": "#/components/requestBodies/response_500"
+                    }
+                },
+                "security": [
+                    {
+                        "api_key": []
+                    }
+                ]
+            }
+        },
         "/public/profile/{profile_id}": {
             "get": {
                 "tags": [
@@ -627,7 +759,7 @@
                                         "data": {
                                             "type": "array",
                                             "items": {
-                                                "$ref": "#/components/schemas/UserResource"
+                                                "$ref": "#/components/schemas/UserApiResource"
                                             }
                                         }
                                     },
@@ -770,7 +902,7 @@
                 },
                 "type": "object"
             },
-            "UserResource": {
+            "UserApiResource": {
                 "properties": {
                     "id": {
                         "type": "integer",
@@ -806,6 +938,51 @@
                     }
                 },
                 "type": "object"
+            },
+            "UserAuthApiResource": {
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "example": 161
+                    },
+                    "dni": {
+                        "type": "string",
+                        "example": "46485700M"
+                    },
+                    "name": {
+                        "type": "string",
+                        "example": "Carlos"
+                    },
+                    "lastname": {
+                        "type": "string",
+                        "example": "Perez Perez"
+                    },
+                    "fullName": {
+                        "type": "string",
+                        "example": "Carlos Perez Perez"
+                    },
+                    "email": {
+                        "type": "string",
+                        "example": "carlos@gmail.com"
+                    },
+                    "phone": {
+                        "type": "string",
+                        "example": "+34622789562"
+                    },
+                    "is_active": {
+                        "type": "boolean",
+                        "example": true
+                    },
+                    "profile_id": {
+                        "type": "integer",
+                        "example": 2
+                    },
+                    "role": {
+                        "type": "string",
+                        "example": "admin"
+                    }
+                },
+                "type": "object"
             }
         },
         "responses": {
@@ -817,7 +994,7 @@
             "profile_id": {
                 "name": "profile_id",
                 "in": "path",
-                "description": "Profile_id",
+                "description": "Profile identifier",
                 "required": true,
                 "schema": {
                     "type": "integer",

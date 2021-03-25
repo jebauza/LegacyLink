@@ -33,6 +33,7 @@ class CeremonyStoreUpdateApiRequest extends FormRequest
      */
     public function rules()
     {
+        $ceremony_id = $this->route('ceremony_id') ?? null;
         return [
             'main' => 'required|boolean',
             'start' => 'required|date|date_format:Y-m-d H:i:s',

@@ -97,8 +97,7 @@ class CeremonyApiController extends Controller
     {
         $profile = session('profileWeb');
 
-        $ceremonies = Ceremony::where('profile_id',$profile->id)
-                        ->visibleClient($profile->pivot->role)
+        $ceremonies = $profile->ceremonies()->visibleClient($profile->pivot->role)
                         ->orderBy('start')
                         ->get();
 
@@ -188,7 +187,112 @@ class CeremonyApiController extends Controller
             DB::rollBack();
             return $this->sendError500($e->getMessage());
         }
+    }
 
+    /**
+     * @OA\Put(
+     *      path="/profile/{profile_id}/ceremonies/{ceremony_id}/update",
+     *      operationId="/profile/{profile_id}/ceremonies/{ceremony_id}/update",
+     *      tags={"Ceremony"},
+     *      summary="Update Ceremony",
+     *      description="",
+     *      security={{"api_key": {}}},
+     *
+     *      @OA\Parameter(ref="#/components/parameters/profile_id"),
+     *
+     *      @OA\Parameter(name="ceremony_id", in="path", required=true, description="Ceremony identifier",
+     *          @OA\Schema(type="integer", example=2)
+     *      ),
+     *
+     *      @OA\RequestBody(ref="#/components/requestBodies/request_ceremony_store"),
+     *
+     *      @OA\Response(response=200, description="OK",
+     *          @OA\JsonContent(
+     *              @OA\Property(property="success", example=true),
+     *              @OA\Property(property="message", example="Solicitud procesada correctamente."),
+     *              @OA\Property(property="data", ref="#/components/schemas/CeremonyApiResource"),
+     *          )
+     *      ),
+     *
+     *      @OA\Response(response=401, ref="#/components/requestBodies/response_401"),
+     *
+     *      @OA\Response(response=404, ref="#/components/requestBodies/response_404"),
+     *
+     *      @OA\Response(response=422, ref="#/components/requestBodies/ceremony_store_response_422"),
+     *
+     *      @OA\Response(response=500, ref="#/components/requestBodies/response_500"),
+     * )
+     */
+    public function update(CeremonyStoreUpdateApiRequest $request, $profile_id, $ceremony_id)
+    {
+        $profile = session('profileWeb');
 
+        if(!$ceremony = $profile->ceremonies()->find($ceremony_id)) {
+            return $this->sendError404();
+        }
+
+        try {
+            DB::beginTransaction();
+            $ceremony->fill($request->all());
+            $ceremony->profile_id = $profile->id;
+            $ceremony->save();
+
+            DB::commit();
+            return $this->sendResponse(__('Updated successfully'), (new CeremonyApiResource($ceremony)), 200);
+
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return $this->sendError500($e->getMessage());
+        }
+    }
+
+    /**
+     * @OA\Delete(
+     *      path="/profile/{profile_id}/ceremonies/{ceremony_id}/destroy",
+     *      operationId="/profile/{profile_id}/ceremonies/{ceremony_id}/destroy",
+     *      tags={"Ceremony"},
+     *      summary="Destroy Ceremony",
+     *      description="",
+     *      security={{"api_key": {}}},
+     *
+     *      @OA\Parameter(ref="#/components/parameters/profile_id"),
+     *
+     *      @OA\Parameter(name="ceremony_id", in="path", required=true, description="Ceremony identifier",
+     *          @OA\Schema(type="integer", example=2)
+     *      ),
+     *
+     *      @OA\Response(response=200, description="OK",
+     *          @OA\JsonContent(
+     *              @OA\Property(property="success", example=true),
+     *              @OA\Property(property="message", example="Solicitud procesada correctamente.")
+     *          )
+     *      ),
+     *
+     *      @OA\Response(response=401, ref="#/components/requestBodies/response_401"),
+     *
+     *      @OA\Response(response=404, ref="#/components/requestBodies/response_404"),
+     *
+     *      @OA\Response(response=500, ref="#/components/requestBodies/response_500"),
+     * )
+     */
+    public function destroy(Request $request, $profile_id, $ceremony_id)
+    {
+        $profile = session('profileWeb');
+
+        if(!$ceremony = $profile->ceremonies()->find($ceremony_id)) {
+            return $this->sendError404();
+        }
+
+        try {
+            DB::beginTransaction();
+            $ceremony->delete();
+
+            DB::commit();
+            return $this->sendResponse(__('Deleted successfully'), null, 200);
+
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return $this->sendError500($e->getMessage());
+        }
     }
 }

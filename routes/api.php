@@ -37,24 +37,28 @@ Route::middleware(['auth:api'])->name('api.')->group(function() {
         Route::get('login/declarant', [AuthApiController::class, 'loginProfile'])->name('login.profile')->withoutMiddleware(['auth:api']);
 
         Route::get('logout', [AuthApiController::class, 'logout'])->name('logout');
-        Route::get('user', [AuthApiController::class, 'user'])->name('user');
+        Route::get('user/{profile_id}', [AuthApiController::class, 'user'])->name('user')->middleware(['check_profile']);
     });
 
-    Route::prefix('profile/{profile_id}')->middleware(['check_profile_role:admin'])->group(function () {
+    Route::prefix('profile/{profile_id}')->middleware(['check_profile'])->group(function () {
 
-        Route::name('profile.')->group(function () {
+        Route::name('profile.')->middleware(['check_profile_role:admin'])->group(function () {
             Route::put('update', [DeceasedProfileApiController::class, 'update'])->name('update');
         });
 
-        Route::prefix('clients')->name('clients.')->group(function () {
+        Route::prefix('clients')->middleware(['check_profile_role:admin'])->name('clients.')->group(function () {
             Route::get('', [UserApiController::class, 'index'])->name('index');
         });
 
-        Route::prefix('ceremonies')->name('ceremonies.')->group(function () {
+        Route::prefix('ceremonies')->middleware(['check_profile_role:admin'])->name('ceremonies.')->group(function () {
             Route::get('', [CeremonyApiController::class, 'index'])->name('index');
             Route::get('ceremony-types', [CeremonyApiController::class, 'getCeremonyTypes'])->name('getCeremonyTypes');
             Route::post('store', [CeremonyApiController::class, 'store'])->name('store');
+            Route::put('/{ceremony_id}/update', [CeremonyApiController::class, 'update'])->name('update');
+            Route::delete('/{ceremony_id}/destroy', [CeremonyApiController::class, 'destroy'])->name('destroy');
         });
+
+
 
     });
 
