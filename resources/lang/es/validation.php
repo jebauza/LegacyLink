@@ -117,6 +117,8 @@ return [
     'uploaded'             => 'Subir :attribute ha fallado.',
     'url'                  => 'El formato :attribute es inválido.',
     'uuid'                 => 'El campo :attribute debe ser un UUID válido.',
+    'phone'                => 'El Campo :attribute tiene un formato inválido.',
+    'nif'                  => 'El Campo :attribute tiene un formato inválido.',
 
     /*
     |--------------------------------------------------------------------------

@@ -2,11 +2,13 @@
 namespace App\Http\Controllers\Api;
 
 use Carbon\Carbon;
+use App\Helpers\SMSHelper;
 use Illuminate\Http\Request;
 use App\Models\DeceasedProfile;
 use App\Http\Controllers\Controller;
-use App\Http\Resources\UserResource;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Resources\Api\UserApiResource;
+
 
 /**
  * @OA\Tag(
@@ -131,18 +133,20 @@ class AuthApiController extends Controller
 
     /**
      * @OA\Get(
-     *      path="/auth/user",
-     *      operationId="auth/user",
+     *      path="/auth/user/{profile_id}",
+     *      operationId="/auth/user/{profile_id}",
      *      tags={"Auth"},
      *      summary="Authenticated user information",
      *      description="",
      *      security={{"api_key": {}}},
      *
+     *      @OA\Parameter(ref="#/components/parameters/profile_id"),
+     *
      *      @OA\Response(response=200, description="OK",
      *          @OA\JsonContent(
      *              @OA\Property(property="success", example=true),
      *              @OA\Property(property="message", example="User login successfully."),
-     *              @OA\Property(property="data", ref="#/components/schemas/UserResource")),
+     *              @OA\Property(property="data", ref="#/components/schemas/UserAuthApiResource")),
      *          )
      *      ),
      *
@@ -151,9 +155,13 @@ class AuthApiController extends Controller
      */
     public function user(Request $request)
     {
-        $user = $request->user();
+        $profile = session('profileWeb');
 
-        return $this->sendResponse(null, (new UserResource($user)));
+        $user = auth()->user();
+        $user->add_profile = $profile->id;
+        $user->add_role = $profile->pivot->role;
+
+        return $this->sendResponse(null, (new UserApiResource($user)));
     }
 
 

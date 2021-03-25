@@ -37,6 +37,14 @@ class DeceasedProfile extends Model
         'token'
     ];
 
+    protected $appends = ['fullName'];
+
+    // Attributes
+    function getFullNameAttribute()
+    {
+        return $this->name . ($this->lastname ? ' ' . $this->lastname : '');
+    }
+
     // SCOPES
     public function scopeFilterByRole($query)
     {

@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Http\Resources\UserResource;
+use App\Http\Resources\Api\UserApiResource;
 
 /**
  * @OA\Tag(
@@ -37,7 +37,7 @@ class UserApiController extends Controller
      *              @OA\Property(property="success", example=true),
      *              @OA\Property(property="message", example="Solicitud procesada correctamente."),
      *              @OA\Property(property="data", type="array",
-     *                  @OA\Items(ref="#/components/schemas/UserResource")
+     *                  @OA\Items(ref="#/components/schemas/UserApiResource")
      *              ),
      *          )
      *      ),
@@ -58,7 +58,7 @@ class UserApiController extends Controller
                     ->orderBy('lastname')
                     ->get();
 
-        return $this->sendResponse(null, UserResource::collection($users));
+        return $this->sendResponse(null, UserApiResource::collection($users));
     }
 
     /**

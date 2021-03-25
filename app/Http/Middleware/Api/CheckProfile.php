@@ -5,7 +5,7 @@ namespace App\Http\Middleware\API;
 use Closure;
 use Illuminate\Http\Request;
 
-class CheckProfileRole
+class CheckProfile
 {
     /**
      * Handle an incoming request.
@@ -14,12 +14,11 @@ class CheckProfileRole
      * @param  \Closure  $next
      * @return mixed
      */
-    public function handle(Request $request, Closure $next, $role)
+    public function handle(Request $request, Closure $next)
     {
         $profile_id = $request->route('profile_id');
 
         $profile = auth()->user()->deceased_profiles()
-                                ->wherePivot('role',$role)
                                 ->where('deceased_profiles.id', $profile_id)
                                 ->first();
 
