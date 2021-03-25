@@ -29,6 +29,8 @@
     "The selected role is invalid": "El rol seleccionado no es válido",
     "Branch Offices": "Sucursales",
     "Office administration": "Administración de las oficinas",
-    "Administration": "Administración"
+    "Administration": "Administración",
+    "You do not have permissions for the requested resources": "No tiene permisos para los recursos solicitados",
+    "There can only be one main ceremony": "Sólo puede existir una ceremonia principal"
 
 }

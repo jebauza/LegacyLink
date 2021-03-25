@@ -22,17 +22,4 @@ class AdviserResource extends JsonResource
             "phone"=>$this->phone
         ];
     }
-
-    /**
-     *
-     * @OA\Schema(
-     *      schema="AdviserResource",
-     *      @OA\Property(property="id", type="integer", example=161),
-     *      @OA\Property(property="name", type="string", example="Alberto"),
-     *      @OA\Property(property="last_name", type="string", example="Perez"),
-     *      @OA\Property(property="email", type="string", example="alberto@albia.es"),
-     *      @OA\Property(property="phone", type="string", example="+34622452513"),
-     *
-     * )
-     */
 }

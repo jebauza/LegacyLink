@@ -60,6 +60,6 @@ class User extends Authenticatable
     public function deceased_profiles()
     {
         return $this->belongsToMany(DeceasedProfile::class, 'deceased_profile_user', 'user_id', 'profile_id')
-                    ->withPivot('profile_id','user_id','role')->withTimestamps();
+                    ->withPivot('profile_id','user_id','role','declarant')->withTimestamps();
     }
 }

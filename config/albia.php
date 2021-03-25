@@ -34,8 +34,8 @@ return [
 
     'ceremony_types' => [
         ['id' => 1, 'name' => 'Inhumación'],
-        ['id' => 2, 'name' => 'Sepelio '],
-        ['id' => 3, 'name' => 'Sepultura '],
-        ['id' => 4, 'name' => 'Incineración ']
+        ['id' => 2, 'name' => 'Sepelio'],
+        ['id' => 3, 'name' => 'Sepultura'],
+        ['id' => 4, 'name' => 'Incineración']
     ]
 ];

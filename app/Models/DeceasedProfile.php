@@ -20,11 +20,21 @@ class DeceasedProfile extends Model
         'death',
         'adviser_id',
         'office_id',
+        'photo'
     ];
 
     protected $casts = [
         'birthday' => 'date',
         'death' => 'date',
+    ];
+
+    /**
+     * The attributes that should be hidden for arrays.
+     *
+     * @var array
+     */
+    protected $hidden = [
+        'token'
     ];
 
     // SCOPES
@@ -93,6 +103,6 @@ class DeceasedProfile extends Model
     public function clients()
     {
         return $this->belongsToMany(User::class, 'deceased_profile_user', 'profile_id', 'user_id')
-                    ->withPivot('profile_id','user_id','role')->withTimestamps();
+                    ->withPivot('profile_id','user_id','role','declarant')->withTimestamps();
     }
 }
