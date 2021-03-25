@@ -42,14 +42,17 @@ use Illuminate\Routing\Controller as BaseController;
  *      )
  * )
  *
- *
- *
  * @OA\SecurityScheme(
  *      securityScheme="api_key",
  *      type="apiKey",
  *      in="header",
  *      description="Enter in the following field 'Bearer' followed by the token obtained in the endpoint /auth/login",
  *      name="Authorization"
+ * )
+ *
+ * @OA\Parameter(parameter="profile_id", name="profile_id", in="path", required=true,
+ *      description="Profile_id",
+ *      @OA\Schema(type="integer", example="11")
  * )
  *
  */

@@ -202,7 +202,15 @@ return [
         'client_dni'            => 'dni',
         'client_email'          => 'correo',
         'client_phone'          => 'teléfono',
-        'ceremonies'            => 'ceremonias'
+        'ceremonies'            => 'ceremonias',
+        'birthday'              => 'nacimiento',
+        'death'                 => 'defunción',
+        'main'                  => 'principal',
+        'start'                 => 'inicio',
+        'end'                   => 'fin',
+        'room_name'             => 'habitación',
+        'additional_info'       => 'información adicional',
+        'type_id'               => 'tipo',
 
     ],
 ];

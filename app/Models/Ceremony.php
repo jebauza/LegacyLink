@@ -21,13 +21,25 @@ class Ceremony extends Model
         'latitude',
         'longitude',
         'type_id',
-        'profile_id'
+        'profile_id',
+        'visible'
     ];
 
     protected $casts = [
         'start' => 'datetime',
         'end' => 'datetime',
     ];
+
+    // SCOPES
+    public function scopeVisibleClient($query, $clientRole)
+    {
+        if ($clientRole) {
+            if ($clientRole == 'close_friend') {
+                $query->where('visible', 'close_friend')
+                        ->orWhere('visible', 'public');
+            }
+        }
+    }
 
     public function profile()
     {

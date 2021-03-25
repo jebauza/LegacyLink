@@ -285,16 +285,11 @@
                     "Ceremony"
                 ],
                 "summary": "Get the public ceremonies list",
-                "description": "Return the list of ceremonies associated with a specific profile",
+                "description": "Return the list of public ceremonies associated with a specific profile",
                 "operationId": "/public/profile/{profile_id}/ceremonies",
                 "parameters": [
                     {
-                        "name": "profile_id",
-                        "in": "path",
-                        "description": "Profile_id",
-                        "schema": {
-                            "type": "integer"
-                        }
+                        "$ref": "#/components/parameters/profile_id"
                     }
                 ],
                 "responses": {
@@ -313,7 +308,7 @@
                                         "data": {
                                             "type": "array",
                                             "items": {
-                                                "$ref": "#/components/schemas/CeremonyResource"
+                                                "$ref": "#/components/schemas/CeremonyApiResource"
                                             }
                                         }
                                     },
@@ -331,6 +326,171 @@
                 }
             }
         },
+        "/profile/{profile_id}/ceremonies": {
+            "get": {
+                "tags": [
+                    "Ceremony"
+                ],
+                "summary": "Get the public ceremonies list",
+                "description": "Return the list of public ceremonies associated with a specific profile",
+                "operationId": "/profile/{profile_id}/ceremonies",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/profile_id"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "example": true
+                                        },
+                                        "message": {
+                                            "example": "Solicitud procesada correctamente."
+                                        },
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/components/schemas/CeremonyApiResource"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "$ref": "#/components/requestBodies/response_401"
+                    },
+                    "403": {
+                        "$ref": "#/components/requestBodies/response_403"
+                    },
+                    "500": {
+                        "$ref": "#/components/requestBodies/response_500"
+                    }
+                },
+                "security": [
+                    {
+                        "api_key": []
+                    }
+                ]
+            }
+        },
+        "/profile/{profile_id}/ceremonies/ceremony-types": {
+            "get": {
+                "tags": [
+                    "Ceremony"
+                ],
+                "summary": "Get the public ceremony types list",
+                "description": "Return the list of ceremony types",
+                "operationId": "/profile/{profile_id}/ceremonies/ceremony-types",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/profile_id"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "example": true
+                                        },
+                                        "message": {
+                                            "example": "Solicitud procesada correctamente."
+                                        },
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/components/schemas/CeremonyTypeApiResource"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "$ref": "#/components/requestBodies/response_401"
+                    },
+                    "403": {
+                        "$ref": "#/components/requestBodies/response_403"
+                    },
+                    "500": {
+                        "$ref": "#/components/requestBodies/response_500"
+                    }
+                },
+                "security": [
+                    {
+                        "api_key": []
+                    }
+                ]
+            }
+        },
+        "/profile/{profile_id}/ceremonies/store": {
+            "post": {
+                "tags": [
+                    "Ceremony"
+                ],
+                "summary": "Store Ceremony",
+                "description": "",
+                "operationId": "/profile/{profile_id}/ceremonies/store",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/profile_id"
+                    }
+                ],
+                "requestBody": {
+                    "$ref": "#/components/requestBodies/request_ceremony_store"
+                },
+                "responses": {
+                    "201": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "example": true
+                                        },
+                                        "message": {
+                                            "example": "Solicitud procesada correctamente."
+                                        },
+                                        "data": {
+                                            "$ref": "#/components/schemas/CeremonyApiResource"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "$ref": "#/components/requestBodies/response_401"
+                    },
+                    "422": {
+                        "$ref": "#/components/requestBodies/ceremony_store_response_422"
+                    },
+                    "500": {
+                        "$ref": "#/components/requestBodies/response_500"
+                    }
+                },
+                "security": [
+                    {
+                        "api_key": []
+                    }
+                ]
+            }
+        },
         "/public/profile/{profile_id}": {
             "get": {
                 "tags": [
@@ -339,6 +499,108 @@
                 "summary": "Get the public details of deseased profile",
                 "description": "Return the public details of a specific profile",
                 "operationId": "/public/profile/{profile_id}",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/profile_id"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "example": true
+                                        },
+                                        "message": {
+                                            "example": "Solicitud procesada correctamente."
+                                        },
+                                        "data": {
+                                            "$ref": "#/components/schemas/DeceasedProfileApiResource"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "$ref": "#/components/requestBodies/response_404"
+                    },
+                    "500": {
+                        "$ref": "#/components/requestBodies/response_500"
+                    }
+                }
+            }
+        },
+        "/profile/{profile_id}/update": {
+            "put": {
+                "tags": [
+                    "Profile"
+                ],
+                "summary": "Get the public details of deseased profile",
+                "description": "Return the public details of a specific profile",
+                "operationId": "/profile/{profile_id}/update",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/profile_id"
+                    }
+                ],
+                "requestBody": {
+                    "$ref": "#/components/requestBodies/request_deceased_profile_update"
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "example": true
+                                        },
+                                        "message": {
+                                            "example": "Solicitud procesada correctamente."
+                                        },
+                                        "data": {
+                                            "$ref": "#/components/schemas/DeceasedProfileApiResource"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "$ref": "#/components/requestBodies/response_401"
+                    },
+                    "403": {
+                        "$ref": "#/components/requestBodies/response_403"
+                    },
+                    "422": {
+                        "$ref": "#/components/requestBodies/deceased_profile_update_response_422"
+                    },
+                    "500": {
+                        "$ref": "#/components/requestBodies/response_500"
+                    }
+                },
+                "security": [
+                    {
+                        "api_key": []
+                    }
+                ]
+            }
+        },
+        "/profile/{profile_id}/clients": {
+            "get": {
+                "tags": [
+                    "Client"
+                ],
+                "summary": "Get lists of people associated with the profile",
+                "description": "Return lists of people",
+                "operationId": "/profile/{profile_id}/clients",
                 "parameters": [
                     {
                         "name": "profile_id",
@@ -363,7 +625,10 @@
                                             "example": "Solicitud procesada correctamente."
                                         },
                                         "data": {
-                                            "$ref": "#/components/schemas/DeceasedProfileResource"
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/components/schemas/UserResource"
+                                            }
                                         }
                                     },
                                     "type": "object"
@@ -371,19 +636,27 @@
                             }
                         }
                     },
-                    "404": {
-                        "$ref": "#/components/requestBodies/response_404"
+                    "401": {
+                        "$ref": "#/components/requestBodies/response_401"
+                    },
+                    "403": {
+                        "$ref": "#/components/requestBodies/response_403"
                     },
                     "500": {
                         "$ref": "#/components/requestBodies/response_500"
                     }
-                }
+                },
+                "security": [
+                    {
+                        "api_key": []
+                    }
+                ]
             }
         }
     },
     "components": {
         "schemas": {
-            "AdviserResource": {
+            "AdviserApiResource": {
                 "properties": {
                     "id": {
                         "type": "integer",
@@ -408,15 +681,14 @@
                 },
                 "type": "object"
             },
-            "CeremonyResource": {
+            "CeremonyApiResource": {
                 "properties": {
                     "id": {
                         "type": "integer",
                         "example": 161
                     },
                     "type": {
-                        "type": "string",
-                        "example": "Carlos"
+                        "$ref": "#/components/schemas/CeremonyTypeApiResource"
                     },
                     "profile_id": {
                         "type": "integer",
@@ -449,7 +721,20 @@
                 },
                 "type": "object"
             },
-            "DeceasedProfileResource": {
+            "CeremonyTypeApiResource": {
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "example": 161
+                    },
+                    "name": {
+                        "type": "string",
+                        "example": "Incineración"
+                    }
+                },
+                "type": "object"
+            },
+            "DeceasedProfileApiResource": {
                 "properties": {
                     "id": {
                         "type": "integer",
@@ -476,7 +761,11 @@
                         "example": "2021-03-20"
                     },
                     "adviser": {
-                        "$ref": "#/components/schemas/AdviserResource"
+                        "$ref": "#/components/schemas/AdviserApiResource"
+                    },
+                    "photo": {
+                        "type": "string",
+                        "example": "httpS://albia.celebratuvida.es/fdfhjduruiuinsdkd.jpg"
                     }
                 },
                 "type": "object"
@@ -522,6 +811,18 @@
         "responses": {
             "401": {
                 "$ref": "#/components/requestBodies/response_401"
+            }
+        },
+        "parameters": {
+            "profile_id": {
+                "name": "profile_id",
+                "in": "path",
+                "description": "Profile_id",
+                "required": true,
+                "schema": {
+                    "type": "integer",
+                    "example": "11"
+                }
             }
         },
         "requestBodies": {
@@ -642,12 +943,206 @@
                     }
                 }
             },
-            "deceasedProfile_show_response_200": {
-                "description": "OK",
+            "request_ceremony_store": {
+                "required": true,
                 "content": {
                     "application/json": {
                         "schema": {
-                            "$ref": "#/components/schemas/DeceasedProfileResource"
+                            "required": [
+                                "main",
+                                "start",
+                                "end",
+                                "address",
+                                "type_id",
+                                "visible"
+                            ],
+                            "properties": {
+                                "main": {
+                                    "title": "required|boolean",
+                                    "type": "boolean",
+                                    "example": true
+                                },
+                                "start": {
+                                    "title": "required|date|date_format:Y-m-d H:i:s",
+                                    "type": "string",
+                                    "example": "2021-03-21 08:00:00"
+                                },
+                                "end": {
+                                    "title": "required|date|date_format:Y-m-d H:i:s|after:start",
+                                    "type": "string",
+                                    "example": "2021-03-21 11:00:00"
+                                },
+                                "address": {
+                                    "title": "required|string|max:255",
+                                    "type": "string",
+                                    "example": "Carrer del Campament, 80, 46035 València, Valencia"
+                                },
+                                "room_name": {
+                                    "title": "nullable|string|max:255",
+                                    "type": "string",
+                                    "example": "sala 4"
+                                },
+                                "additional_info": {
+                                    "title": "nullable|string",
+                                    "type": "string",
+                                    "example": "sala 4"
+                                },
+                                "type_id": {
+                                    "title": "required|integer|exists:ceremony_types,id",
+                                    "type": "integer",
+                                    "example": 3
+                                },
+                                "visible": {
+                                    "title": "required|string|in:family,close_friend,public",
+                                    "type": "string",
+                                    "example": "public"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            },
+            "ceremony_store_response_422": {
+                "description": "Error: Unprocessable Entity",
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "properties": {
+                                "message": {
+                                    "example": "The given data was invalid."
+                                },
+                                "errors": {
+                                    "description": "these are the fields of the request",
+                                    "properties": {
+                                        "main": {
+                                            "example": [
+                                                "Sólo puede existir una ceremonia principal"
+                                            ]
+                                        },
+                                        "start": {
+                                            "example": [
+                                                "El campo lastname es obligatorio."
+                                            ]
+                                        },
+                                        "end": {
+                                            "example": [
+                                                "El campo nacimiento es obligatorio."
+                                            ]
+                                        },
+                                        "address": {
+                                            "example": [
+                                                "El campo defunción es obligatorio."
+                                            ]
+                                        },
+                                        "type_id": {
+                                            "example": [
+                                                "El campo defunción es obligatorio."
+                                            ]
+                                        },
+                                        "visible": {
+                                            "example": [
+                                                "El campo defunción es obligatorio."
+                                            ]
+                                        },
+                                        "room_name": {
+                                            "example": [
+                                                "El campo defunción es obligatorio."
+                                            ]
+                                        },
+                                        "additional_info": {
+                                            "example": [
+                                                "El campo defunción es obligatorio."
+                                            ]
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            },
+            "request_deceased_profile_update": {
+                "required": true,
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "required": [
+                                "name",
+                                "lastname",
+                                "birthday",
+                                "death"
+                            ],
+                            "properties": {
+                                "name": {
+                                    "title": "required|string|max:255",
+                                    "type": "string",
+                                    "example": "Carlos"
+                                },
+                                "lastname": {
+                                    "title": "required|string|max:255",
+                                    "type": "string",
+                                    "example": "Gonzalez Perez"
+                                },
+                                "birthday": {
+                                    "title": "required|date|date_format:Y-m-d",
+                                    "type": "string",
+                                    "example": "1975-03-21"
+                                },
+                                "death": {
+                                    "title": "required|date|date_format:Y-m-d|after:birthday",
+                                    "type": "string",
+                                    "example": "2021-03-21"
+                                },
+                                "photo": {
+                                    "title": "nullable|file",
+                                    "type": "file"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            },
+            "deceased_profile_update_response_422": {
+                "description": "Error: Unprocessable Entity",
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "properties": {
+                                "message": {
+                                    "example": "The given data was invalid."
+                                },
+                                "errors": {
+                                    "description": "these are the fields of the request",
+                                    "properties": {
+                                        "name": {
+                                            "example": [
+                                                "El campo nombre es obligatorio."
+                                            ]
+                                        },
+                                        "lastname": {
+                                            "example": [
+                                                "El campo lastname es obligatorio."
+                                            ]
+                                        },
+                                        "birthday": {
+                                            "example": [
+                                                "El campo nacimiento es obligatorio."
+                                            ]
+                                        },
+                                        "death": {
+                                            "example": [
+                                                "El campo defunción es obligatorio."
+                                            ]
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            },
+                            "type": "object"
                         }
                     }
                 }
@@ -673,6 +1168,10 @@
         },
         {
             "name": "Profile",
+            "description": "API Profile"
+        },
+        {
+            "name": "Client",
             "description": "API Profile"
         }
     ],
