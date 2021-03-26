@@ -31,6 +31,7 @@ class SMSHelper {
                 'message' => $text,
                 'to' => [$phone_number],
                 'from' => 'ALBIA',
+                'campaignName' => 'Albia'
             ]);
 
             if ($response->successful()) {

@@ -53,7 +53,6 @@ class DeployCommand extends Command
         $this->createUpdatePermissions();
         $this->createUpdateCeremonyTypes();
 
-
         $this->optimizeApp();
         $this->info('Scripts launched successfully');
     }

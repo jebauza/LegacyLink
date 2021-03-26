@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\AuthApiController;
 use App\Http\Controllers\Api\UserApiController;
 use App\Http\Controllers\Api\CeremonyApiController;
+use App\Http\Controllers\Api\InvitationApiController;
 use App\Http\Controllers\Api\DeceasedProfileApiController;
 
 /*
@@ -42,15 +43,15 @@ Route::middleware(['auth:api'])->name('api.')->group(function() {
 
     Route::prefix('profile/{profile_id}')->middleware(['check_profile'])->group(function () {
 
-        Route::name('profile.')->middleware(['check_profile_role:admin'])->group(function () {
+        Route::name('profile.')->middleware(['check_role:admin'])->group(function () {
             Route::put('update', [DeceasedProfileApiController::class, 'update'])->name('update');
         });
 
-        Route::prefix('clients')->middleware(['check_profile_role:admin'])->name('clients.')->group(function () {
+        Route::prefix('clients')->middleware(['check_role:admin'])->name('clients.')->group(function () {
             Route::get('', [UserApiController::class, 'index'])->name('index');
         });
 
-        Route::prefix('ceremonies')->middleware(['check_profile_role:admin'])->name('ceremonies.')->group(function () {
+        Route::prefix('ceremonies')->middleware(['check_role:admin'])->name('ceremonies.')->group(function () {
             Route::get('', [CeremonyApiController::class, 'index'])->name('index');
             Route::get('ceremony-types', [CeremonyApiController::class, 'getCeremonyTypes'])->name('getCeremonyTypes');
             Route::post('store', [CeremonyApiController::class, 'store'])->name('store');
@@ -58,7 +59,10 @@ Route::middleware(['auth:api'])->name('api.')->group(function() {
             Route::delete('/{ceremony_id}/destroy', [CeremonyApiController::class, 'destroy'])->name('destroy');
         });
 
-
+        Route::prefix('invitations')->middleware(['check_role:admin'])->name('invitations.')->group(function () {
+            Route::get('', [InvitationApiController::class, 'index'])->name('index');
+            Route::post('store', [InvitationApiController::class, 'store'])->name('store');
+        });
 
     });
 

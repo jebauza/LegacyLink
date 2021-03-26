@@ -482,6 +482,9 @@
                     "401": {
                         "$ref": "#/components/requestBodies/response_401"
                     },
+                    "403": {
+                        "$ref": "#/components/requestBodies/response_403"
+                    },
                     "422": {
                         "$ref": "#/components/requestBodies/ceremony_store_response_422"
                     },
@@ -547,6 +550,9 @@
                     "401": {
                         "$ref": "#/components/requestBodies/response_401"
                     },
+                    "403": {
+                        "$ref": "#/components/requestBodies/response_403"
+                    },
                     "404": {
                         "$ref": "#/components/requestBodies/response_404"
                     },
@@ -608,6 +614,9 @@
                     },
                     "401": {
                         "$ref": "#/components/requestBodies/response_401"
+                    },
+                    "403": {
+                        "$ref": "#/components/requestBodies/response_403"
                     },
                     "404": {
                         "$ref": "#/components/requestBodies/response_404"
@@ -713,6 +722,119 @@
                     },
                     "422": {
                         "$ref": "#/components/requestBodies/deceased_profile_update_response_422"
+                    },
+                    "500": {
+                        "$ref": "#/components/requestBodies/response_500"
+                    }
+                },
+                "security": [
+                    {
+                        "api_key": []
+                    }
+                ]
+            }
+        },
+        "/profile/{profile_id}/invitations": {
+            "get": {
+                "tags": [
+                    "Invitation"
+                ],
+                "summary": "Get the invitations list",
+                "description": "Return the list of invitations",
+                "operationId": "/profile/{profile_id}/invitations",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/profile_id"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "example": true
+                                        },
+                                        "message": {
+                                            "example": "Solicitud procesada correctamente."
+                                        },
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/components/schemas/InvitationApiResource"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "$ref": "#/components/requestBodies/response_401"
+                    },
+                    "403": {
+                        "$ref": "#/components/requestBodies/response_403"
+                    },
+                    "500": {
+                        "$ref": "#/components/requestBodies/response_500"
+                    }
+                },
+                "security": [
+                    {
+                        "api_key": []
+                    }
+                ]
+            }
+        },
+        "/profile/{profile_id}/invitations/store": {
+            "post": {
+                "tags": [
+                    "Invitation"
+                ],
+                "summary": "Store Invitation",
+                "description": "",
+                "operationId": "/profile/{profile_id}/invitations/store",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/profile_id"
+                    }
+                ],
+                "requestBody": {
+                    "$ref": "#/components/requestBodies/request_invitation_store"
+                },
+                "responses": {
+                    "201": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "example": true
+                                        },
+                                        "message": {
+                                            "example": "Solicitud procesada correctamente."
+                                        },
+                                        "data": {
+                                            "$ref": "#/components/schemas/InvitationApiResource"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "$ref": "#/components/requestBodies/response_401"
+                    },
+                    "403": {
+                        "$ref": "#/components/requestBodies/response_403"
+                    },
+                    "422": {
+                        "$ref": "#/components/requestBodies/invitation_store_response_422"
                     },
                     "500": {
                         "$ref": "#/components/requestBodies/response_500"
@@ -898,6 +1020,35 @@
                     "photo": {
                         "type": "string",
                         "example": "httpS://albia.celebratuvida.es/fdfhjduruiuinsdkd.jpg"
+                    }
+                },
+                "type": "object"
+            },
+            "InvitationApiResource": {
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "example": 161
+                    },
+                    "phone": {
+                        "type": "string",
+                        "example": "+34622785623"
+                    },
+                    "role": {
+                        "type": "string",
+                        "example": "family"
+                    },
+                    "name": {
+                        "type": "string",
+                        "example": "Carlos Perez"
+                    },
+                    "used_by": {
+                        "type": "string",
+                        "example": "2021-03-26 10:00:00 | null"
+                    },
+                    "created_at": {
+                        "type": "string",
+                        "example": "2021-03-26 10:00:00"
                     }
                 },
                 "type": "object"
@@ -1323,6 +1474,77 @@
                         }
                     }
                 }
+            },
+            "request_invitation_store": {
+                "required": true,
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "required": [
+                                "main",
+                                "start",
+                                "end",
+                                "address",
+                                "type_id",
+                                "visible"
+                            ],
+                            "properties": {
+                                "phone": {
+                                    "title": "required|string|phone:ES,mobile",
+                                    "type": "string",
+                                    "example": "+34622453641"
+                                },
+                                "role": {
+                                    "title": "required|string|in:admin,family,close_friend",
+                                    "type": "string",
+                                    "example": "family"
+                                },
+                                "name": {
+                                    "title": "required|string|max:20",
+                                    "type": "string",
+                                    "example": "Carlos Perez"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            },
+            "invitation_store_response_422": {
+                "description": "Error: Unprocessable Entity",
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "properties": {
+                                "message": {
+                                    "example": "The given data was invalid."
+                                },
+                                "errors": {
+                                    "description": "these are the fields of the request",
+                                    "properties": {
+                                        "phone": {
+                                            "example": [
+                                                "El campo phone es obligatorio."
+                                            ]
+                                        },
+                                        "role": {
+                                            "example": [
+                                                "El campo rol es obligatorio."
+                                            ]
+                                        },
+                                        "name": {
+                                            "example": [
+                                                "El campo nombre es obligatorio."
+                                            ]
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
             }
         },
         "securitySchemes": {
@@ -1346,6 +1568,10 @@
         {
             "name": "Profile",
             "description": "API Profile"
+        },
+        {
+            "name": "Invitation",
+            "description": "API Endpoints of Invitation"
         },
         {
             "name": "Client",

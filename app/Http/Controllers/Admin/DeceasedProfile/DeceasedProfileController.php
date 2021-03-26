@@ -11,6 +11,7 @@ use App\Models\DeceasedProfile;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
+use Propaganistas\LaravelPhone\PhoneNumber;
 use App\Http\Resources\DeceasedProfileResource;
 use App\Http\Requests\DeceasedProfileStoreRequest;
 
@@ -97,7 +98,7 @@ class DeceasedProfileController extends Controller
                 $client->name = $request->client_name;
                 $client->lastname = $request->client_lastname;
                 $client->email = $request->client_email;
-                $client->phone = $request->client_phone;
+                $client->phone = (string) PhoneNumber::make($request->phone)->ofCountry('ES');  // +3412345678;
                 $client->password = Hash::make(Str::random(8));
                 if ($client->save()) {
                     $newDProfile->clients()->attach($client->id, [
@@ -105,7 +106,7 @@ class DeceasedProfileController extends Controller
                         'declarant' => true
                     ]);
 
-                    $message = 'Su acceso para la web de ' . $newDProfile->name . 'es https://web.celebrasuvida.es/admin?token=' . $newDProfile->token;
+                    $message = 'Su acceso para la web de ' . $newDProfile->name . ' es https://web.celebrasuvida.es/admin?token=' . $newDProfile->token;
                     $smsResp = SMSHelper::sendingSMS($client->phone, $message);
                 }
 
