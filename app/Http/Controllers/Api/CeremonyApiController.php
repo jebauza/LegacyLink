@@ -165,6 +165,8 @@ class CeremonyApiController extends Controller
      *
      *      @OA\Response(response=401, ref="#/components/requestBodies/response_401"),
      *
+     *      @OA\Response(response=403, ref="#/components/requestBodies/response_403"),
+     *
      *      @OA\Response(response=422, ref="#/components/requestBodies/ceremony_store_response_422"),
      *
      *      @OA\Response(response=500, ref="#/components/requestBodies/response_500"),
@@ -215,6 +217,8 @@ class CeremonyApiController extends Controller
      *      ),
      *
      *      @OA\Response(response=401, ref="#/components/requestBodies/response_401"),
+     *
+     *      @OA\Response(response=403, ref="#/components/requestBodies/response_403"),
      *
      *      @OA\Response(response=404, ref="#/components/requestBodies/response_404"),
      *
@@ -269,6 +273,8 @@ class CeremonyApiController extends Controller
      *      ),
      *
      *      @OA\Response(response=401, ref="#/components/requestBodies/response_401"),
+     *
+     *      @OA\Response(response=403, ref="#/components/requestBodies/response_403"),
      *
      *      @OA\Response(response=404, ref="#/components/requestBodies/response_404"),
      *

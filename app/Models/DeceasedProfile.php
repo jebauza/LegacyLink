@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\User;
+use App\Models\Invitation;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -112,5 +113,16 @@ class DeceasedProfile extends Model
     {
         return $this->belongsToMany(User::class, 'deceased_profile_user', 'profile_id', 'user_id')
                     ->withPivot('profile_id','user_id','role','declarant')->withTimestamps();
+    }
+
+
+    /**
+     * Get all of the comments for the DeceasedProfile
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function invitations()
+    {
+        return $this->hasMany(Invitation::class, 'profile_id', 'id');
     }
 }
