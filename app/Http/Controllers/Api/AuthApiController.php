@@ -415,7 +415,7 @@ class AuthApiController extends Controller
                     ->withOptions([
                         'verify' => true
                     ])
-                    ->post(route('api.auth.login'), [
+                    ->post(route('api.auth.login.profile'), [
                         'email' => $newUser->email,
                         'password' => $request->password,
                     ]);
