@@ -30,7 +30,7 @@ class Invitation extends Model
             $id = DB::table('invitations')->max('id');
             $invitation->token = Str::random(8) . ($id ?? 1);
             $profile = DeceasedProfile::find($invitation->profile_id);
-            $invitation->message = "Se le ha invitado a unirse a la web de " .$profile->fullName. " su link es https://web.celebrasuvida.es/invitation?token=" . Str::random(8) . ($id ?? 1);
+            $invitation->message = "Se le ha invitado a unirse a la web de " .$profile->fullName. " su link es https://web.celebrasuvida.es/invitation/".$profile->id."?token=" . $invitation->token;
         });
     }
 

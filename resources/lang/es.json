@@ -31,6 +31,8 @@
     "Office administration": "Administración de las oficinas",
     "Administration": "Administración",
     "You do not have permissions for the requested resources": "No tiene permisos para los recursos solicitados",
-    "There can only be one main ceremony": "Sólo puede existir una ceremonia principal"
+    "There can only be one main ceremony": "Sólo puede existir una ceremonia principal",
+    "The invitation is invalid or has already been used": "La invitación no es válida o ya se ha utilizado",
+    "Added to invitation profile successfully": "Se añadió al profile de la invitación correctamente"
 
 }

@@ -284,6 +284,245 @@
                 }
             }
         },
+        "/auth/profile/join": {
+            "post": {
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "Add user to profile",
+                "description": "Add user to profile",
+                "operationId": "/auth/profile/join",
+                "requestBody": {
+                    "description": "Pass user credentials",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "token"
+                                ],
+                                "properties": {
+                                    "token": {
+                                        "type": "string",
+                                        "example": "Dfghre3rtt5"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "example": true
+                                        },
+                                        "message": {
+                                            "example": "Added to invitation profile successfully"
+                                        },
+                                        "profile_id": {
+                                            "example": 3
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "$ref": "#/components/requestBodies/response_401"
+                    },
+                    "403": {
+                        "$ref": "#/components/requestBodies/response_403"
+                    },
+                    "422": {
+                        "description": "Error: Unprocessable Entity",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "example": "The given data was invalid."
+                                        },
+                                        "errors": {
+                                            "description": "these are the fields of the request",
+                                            "properties": {
+                                                "token": {
+                                                    "example": [
+                                                        "El campo correo es obligatorio."
+                                                    ]
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "api_key": []
+                    }
+                ]
+            }
+        },
+        "/auth/register": {
+            "post": {
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "Register user",
+                "description": "Register user",
+                "operationId": "/auth/register",
+                "requestBody": {
+                    "description": "Pass user credentials",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "name",
+                                    "lastname",
+                                    "email",
+                                    "phone",
+                                    "password",
+                                    "password_confirmation"
+                                ],
+                                "properties": {
+                                    "name": {
+                                        "title": "required|string|max:255",
+                                        "type": "string",
+                                        "example": "Maria Luisa"
+                                    },
+                                    "lastname": {
+                                        "title": "required|string|max:255",
+                                        "type": "string",
+                                        "example": "Perez Perez"
+                                    },
+                                    "email": {
+                                        "title": "required|string|email|max:255|unique:users,email",
+                                        "type": "string",
+                                        "example": "maria@gmail.com"
+                                    },
+                                    "phone": {
+                                        "title": "required|string|phone:ES,mobile|max:20",
+                                        "type": "string",
+                                        "example": "+34622459652"
+                                    },
+                                    "password": {
+                                        "title": "required|string|min:8|confirmed",
+                                        "type": "string",
+                                        "example": "qweasd12"
+                                    },
+                                    "password_confirmation": {
+                                        "title": "required",
+                                        "type": "string",
+                                        "example": "Dfghre3rtt5"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "example": true
+                                        },
+                                        "message": {
+                                            "example": "User login successfully."
+                                        },
+                                        "token_type": {
+                                            "example": "Bearer"
+                                        },
+                                        "expires_at": {
+                                            "example": "2022-03-02 17:10:15"
+                                        },
+                                        "access_token": {
+                                            "example": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiM2NhOGI5NzhiNDRmMDM5ODYyZDcyZDcwYmQ1ZDFlNGNhNWRiOWFhOWZiM2ZlOGRiN2Y3ZjMwNGFlZWRmOTg4NGRiYjZjZjI1ZGQ5NDNkZTQiLCJpYXQiOjE1OTcxMjk3MjAsIm5iZiI6MTU5NzEyOTcyMCwiZXhwIjoxNjI4NjY1NzE5LCJzdWIiOiI3Iiwic2NvcGVzIjpbXX0.PmPKlqkpQS0UxYVqXb6KdZtoouIUO7NyKW7bj9XweDMwmLUwmvvyCg7Z9wAMgJM0MsQl1-dTgd0XwP9e8Y9DbrAcvkjFVhOHnRPMsILSqNYk6XdFEIvqRtooOMjcdebRjuFO4Y39Tz8EAlfvVdYZu88J-j3ujJuIkE1fxo_wIeGL6gyjwUqeSiiUmM_BqFBvcBUfIaLYBXqkGtnrwNrKX10QcLfimCm6qgk3NtiQuEflFqWzkkq_uQoXOAOmk5UlPgUAWzxfvmmnSJ_B4rpKXa1DWCuP-ePL7ttA_DzuhWYlpTS4ovfdIvbTRg2p5eFOAqfko-1rzOwX1tjRQI4n6dsfVmyNAsfPTTVuF4se4gTomTx4uE-gDJ_yj52zeUHca5z4zkbTHZlH44TzF_MC2RfMQe6MLpNdT2EYlSzhWqlCDIMFF0-z101"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Error: Unprocessable Entity",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "example": "The given data was invalid."
+                                        },
+                                        "errors": {
+                                            "description": "these are the fields of the request",
+                                            "properties": {
+                                                "name": {
+                                                    "example": [
+                                                        "El campo correo es obligatorio."
+                                                    ]
+                                                },
+                                                "lastname": {
+                                                    "example": [
+                                                        "El campo correo es obligatorio."
+                                                    ]
+                                                },
+                                                "email": {
+                                                    "example": [
+                                                        "El campo correo es obligatorio."
+                                                    ]
+                                                },
+                                                "phone": {
+                                                    "example": [
+                                                        "El campo correo es obligatorio."
+                                                    ]
+                                                },
+                                                "password": {
+                                                    "example": [
+                                                        "El campo correo es obligatorio."
+                                                    ]
+                                                },
+                                                "password_confirmation": {
+                                                    "example": [
+                                                        "El campo correo es obligatorio."
+                                                    ]
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "$ref": "#/components/requestBodies/response_500"
+                    }
+                },
+                "security": [
+                    {
+                        "api_key": []
+                    }
+                ]
+            }
+        },
         "/public/profile/{profile_id}/ceremonies": {
             "get": {
                 "tags": [
@@ -1193,6 +1432,9 @@
                     "application/json": {
                         "schema": {
                             "properties": {
+                                "success": {
+                                    "example": false
+                                },
                                 "message": {
                                     "example": "Solicitud Incorrecta"
                                 }
@@ -1208,6 +1450,9 @@
                     "application/json": {
                         "schema": {
                             "properties": {
+                                "success": {
+                                    "example": false
+                                },
                                 "message": {
                                     "example": "Unauthenticated."
                                 }

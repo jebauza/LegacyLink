@@ -150,12 +150,14 @@ class Controller extends BaseController
  *
  * @OA\RequestBody(request="response_400", description="Error: Bad Request",
  *          @OA\JsonContent(
+ *              @OA\Property(property="success", example=false),
  *              @OA\Property(property="message", example="Solicitud Incorrecta")
  *          )
  * )
  *
  * @OA\RequestBody(request="response_401", description="Error: Unauthorized",
  *          @OA\JsonContent(
+ *              @OA\Property(property="success", example=false),
  *              @OA\Property(property="message", example="Unauthenticated.")
  *          )
  * )
