@@ -101,8 +101,24 @@ class UserApiController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($user_id)
     {
-        //
+        /* $profile = session('profileWeb');
+
+        if(!$ceremony = $profile->ceremonies()->find($ceremony_id)) {
+            return $this->sendError404();
+        }
+
+        try {
+            DB::beginTransaction();
+            $ceremony->delete();
+
+            DB::commit();
+            return $this->sendResponse(__('Deleted successfully'), null, 200);
+
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return $this->sendError500($e->getMessage());
+        } */
     }
 }
