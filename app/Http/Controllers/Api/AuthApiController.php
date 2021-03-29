@@ -12,6 +12,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Route;
 use App\Http\Resources\Api\UserApiResource;
 
 
@@ -409,7 +410,7 @@ class AuthApiController extends Controller
                 if ($newUser->save()) {
                     DB::commit();
 
-                    $response = Http::withHeaders([
+                    /* $response = Http::withHeaders([
                         'Accept' => 'application/json'
                     ])
                     ->withOptions([
@@ -418,16 +419,31 @@ class AuthApiController extends Controller
                     ->post('https://albia.celebrasuvida.es/api/auth/login', [
                         'email' => $newUser->email,
                         'password' => $request->password,
-                    ]);
+                    ]); */
 
-                    if ($response->successful()) {
+                    $req = Request::create('api/auth/login', 'POST', [
+                        'email' => $newUser->email,
+                        'password' => $request->password,
+                    ]);
+                    $req->headers->set('Accept', 'application/json');
+                    $req->headers->set('X-Requested-With', 'XMLHttpRequest');
+
+                    $response = Route::dispatch($req);
+                    $content = json_decode($response->getContent(), true);
+                    if (! $response->isSuccessful()) {
+                        return response()->json($content, 401);
+                    }
+
+                    return response()->json($content);
+
+                    /* if ($response->successful()) {
                         $login = json_decode($response->getBody(), true);
                         return response()->json($login);
                     } elseif ($response->failed()) {
                         return $this->sendError500($response->getBody()->getContents());
                     }
 
-                    return $this->sendError500($response->getBody()->getContents());
+                    return $this->sendError500($response->getBody()->getContents()); */
                 }
 
 
