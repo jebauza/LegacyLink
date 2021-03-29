@@ -51,6 +51,7 @@ Route::middleware(['auth:api'])->name('api.')->group(function() {
 
         Route::prefix('clients')->middleware(['check_role:admin'])->name('clients.')->group(function () {
             Route::get('', [UserApiController::class, 'index'])->name('index');
+            Route::delete('/{client_id}/detach', [UserApiController::class, 'detach'])->name('detach');
         });
 
         Route::prefix('ceremonies')->middleware(['check_role:admin'])->name('ceremonies.')->group(function () {

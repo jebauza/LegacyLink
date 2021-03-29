@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\Api\UserApiResource;
 
@@ -23,14 +24,7 @@ class UserApiController extends Controller
      *      description="Return lists of people",
      *      security={{"api_key": {}}},
      *
-     *      @OA\Parameter(
-     *          name="profile_id",
-     *          in="path",
-     *          description="Profile id",
-     *          @OA\Schema(
-     *               type="integer",
-     *          ),
-     *      ),
+     *      @OA\Parameter(ref="#/components/parameters/profile_id"),
      *
      *      @OA\Response(response=200, description="OK",
      *          @OA\JsonContent(
@@ -96,22 +90,52 @@ class UserApiController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * @OA\Delete(
+     *      path="/profile/{profile_id}/clients/{client_id}/detach",
+     *      operationId="/profile/{profile_id}/clients/{client_id}/detach",
+     *      tags={"Client"},
+     *      summary="Remove client from profile",
+     *      description="Remove client from profile",
+     *      security={{"api_key": {}}},
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     *      @OA\Parameter(ref="#/components/parameters/profile_id"),
+     *
+     *      @OA\Parameter(
+     *          name="client_id",
+     *          in="path",
+     *          description="Client id",
+     *          @OA\Schema(
+     *               type="integer",
+     *          ),
+     *      ),
+     *
+     *      @OA\Response(response=200, description="OK",
+     *          @OA\JsonContent(
+     *              @OA\Property(property="success", example=true),
+     *              @OA\Property(property="message", example="Solicitud procesada correctamente."),
+     *          )
+     *      ),
+     *
+     *      @OA\Response(response=401, ref="#/components/requestBodies/response_401"),
+     *
+     *      @OA\Response(response=403, ref="#/components/requestBodies/response_403"),
+     *
+     *      @OA\Response(response=404, ref="#/components/requestBodies/response_404"),
+     *
+     *      @OA\Response(response=500, ref="#/components/requestBodies/response_500"),
+     * )
      */
-    public function destroy($user_id)
+    public function detach($profile_id, $client_id)
     {
-        /* $profile = session('profileWeb');
+        $profile = session('profileWeb');
 
-        if(!$ceremony = $profile->ceremonies()->find($ceremony_id)) {
+        if(!$client = $profile->clients()->find($client_id)) {
             return $this->sendError404();
         }
 
         try {
             DB::beginTransaction();
-            $ceremony->delete();
+            $profile->clients()->detach($client_id);
 
             DB::commit();
             return $this->sendResponse(__('Deleted successfully'), null, 200);
@@ -119,6 +143,6 @@ class UserApiController extends Controller
         } catch (\Exception $e) {
             DB::rollBack();
             return $this->sendError500($e->getMessage());
-        } */
+        }
     }
 }

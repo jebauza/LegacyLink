@@ -426,6 +426,8 @@ class AuthApiController extends Controller
                     } elseif ($response->failed()) {
                         return $this->sendError500($response->getBody()->getContents());
                     }
+
+                    return $this->sendError500($response->getBody()->getContents());
                 }
             } catch (\Exception $e) {
                 DB::rollBack();

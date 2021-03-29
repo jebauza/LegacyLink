@@ -1096,12 +1096,7 @@
                 "operationId": "/profile/{profile_id}/clients",
                 "parameters": [
                     {
-                        "name": "profile_id",
-                        "in": "path",
-                        "description": "Profile id",
-                        "schema": {
-                            "type": "integer"
-                        }
+                        "$ref": "#/components/parameters/profile_id"
                     }
                 ],
                 "responses": {
@@ -1134,6 +1129,66 @@
                     },
                     "403": {
                         "$ref": "#/components/requestBodies/response_403"
+                    },
+                    "500": {
+                        "$ref": "#/components/requestBodies/response_500"
+                    }
+                },
+                "security": [
+                    {
+                        "api_key": []
+                    }
+                ]
+            }
+        },
+        "/profile/{profile_id}/clients/{client_id}/detach": {
+            "delete": {
+                "tags": [
+                    "Client"
+                ],
+                "summary": "Remove client from profile",
+                "description": "Remove client from profile",
+                "operationId": "/profile/{profile_id}/clients/{client_id}/detach",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/profile_id"
+                    },
+                    {
+                        "name": "client_id",
+                        "in": "path",
+                        "description": "Client id",
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "example": true
+                                        },
+                                        "message": {
+                                            "example": "Solicitud procesada correctamente."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "$ref": "#/components/requestBodies/response_401"
+                    },
+                    "403": {
+                        "$ref": "#/components/requestBodies/response_403"
+                    },
+                    "404": {
+                        "$ref": "#/components/requestBodies/response_404"
                     },
                     "500": {
                         "$ref": "#/components/requestBodies/response_500"
