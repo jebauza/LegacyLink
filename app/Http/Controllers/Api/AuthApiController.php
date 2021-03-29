@@ -402,8 +402,6 @@ class AuthApiController extends Controller
                 'password_confirmation' => 'required',
             ]);
 
-            dd(route('api.auth.login'));
-
             try {
                 DB::beginTransaction();
                 $newUser = new User($request->all());
@@ -423,6 +421,8 @@ class AuthApiController extends Controller
                         'password' => $request->password,
                     ]);
 
+                    dd(route('api.auth.login'));
+
                     if ($response->successful()) {
                         $login = json_decode($response->getBody(), true);
                         return response()->json($login);
@@ -432,6 +432,8 @@ class AuthApiController extends Controller
 
                     return $this->sendError500($response->getBody()->getContents());
                 }
+
+
             } catch (\Exception $e) {
                 DB::rollBack();
                 return $this->sendError500($e->getMessage());
