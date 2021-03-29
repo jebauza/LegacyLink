@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers\Api;
 
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Models\DeceasedProfile;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Storage;
 use App\Http\Resources\Api\DeceasedProfileApiResource;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use App\Http\Requests\Api\DeceasedProfileUpdateApiRequest;
@@ -89,20 +91,35 @@ class DeceasedProfileApiController extends Controller
      */
     public function update(DeceasedProfileUpdateApiRequest $request, $profile_id)
     {
+        $path = null;
         $profile = session('profileWeb');
+
         try {
             DB::beginTransaction();
             $profile->name = $request->name;
             $profile->last_name = $request->lastname;
             $profile->birthday = $request->birthday;
             $profile->death = $request->death;
+            if($request->hasFile('photo')) {
+                $photo = $request->file('photo');
+                $photo_name = Str::random(10) . $photo->getClientOriginalExtension();
+                $path = Storage::disk('public')->putFileAs('deceased_profiles', $photo, $photo_name);
+                if($profile->photo) {
+                    if(Storage::disk('public')->exists($profile->photo)) {
+                        Storage::disk('public')->delete($profile->photo);
+                    }
+                }
+                $profile->photo = $path;
+            }
             $profile->save();
 
             DB::commit();
             return $this->sendResponse(__('Saved successfully'), (new DeceasedProfileApiResource($profile)), 200);
-
         } catch (\Exception $e) {
             DB::rollBack();
+            if($path && Storage::disk('public')->exists($path)){
+                Storage::disk('public')->delete($path);
+            }
             return $this->sendError500($e->getMessage());
         }
     }

@@ -413,7 +413,7 @@ class AuthApiController extends Controller
                         'Accept' => 'application/json',
                     ])
                     ->withOptions([
-                        'verify' => false
+                        // 'verify' => false
                     ])
                     ->post(route('api.auth.login'), [
                         'email' => $newUser->email,
