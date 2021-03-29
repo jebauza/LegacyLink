@@ -68,6 +68,14 @@ class DeceasedProfileApiController extends Controller
      *
      *      @OA\Parameter(ref="#/components/parameters/profile_id"),
      *
+     *     @OA\Parameter(
+     *          name="photo",
+     *          in="query",
+     *          required=true,
+     *          description="Building photo",
+     *           @OA\Schema(type="file")
+     *      ),
+     *
      *      @OA\RequestBody(ref="#/components/requestBodies/request_deceased_profile_update"),
      *
      *      @OA\Response(response=200, description="OK",
@@ -102,7 +110,7 @@ class DeceasedProfileApiController extends Controller
             $profile->death = $request->death;
             if($request->hasFile('photo')) {
                 $photo = $request->file('photo');
-                $photo_name = Str::random(10) . $photo->getClientOriginalExtension();
+                $photo_name = Str::random(10) . '.' . $photo->getClientOriginalExtension();
                 $path = Storage::disk('public')->putFileAs('deceased_profiles', $photo, $photo_name);
                 if($profile->photo) {
                     if(Storage::disk('public')->exists($profile->photo)) {

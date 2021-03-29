@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Models\User;
 use App\Models\Invitation;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
@@ -38,12 +39,17 @@ class DeceasedProfile extends Model
         'token'
     ];
 
-    protected $appends = ['fullName'];
+    protected $appends = ['fullName', 'urlPhoto'];
 
     // Attributes
     function getFullNameAttribute()
     {
         return $this->name . ($this->lastname ? ' ' . $this->lastname : '');
+    }
+
+    function getUrlPhotoAttribute()
+    {
+        return Storage::disk('public')->exists($this->photo) ? Storage::disk('public')->url($this->photo) : null;
     }
 
     // SCOPES

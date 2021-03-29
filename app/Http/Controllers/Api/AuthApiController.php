@@ -410,17 +410,6 @@ class AuthApiController extends Controller
                 if ($newUser->save()) {
                     DB::commit();
 
-                    /* $response = Http::withHeaders([
-                        'Accept' => 'application/json'
-                    ])
-                    ->withOptions([
-                        'verify' => true
-                    ])
-                    ->post('https://albia.celebrasuvida.es/api/auth/login', [
-                        'email' => $newUser->email,
-                        'password' => $request->password,
-                    ]); */
-
                     $req = Request::create('api/auth/login', 'POST', [
                         'email' => $newUser->email,
                         'password' => $request->password,
@@ -435,18 +424,8 @@ class AuthApiController extends Controller
                     }
 
                     return response()->json($content);
-
-                    /* if ($response->successful()) {
-                        $login = json_decode($response->getBody(), true);
-                        return response()->json($login);
-                    } elseif ($response->failed()) {
-                        return $this->sendError500($response->getBody()->getContents());
-                    }
-
-                    return $this->sendError500($response->getBody()->getContents()); */
                 }
-
-
+                
             } catch (\Exception $e) {
                 DB::rollBack();
                 return $this->sendError500($e->getMessage());

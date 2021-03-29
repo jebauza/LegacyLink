@@ -926,6 +926,15 @@
                 "parameters": [
                     {
                         "$ref": "#/components/parameters/profile_id"
+                    },
+                    {
+                        "name": "photo",
+                        "in": "query",
+                        "description": "Building photo",
+                        "required": true,
+                        "schema": {
+                            "type": "file"
+                        }
                     }
                 ],
                 "requestBody": {
@@ -1313,7 +1322,7 @@
                     },
                     "photo": {
                         "type": "string",
-                        "example": "httpS://albia.celebratuvida.es/fdfhjduruiuinsdkd.jpg"
+                        "example": "https://albia.celebratuvida.es/fdfhjduruiuinsdkd.jpg"
                     }
                 },
                 "type": "object"
