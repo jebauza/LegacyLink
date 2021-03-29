@@ -414,7 +414,7 @@ class AuthApiController extends Controller
                         'x-requested-with' => 'XMLHttpRequest'
                     ])
                     ->withOptions([
-                        // 'verify' => false
+                        'verify' => false
                     ])
                     ->post(route('api.auth.login'), [
                         'email' => $newUser->email,
