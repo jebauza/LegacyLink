@@ -410,8 +410,7 @@ class AuthApiController extends Controller
                     DB::commit();
 
                     $response = Http::withHeaders([
-                        'Accept' => 'application/json',
-                        'x-requested-with' => 'XMLHttpRequest'
+                        'Accept' => 'application/json'
                     ])
                     ->withOptions([
                         'verify' => false
@@ -420,8 +419,6 @@ class AuthApiController extends Controller
                         'email' => $newUser->email,
                         'password' => $request->password,
                     ]);
-
-                    dd(route('api.auth.login'));
 
                     if ($response->successful()) {
                         $login = json_decode($response->getBody(), true);
