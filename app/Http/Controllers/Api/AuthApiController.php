@@ -431,7 +431,7 @@ class AuthApiController extends Controller
                     $response = Route::dispatch($req);
                     $content = json_decode($response->getContent(), true);
                     if (! $response->isSuccessful()) {
-                        return response()->json($content, 401);
+                        return response()->json($content, 500);
                     }
 
                     return response()->json($content);
