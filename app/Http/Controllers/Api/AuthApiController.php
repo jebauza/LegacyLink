@@ -411,6 +411,7 @@ class AuthApiController extends Controller
 
                     $response = Http::withHeaders([
                         'Accept' => 'application/json',
+                        'x-requested-with' => 'XMLHttpRequest'
                     ])
                     ->withOptions([
                         // 'verify' => false
