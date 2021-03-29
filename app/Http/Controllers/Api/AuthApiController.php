@@ -402,6 +402,8 @@ class AuthApiController extends Controller
                 'password_confirmation' => 'required',
             ]);
 
+            dd(route('api.auth.login'));
+
             try {
                 DB::beginTransaction();
                 $newUser = new User($request->all());
