@@ -415,7 +415,7 @@ class AuthApiController extends Controller
                     ->withOptions([
                         'verify' => true
                     ])
-                    ->post(route('api.auth.login.profile'), [
+                    ->post('https://albia.celebrasuvida.es/api/auth/login', [
                         'email' => $newUser->email,
                         'password' => $request->password,
                     ]);
