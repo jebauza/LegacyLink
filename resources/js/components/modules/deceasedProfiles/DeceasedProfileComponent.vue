@@ -33,8 +33,8 @@
                 </div>
 
                 <div class="col-10 col-sm-5 col-lg-3 form-group">
-                    <label for="email" style="text-transform: uppercase;"><b>{{ __('validation.attributes.email') }}</b></label>
-                    <input v-model="searches.email" type="text" class="form-control" name="email" :placeholder="__('validation.attributes.email')">
+                    <label for="declarant" style="text-transform: uppercase;"><b>declarante</b></label>
+                    <input v-model="searches.declarant" type="text" class="form-control" name="declarant" placeholder="nif, email, nombre, teléfono">
                 </div>
 
                 <div class="col-auto form-group">
@@ -70,7 +70,7 @@
                             <td>{{ profile.admin ? profile.admin.fullName : '' }}</td>
                             <td>
                                 <div class="d-flex justify-content-center">
-                                    <vs-tooltip bottom>
+                                    <!-- <vs-tooltip bottom>
                                         <button  class="btn btn-sm btn-clean btn-icon mr-2" @click="openModalAddEditShow('show', profile)">
                                             <i class="far fa-eye"></i>
                                         </button>
@@ -84,6 +84,14 @@
                                         </button>
                                         <template #tooltip>
                                             {{ __('Edit') }}
+                                        </template>
+                                    </vs-tooltip> -->
+                                    <vs-tooltip bottom>
+                                        <button class="btn btn-sm btn-clean btn-icon mr-2" @click="sendNotification(profile)">
+                                            <i class="fa fa-comment-alt"></i>
+                                        </button>
+                                        <template #tooltip>
+                                            {{ __('Send notification') }}
                                         </template>
                                     </vs-tooltip>
                                     <vs-tooltip bottom>
@@ -131,7 +139,7 @@ export default {
         'searches.name': function (newValue, oldValue) {
             this.getDeceasedProfiles();
         },
-        'searches.email': function (newValue, oldValue) {
+        'searches.declarant': function (newValue, oldValue) {
             this.getDeceasedProfiles();
         }
     },
@@ -142,8 +150,9 @@ export default {
             offices: [],
 
             searches: {
+                office: '',
                 name: '',
-                email: ''
+                declarant: ''
             },
         }
     },
@@ -190,7 +199,38 @@ export default {
         updateList(action = null) {
             this.getDeceasedProfiles(this.deceasedProfiles.current_page ?? 1 );
         },
-        /* askDestroy(employee) {
+        sendNotification(profile) {
+            const url = `/admin/ajax/webs/${profile.id}/send-notification`;
+            const loading = this.$vs.loading({
+                type: 'points',
+                color: '#187de4',
+                text: this.__('Sending') + '...'
+            });
+
+            axios.get(url)
+            .then(res => {
+                loading.close();
+                Swal.fire({
+                    title: res.data.message,
+                    text: res.data.data ? res.data.data.message : '',
+                    icon: "success",
+                    timer: 1500,
+                    showConfirmButton: false
+                });
+            }).catch(err => {
+                loading.close();
+                if(err.response.data.message) {
+                    Swal.fire({
+                        title: 'Error!',
+                        text: err.response.data.message,
+                        icon: "error",
+                        showCloseButton: true,
+                        closeButtonColor: '#ee2d41',
+                    });
+                }
+            });
+        },
+        askDestroy(profile) {
             const self = this;
             Swal.fire({
                 title: this.__('Are you sure you want to delete this record?'),
@@ -203,12 +243,12 @@ export default {
                 cancelButtonText: this.__('Cancel'),
             }).then((result) => {
                 if (result.isConfirmed) {
-                    self.destroy(employee.id);
+                    self.destroy(profile);
                 }
             });
         },
-        destroy(id) {
-            const url = `/admin/ajax/employees/${id}/destroy`;
+        destroy(profile) {
+            const url = `/admin/ajax/webs/${profile.id}/destroy`;
             const loading = this.$vs.loading({
                 type: 'points',
                 color: '#187de4',
@@ -224,7 +264,7 @@ export default {
                     timer: 1500,
                     showConfirmButton: false
                 });
-                this.getEmployees();
+                this.getDeceasedProfiles();
             }).catch(err => {
                 loading.close();
                 if(err.response.data.message) {
@@ -237,11 +277,12 @@ export default {
                     });
                 }
             });
-        }, */
+        },
         clearSearches() {
             this.searches = {
+                office: '',
                 name: '',
-                email: '',
+                declarant: ''
             };
         },
 

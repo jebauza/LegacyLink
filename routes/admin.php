@@ -68,11 +68,13 @@ Route::name('admin.')->group(function () {
             Route::prefix('webs')->name('webs.')->group(function () {
 
                 Route::get('/', [DeceasedProfileController::class, 'index'])->name('index');
+                Route::get('/{profile_id}/send-notification', [DeceasedProfileController::class, 'sendNotification'])->name('sendNotification');
                 Route::get('/paginate', [DeceasedProfileController::class, 'paginate'])->name('paginate');
                 Route::post('store', [DeceasedProfileController::class, 'store'])->name('store');
+                Route::delete('/{profile_id}/destroy', [DeceasedProfileController::class, 'destroy'])->name('destroy');
                 /* Route::get('show', [DeceasedProfileController::class, 'show'])->name('show');
                 Route::put('/{employee_id}/update', [DeceasedProfileController::class, 'update'])->name('update');
-                Route::delete('/{employee_id}/destroy', [DeceasedProfileController::class, 'destroy'])->name('destroy'); */
+                 */
 
             });
 

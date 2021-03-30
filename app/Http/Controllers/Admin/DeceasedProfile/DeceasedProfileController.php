@@ -52,6 +52,7 @@ class DeceasedProfileController extends Controller
         $dprofilesPaginate = DeceasedProfile::filterByRole()
                             ->office($request->office)
                             ->name($request->name)
+                            ->declarant($request->declarant)
                             ->with('office', 'clients', 'adviser')
                             ->orderBy('name')
                             ->paginate();
@@ -168,6 +169,48 @@ class DeceasedProfileController extends Controller
      */
     public function destroy($id)
     {
-        //
+        if(!$profile = DeceasedProfile::find($id)) {
+            return $this->sendError404();
+        }
+
+        try {
+            DB::beginTransaction();
+            $profile->delete();
+
+            DB::commit();
+            return $this->sendResponse(__('Deleted successfully'), (new DeceasedProfileResource($profile)));
+
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return $this->sendError500($e->getMessage());
+        }
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function sendNotification(Request $request, $id)
+    {
+        if(!$profile = DeceasedProfile::find($id)) {
+            return $this->sendError404();
+        }
+
+        $client = $profile->clients()->wherePivot('declarant', true)->first();
+        if (!$client) {
+            return $this->sendError(__('Declarant does not exist'));
+        }
+
+        $message = 'Su acceso para la web de ' . $profile->name . ' es https://web.celebrasuvida.es/admin?token=' .$profile->token;
+        $smsResp = SMSHelper::sendingSMS($client->phone, $message);
+
+        if ($smsResp) {
+            return $this->sendResponse(__('Message sent successfully'), ['message' => $message]);
+        }
+
+        return $this->sendError500('Mensaje no enviado');
     }
 }
