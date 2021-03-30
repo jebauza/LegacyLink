@@ -168,7 +168,21 @@ class EmployeeController extends Controller
      */
     public function destroy($id)
     {
-        //
+        if(!$employee = Employee::find($id)) {
+            return $this->sendError404();
+        }
+
+        try {
+            DB::beginTransaction();
+            $employee->delete();
+
+            DB::commit();
+            return $this->sendResponse(__('Deleted successfully'), (new EmployeeResource($employee)));
+
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return $this->sendError500($e->getMessage());
+        }
     }
 
 
