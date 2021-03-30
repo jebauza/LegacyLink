@@ -20,12 +20,12 @@ class SwaggerFixHeaders
             $request->headers->set("Authorization","Bearer ".$request->headers->get("Authorization"));
         } */
 
-        if(!$request->hasHeader("content-type") || $request->headers->get("content-type") != "application/json")
+        if(!$request->hasHeader("content-type") /* || $request->headers->get("content-type") != "application/json" */)
         {
             $request->headers->set("content-type","application/json");
         }
 
-        if(!$request->hasHeader("x-requested-with") || $request->headers->get("x-requested-with") != "XMLHttpRequest")
+        if(!$request->hasHeader("x-requested-with") /* || $request->headers->get("x-requested-with") != "XMLHttpRequest" */)
         {
             $request->headers->set("x-requested-with","XMLHttpRequest");
         }

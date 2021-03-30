@@ -49,6 +49,7 @@ class DeployCommand extends Command
         Artisan::call('view:clear');
         Artisan::call('route:clear');
         Artisan::call('clear-compiled');
+        Artisan::call('passport:install');
 
         $this->createUpdatePermissions();
         $this->createUpdateCeremonyTypes();
