@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <!--begin::Head-->
 
 <head>
@@ -68,7 +68,7 @@
                     <!--begin::Login Sign in form-->
                     <div class="login-signin">
                         <div class="mb-10">
-                            <h3>Sign In</h3>
+                            <h3>Acceso</h3>
                             <div class="text-muted font-weight-bold">Ingrese sus datos para iniciar sesión en su cuenta:
                             </div>
                         </div>
@@ -79,7 +79,7 @@
                             <div class="form-group mb-5">
                                 <input
                                     class="form-control h-auto form-control-solid py-4 px-8  @error('email') is-invalid @enderror"
-                                    type="email" placeholder="{{ __('E-Mail Address') }}" name="email"
+                                    type="email" placeholder="{{ __('validation.attributes.email') }}" name="email"
                                     value="{{ old('email') }}" required autocomplete="off" autofocus />
 
                                 @error('email')
@@ -92,8 +92,8 @@
                             <div class="form-group mb-5">
                                 <input
                                     class="form-control h-auto form-control-solid py-4 px-8 @error('password') is-invalid @enderror"
-                                    type="password" placeholder="{{ __('Password') }}" name="password" required
-                                    autocomplete="current-password" />
+                                    type="password" placeholder="{{ __('validation.attributes.password') }}"
+                                    name="password" required autocomplete="current-password" />
 
                                 @error('password')
                                 <span class="invalid-feedback" role="alert">
@@ -112,7 +112,7 @@
                                     class="text-muted text-hover-primary">Recuperar la Contraseña ?</a>
                             </div>
                             <button id="kt_login_signin_submit"
-                                class="btn btn-primary font-weight-bold px-9 py-4 my-3 mx-4">Sign In</button>
+                                class="btn btn-primary font-weight-bold px-9 py-4 my-3 mx-4">Acceder</button>
                         </form>
                         <div class="mt-10">
                             <span class="opacity-70 mr-4">¿Aún no tienes una cuenta?</span>
@@ -135,8 +135,8 @@
                             <div class="form-group mb-5">
                                 <input
                                     class="form-control h-auto form-control-solid py-4 px-8 @error('name') is-invalid @enderror"
-                                    type="text" placeholder="{{ __('Name') }}" name="name" value="{{ old('name') }}"
-                                    required autocomplete="off" autofocus />
+                                    type="text" placeholder="{{ __('validation.attributes.name') }}" name="name"
+                                    value="{{ old('name') }}" required autocomplete="off" autofocus />
 
                                 @error('name')
                                 <span class="invalid-feedback" role="alert">
@@ -148,8 +148,8 @@
                             <div class="form-group mb-5">
                                 <input
                                     class="form-control h-auto form-control-solid py-4 px-8 @error('signup_email') is-invalid @enderror"
-                                    type="text" placeholder="{{ __('E-Mail Address') }}" name="signup_email"
-                                    value="{{ old('signup_email') }}" required autocomplete="off" />
+                                    type="text" placeholder="{{ __('validation.attributes.email') }}"
+                                    name="signup_email" value="{{ old('signup_email') }}" required autocomplete="off" />
 
                                 @error('signup_email')
                                 <span class="invalid-feedback" role="alert">

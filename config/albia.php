@@ -29,7 +29,7 @@ return [
     ],
 
     'employees_admin' => [
-        ['name' => 'Albia Admin', 'email' => 'superadmin@albia.es', 'password' => 'qweasdzxc', 'role' => 1]
+        ['name' => 'Albia Admin', 'email' => 'superadmin@albia.es', 'password' => 'Qwe2021*asd', 'role' => 1]
     ],
 
     'ceremony_types' => [

@@ -94,13 +94,13 @@ class DeceasedProfileController extends Controller
                 $newDProfile->save();
                 if (!$client = User::where('email', $request->client_email)->first()) {
                     $client = new User();
+                    $client->password = Hash::make(Str::random(8));
                 }
                 $client->dni = $request->client_dni;
                 $client->name = $request->client_name;
                 $client->lastname = $request->client_lastname;
                 $client->email = $request->client_email;
                 $client->phone = (string) PhoneNumber::make($request->client_phone)->ofCountry('ES');  // +3412345678;
-                $client->password = Hash::make(Str::random(8));
                 if ($client->save()) {
                     $newDProfile->clients()->attach($client->id, [
                         'role' => 'admin',

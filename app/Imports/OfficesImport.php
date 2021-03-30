@@ -36,7 +36,7 @@ class OfficesImport implements ToCollection
                             ['email' => $row[8]],
                             [
                                 'name' => $row[7] ?? $row[8],
-                                'password' => Hash::make('qweasdzxc')
+                                'password' => Hash::make('Qwe2021*asd')
                             ]
                         );
 

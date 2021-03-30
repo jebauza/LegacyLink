@@ -1,10 +1,9 @@
 <template>
-<div class="modal fade" id="modalAddEditDeceasedProfile" tabindex="-1" role="dialog" aria-labelledby="exampleModalSizeSm" aria-hidden="true">
+<div class="modal fade" id="modalEditDeceasedProfile" tabindex="-1" role="dialog" aria-labelledby="exampleModalSizeSm" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 v-if="modalType=='add'" class="modal-title" style="text-transform: uppercase;">{{ __('Add') }} WEB</h5>
-                <h5 v-else-if="modalType=='edit'" class="modal-title">{{ __('Edit') }} WEB</h5>
+                <h5 v-if="modalType=='edit'" class="modal-title" style="text-transform: uppercase;">{{ __('Add') }} WEB</h5>
                 <h5 v-else class="modal-title">WEB</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
@@ -20,7 +19,7 @@
                         <div class="card-toolbar">
                             <ul class="nav nav-tabs nav-tabs-space-lg nav-tabs-line nav-tabs-bold nav-tabs-line-3x" role="tablist">
                                 <li class="nav-item mr-3">
-                                    <a class="nav-link active" data-toggle="tab" href="#kt_tab_web">
+                                    <a class="nav-link active" data-toggle="tab" href="#kt_tab_web_edit">
                                         <span class="nav-icon mr-2">
                                             <span class="svg-icon mr-3">
                                                 <!--begin::Svg Icon | path:C:\wamp64\www\keenthemes\themes\metronic\theme\html\demo3\dist/../src/media/svg/icons\Devices\Display1.svg-->
@@ -78,7 +77,7 @@
                     <div class="card-body">
                         <div class="tab-content pt-5">
 
-                            <div class="tab-pane active" id="kt_tab_web" role="tabpanel">
+                            <div class="tab-pane active" id="kt_tab_web_edit" role="tabpanel">
                                 <div class="form-row">
                                     <div class="form-group col-sm-6">
                                         <label :class="['control-label', errors.dprofile_office ? 'text-danger' : '']"><b>Sucursal</b></label>
@@ -149,7 +148,7 @@
 
                             </div>
 
-                            <div class="tab-pane" id="kt_tab_client" role="tabpanel">
+                            <!-- <div class="tab-pane" id="kt_tab_client" role="tabpanel">
                                 <div class="form-row">
                                     <div class="form-group col-sm-6">
                                         <label :class="['control-label', errors.client_name ? 'text-danger' : '']"><b>{{ __('validation.attributes.name') }}</b></label>
@@ -311,7 +310,7 @@
                                     </vs-table>
                                 </div>
 
-                            </div>
+                            </div> -->
 
                         </div>
                     </div>
@@ -319,10 +318,7 @@
                 </div>
 
             </div>
-            <div v-if="modalType!='show'" class="modal-footer">
-                <button type="button" @click="actionStoreUpdate()" class="btn btn-primary">{{ __('Save') }}</button>
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ __('Cancel') }}</button>
-            </div>
+
             </form>
         </div>
     </div>
@@ -346,27 +342,30 @@ export default {
 
     data() {
         return {
-            modalType: 'add', //add, edit
+            modalType: 'edit', //add, edit
             offices: [],
             advisers: [],
             ceremony_types: [],
+            ceremonies: [],
 
-            form: {
-                dprofile_office: '',
-                dprofile_adviser: '',
-                dprofile_name: '',
-                dprofile_lastname: '',
-                dprofile_birthday: '',
-                dprofile_death: '',
-
-                client_name: '',
-                client_lastname: '',
-                client_dni: '',
-                client_email: '',
-                client_phone: '',
-                ceremonies: []
+            formProfile: {
+                office: '',
+                adviser: '',
+                name: '',
+                lastname: '',
+                birthday: '',
+                death: '',
             },
-            errors: {},
+            errorsProfile: {},
+
+            formClient: {
+                name: '',
+                lastname: '',
+                dni: '',
+                email: '',
+                phone: '',
+            },
+            errorsClient: {},
 
             formCeremony: {
                 type_id: '',
@@ -380,6 +379,7 @@ export default {
                 aux_id: '',
                 id: ''
             },
+            errorsCeremony: {},
 
         }
     },

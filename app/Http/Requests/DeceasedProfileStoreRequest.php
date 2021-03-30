@@ -35,8 +35,8 @@ class DeceasedProfileStoreRequest extends FormRequest
 
             'client_name' => 'required|string|max:255',
             'client_lastname' => 'required|string|max:255',
-            'client_dni' => ['required','string','max:20','unique:users,dni',new Nif],
-            'client_email' => 'required|string|max:255|unique:users,email',
+            'client_dni' => ['required','string','max:20',new Nif],
+            'client_email' => 'required|string|max:255',
             'client_phone' => 'required|string|phone:ES,mobile',
 
             'ceremonies' => 'bail|required|array|min:1',
