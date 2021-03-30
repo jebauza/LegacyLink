@@ -98,7 +98,7 @@ class DeceasedProfileController extends Controller
                 $client->name = $request->client_name;
                 $client->lastname = $request->client_lastname;
                 $client->email = $request->client_email;
-                $client->phone = (string) PhoneNumber::make($request->phone)->ofCountry('ES');  // +3412345678;
+                $client->phone = (string) PhoneNumber::make($request->client_phone)->ofCountry('ES');  // +3412345678;
                 $client->password = Hash::make(Str::random(8));
                 if ($client->save()) {
                     $newDProfile->clients()->attach($client->id, [

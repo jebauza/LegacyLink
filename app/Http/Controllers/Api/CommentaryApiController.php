@@ -27,7 +27,7 @@ class CommentaryApiController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function storePublic(Request $request)
+    public function storePublic(Request $request, $profile_id)
     {
         $request->validate([
             'title' => 'required|string|max:255',
