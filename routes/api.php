@@ -21,7 +21,7 @@ use App\Http\Controllers\Api\DeceasedProfileApiController;
 */
 
 
-Route::prefix('public')->middleware(['check_profile'])->group(function () {
+Route::prefix('public')->group(function () {
     Route::get('profile/{profile_id}', [DeceasedProfileApiController::class, 'show'])->name('api.public.profile.show');
     Route::get('profile/{profile_id}/ceremonies', [CeremonyApiController::class, 'indexPublic'])->name('api.public.profile.ceremonies');
     Route::get('profile/{profile_id}/comments/store', [CommentaryApiController::class, 'storePublic'])->name('api.public.profile.ceremonies');
