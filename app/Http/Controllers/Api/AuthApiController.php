@@ -425,7 +425,7 @@ class AuthApiController extends Controller
 
                     return response()->json($content);
                 }
-                
+
             } catch (\Exception $e) {
                 DB::rollBack();
                 return $this->sendError500($e->getMessage());
