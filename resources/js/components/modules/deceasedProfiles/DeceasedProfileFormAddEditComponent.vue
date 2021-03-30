@@ -234,7 +234,7 @@
                                          <el-checkbox v-model="formCeremony.main" label="Principal" border></el-checkbox>
                                     </div>
                                     <div class="form-group col-auto">
-                                        <el-button v-if="!formCeremony.aux_id" @click="addCeremony()" type="primary" round>Adicionar</el-button>
+                                        <el-button v-if="!formCeremony.aux_id" @click="addCeremony()" type="primary" round>Añadir</el-button>
                                         <el-button v-else @click="updateCeremony()" type="success" round>Actualizar</el-button>
                                     </div>
 
