@@ -50,7 +50,7 @@
                                                 </svg><!--end::Svg Icon-->
                                             </span>
                                         </span>
-                                        <span class="nav-text font-weight-bold">Cliente</span>
+                                        <span class="nav-text font-weight-bold">Declarante</span>
                                     </a>
                                 </li>
                                 <li class="nav-item mr-3">
@@ -68,7 +68,7 @@
                                                 </svg><!--end::Svg Icon-->
                                             </span>
                                         </span>
-                                        <span class="nav-text font-weight-bold">Ceremonia</span>
+                                        <span class="nav-text font-weight-bold">Eventos</span>
                                     </a>
                                 </li>
                             </ul>

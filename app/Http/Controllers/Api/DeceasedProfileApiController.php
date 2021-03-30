@@ -111,7 +111,7 @@ class DeceasedProfileApiController extends Controller
             if($request->hasFile('photo')) {
                 $photo = $request->file('photo');
                 $photo_name = Str::random(10) . '.' . $photo->getClientOriginalExtension();
-                $path = Storage::disk('public')->putFileAs('deceased_profiles', $photo, $photo_name);
+                $path = Storage::disk('public')->putFileAs('deceased_profiles/' . $profile->id, $photo, $photo_name);
                 if($profile->photo) {
                     if(Storage::disk('public')->exists($profile->photo)) {
                         Storage::disk('public')->delete($profile->photo);

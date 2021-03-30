@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\AuthApiController;
 use App\Http\Controllers\Api\UserApiController;
 use App\Http\Controllers\Api\CeremonyApiController;
+use App\Http\Controllers\Api\CommentaryApiController;
 use App\Http\Controllers\Api\InvitationApiController;
 use App\Http\Controllers\Api\DeceasedProfileApiController;
 
@@ -19,13 +20,11 @@ use App\Http\Controllers\Api\DeceasedProfileApiController;
 |
 */
 
-/* Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-}); */
 
-Route::prefix('public')->group(function () {
+Route::prefix('public')->middleware(['check_profile'])->group(function () {
     Route::get('profile/{profile_id}', [DeceasedProfileApiController::class, 'show'])->name('api.public.profile.show');
     Route::get('profile/{profile_id}/ceremonies', [CeremonyApiController::class, 'indexPublic'])->name('api.public.profile.ceremonies');
+    Route::get('profile/{profile_id}/comments/store', [CommentaryApiController::class, 'storePublic'])->name('api.public.profile.ceremonies');
 });
 
 
@@ -66,6 +65,8 @@ Route::middleware(['auth:api'])->name('api.')->group(function() {
             Route::get('', [InvitationApiController::class, 'index'])->name('index');
             Route::post('store', [InvitationApiController::class, 'store'])->name('store');
         });
+
+
 
     });
 

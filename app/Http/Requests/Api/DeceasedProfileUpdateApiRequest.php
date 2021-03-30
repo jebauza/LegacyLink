@@ -25,7 +25,7 @@ class DeceasedProfileUpdateApiRequest extends FormRequest
      *          @OA\Property(property="lastname", type="string", example="Gonzalez Perez", title="required|string|max:255"),
      *          @OA\Property(property="birthday", type="string", example="1975-03-21", title="required|date|date_format:Y-m-d"),
      *          @OA\Property(property="death", type="string", example="2021-03-21", title="required|date|date_format:Y-m-d|after:birthday"),
-     *          @OA\Property(property="photo", type="file", title="nullable|file"),
+     *          @OA\Property(property="photo", type="file", title="nullable|image"),
      *      )
      * )
      */
@@ -36,7 +36,7 @@ class DeceasedProfileUpdateApiRequest extends FormRequest
             'lastname' => 'required|string|max:255',
             'birthday' => 'required|date|date_format:Y-m-d',
             'death' => 'required|date|date_format:Y-m-d|after:birthday',
-            'photo' => 'nullable|file',
+            'photo' => 'nullable|image',
         ];
     }
 
@@ -49,6 +49,7 @@ class DeceasedProfileUpdateApiRequest extends FormRequest
      *                  @OA\Property(property="lastname", example={"El campo lastname es obligatorio."}),
      *                  @OA\Property(property="birthday", example={"El campo nacimiento es obligatorio."}),
      *                  @OA\Property(property="death", example={"El campo defunción es obligatorio."}),
+     *                  @OA\Property(property="photo", example={"El campo defunción es obligatorio."}),
      *              )
      *          )
      * )
