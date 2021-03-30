@@ -1734,7 +1734,7 @@
                                     "example": "2021-03-21"
                                 },
                                 "photo": {
-                                    "title": "nullable|file",
+                                    "title": "nullable|image",
                                     "type": "file"
                                 }
                             },
@@ -1771,6 +1771,11 @@
                                             ]
                                         },
                                         "death": {
+                                            "example": [
+                                                "El campo defunción es obligatorio."
+                                            ]
+                                        },
+                                        "photo": {
                                             "example": [
                                                 "El campo defunción es obligatorio."
                                             ]
