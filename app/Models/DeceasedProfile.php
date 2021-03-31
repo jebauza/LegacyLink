@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\User;
+use DateTimeInterface;
 use App\Models\Invitation;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Storage;
@@ -38,6 +39,11 @@ class DeceasedProfile extends Model
     protected $hidden = [
         'token'
     ];
+
+    protected function serializeDate(DateTimeInterface $date)
+    {
+        return $date->format('Y-m-d H:i:s');
+    }
 
     protected $appends = ['fullName', 'urlPhoto'];
 
@@ -135,6 +141,18 @@ class DeceasedProfile extends Model
     {
         return $this->belongsToMany(User::class, 'deceased_profile_user', 'profile_id', 'user_id')
                     ->withPivot('profile_id','user_id','role','declarant')->withTimestamps();
+    }
+
+    /**
+     * The clients that belong to the DeceasedProfile
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function clientDeclarant()
+    {
+        return $this->belongsToMany(User::class, 'deceased_profile_user', 'profile_id', 'user_id')
+                    ->withPivot('profile_id','user_id','role','declarant')->withTimestamps()
+                    ->wherePivot('declarant', true);
     }
 
 

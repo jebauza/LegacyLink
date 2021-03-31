@@ -3,9 +3,11 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\HomeController;
 use App\Http\Controllers\Admin\Role\RoleController;
+use App\Http\Controllers\Admin\User\UserController;
 use App\Http\Controllers\Admin\Auth\LoginController;
 use App\Http\Controllers\Admin\Auth\RegisterController;
 use App\Http\Controllers\Admin\Office\OfficeController;
+use App\Http\Controllers\Admin\Ceremony\CeremonyController;
 use App\Http\Controllers\Admin\Employee\EmployeeController;
 use App\Http\Controllers\Admin\Auth\ResetPasswordController;
 use App\Http\Controllers\Admin\Auth\ForgotPasswordController;
@@ -72,10 +74,24 @@ Route::name('admin.')->group(function () {
                 Route::get('/paginate', [DeceasedProfileController::class, 'paginate'])->name('paginate');
                 Route::post('store', [DeceasedProfileController::class, 'store'])->name('store');
                 Route::delete('/{profile_id}/destroy', [DeceasedProfileController::class, 'destroy'])->name('destroy');
+                Route::put('/{profile_id}/update', [DeceasedProfileController::class, 'update'])->name('update');
                 /* Route::get('show', [DeceasedProfileController::class, 'show'])->name('show');
                 Route::put('/{employee_id}/update', [DeceasedProfileController::class, 'update'])->name('update');
                  */
 
+            });
+
+            // Users
+            Route::prefix('users')->name('users.')->group(function () {
+
+                Route::put('/{users_id}/update', [UserController::class, 'update'])->name('update');
+            });
+
+            // Users
+            Route::prefix('ceremonies')->name('ceremonies.')->group(function () {
+
+                Route::get('/', [CeremonyController::class, 'index'])->name('index');
+                Route::post('/store', [CeremonyController::class, 'store'])->name('store');
             });
 
             Route::get('/roles', [RoleController::class, 'getRolesByAuthUserAssign'])->name('roles.ByAuthUserAssign');

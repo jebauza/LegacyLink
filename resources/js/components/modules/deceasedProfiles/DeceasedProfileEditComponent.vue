@@ -3,7 +3,7 @@
     <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 v-if="modalType=='edit'" class="modal-title" style="text-transform: uppercase;">{{ __('Add') }} WEB</h5>
+                <h5 v-if="modalType=='edit'" class="modal-title" style="text-transform: uppercase;">{{ __('Edit') }} WEB</h5>
                 <h5 v-else class="modal-title">WEB</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
@@ -36,7 +36,7 @@
                                     </a>
                                 </li>
                                 <li class="nav-item mr-3">
-                                    <a class="nav-link " data-toggle="tab" href="#kt_tab_client">
+                                    <a class="nav-link " data-toggle="tab" href="#kt_tab_client_edit">
                                         <span class="nav-icon mr-2">
                                             <span class="svg-icon mr-3">
                                                 <!--begin::Svg Icon | path:C:\wamp64\www\keenthemes\themes\metronic\theme\html\demo3\dist/../src/media/svg/icons\General\User.svg-->
@@ -53,7 +53,7 @@
                                     </a>
                                 </li>
                                 <li class="nav-item mr-3">
-                                    <a class="nav-link" data-toggle="tab" href="#kt_tab_ceremonies">
+                                    <a class="nav-link" data-toggle="tab" href="#kt_tab_ceremonies_edit">
                                         <span class="nav-icon mr-2">
                                             <span class="svg-icon mr-3">
                                                 <!--begin::Svg Icon | path:C:\wamp64\www\keenthemes\themes\metronic\theme\html\demo3\dist/../src/media/svg/icons\Communication\Clipboard-check.svg-->
@@ -80,121 +80,130 @@
                             <div class="tab-pane active" id="kt_tab_web_edit" role="tabpanel">
                                 <div class="form-row">
                                     <div class="form-group col-sm-6">
-                                        <label :class="['control-label', errors.dprofile_office ? 'text-danger' : '']"><b>Sucursal</b></label>
-                                        <vs-select :key="offices.length" filter v-model="form.dprofile_office" :placeholder="__('Select')" state="primary" :disabled="disableOffice">
+                                        <label :class="['control-label', errorsProfile.office ? 'text-danger' : '']"><b>Sucursal</b></label>
+                                        <vs-select :key="offices.length" filter v-model="formProfile.office" :placeholder="__('Select')" state="primary" :disabled="disableOffice">
                                             <vs-option v-for="office in offices" :key="office.id" :label="office.name" :value="office.id">{{ office.name }}</vs-option>
                                         </vs-select>
-                                        <small v-if="errors.dprofile_office" class="form-control-feedback text-danger">
-                                            {{ errors.dprofile_office[0] }}
+                                        <small v-if="errorsProfile.office" class="form-control-feedback text-danger">
+                                            {{ errorsProfile.office[0] }}
                                         </small>
                                     </div>
 
                                     <div class="form-group col-sm-6">
-                                        <label :class="['control-label', errors.dprofile_adviser ? 'text-danger' : '']"><b>Agente</b></label>
-                                        <vs-select :key="advisers.length" filter v-model="form.dprofile_adviser" :placeholder="__('Select')" state="primary" :disabled="disableAdviser">
+                                        <label :class="['control-label', errorsProfile.adviser ? 'text-danger' : '']"><b>Agente</b></label>
+                                        <vs-select :key="advisers.length" filter v-model="formProfile.adviser" :placeholder="__('Select')" state="primary" :disabled="disableAdviser">
                                             <vs-option v-for="adviser in advisers" :key="adviser.id" :label="adviser.fullName" :value="adviser.id">{{ adviser.fullName }}</vs-option>
                                         </vs-select>
-                                        <small v-if="errors.dprofile_adviser" class="form-control-feedback text-danger">
-                                            {{ errors.dprofile_adviser[0] }}
+                                        <small v-if="errorsProfile.adviser" class="form-control-feedback text-danger">
+                                            {{ errorsProfile.adviser[0] }}
                                         </small>
                                     </div>
                                 </div>
 
                                 <div class="form-row">
                                     <div class="form-group col-sm-6 col-xl-3">
-                                        <label :class="['control-label', errors.dprofile_name ? 'text-danger' : '']"><b>{{ __('validation.attributes.name') }}</b></label>
-                                        <input  v-model="form.dprofile_name" type="text" :class="['form-control', errors.dprofile_name ? 'is-invalid' : '']" name="name" :placeholder="__('validation.attributes.name')" :disabled="modalType=='show'">
-                                        <small v-if="errors.dprofile_name" class="form-control-feedback text-danger">
-                                            {{ errors.dprofile_name[0] }}
+                                        <label :class="['control-label', errorsProfile.name ? 'text-danger' : '']"><b>{{ __('validation.attributes.name') }}</b></label>
+                                        <input  v-model="formProfile.name" type="text" :class="['form-control', errorsProfile.name ? 'is-invalid' : '']" name="name" :placeholder="__('validation.attributes.name')" :disabled="modalType=='show'">
+                                        <small v-if="errorsProfile.name" class="form-control-feedback text-danger">
+                                            {{ errorsProfile.name[0] }}
                                         </small>
                                     </div>
                                     <div class="form-group col-sm-6 col-xl-3">
-                                        <label :class="['control-label', errors.dprofile_lastname ? 'text-danger' : '']"><b>{{ __('validation.attributes.last_name') }}</b></label>
-                                        <input v-model="form.dprofile_lastname" type="text" :class="['form-control', errors.dprofile_lastname ? 'is-invalid' : '']" name="lastname" :placeholder="__('validation.attributes.last_name')" :disabled="modalType=='show'">
-                                        <small v-if="errors.dprofile_lastname" class="form-control-feedback text-danger">
-                                            {{ errors.dprofile_lastname[0] }}
+                                        <label :class="['control-label', errorsProfile.last_name ? 'text-danger' : '']"><b>{{ __('validation.attributes.last_name') }}</b></label>
+                                        <input v-model="formProfile.last_name" type="text" :class="['form-control', errorsProfile.last_name ? 'is-invalid' : '']" name="lastname" :placeholder="__('validation.attributes.last_name')" :disabled="modalType=='show'">
+                                        <small v-if="errorsProfile.last_name" class="form-control-feedback text-danger">
+                                            {{ errorsProfile.last_name[0] }}
                                         </small>
                                     </div>
                                     <div class="form-group col-sm-6 col-xl-3">
-                                        <label :class="['control-label', errors.dprofile_birthday ? 'text-danger' : '']"><b>Nacimiento</b></label>
+                                        <label :class="['control-label', errorsProfile.birthday ? 'text-danger' : '']"><b>Nacimiento</b></label>
                                         <vs-input
                                             type="date"
-                                            v-model="form.dprofile_birthday"
+                                            v-model="formProfile.birthday"
                                             icon-after>
                                             <template #icon>
                                                 <i class="ki ki-calendar"></i>
                                             </template>
                                         </vs-input>
-                                        <small v-if="errors.dprofile_birthday" class="form-control-feedback text-danger">
-                                            {{ errors.dprofile_birthday[0] }}
+                                        <small v-if="errorsProfile.birthday" class="form-control-feedback text-danger">
+                                            {{ errorsProfile.birthday[0] }}
                                         </small>
                                     </div>
                                     <div class="form-group col-sm-6 col-xl-3">
-                                        <label :class="['control-label', errors.dprofile_death ? 'text-danger' : '']"><b>Defunción</b></label>
+                                        <label :class="['control-label', errorsProfile.death ? 'text-danger' : '']"><b>Defunción</b></label>
                                         <vs-input
                                             type="date"
-                                            v-model="form.dprofile_death"
+                                            v-model="formProfile.death"
                                             icon-after>
                                             <template #icon>
                                                 <i class="ki ki-calendar"></i>
                                             </template>
                                         </vs-input>
-                                        <small v-if="errors.dprofile_death" class="form-control-feedback text-danger">
-                                            {{ errors.dprofile_death[0] }}
+                                        <small v-if="errorsProfile.death" class="form-control-feedback text-danger">
+                                            {{ errorsProfile.death[0] }}
                                         </small>
+                                    </div>
+
+                                    <div class="form-group col-12">
+                                        <button type="button" @click="updateProfile()"  class="btn btn-primary float-right">Actualizar</button>
                                     </div>
                                 </div>
 
 
                             </div>
 
-                            <!-- <div class="tab-pane" id="kt_tab_client" role="tabpanel">
+                            <div class="tab-pane" id="kt_tab_client_edit" role="tabpanel">
+
                                 <div class="form-row">
                                     <div class="form-group col-sm-6">
-                                        <label :class="['control-label', errors.client_name ? 'text-danger' : '']"><b>{{ __('validation.attributes.name') }}</b></label>
-                                        <input v-model="form.client_name" type="text" :class="['form-control', errors.client_name ? 'is-invalid' : '']" name="client_name" :placeholder="__('validation.attributes.name')" required :disabled="modalType=='show'">
-                                        <small v-if="errors.client_name" class="form-control-feedback text-danger">
-                                            {{ errors.client_name[0] }}
+                                        <label :class="['control-label', errorsClient.name ? 'text-danger' : '']"><b>{{ __('validation.attributes.name') }}</b></label>
+                                        <input v-model="formClient.name" type="text" :class="['form-control', errorsClient.name ? 'is-invalid' : '']" name="client_name" :placeholder="__('validation.attributes.name')" required :disabled="modalType=='show'">
+                                        <small v-if="errorsClient.name" class="form-control-feedback text-danger">
+                                            {{ errorsClient.name[0] }}
                                         </small>
                                     </div>
 
                                     <div class="form-group col-sm-6">
-                                        <label :class="['control-label', errors.client_lastname ? 'text-danger' : '']"><b>{{ __('validation.attributes.last_name') }}</b></label>
-                                        <input v-model="form.client_lastname" type="text" :class="['form-control', errors.client_lastname ? 'is-invalid' : '']" name="client_lastname" :placeholder="__('validation.attributes.last_name')" required :disabled="modalType=='show'">
-                                        <small v-if="errors.client_lastname" class="form-control-feedback text-danger">
-                                            {{ errors.client_lastname[0] }}
+                                        <label :class="['control-label', errorsClient.lastname ? 'text-danger' : '']"><b>{{ __('validation.attributes.last_name') }}</b></label>
+                                        <input v-model="formClient.lastname" type="text" :class="['form-control', errorsClient.lastname ? 'is-invalid' : '']" name="client_lastname" :placeholder="__('validation.attributes.last_name')" required :disabled="modalType=='show'">
+                                        <small v-if="errorsClient.lastname" class="form-control-feedback text-danger">
+                                            {{ errorsClient.lastname[0] }}
                                         </small>
                                     </div>
 
                                     <div class="form-group col-sm-6 col-lg-4">
-                                        <label :class="['control-label', errors.client_dni ? 'text-danger' : '']"><b>DNI</b></label>
-                                        <input v-model="form.client_dni" type="text" :class="['form-control', errors.client_dni ? 'is-invalid' : '']" name="client_dni" placeholder="dni" required :disabled="modalType=='show'">
-                                        <small v-if="errors.client_dni" class="form-control-feedback text-danger">
-                                            {{ errors.client_dni[0] }}
+                                        <label :class="['control-label', errorsClient.dni ? 'text-danger' : '']"><b>DNI</b></label>
+                                        <input v-model="formClient.dni" type="text" :class="['form-control', errorsClient.dni ? 'is-invalid' : '']" name="client_dni" placeholder="dni" required :disabled="modalType=='show'">
+                                        <small v-if="errorsClient.dni" class="form-control-feedback text-danger">
+                                            {{ errorsClient.dni[0] }}
                                         </small>
                                     </div>
 
                                     <div class="form-group col-sm-6 col-lg-4">
-                                        <label :class="['control-label', errors.client_email ? 'text-danger' : '']"><b>{{ __('validation.attributes.email') }}</b></label>
-                                        <input  v-model="form.client_email" type="email" :class="['form-control', errors.client_email ? 'is-invalid' : '']" name="client_email" :placeholder="__('validation.attributes.email')" :disabled="modalType=='show'">
-                                        <small v-if="errors.client_email" class="form-control-feedback text-danger">
-                                            {{ errors.client_email[0] }}
+                                        <label :class="['control-label', errorsClient.email ? 'text-danger' : '']"><b>{{ __('validation.attributes.email') }}</b></label>
+                                        <input  v-model="formClient.email" type="email" :class="['form-control', errorsClient.email ? 'is-invalid' : '']" name="client_email" :placeholder="__('validation.attributes.email')" :disabled="modalType=='show'">
+                                        <small v-if="errorsClient.email" class="form-control-feedback text-danger">
+                                            {{ errorsClient.email[0] }}
                                         </small>
                                     </div>
 
                                     <div class="form-group col-sm-6 col-lg-4">
-                                        <label :class="['control-label', errors.client_phone ? 'text-danger' : '']"><b>{{ __('validation.attributes.phone') }}</b></label>
-                                        <input v-model="form.client_phone" type="text" :class="['form-control', errors.client_phone ? 'is-invalid' : '']" name="client_phone" :placeholder="__('validation.attributes.phone')" :disabled="modalType=='show'">
-                                        <small v-if="errors.client_phone" class="form-control-feedback text-danger">
-                                            {{ errors.client_phone[0] }}
+                                        <label :class="['control-label', errorsClient.phone ? 'text-danger' : '']"><b>{{ __('validation.attributes.phone') }}</b></label>
+                                        <input v-model="formClient.phone" type="text" :class="['form-control', errorsClient.phone ? 'is-invalid' : '']" name="client_phone" :placeholder="__('validation.attributes.phone')" :disabled="modalType=='show'">
+                                        <small v-if="errorsClient.phone" class="form-control-feedback text-danger">
+                                            {{ errorsClient.phone[0] }}
                                         </small>
+                                    </div>
+
+                                    <div class="form-group col-12">
+                                        <button type="button" @click="updateClient()"  class="btn btn-primary float-right">Actualizar</button>
                                     </div>
                                 </div>
 
 
                             </div>
 
-                            <div class="tab-pane" id="kt_tab_ceremonies" role="tabpanel">
+                            <div class="tab-pane" id="kt_tab_ceremonies_edit" role="tabpanel">
                                 <div class="form-row">
                                     <div class="form-group col-sm-6 col-lg-4">
                                         <el-date-picker
@@ -202,6 +211,9 @@
                                                 type="datetime"
                                                 placeholder="Inicio">
                                         </el-date-picker>
+                                        <small v-if="errorsCeremony.start" class="form-control-feedback text-danger">
+                                            {{ errorsCeremony.start[0] }}
+                                        </small>
                                     </div>
                                     <div class="form-group col-sm-6 col-lg-4">
                                         <el-date-picker
@@ -209,11 +221,17 @@
                                                 type="datetime"
                                                 placeholder="Fin">
                                         </el-date-picker>
+                                        <small v-if="errorsCeremony.end" class="form-control-feedback text-danger">
+                                            {{ errorsCeremony.end[0] }}
+                                        </small>
                                     </div>
                                     <div class="form-group col-sm-6 col-lg-4">
                                         <el-select v-if="ceremony_types.length" v-model="formCeremony.type_id" filterable placeholder="Select">
                                             <el-option v-for="item in ceremony_types" :key="item.id" :label="item.name" :value="item.id"></el-option>
                                         </el-select>
+                                        <small v-if="errorsCeremony.type_id" class="form-control-feedback text-danger">
+                                            {{ errorsCeremony.type_id[0] }}
+                                        </small>
                                     </div>
                                     <div class="form-group col-12">
                                         <el-input
@@ -222,30 +240,33 @@
                                             placeholder="Informacion Adicional"
                                             v-model="formCeremony.additional_info">
                                         </el-input>
+                                        <small v-if="errorsCeremony.additional_info" class="form-control-feedback text-danger">
+                                            {{ errorsCeremony.additional_info[0] }}
+                                        </small>
                                     </div>
                                     <div class="form-group col-sm-6 col-lg-6 col-xl-4">
                                         <el-input placeholder="Dirrección" v-model="formCeremony.address" clearable></el-input>
+                                        <small v-if="errorsCeremony.address" class="form-control-feedback text-danger">
+                                            {{ errorsCeremony.address[0] }}
+                                        </small>
                                     </div>
                                     <div class="form-group col-sm-6 col-xl-4">
                                         <el-input placeholder="Sala" v-model="formCeremony.room_name" clearable></el-input>
+                                        <small v-if="errorsCeremony.room_name" class="form-control-feedback text-danger">
+                                            {{ errorsCeremony.room_name[0] }}
+                                        </small>
                                     </div>
                                     <div class="form-group col-6 col-sm-5 col-lg-3 col-xl-2">
                                          <el-checkbox v-model="formCeremony.main" label="Principal" border></el-checkbox>
+                                         <small v-if="errorsCeremony.main" class="form-control-feedback text-danger">
+                                            {{ errorsCeremony.main[0] }}
+                                        </small>
                                     </div>
                                     <div class="form-group col-auto">
-                                        <el-button v-if="!formCeremony.aux_id" @click="addCeremony()" type="primary" round>Añadir</el-button>
-                                        <el-button v-else @click="updateCeremony()" type="success" round>Actualizar</el-button>
+                                        <el-button v-if="!formCeremony.id" type="primary" @click="storeCeremony()" round>Añadir</el-button>
+                                        <el-button v-else type="success" round>Actualizar</el-button>
                                     </div>
 
-                                </div>
-
-                                <div v-if="errors.ceremonies" class="row mb-2">
-                                    <vs-alert color="danger" >
-                                        <template #title>
-                                            Error
-                                        </template>
-                                            {{ errors.ceremonies }}
-                                    </vs-alert>
                                 </div>
 
                                 <div class="row">
@@ -271,25 +292,25 @@
                                         </template>
 
                                         <template #tbody>
-                                            <vs-tr :key="index" v-for="(ceremony, index) in form.ceremonies" >
+                                            <vs-tr :key="index" v-for="(ceremony, index) in ceremonies" >
                                                 <vs-td>
                                                     <div class="d-flex align-items-center mr-1">{{ index+1 }}
 														<i v-if="ceremony.main" class="flaticon2-correct text-success icon-md ml-2"></i>
                                                     </div>
                                                 </vs-td>
                                                 <vs-td>
-                                                    {{ ceremony.type_name }}
+                                                    {{ ceremony.type.name }}
                                                 </vs-td>
                                                 <vs-td>{{ ceremony.start }} / {{ ceremony.end }}</vs-td>
                                                 <vs-td>{{ ceremony.address }}</vs-td>
                                                 <vs-td>
                                                     <div class="d-flex justify-content-center">
-                                                        <vs-button icon color="primary" border @click="loadFormCeremony(ceremony)">
+                                                        <!-- <vs-button icon color="primary" border @click="loadFormCeremony(ceremony)">
                                                             <i class='fas fa-pencil-alt'></i>
                                                         </vs-button>
                                                         <vs-button icon color="danger" border @click="removeCeremony(ceremony)">
                                                             <i class='fas fa-trash-alt'></i>
-                                                        </vs-button>
+                                                        </vs-button> -->
                                                     </div>
                                                 </vs-td>
 
@@ -310,7 +331,7 @@
                                     </vs-table>
                                 </div>
 
-                            </div> -->
+                            </div>
 
                         </div>
                     </div>
@@ -328,8 +349,7 @@
 <script>
 export default {
     watch: {
-        'form.dprofile_office': function (newValue, oldValue) {
-            this.form.dprofile_adviser = '';
+        'formProfile.adviser': function (newValue, oldValue) {
             this.getAdvisers();
         }
     },
@@ -352,9 +372,10 @@ export default {
                 office: '',
                 adviser: '',
                 name: '',
-                lastname: '',
+                last_name: '',
                 birthday: '',
                 death: '',
+                id: ''
             },
             errorsProfile: {},
 
@@ -364,6 +385,7 @@ export default {
                 dni: '',
                 email: '',
                 phone: '',
+                id: ''
             },
             errorsClient: {},
 
@@ -376,8 +398,8 @@ export default {
                 additional_info: '',
                 address: '',
                 room_name: '',
-                aux_id: '',
-                id: ''
+                id: '',
+                profile_id: ''
             },
             errorsCeremony: {},
 
@@ -391,23 +413,17 @@ export default {
             axios.get(url)
             .then(res => {
                 this.offices = res.data.data;
-                if (this.offices.length == 1) {
-                    this.form.dprofile_office = this.offices[0].id
-                }
             })
             .catch(err => {
                 console.error(err);
             })
         },
         getAdvisers() {
-            const url = `/admin/ajax/employees?role=3&office=${this.form.dprofile_office}`;
+            const url = `/admin/ajax/employees?role=3&office=${this.formProfile.office}`;
 
             axios.get(url, )
             .then(res => {
                 this.advisers = res.data.data;
-                if (this.advisers.length == 1) {
-                    this.form.dprofile_adviser = this.advisers[0].id
-                }
             })
             .catch(err => {
                 console.error(err);
@@ -424,47 +440,74 @@ export default {
                 console.error(err);
             })
         },
-        showForm(action, employee = null) {
+        getCeremonies(profile_id) {
+            const url = `/admin/ajax/ceremonies?profile=${profile_id}`;
 
-            if(this.modalType != action) {
-                this.clearForm();
-            }
-
+            axios.get(url, )
+            .then(res => {
+                this.ceremonies = res.data;
+            })
+            .catch(err => {
+                console.error(err);
+            })
+        },
+        showForm(action, profile) {
+            console.log(profile);
+            this.clearForm();
             this.modalType = action;
-            /* if( employee && (action.includes('edit') || action.includes('show'))) {
-                this.form = {
-                    name: employee.name,
-                    last_name: employee.last_name,
-                    email: employee.email,
-                    phone: employee.phone,
-                    password: '',
-                    extra_info: employee.extra_info,
-                    offices: employee.offices.map(o => o.id),
-                    role: employee.role ? employee.role.id : '',
-                    id: employee.id
-                };
-            } */
-            this.errors = {};
-            $('#modalAddEditDeceasedProfile').modal('show');
+
+            this.formProfile= {
+                office: profile.office.id,
+                adviser: profile.adviser.id,
+                name: profile.name,
+                last_name: profile.last_name,
+                birthday: moment(profile.birthday).format('YYYY-MM-DD'),
+                death: moment(profile.death).format('YYYY-MM-DD'),
+                id:  profile.id
+            },
+
+            this.formClient= {
+                name: profile.declarant.name,
+                lastname: profile.declarant.lastname,
+                dni: profile.declarant.dni,
+                email: profile.declarant.email,
+                phone: profile.declarant.phone,
+                id: profile.declarant.id,
+            },
+
+            this.getCeremonies(profile.id);
+            this.formCeremony.profile_id = profile.id;
+
+            $('#modalEditDeceasedProfile').modal('show');
         },
         clearForm() {
-            this.form = {
-                dprofile_office: '',
-                dprofile_adviser: '',
-                dprofile_name: '',
-                dprofile_lastname: '',
-                dprofile_birthday: '',
-                dprofile_death: '',
-                client_name: '',
-                client_lastname: '',
-                client_dni: '',
-                client_email: '',
-                client_phone: ''
+            this.formProfile= {
+                office: '',
+                adviser: '',
+                name: '',
+                last_name: '',
+                birthday: '',
+                death: '',
+                id: ''
             };
-            this.errors = {};
+            this.errorsProfile= {};
+
+            this.formClient= {
+                name: '',
+                lastname: '',
+                dni: '',
+                email: '',
+                phone: '',
+                id: ''
+            };
+            this.errorsClient= {};
+
+            this.clearFormCeremony()
+
+            this.ceremonies = [];
         },
         clearFormCeremony() {
-            this.formCeremony = {
+            this.formCeremony= {
                 type_id: '',
                 type_name: '',
                 main: false,
@@ -473,93 +516,21 @@ export default {
                 additional_info: '',
                 address: '',
                 room_name: '',
-                aux_id: ''
+                id: '',
+                profile_id: this.formProfile.id
             };
-            this.errors = {};
+            this.errorsCeremony= {};
         },
-        actionStoreUpdate() {
-            if(this.modalType == 'add') {
-                this.store();
-            } else if(this.modalType == 'edit') {
-                this.update();
-            }
-        },
-        addCeremony() {
-            if (this.formCeremony.main) {
-                this.form.ceremonies = this.form.ceremonies.map(c => {
-                    c.main = false;
-                    return c
-                });
-            }
-
-            this.form.ceremonies.push({
-                type_id: this.formCeremony.type_id,
-                type_name: this.ceremony_types.find(c => this.formCeremony.type_id == c.id).name,
-                main: this.formCeremony.main,
-                start: moment(this.formCeremony.start).format('YYYY-MM-DD HH:mm:ss'),
-                end: moment(this.formCeremony.end).format('YYYY-MM-DD HH:mm:ss'),
-                additional_info: this.formCeremony.additional_info,
-                address: this.formCeremony.address,
-                room_name: this.formCeremony.room_name,
-                aux_id: Math.random().toString(36).substr(2, 5)
-            });
-
-            this.clearFormCeremony();
-        },
-        updateCeremony() {
-            this.form.ceremonies = this.form.ceremonies.map(c => {
-                    if (this.formCeremony.main) {
-                        c.main = false;
-                    }
-
-                    if (c.aux_id === this.formCeremony.aux_id) {
-                        return {
-                            type_id: this.formCeremony.type_id,
-                            type_name: this.ceremony_types.find(c => this.formCeremony.type_id == c.id).name,
-                            main: this.formCeremony.main,
-                            start: moment(this.formCeremony.start).format('YYYY-MM-DD HH:mm:ss'),
-                            end: moment(this.formCeremony.end).format('YYYY-MM-DD HH:mm:ss'),
-                            additional_info: this.formCeremony.additional_info,
-                            address: this.formCeremony.address,
-                            room_name: this.formCeremony.room_name,
-                            aux_id: this.formCeremony.aux_id,
-                        }
-                    }
-
-                    return c;
-            });
-
-            this.clearFormCeremony();
-        },
-        removeCeremony(ceremony) {
-            // this.form.ceremonies.splice(index, 1);
-            const index = this.form.ceremonies.findIndex(c => c.aux_id === ceremony.aux_id);
-            this.$delete(this.form.ceremonies, index);
-        },
-        loadFormCeremony(ceremony) {
-            this.clearFormCeremony();
-            this.formCeremony = {
-                type_id: ceremony.type_id,
-                type_name: ceremony.type_name,
-                main: ceremony.main,
-                start: ceremony.start,
-                end: ceremony.end,
-                additional_info: ceremony.additional_info,
-                address:  ceremony.address,
-                room_name: ceremony.room_name,
-                aux_id: ceremony.aux_id ? ceremony.aux_id : ''
-            }
-        },
-
-        store() {
-            const url = '/admin/ajax/webs/store';
+        updateProfile() {
+            const url = `/admin/ajax/webs/${this.formProfile.id}/update`;
             const loading = this.$vs.loading({
                 type: 'points',
                 color: '#187de4',
+                // background: '#7a76cb',
                 text: this.__('Loading') + '...'
             });
 
-            axios.post(url, this.form)
+            axios.put(url, this.formProfile)
             .then(res => {
                 loading.close();
                 Swal.fire({
@@ -568,75 +539,12 @@ export default {
                     timer: 1500,
                     showConfirmButton: false
                 });
-                $('#modalAddEditDeceasedProfile').modal('hide');
-                this.clearForm();
-                this.$emit('updateDeceasedProfileList', 'add');
-            })
-            .catch(err => {
-                loading.close();
-                if(err.response && err.response.status == 422) {
-                    this.errors = err.response.data.errors;
-                    this.errorsCeremonies();
-                    Swal.fire({
-                        title: 'Error',
-                        icon: "error",
-                        timer: 1500,
-                        showConfirmButton: false
-                    });
-                }else if(err.response.data.message) {
-                    Swal.fire({
-                        title: 'Error!',
-                        text: err.response.data.message,
-                        icon: "error",
-                        showCloseButton: true,
-                        closeButtonColor: 'red',
-                    });
-                }
-            })
-        },
-        errorsCeremonies() {
-            //Buscar los errores de los elementos del array ceremonies
-            if(Object.keys(this.errors).length !== 0){
-                if(!this.errors.ceremonies){
-                    for (let i = 0; i < this.form.ceremonies.length; i++) {
-                        for (let value of Object.keys(this.formCeremony)) {
-                            if(this.errors.hasOwnProperty(`ceremonies.${i}.${value}`)){
-                                this.errors.ceremonies = `Revisar ceremonia #${i+1} ` + this.errors[`ceremonies.${i}.${value}`];
-                                break;
-                            }
-                        }
-
-                        if (this.errorCeremonies) {
-                            break;
-                        }
-                    }
-                }
-            }
-        }
-        /* update() {
-            const url = `/admin/ajax/employees/${this.form.id}/update`;
-            const loading = this.$vs.loading({
-                type: 'points',
-                color: '#187de4',
-                text: 'Cargando...'
-            });
-
-            axios.put(url, this.form)
-            .then(res => {
-                loading.close();
-                Swal.fire({
-                    title: res.data.message,
-                    icon: "success",
-                    timer: 1500,
-                    showConfirmButton: false
-                });
-                $('#modalAddEditEmployee').modal('hide');
-                this.clearForm();
-                this.$emit('updateEmployeeList', 'edit');
+                this.errorsProfile= {};
+                this.$emit('updateDeceasedProfileList', 'edit');
             }).catch(err => {
                 loading.close();
                 if(err.response && err.response.status == 422) {
-                    this.errors = err.response.data.errors;
+                    this.errorsProfile = err.response.data.errors;
                 }else if(err.response.data.message) {
                     Swal.fire({
                         title: 'Error!',
@@ -647,7 +555,84 @@ export default {
                     });
                 }
             });
-        }, */
+        },
+        updateClient() {
+            const url = `/admin/ajax/users/${this.formClient.id}/update`;
+            const loading = this.$vs.loading({
+                type: 'points',
+                color: '#187de4',
+                // background: '#7a76cb',
+                text: this.__('Loading') + '...'
+            });
+
+            axios.put(url, this.formClient)
+            .then(res => {
+                loading.close();
+                Swal.fire({
+                    title: res.data.message,
+                    icon: "success",
+                    timer: 1500,
+                    showConfirmButton: false
+                });
+                this.errorsClient= {};
+                this.$emit('updateDeceasedProfileList', 'edit');
+            }).catch(err => {
+                loading.close();
+                if(err.response && err.response.status == 422) {
+                    this.errorsClient = err.response.data.errors;
+                }else if(err.response.data.message) {
+                    Swal.fire({
+                        title: 'Error!',
+                        text: err.response.data.message,
+                        icon: "error",
+                        showCloseButton: true,
+                        closeButtonColor: '#ee2d41',
+                    });
+                }
+            });
+        },
+        storeCeremony() {
+            const url = '/admin/ajax/ceremonies/store';
+            const loading = this.$vs.loading({
+                type: 'points',
+                color: '#187de4',
+                // background: '#7a76cb',
+                text: 'Cargando...'
+            });
+
+            let form = this.formCeremony;
+            form.start = moment(this.formCeremony.start).format('YYYY-MM-DD HH:mm:ss');
+            form.end = moment(this.formCeremony.end).format('YYYY-MM-DD HH:mm:ss');
+
+            axios.post(url, form)
+            .then(res => {
+                loading.close();
+                Swal.fire({
+                    title: res.data.message,
+                    icon: "success",
+                    timer: 1500,
+                    showConfirmButton: false
+                });
+                this.clearFormCeremony();
+                this.$emit('updateDeceasedProfileList', 'edit');
+                this.getCeremonies(this.formProfile.id);
+            })
+            .catch(err => {
+                loading.close();
+                if(err.response && err.response.status == 422) {
+                    this.errorsCeremony = err.response.data.errors;
+                }else if(err.response.data.message) {
+                    Swal.fire({
+                        title: 'Error!',
+                        text: err.response.data.message,
+                        icon: "error",
+                        showCloseButton: true,
+                        closeButtonColor: 'red',
+                    });
+                }
+            })
+        }
+
     },
 
     computed: {

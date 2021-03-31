@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use DateTimeInterface;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Ceremony extends Model
 {
@@ -30,6 +31,11 @@ class Ceremony extends Model
         'end' => 'datetime',
     ];
 
+    protected function serializeDate(DateTimeInterface $date)
+    {
+        return $date->format('Y-m-d H:i:s');
+    }
+
     // SCOPES
     public function scopeVisibleClient($query, $clientRole)
     {
@@ -38,6 +44,13 @@ class Ceremony extends Model
                 $query->where('visible', 'close_friend')
                         ->orWhere('visible', 'public');
             }
+        }
+    }
+
+    public function scopeDeceasedProfile($query, $param)
+    {
+        if ($param) {
+            $query->where('profile_id', $param);
         }
     }
 

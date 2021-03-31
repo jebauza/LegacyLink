@@ -53,7 +53,7 @@ class DeceasedProfileController extends Controller
                             ->office($request->office)
                             ->name($request->name)
                             ->declarant($request->declarant)
-                            ->with('office', 'clients', 'adviser')
+                            ->with('office', 'clients', 'adviser', 'ceremonies.type')
                             ->orderBy('name')
                             ->paginate();
 
@@ -158,7 +158,31 @@ class DeceasedProfileController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'office' => 'required|integer|exists:offices,id',
+            'adviser' => 'required|integer|exists:employees,id',
+            'name' => 'required|string|max:255',
+            'last_name' => 'required|string|max:255',
+            'birthday' => 'required|date|date_format:Y-m-d',
+            'death' => 'required|date|date_format:Y-m-d|after:birthday',
+        ]);
+
+        if(!$profile = DeceasedProfile::find($id)) {
+            return $this->sendError404();
+        }
+
+        try {
+            DB::beginTransaction();
+            $profile->fill($request->all());
+            $profile->save();
+
+            DB::commit();
+            return $this->sendResponse(__('Updated successfully'), (new DeceasedProfileResource($profile)));
+
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return $this->sendError500($e->getMessage());
+        }
     }
 
     /**

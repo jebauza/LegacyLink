@@ -67,7 +67,7 @@
                             <th>{{ profile.id }}</th>
                             <td>{{ profile.name }} {{ profile.last_name }}</td>
                             <td>{{ profile.adviser ? profile.adviser.fullName : '' }}</td>
-                            <td>{{ profile.admin ? profile.admin.fullName : '' }}</td>
+                            <td>{{ profile.declarant ? profile.declarant.fullName : '' }}</td>
                             <td>
                                 <div class="d-flex justify-content-center">
                                     <!-- <vs-tooltip bottom>
@@ -77,7 +77,7 @@
                                         <template #tooltip>
                                             {{ __('Show') }}
                                         </template>
-                                    </vs-tooltip>
+                                    </vs-tooltip>-->
                                     <vs-tooltip bottom>
                                         <button class="btn btn-sm btn-clean btn-icon mr-2" @click="openModalAddEditShow('edit', profile)">
                                             <i class="fas fa-pen"></i>
@@ -85,7 +85,7 @@
                                         <template #tooltip>
                                             {{ __('Edit') }}
                                         </template>
-                                    </vs-tooltip> -->
+                                    </vs-tooltip>
                                     <vs-tooltip bottom>
                                         <button class="btn btn-sm btn-clean btn-icon mr-2" @click="sendNotification(profile)">
                                             <i class="fa fa-comment-alt"></i>
@@ -118,15 +118,18 @@
 
         <deceased-profile-form-add-edit ref="deceasedProfileFormAddEdit" @updateDeceasedProfileList="updateList()"></deceased-profile-form-add-edit>
 
+        <deceased-profile-form-edit ref="deceasedProfileFormEdit" @updateDeceasedProfileList="updateList()"></deceased-profile-form-edit>
+
     </div>
 <!--end::Card-->
 </template>
 
 <script>
 import DeceasedProfileFormAddEdit from './DeceasedProfileFormAddEditComponent';
+import DeceasedProfileFormEdit from './DeceasedProfileEditComponent';
 
 export default {
-    components: {DeceasedProfileFormAddEdit},
+    components: {DeceasedProfileFormAddEdit, DeceasedProfileFormEdit},
 
     created() {
         this.getDeceasedProfiles();
@@ -173,7 +176,7 @@ export default {
                 this.getOffices()
                 this.deceasedProfiles = res.data.data;
                 this.deceasedProfiles.data = this.deceasedProfiles.data.map(p => {
-                    p.admin = p.clients.find(client => client.pivot.role === 'admin');
+                    p.declarant = p.clients.find(client => client.pivot.declarant == true);
                     return p;
                 });
             })
@@ -193,8 +196,13 @@ export default {
                 console.error(err);
             })
         },
-        openModalAddEditShow(action, employee = null) {
-            this.$refs.deceasedProfileFormAddEdit.showForm(action, employee);
+        openModalAddEditShow(action, profile = null) {
+
+            if (action == 'add') {
+                this.$refs.deceasedProfileFormAddEdit.showForm(action, null);
+            } else {
+                this.$refs.deceasedProfileFormEdit.showForm(action, profile);
+            }
         },
         updateList(action = null) {
             this.getDeceasedProfiles(this.deceasedProfiles.current_page ?? 1 );
