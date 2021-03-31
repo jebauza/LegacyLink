@@ -264,7 +264,7 @@
                                     </div>
                                     <div class="form-group col-auto">
                                         <el-button v-if="!formCeremony.id" type="primary" @click="storeCeremony()" round>Añadir</el-button>
-                                        <el-button v-else type="success" round>Actualizar</el-button>
+                                        <el-button v-else type="success" @click="updateCeremony()" round>Actualizar</el-button>
                                     </div>
 
                                 </div>
@@ -305,12 +305,12 @@
                                                 <vs-td>{{ ceremony.address }}</vs-td>
                                                 <vs-td>
                                                     <div class="d-flex justify-content-center">
-                                                        <!-- <vs-button icon color="primary" border @click="loadFormCeremony(ceremony)">
+                                                        <vs-button icon color="primary" border @click="loadFormCeremony(ceremony)">
                                                             <i class='fas fa-pencil-alt'></i>
                                                         </vs-button>
-                                                        <vs-button icon color="danger" border @click="removeCeremony(ceremony)">
+                                                        <vs-button icon color="danger" border @click="destroyCeremony(ceremony)">
                                                             <i class='fas fa-trash-alt'></i>
-                                                        </vs-button> -->
+                                                        </vs-button>
                                                     </div>
                                                 </vs-td>
 
@@ -631,7 +631,95 @@ export default {
                     });
                 }
             })
-        }
+        },
+        loadFormCeremony(ceremony) {
+            this.clearFormCeremony();
+            this.formCeremony = {
+                type_id: ceremony.type_id,
+                main: ceremony.main,
+                start: ceremony.start,
+                end: ceremony.end,
+                additional_info: ceremony.additional_info,
+                address:  ceremony.address,
+                room_name: ceremony.room_name,
+                id: ceremony.id
+            }
+        },
+        updateCeremony() {
+            const url = `/admin/ajax/ceremonies/${this.formCeremony.id}/update`;
+            const loading = this.$vs.loading({
+                type: 'points',
+                color: '#187de4',
+                // background: '#7a76cb',
+                text: 'Cargando...'
+            });
+
+            let form = this.formCeremony;
+            form.start = moment(this.formCeremony.start).format('YYYY-MM-DD HH:mm:ss');
+            form.end = moment(this.formCeremony.end).format('YYYY-MM-DD HH:mm:ss');
+
+            axios.put(url, form)
+            .then(res => {
+                loading.close();
+                Swal.fire({
+                    title: res.data.message,
+                    icon: "success",
+                    timer: 1500,
+                    showConfirmButton: false
+                });
+                this.clearFormCeremony();
+                this.$emit('updateDeceasedProfileList', 'edit');
+                this.getCeremonies(this.formProfile.id);
+            })
+            .catch(err => {
+                loading.close();
+                if(err.response && err.response.status == 422) {
+                    this.errorsCeremony = err.response.data.errors;
+                }else if(err.response.data.message) {
+                    Swal.fire({
+                        title: 'Error!',
+                        text: err.response.data.message,
+                        icon: "error",
+                        showCloseButton: true,
+                        closeButtonColor: 'red',
+                    });
+                }
+            })
+        },
+        destroyCeremony(ceremony) {
+            const url = `/admin/ajax/ceremonies/${ceremony.id}/destroy`;
+            const loading = this.$vs.loading({
+                type: 'points',
+                color: '#187de4',
+                // background: '#7a76cb',
+                text: this.__('Deleting') + '...'
+            });
+
+            axios.delete(url)
+            .then(res => {
+                loading.close();
+                Swal.fire({
+                    title: res.data.message,
+                    icon: "success",
+                    timer: 1500,
+                    showConfirmButton: false
+                });
+                this.$emit('updateDeceasedProfileList', 'edit');
+                this.getCeremonies(this.formProfile.id);
+            })
+            .catch(err => {
+                loading.close();
+                if(err.response.data.message) {
+                    Swal.fire({
+                        title: 'Error!',
+                        text: err.response.data.message,
+                        icon: "error",
+                        showCloseButton: true,
+                        closeButtonColor: '#ee2d41',
+                    });
+                }
+            })
+        },
 
     },
 

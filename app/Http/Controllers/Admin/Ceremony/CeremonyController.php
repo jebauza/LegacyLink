@@ -81,7 +81,37 @@ class CeremonyController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        if(!$ceremony = Ceremony::find($id)) {
+            return $this->sendError404();
+        }
+
+        $request->validate([
+            'additional_info' => 'nullable|string',
+            'address' => 'required|string|max:255',
+            'start' => 'required|date|date_format:Y-m-d H:i:s',
+            'end' => 'required|date|date_format:Y-m-d H:i:s|after:start',
+            'main' => 'required|boolean',
+            'room_name' => 'nullable|string|max:255',
+            'type_id' => 'required|integer|exists:ceremony_types,id',
+        ]);
+
+        try {
+            DB::beginTransaction();
+            $ceremony->fill($request->all());
+            $ceremony->save();
+            if ($ceremony->main) {
+                Ceremony::where('profile_id',$ceremony->profile_id)
+                            ->where('id','<>',$ceremony->id)
+                            ->update(['main' => false]);
+            }
+
+            DB::commit();
+            return $this->sendResponse(__('Updated successfully'), (new CeremonyResource($ceremony)));
+
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return $this->sendError500($e->getMessage());
+        }
     }
 
     /**
@@ -92,6 +122,20 @@ class CeremonyController extends Controller
      */
     public function destroy($id)
     {
-        //
+        if(!$ceremony = Ceremony::find($id)) {
+            return $this->sendError404();
+        }
+
+        try {
+            DB::beginTransaction();
+            $ceremony->delete();
+
+            DB::commit();
+            return $this->sendResponse(__('Deleted successfully'), (new CeremonyResource($ceremony)));
+
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return $this->sendError500($e->getMessage());
+        }
     }
 }

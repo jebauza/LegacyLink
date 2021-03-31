@@ -87,11 +87,13 @@ Route::name('admin.')->group(function () {
                 Route::put('/{users_id}/update', [UserController::class, 'update'])->name('update');
             });
 
-            // Users
+            // Ceremonies
             Route::prefix('ceremonies')->name('ceremonies.')->group(function () {
 
                 Route::get('/', [CeremonyController::class, 'index'])->name('index');
                 Route::post('/store', [CeremonyController::class, 'store'])->name('store');
+                Route::put('/{ceremony_id}/update', [CeremonyController::class, 'update'])->name('update');
+                Route::delete('/{ceremony_id}/destroy', [CeremonyController::class, 'destroy'])->name('destroy');
             });
 
             Route::get('/roles', [RoleController::class, 'getRolesByAuthUserAssign'])->name('roles.ByAuthUserAssign');
