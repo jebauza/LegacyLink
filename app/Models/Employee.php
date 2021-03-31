@@ -30,8 +30,7 @@ class Employee extends Authenticatable
         'email',
         'last_name',
         'phone',
-        'extra_info',
-        'password'
+        'extra_info'
     ];
 
     /**
