@@ -90,9 +90,8 @@ class DeceasedProfileController extends Controller
             $newDProfile->adviser_id = $request->dprofile_adviser;
             $newDProfile->office_id = $request->dprofile_office;
             if ($newDProfile->save()) {
-                $newDProfile->token = Str::random(10) . $newDProfile->id;
-                $newDProfile->save();
-                if (!$client = User::where('email', $request->client_email)->first()) {
+
+                if (!$client = User::where('id', $request->client_email)->first()) {
                     $client = new User();
                     $client->password = Hash::make(Str::random(8));
                 }
@@ -104,11 +103,13 @@ class DeceasedProfileController extends Controller
                 if ($client->save()) {
                     $newDProfile->clients()->attach($client->id, [
                         'role' => 'admin',
-                        'declarant' => true
+                        'declarant' => true,
+                        'token' => $newDProfile->id . Str::random(5) . $client->id,
                     ]);
 
+                    
                     $message = 'Su acceso para la web de ' . $newDProfile->name . ' es https://web.celebrasuvida.es/admin?token=' . $newDProfile->token;
-                    $smsResp = SMSHelper::sendingSMS($client->phone, $message);
+                    //$smsResp = SMSHelper::sendingSMS($client->phone, $message);
                 }
 
                 foreach ($request->ceremonies as $key => $value) {

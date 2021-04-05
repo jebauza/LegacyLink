@@ -24,6 +24,7 @@ class CreateDeceasedProfileUserTable extends Migration
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
 
             $table->string('role')->default('close_friend')->comment("('admin', 'family','close_friend')");
+            $table->string('token', 80)->nullable();
 
             $table->timestamps();
         });

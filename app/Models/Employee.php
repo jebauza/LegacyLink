@@ -9,6 +9,7 @@ use Spatie\Permission\Models\Role;
 use Spatie\Permission\Traits\HasRoles;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Builder;
+use Propaganistas\LaravelPhone\PhoneNumber;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -52,6 +53,22 @@ class Employee extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    /**
+     * The "booted" method of the model.
+     *
+     * @return void
+     */
+    protected static function booted()
+    {
+        static::creating(function ($employee) {
+            $employee->phone = (string) PhoneNumber::make($employee->phone)->ofCountry('ES'); // +3412345678;
+        });
+
+        static::updating(function ($employee) {
+            $employee->phone = (string) PhoneNumber::make($employee->phone)->ofCountry('ES'); // +3412345678;
+        });
+    }
+
     protected $appends = ['fullName'];
 
     // Attributes
@@ -77,7 +94,8 @@ class Employee extends Authenticatable
     {
         if ($param) {
             $query->whereHas('roles', function (Builder $query) use ($param){
-                $query->where('id', $param);
+                $roles = explode("-", $param);
+                $query->whereIn('id', $roles);
             });
         }
     }

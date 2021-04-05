@@ -15,15 +15,19 @@ class CreateDeceasedProfilesTable extends Migration
     {
         Schema::create('deceased_profiles', function (Blueprint $table) {
             $table->id();
+            $table->string('web_code')->nullable()->unique();
             $table->string("name",255);
             $table->string("last_name",255);
             $table->date("birthday");
             $table->date("death");
-            $table->unsignedBigInteger('adviser_id');
-            $table->unsignedBigInteger('office_id');
+            $table->string('photo')->nullable();
 
+            $table->unsignedBigInteger('adviser_id');
             $table->foreign('adviser_id')->references('id')->on('employees');
+
+            $table->unsignedBigInteger('office_id');
             $table->foreign('office_id')->references('id')->on('offices');
+
             $table->timestamps();
         });
     }

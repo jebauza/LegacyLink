@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Models\User;
 use DateTimeInterface;
 use App\Models\Invitation;
+use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Database\Eloquent\Builder;
@@ -32,13 +33,17 @@ class DeceasedProfile extends Model
     ];
 
     /**
-     * The attributes that should be hidden for arrays.
+     * The "booted" method of the model.
      *
-     * @var array
+     * @return void
      */
-    protected $hidden = [
-        'token'
-    ];
+    protected static function booted()
+    {
+        static::created(function ($profile) {
+            $profile->web_code = Str::random(5) . $profile->id;
+            $profile->save();
+        });
+    }
 
     protected function serializeDate(DateTimeInterface $date)
     {
@@ -152,7 +157,8 @@ class DeceasedProfile extends Model
     {
         return $this->belongsToMany(User::class, 'deceased_profile_user', 'profile_id', 'user_id')
                     ->withPivot('profile_id','user_id','role','declarant')->withTimestamps()
-                    ->wherePivot('declarant', true);
+                    ->wherePivot('declarant', true)
+                    ->limit(1);
     }
 
 

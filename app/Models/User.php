@@ -53,6 +53,14 @@ class User extends Authenticatable
         return $this->name . ($this->lastname ? ' ' . $this->lastname : '');
     }
 
+    public function scopeEmailDni($query, $param)
+    {
+        if ($param) {
+            $query->where('email', 'like', "%$param%")
+                    ->orWhere('dni', 'like', "%$param%");
+        }
+    }
+
     /**
      * The deceased_profiles that belong to the User
      *
