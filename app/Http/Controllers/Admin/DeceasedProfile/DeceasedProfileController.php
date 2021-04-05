@@ -231,8 +231,8 @@ class DeceasedProfileController extends Controller
                 return $this->sendError(__('Declarant does not exist'));
             }
 
-            //NotificationDeclarantJob::dispatch($profile);
-            NotificationDeclarantJob::dispatchNow($profile);
+            NotificationDeclarantJob::dispatch($profile);
+            // NotificationDeclarantJob::dispatchNow($profile);
 
             $message = 'Su acceso para la web de ' . $profile->fullName . ' es ' . config('albia.web_client_url') . '/admin?token=' . $client->pivot->token . ' .Este acceso es intransferible, solo usted puede utilizarlo.';
 
