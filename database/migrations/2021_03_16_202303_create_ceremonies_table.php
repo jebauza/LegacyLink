@@ -25,10 +25,12 @@ class CreateCeremoniesTable extends Migration
             $table->decimal('longitude', 11, 8)->nullable();
 
             $table->unsignedBigInteger('type_id')->nullable();
-            $table->unsignedBigInteger('profile_id');
-
             $table->foreign('type_id')->references('id')->on('ceremony_types')->onDelete('set null');
+
+            $table->unsignedBigInteger('profile_id');
             $table->foreign('profile_id')->references('id')->on('deceased_profiles')->onDelete('cascade');
+
+            $table->string('visible')->default('public')->comment("['family','close_friend','public']");
             $table->timestamps();
         });
     }

@@ -59,10 +59,10 @@
                     </thead>
                     <tbody>
                         <tr v-for="(office, index) in offices.data" :key="index">
-                            <th>{{ index + 1 }}</th>
+                            <th>{{ index + offices.from }}</th>
                             <td>{{ office.cif }}</td>
                             <td>{{ office.name }}</td>
-                            <td>{{ office.address }}</td>
+                            <td>{{ office.fullAddress }}</td>
                             <td>{{ office.email }}</td>
                             <td>{{ office.phone }}</td>
                             <td>{{ office.contact_person }}</td>

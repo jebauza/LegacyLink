@@ -53,6 +53,14 @@ class User extends Authenticatable
         return $this->name . ($this->lastname ? ' ' . $this->lastname : '');
     }
 
+    public function scopeEmailDni($query, $param)
+    {
+        if ($param) {
+            $query->where('email', 'like', "%$param%")
+                    ->orWhere('dni', 'like', "%$param%");
+        }
+    }
+
     /**
      * The deceased_profiles that belong to the User
      *
@@ -61,6 +69,6 @@ class User extends Authenticatable
     public function deceased_profiles()
     {
         return $this->belongsToMany(DeceasedProfile::class, 'deceased_profile_user', 'user_id', 'profile_id')
-                    ->withPivot('profile_id','user_id','role','declarant')->withTimestamps();
+                    ->withPivot('profile_id','user_id','role','declarant','token')->withTimestamps();
     }
 }

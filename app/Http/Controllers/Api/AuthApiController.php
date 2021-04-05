@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Route;
 use App\Http\Resources\Api\UserApiResource;
-
+use Illuminate\Database\Eloquent\Builder;
 
 /**
  * @OA\Tag(
@@ -225,9 +225,14 @@ class AuthApiController extends Controller
             'token' => 'required|string',
         ]);
 
-        $profile = DeceasedProfile::where('token', $request->token)->first();
+        // $profile = DeceasedProfile::where('token', $request->token)->first();
+        $profile = DeceasedProfile::whereHas('clientDeclarant', function (Builder $query) use($request){
+            $query->where('deceased_profile_user.token', $request->token);
+        })
+        ->with('clientDeclarant')
+        ->first();
 
-        $user = $profile ? $profile->clients()->wherePivot('declarant', true)->first() : null;
+        $user = $profile ? $profile->clientDeclarant()->first() : null;
 
         if(!$user) {
             return response()->json([

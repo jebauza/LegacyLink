@@ -21,10 +21,9 @@
 
                 <div class="col-sm-6 col-lg-4 form-group">
                     <label style="text-transform: uppercase;"><b>{{ __('validation.attributes.dprofile_office') }}</b></label>
-                        <select class="form-control" v-model="searches.office">
-                            <option value=""></option>
-                            <option v-for="(o, index) in offices" :key="index" :value="o.id">{{ o.name }}</option>
-                        </select>
+                    <vs-select :key="offices.length" filter v-model="searches.office" :placeholder="__('Select')">
+                        <vs-option v-for="office in offices" :key="office.id" :label="office.name" :value="office.id">{{ office.name }}</vs-option>
+                    </vs-select>
                 </div>
 
                 <div class="col-sm-6 col-lg-4 form-group">
@@ -116,20 +115,20 @@
 
         </div>
 
-        <deceased-profile-form-add-edit ref="deceasedProfileFormAddEdit" @updateDeceasedProfileList="updateList()"></deceased-profile-form-add-edit>
+        <add-profile ref="AddFormProfile" @updateDeceasedProfileList="updateList()"></add-profile>
 
-        <deceased-profile-form-edit ref="deceasedProfileFormEdit" @updateDeceasedProfileList="updateList()"></deceased-profile-form-edit>
+        <edit-profile ref="EditFormProfile" @updateDeceasedProfileList="updateList()"></edit-profile>
 
     </div>
 <!--end::Card-->
 </template>
 
 <script>
-import DeceasedProfileFormAddEdit from './DeceasedProfileFormAddEditComponent';
-import DeceasedProfileFormEdit from './DeceasedProfileEditComponent';
+import AddProfile from './AddProfileComponent';
+import EditProfile from './EditProfileComponent';
 
 export default {
-    components: {DeceasedProfileFormAddEdit, DeceasedProfileFormEdit},
+    components: {AddProfile, EditProfile},
 
     created() {
         this.getDeceasedProfiles();
@@ -199,9 +198,9 @@ export default {
         openModalAddEditShow(action, profile = null) {
 
             if (action == 'add') {
-                this.$refs.deceasedProfileFormAddEdit.showForm(action, null);
+                this.$refs.AddFormProfile.showForm(action, null);
             } else {
-                this.$refs.deceasedProfileFormEdit.showForm(action, profile);
+                this.$refs.EditFormProfile.showForm(action, profile);
             }
         },
         updateList(action = null) {
@@ -222,7 +221,7 @@ export default {
                     title: res.data.message,
                     text: res.data.data ? res.data.data.message : '',
                     icon: "success",
-                    timer: 1500,
+                    timer: 3000,
                     showConfirmButton: false
                 });
             }).catch(err => {

@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\MailController;
 use App\Http\Controllers\Admin\HomeController;
 use App\Http\Controllers\Admin\Role\RoleController;
 use App\Http\Controllers\Admin\User\UserController;
@@ -10,6 +11,7 @@ use App\Http\Controllers\Admin\Office\OfficeController;
 use App\Http\Controllers\Admin\Ceremony\CeremonyController;
 use App\Http\Controllers\Admin\Employee\EmployeeController;
 use App\Http\Controllers\Admin\Auth\ResetPasswordController;
+use App\Http\Controllers\Admin\Province\ProvincesController;
 use App\Http\Controllers\Admin\Auth\ForgotPasswordController;
 use App\Http\Controllers\Admin\CeremonyType\CeremonyTypeController;
 use App\Http\Controllers\Admin\DeceasedProfile\DeceasedProfileController;
@@ -39,6 +41,7 @@ Route::name('admin.')->group(function () {
         Route::get('offices', [OfficeController::class, 'indexView'])->name('offices.indexView')->middleware('permission:offices.view');
         Route::get('employees', [EmployeeController::class, 'indexView'])->name('employees.indexView');
         Route::get('webs', [DeceasedProfileController::class, 'indexView'])->name('webs.indexView');
+        Route::get('emails', [MailController::class, 'index']);
 
         Route::prefix('ajax')->name('ajax.')->middleware('ajax')->group(function () {
 
@@ -51,7 +54,6 @@ Route::name('admin.')->group(function () {
                 Route::get('show', [OfficeController::class, 'show'])->name('show');
                 Route::put('/{office_id}/update', [OfficeController::class, 'update'])->name('update')->middleware('permission:offices.store');
                 Route::delete('/{office_id}/destroy', [OfficeController::class, 'destroy'])->name('destroy');
-
             });
 
             // Employee
@@ -83,7 +85,7 @@ Route::name('admin.')->group(function () {
 
             // Users
             Route::prefix('users')->name('users.')->group(function () {
-
+                Route::get('/', [UserController::class, 'index'])->name('index');
                 Route::put('/{users_id}/update', [UserController::class, 'update'])->name('update');
             });
 
@@ -98,6 +100,7 @@ Route::name('admin.')->group(function () {
 
             Route::get('/roles', [RoleController::class, 'getRolesByAuthUserAssign'])->name('roles.ByAuthUserAssign');
             Route::get('/ceremony_types', [CeremonyTypeController::class, 'index'])->name('ceremony_types.index');
+            Route::get('/provinces', [ProvincesController::class, 'index'])->name('provinces.index');
 
         });
 

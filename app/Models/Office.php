@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Models\Employee;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
+use Propaganistas\LaravelPhone\PhoneNumber;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Office extends Model
@@ -13,7 +14,23 @@ class Office extends Model
 
     protected $table = 'offices';
 
-    protected $fillable = ['code','name','cif','address','extra_address','city','cp','province','country','timezone','phone','contact_person','email','latitude','longitude'];
+    protected $fillable = ['name','cif','address','extra_address','city','cp','province','country','timezone','phone','contact_person','email','latitude','longitude'];
+
+    /**
+     * The "booted" method of the model.
+     *
+     * @return void
+     */
+    protected static function booted()
+    {
+        static::creating(function ($office) {
+            $office->phone = (string) PhoneNumber::make($office->phone)->ofCountry('ES'); // +3412345678;
+        });
+
+        static::updating(function ($office) {
+            $office->phone = (string) PhoneNumber::make($office->phone)->ofCountry('ES'); // +3412345678;
+        });
+    }
 
     // SCOPES
     public function scopeFilterByRole($query)
@@ -37,8 +54,22 @@ class Office extends Model
     {
         if ($param) {
             $query->where('address', 'like', "%$param%")
-                ->orWhere('extra_address', 'like', "%$param%");
+                ->orWhere('extra_address', 'like', "%$param%")
+                ->orWhere('city', 'like', "%$param%")
+                ->orWhere('cp', 'like', "%$param%");
         }
+    }
+
+    protected $appends = ['fullAddress'];
+
+    // Attributes
+    function getFullAddressAttribute()
+    {
+        return $this->address
+                . ($this->extra_address ? ', ' . $this->extra_address : '')
+                . ($this->cp ? ', ' . $this->cp : '')
+                . ($this->city ? ' ' . $this->city : '')
+                . ($this->country ? ', ' . $this->country : '');
     }
 
     /**

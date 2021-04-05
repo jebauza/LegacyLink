@@ -7,6 +7,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use App\Http\Resources\UserResource;
 
 class UserController extends Controller
 {
@@ -15,9 +16,13 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $clients = User::EmailDni($request->emailDni)
+                    ->orderBy('name')
+                    ->get();
+
+        return $this->sendResponse(null, UserResource::collection($clients));
     }
 
     /**

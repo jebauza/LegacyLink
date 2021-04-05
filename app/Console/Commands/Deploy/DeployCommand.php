@@ -50,6 +50,7 @@ class DeployCommand extends Command
         Artisan::call('route:clear');
         Artisan::call('clear-compiled');
         Artisan::call('passport:install');
+        Artisan::call('queue:restart');
 
         $this->createUpdatePermissions();
         $this->createUpdateCeremonyTypes();

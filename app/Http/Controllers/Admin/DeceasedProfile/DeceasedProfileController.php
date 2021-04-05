@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Hash;
 use Propaganistas\LaravelPhone\PhoneNumber;
 use App\Http\Resources\DeceasedProfileResource;
 use App\Http\Requests\DeceasedProfileStoreRequest;
+use App\Jobs\DeceasedProfile\NotificationDeclarantJob;
 
 class DeceasedProfileController extends Controller
 {
@@ -54,7 +55,7 @@ class DeceasedProfileController extends Controller
                             ->name($request->name)
                             ->declarant($request->declarant)
                             ->with('office', 'clients', 'adviser', 'ceremonies.type')
-                            ->orderBy('name')
+                            ->latest()
                             ->paginate();
 
         //$dprofilesPaginate->setCollection(DeceasedProfileResource::collection($dprofilesPaginate->getCollection())->collection);
@@ -90,9 +91,8 @@ class DeceasedProfileController extends Controller
             $newDProfile->adviser_id = $request->dprofile_adviser;
             $newDProfile->office_id = $request->dprofile_office;
             if ($newDProfile->save()) {
-                $newDProfile->token = Str::random(10) . $newDProfile->id;
-                $newDProfile->save();
-                if (!$client = User::where('email', $request->client_email)->first()) {
+
+                if (!$client = User::where('id', $request->client_id)->first()) {
                     $client = new User();
                     $client->password = Hash::make(Str::random(8));
                 }
@@ -104,11 +104,12 @@ class DeceasedProfileController extends Controller
                 if ($client->save()) {
                     $newDProfile->clients()->attach($client->id, [
                         'role' => 'admin',
-                        'declarant' => true
+                        'declarant' => true,
+                        'token' => $newDProfile->id . Str::random(5) . $client->id,
                     ]);
 
-                    $message = 'Su acceso para la web de ' . $newDProfile->name . ' es https://web.celebrasuvida.es/admin?token=' . $newDProfile->token;
-                    $smsResp = SMSHelper::sendingSMS($client->phone, $message);
+                    NotificationDeclarantJob::dispatch($newDProfile, $request->client_sendSms, $request->client_sendEmail);
+                    // NotificationDeclarantJob::dispatchNow($newDProfile);
                 }
 
                 foreach ($request->ceremonies as $key => $value) {
@@ -219,22 +220,26 @@ class DeceasedProfileController extends Controller
      */
     public function sendNotification(Request $request, $id)
     {
-        if(!$profile = DeceasedProfile::find($id)) {
-            return $this->sendError404();
-        }
+        try {
 
-        $client = $profile->clients()->wherePivot('declarant', true)->first();
-        if (!$client) {
-            return $this->sendError(__('Declarant does not exist'));
-        }
+            if(!$profile = DeceasedProfile::with('clientDeclarant')->find($id)) {
+                return $this->sendError404();
+            }
 
-        $message = 'Su acceso para la web de ' . $profile->name . ' es https://web.celebrasuvida.es/admin?token=' .$profile->token;
-        $smsResp = SMSHelper::sendingSMS($client->phone, $message);
+            $client = $profile->clientDeclarant()->first();
+            if (!$client) {
+                return $this->sendError(__('Declarant does not exist'));
+            }
 
-        if ($smsResp) {
+            //NotificationDeclarantJob::dispatch($profile);
+            NotificationDeclarantJob::dispatchNow($profile);
+
+            $message = 'Su acceso para la web de ' . $profile->fullName . ' es ' . config('albia.web_client_url') . '/admin?token=' . $client->pivot->token . ' .Este acceso es intransferible, solo usted puede utilizarlo.';
+
             return $this->sendResponse(__('Message sent successfully'), ['message' => $message]);
-        }
 
-        return $this->sendError500('Mensaje no enviado');
+        } catch (\Exception $e) {
+            return $this->sendError500($e->getMessage());
+        }
     }
 }

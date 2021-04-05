@@ -21,10 +21,9 @@
 
                 <div class="col-sm-6 col-lg-4 form-group">
                     <label style="text-transform: uppercase;"><b>{{ __('validation.attributes.dprofile_office') }}</b></label>
-                        <select class="form-control" v-model="searches.office">
-                            <option value=""></option>
-                            <option v-for="(o, index) in offices" :key="index" :value="o.id">{{ o.name }}</option>
-                        </select>
+                    <vs-select :key="offices.length" filter v-model="searches.office" :placeholder="__('Select')">
+                        <vs-option v-for="office in offices" :key="office.id" :label="office.name" :value="office.id">{{ office.name }}</vs-option>
+                    </vs-select>
                 </div>
 
                 <div class="col-sm-6 col-lg-4 form-group">
@@ -60,16 +59,18 @@
                             <th>{{ __('validation.attributes.last_name') }}</th>
                             <th>{{ __('validation.attributes.email') }}</th>
                             <th>{{ __('validation.attributes.phone') }}</th>
+                            <th>{{ __('validation.attributes.role') }}</th>
                             <th class="text-nowrap d-flex justify-content-center">{{ __('Actions') }}</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr v-for="(employee, index) in employees.data" :key="index">
-                            <th>{{ index + 1 }}</th>
+                            <th>{{ index + employees.from }}</th>
                             <td>{{ employee.name }}</td>
                             <td>{{ employee.last_name }}</td>
                             <td>{{ employee.email }}</td>
                             <td>{{ employee.phone }}</td>
+                            <td>{{ employee.role.name || '' }}</td>
                             <td>
                                 <div class="d-flex justify-content-center">
                                     <vs-tooltip bottom>

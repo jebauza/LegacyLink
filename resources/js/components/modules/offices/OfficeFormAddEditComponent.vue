@@ -45,8 +45,8 @@
                         <div class="form-group col-md-12 col-lg-3">
                             <label :class="['control-label', errors.contact_person ? 'text-danger' : '']"><b>{{ __('validation.attributes.contact_person') }}</b></label>
                             <input v-model="form.contact_person" type="text" :class="['form-control', errors.contact_person ? 'is-invalid' : '']" name="contact_person" :placeholder="__('validation.attributes.contact_person')" :disabled="modalType=='show'">
-                            <small v-if="errors.phone" class="form-control-feedback text-danger">
-                                {{ errors.phone[0] }}
+                            <small v-if="errors.contact_person" class="form-control-feedback text-danger">
+                                {{ errors.contact_person[0] }}
                             </small>
                         </div>
 
@@ -86,14 +86,19 @@
                         </div>
                         <div class="form-group col-6 col-md-3">
                             <label :class="['control-label', errors.province ? 'text-danger' : '']"><b>{{ __('validation.attributes.state') }}</b></label>
-                            <input v-model="form.province" type="text" :class="['form-control', errors.province ? 'is-invalid' : '']" name="province" :placeholder="__('validation.attributes.state')" :disabled="modalType=='show'">
+                            <!-- <input v-model="form.province" type="text" :class="['form-control', errors.province ? 'is-invalid' : '']" name="province" :placeholder="__('validation.attributes.state')" :disabled="modalType=='show'"> -->
+                            <vs-select :key="provinces.length" filter :placeholder="__('Select')" v-model="form.province" :disabled="modalType=='show'">
+                                <vs-option v-for="province in provinces" :key="province" :label="province" :value="province">
+                                    {{ province }}
+                                </vs-option>
+                            </vs-select>
                             <small v-if="errors.province" class="form-control-feedback text-danger">
                                 {{ errors.province[0] }}
                             </small>
                         </div>
                         <div class="form-group col-6 col-md-3">
                             <label :class="['control-label', errors.country ? 'text-danger' : '']"><b>{{ __('validation.attributes.country') }}</b></label>
-                            <input v-model="form.country" type="text" :class="['form-control', errors.country ? 'is-invalid' : '']" name="country" :placeholder="__('validation.attributes.country')" :disabled="modalType=='show'">
+                            <input v-model="form.country" type="text" :class="['form-control', errors.country ? 'is-invalid' : '']" name="country" :placeholder="__('validation.attributes.country')" :disabled="true">
                             <small v-if="errors.country" class="form-control-feedback text-danger">
                                 {{ errors.country[0] }}
                             </small>
@@ -113,9 +118,13 @@
 
 <script>
 export default {
+    created() {
+        this.getProvinces();
+    },
     data() {
         return {
             modalType: 'add', //add, edit
+            provinces: [],
 
             form: {
                 name: '',
@@ -125,7 +134,7 @@ export default {
                 city: '',
                 cp: '',
                 province: '',
-                country: '',
+                country: 'España',
                 phone: '',
                 email: '',
                 contact_person: '',
@@ -136,6 +145,17 @@ export default {
     },
 
     methods: {
+        getProvinces() {
+            const url = `/admin/ajax/provinces`;
+
+            axios.get(url)
+            .then(res => {
+                this.provinces = res.data.data;
+            })
+            .catch(err => {
+                console.error(err);
+            });
+        },
         showForm(action, office = null) {
 
             if(this.modalType != action) {
@@ -151,8 +171,8 @@ export default {
                     extra_address: office.extra_address,
                     city: office.city,
                     cp: office.cp,
-                    province: office.province,
-                    country: office.country,
+                    province: office.province ?? '',
+                    country: office.country ?? 'España',
                     phone: office.phone,
                     email: office.email,
                     contact_person: office.contact_person,
@@ -171,7 +191,7 @@ export default {
                 city: '',
                 cp: '',
                 province: '',
-                country: '',
+                country: 'España',
                 phone: '',
                 email: '',
                 contact_person: '',

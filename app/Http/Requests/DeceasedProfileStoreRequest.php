@@ -33,11 +33,14 @@ class DeceasedProfileStoreRequest extends FormRequest
             'dprofile_birthday' => 'required|date|date_format:Y-m-d',
             'dprofile_death' => 'required|date|date_format:Y-m-d|after:dprofile_birthday',
 
+            'client_id' => 'integer|exists:users,id',
             'client_name' => 'required|string|max:255',
             'client_lastname' => 'required|string|max:255',
-            'client_dni' => ['required','string','max:20',new Nif],
-            'client_email' => 'required|string|max:255',
+            'client_dni' => ['required','string','max:20',new Nif,Rule::unique('users', 'dni')->ignore($this->client_id)],
+            'client_email' => 'required|string|max:255|unique:users,email,'.$this->client_id.',id',
             'client_phone' => 'required|string|phone:ES,mobile',
+            'client_sendEmail' => 'required|boolean',
+            'client_sendSms' => 'required|boolean',
 
             'ceremonies' => 'bail|required|array|min:1',
             'ceremonies.*.additional_info' => 'nullable|string',

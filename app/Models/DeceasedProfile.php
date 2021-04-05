@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Models\User;
 use DateTimeInterface;
 use App\Models\Invitation;
+use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Database\Eloquent\Builder;
@@ -32,13 +33,17 @@ class DeceasedProfile extends Model
     ];
 
     /**
-     * The attributes that should be hidden for arrays.
+     * The "booted" method of the model.
      *
-     * @var array
+     * @return void
      */
-    protected $hidden = [
-        'token'
-    ];
+    protected static function booted()
+    {
+        static::created(function ($profile) {
+            $profile->web_code = Str::random(5) . $profile->id;
+            $profile->save();
+        });
+    }
 
     protected function serializeDate(DateTimeInterface $date)
     {
@@ -50,7 +55,7 @@ class DeceasedProfile extends Model
     // Attributes
     function getFullNameAttribute()
     {
-        return $this->name . ($this->lastname ? ' ' . $this->lastname : '');
+        return $this->name . ($this->last_name ? ' ' . $this->last_name : '');
     }
 
     function getUrlPhotoAttribute()
@@ -140,7 +145,8 @@ class DeceasedProfile extends Model
     public function clients()
     {
         return $this->belongsToMany(User::class, 'deceased_profile_user', 'profile_id', 'user_id')
-                    ->withPivot('profile_id','user_id','role','declarant')->withTimestamps();
+                    ->withPivot('profile_id','user_id','role','declarant','token')
+                    ->withTimestamps();
     }
 
     /**
@@ -151,8 +157,9 @@ class DeceasedProfile extends Model
     public function clientDeclarant()
     {
         return $this->belongsToMany(User::class, 'deceased_profile_user', 'profile_id', 'user_id')
-                    ->withPivot('profile_id','user_id','role','declarant')->withTimestamps()
-                    ->wherePivot('declarant', true);
+                    ->withPivot('profile_id','user_id','role','declarant','token')->withTimestamps()
+                    ->wherePivot('declarant', true)
+                    ->limit(1);
     }
 
 

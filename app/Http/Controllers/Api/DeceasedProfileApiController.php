@@ -45,9 +45,11 @@ class DeceasedProfileApiController extends Controller
      *
      * @param int $profile_id
      */
-    public function show($profile_id)
+    public function show($profile)
     {
-        $profile = DeceasedProfile::find($profile_id);
+        $profile = DeceasedProfile::where('id', $profile)
+                                    ->orWhere('web_code', $profile)
+                                    ->first();
 
         if(!$profile){
             return $this->sendError404();
