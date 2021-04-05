@@ -56,8 +56,6 @@ return [
 
     'asset_url' => env('ASSET_URL', null),
 
-    'web_client_url' => env('WEB_CLIENT_URL', 'https://web.celebrasuvida.es'),
-
     /*
     |--------------------------------------------------------------------------
     | Application Timezone

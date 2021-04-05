@@ -55,7 +55,7 @@ class DeceasedProfile extends Model
     // Attributes
     function getFullNameAttribute()
     {
-        return $this->name . ($this->lastname ? ' ' . $this->lastname : '');
+        return $this->name . ($this->last_name ? ' ' . $this->last_name : '');
     }
 
     function getUrlPhotoAttribute()
@@ -145,7 +145,8 @@ class DeceasedProfile extends Model
     public function clients()
     {
         return $this->belongsToMany(User::class, 'deceased_profile_user', 'profile_id', 'user_id')
-                    ->withPivot('profile_id','user_id','role','declarant')->withTimestamps();
+                    ->withPivot('profile_id','user_id','role','declarant','token')
+                    ->withTimestamps();
     }
 
     /**
@@ -156,7 +157,7 @@ class DeceasedProfile extends Model
     public function clientDeclarant()
     {
         return $this->belongsToMany(User::class, 'deceased_profile_user', 'profile_id', 'user_id')
-                    ->withPivot('profile_id','user_id','role','declarant')->withTimestamps()
+                    ->withPivot('profile_id','user_id','role','declarant','token')->withTimestamps()
                     ->wherePivot('declarant', true)
                     ->limit(1);
     }

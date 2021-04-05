@@ -22,7 +22,8 @@ class DeceasedProfileApiResource extends JsonResource
             "birthday"=>$this->birthday->format('Y-m-d'),
             "death"=>$this->death->format('Y-m-d'),
             "adviser"=>new AdviserApiResource($this->adviser),
-            "photo"=>$this->urlPhoto
+            "photo"=>$this->urlPhoto,
+            "web_code"=>$this->web_code,
         ];
     }
 

@@ -575,6 +575,13 @@ export default {
             };
             this.errors = {};
             this.clearFormCeremony();
+            this.loadClient= {
+                switch: false,
+                search: '',
+                loading: false,
+                check: false,
+                client: '',
+            };
         },
         clearFormCeremony() {
             this.formCeremony = {

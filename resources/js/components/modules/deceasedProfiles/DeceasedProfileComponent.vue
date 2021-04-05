@@ -221,7 +221,7 @@ export default {
                     title: res.data.message,
                     text: res.data.data ? res.data.data.message : '',
                     icon: "success",
-                    timer: 1500,
+                    timer: 3000,
                     showConfirmButton: false
                 });
             }).catch(err => {
