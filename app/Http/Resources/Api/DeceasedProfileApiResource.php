@@ -39,6 +39,7 @@ class DeceasedProfileApiResource extends JsonResource
      *      @OA\Property(property="death", type="date", example="2021-03-20"),
      *      @OA\Property(property="adviser", ref="#/components/schemas/AdviserApiResource"),
      *      @OA\Property(property="photo", type="string", example="https://albia.celebratuvida.es/fdfhjduruiuinsdkd.jpg"),
+     *      @OA\Property(property="web_code", type="string", example="TztH29"),
      * )
      */
 }

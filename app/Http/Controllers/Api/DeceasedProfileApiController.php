@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Helpers\UploadFile;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Models\DeceasedProfile;
@@ -60,7 +61,7 @@ class DeceasedProfileApiController extends Controller
 
 
     /**
-     * @OA\Put(
+     * @OA\Post(
      *      path="/profile/{profile_id}/update",
      *      operationId="/profile/{profile_id}/update",
      *      tags={"Profile"},
@@ -69,14 +70,6 @@ class DeceasedProfileApiController extends Controller
      *      security={{"api_key": {}}},
      *
      *      @OA\Parameter(ref="#/components/parameters/profile_id"),
-     *
-     *     @OA\Parameter(
-     *          name="photo",
-     *          in="query",
-     *          required=true,
-     *          description="Building photo",
-     *           @OA\Schema(type="file")
-     *      ),
      *
      *      @OA\RequestBody(ref="#/components/requestBodies/request_deceased_profile_update"),
      *
@@ -101,9 +94,6 @@ class DeceasedProfileApiController extends Controller
      */
     public function update(DeceasedProfileUpdateApiRequest $request, $profile_id)
     {
-        header('Access-Control-Allow-Origin: *');
-        header('Access-Control-Allow-Headers: *');
-        
         $path = null;
         $profile = session('profileWeb');
 
@@ -113,14 +103,11 @@ class DeceasedProfileApiController extends Controller
             $profile->last_name = $request->lastname;
             $profile->birthday = $request->birthday;
             $profile->death = $request->death;
-            if($request->hasFile('photo')) {
-                $photo = $request->file('photo');
-                $photo_name = Str::random(10) . '.' . $photo->getClientOriginalExtension();
-                $path = Storage::disk('public')->putFileAs('deceased_profiles/' . $profile->id, $photo, $photo_name);
+            if($request->photo_base64) {
+                $dirPath = 'deceased_profiles/' . $profile->id;
+                $path = UploadFile::upload($request->photo_base64, $dirPath, true);
                 if($profile->photo) {
-                    if(Storage::disk('public')->exists($profile->photo)) {
-                        Storage::disk('public')->delete($profile->photo);
-                    }
+                    UploadFile::delete($profile->photo);
                 }
                 $profile->photo = $path;
             }
@@ -130,8 +117,8 @@ class DeceasedProfileApiController extends Controller
             return $this->sendResponse(__('Saved successfully'), (new DeceasedProfileApiResource($profile)), 200);
         } catch (\Exception $e) {
             DB::rollBack();
-            if($path && Storage::disk('public')->exists($path)){
-                Storage::disk('public')->delete($path);
+            if($path){
+                UploadFile::delete($path);
             }
             return $this->sendError500($e->getMessage());
         }

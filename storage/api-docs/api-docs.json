@@ -916,7 +916,7 @@
             }
         },
         "/profile/{profile_id}/update": {
-            "put": {
+            "post": {
                 "tags": [
                     "Profile"
                 ],
@@ -926,15 +926,6 @@
                 "parameters": [
                     {
                         "$ref": "#/components/parameters/profile_id"
-                    },
-                    {
-                        "name": "photo",
-                        "in": "query",
-                        "description": "Building photo",
-                        "required": true,
-                        "schema": {
-                            "type": "file"
-                        }
                     }
                 ],
                 "requestBody": {
@@ -1323,6 +1314,10 @@
                     "photo": {
                         "type": "string",
                         "example": "https://albia.celebratuvida.es/fdfhjduruiuinsdkd.jpg"
+                    },
+                    "web_code": {
+                        "type": "string",
+                        "example": "TztH29"
                     }
                 },
                 "type": "object"
@@ -1733,9 +1728,9 @@
                                     "type": "string",
                                     "example": "2021-03-21"
                                 },
-                                "photo": {
-                                    "title": "nullable|image",
-                                    "type": "file"
+                                "photo_base64": {
+                                    "title": "nullable|base64image",
+                                    "type": "string"
                                 }
                             },
                             "type": "object"
@@ -1775,7 +1770,7 @@
                                                 "El campo defunción es obligatorio."
                                             ]
                                         },
-                                        "photo": {
+                                        "photo_base64": {
                                             "example": [
                                                 "El campo defunción es obligatorio."
                                             ]
