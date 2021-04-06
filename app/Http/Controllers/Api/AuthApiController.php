@@ -225,7 +225,6 @@ class AuthApiController extends Controller
             'token' => 'required|string',
         ]);
 
-        // $profile = DeceasedProfile::where('token', $request->token)->first();
         $profile = DeceasedProfile::whereHas('clientDeclarant', function (Builder $query) use($request){
             $query->where('deceased_profile_user.token', $request->token);
         })

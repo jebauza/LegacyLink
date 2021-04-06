@@ -101,6 +101,9 @@ class DeceasedProfileApiController extends Controller
      */
     public function update(DeceasedProfileUpdateApiRequest $request, $profile_id)
     {
+        header('Access-Control-Allow-Origin: *');
+        header('Access-Control-Allow-Headers: *');
+        
         $path = null;
         $profile = session('profileWeb');
 

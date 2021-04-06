@@ -44,7 +44,7 @@ Route::middleware(['auth:api'])->name('api.')->group(function() {
     Route::prefix('profile/{profile_id}')->middleware(['check_profile'])->group(function () {
 
         Route::name('profile.')->middleware(['check_role:admin'])->group(function () {
-            Route::put('update', [DeceasedProfileApiController::class, 'update'])->name('update');
+            Route::post('update', [DeceasedProfileApiController::class, 'update'])->name('update');
         });
 
         Route::prefix('clients')->middleware(['check_role:admin'])->name('clients.')->group(function () {
