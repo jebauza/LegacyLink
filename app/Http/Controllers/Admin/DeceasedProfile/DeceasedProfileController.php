@@ -108,8 +108,8 @@ class DeceasedProfileController extends Controller
                         'token' => $newDProfile->id . Str::random(5) . $client->id,
                     ]);
 
-                    NotificationDeclarantJob::dispatch($newDProfile, $request->client_sendSms, $request->client_sendEmail);
-                    // NotificationDeclarantJob::dispatchNow($newDProfile);
+                    // NotificationDeclarantJob::dispatch($newDProfile, $request->client_sendSms, $request->client_sendEmail);
+                    NotificationDeclarantJob::dispatchNow($newDProfile);
                 }
 
                 foreach ($request->ceremonies as $key => $value) {
@@ -231,8 +231,8 @@ class DeceasedProfileController extends Controller
                 return $this->sendError(__('Declarant does not exist'));
             }
 
-            NotificationDeclarantJob::dispatch($profile);
-            // NotificationDeclarantJob::dispatchNow($profile);
+            // NotificationDeclarantJob::dispatch($profile);
+            NotificationDeclarantJob::dispatchNow($profile);
 
             $message = 'Su acceso para la web de ' . $profile->fullName . ' es ' . config('albia.web_client_url') . '/admin?token=' . $client->pivot->token . ' .Este acceso es intransferible, solo usted puede utilizarlo.';
 
