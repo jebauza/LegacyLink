@@ -561,8 +561,8 @@
                             }
                         }
                     },
-                    "404": {
-                        "$ref": "#/components/requestBodies/response_404"
+                    "400": {
+                        "$ref": "#/components/requestBodies/response_400"
                     },
                     "500": {
                         "$ref": "#/components/requestBodies/response_500"
@@ -871,6 +871,222 @@
                 ]
             }
         },
+        "/public/profile/{profile_id}/comments": {
+            "get": {
+                "tags": [
+                    "Comment"
+                ],
+                "summary": "Get public comment",
+                "description": "Return list public comment",
+                "operationId": "/public/profile/{profile_id}/comments",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/profile_id"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "example": true
+                                        },
+                                        "message": {
+                                            "example": "Solicitud procesada correctamente."
+                                        },
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/components/schemas/CommentApiResource"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "$ref": "#/components/requestBodies/response_400"
+                    },
+                    "500": {
+                        "$ref": "#/components/requestBodies/response_500"
+                    }
+                }
+            }
+        },
+        "/profile/{profile_id}/comments": {
+            "get": {
+                "tags": [
+                    "Comment"
+                ],
+                "summary": "Get comment",
+                "description": "Return list comment",
+                "operationId": "/profile/{profile_id}/comments",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/profile_id"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "example": true
+                                        },
+                                        "message": {
+                                            "example": "Solicitud procesada correctamente."
+                                        },
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/components/schemas/CommentApiResource"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "$ref": "#/components/requestBodies/response_400"
+                    },
+                    "401": {
+                        "$ref": "#/components/requestBodies/response_401"
+                    },
+                    "403": {
+                        "$ref": "#/components/requestBodies/response_403"
+                    },
+                    "500": {
+                        "$ref": "#/components/requestBodies/response_500"
+                    }
+                },
+                "security": [
+                    {
+                        "api_key": []
+                    }
+                ]
+            }
+        },
+        "/public/profile/{profile_id}/comments/store": {
+            "post": {
+                "tags": [
+                    "Comment"
+                ],
+                "summary": "Store public comment",
+                "description": "Return new public comment",
+                "operationId": "/public/profile/{profile_id}/comments/store",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/profile_id"
+                    }
+                ],
+                "requestBody": {
+                    "$ref": "#/components/requestBodies/request_comment_public_store"
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "example": true
+                                        },
+                                        "message": {
+                                            "example": "Solicitud procesada correctamente."
+                                        },
+                                        "data": {
+                                            "$ref": "#/components/schemas/CommentApiResource"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "$ref": "#/components/requestBodies/response_400"
+                    },
+                    "422": {
+                        "$ref": "#/components/requestBodies/comment_public_response_422"
+                    },
+                    "500": {
+                        "$ref": "#/components/requestBodies/response_500"
+                    }
+                }
+            }
+        },
+        "/profile/{profile_id}/comments/store": {
+            "post": {
+                "tags": [
+                    "Comment"
+                ],
+                "summary": "Store comment",
+                "description": "Return new comment",
+                "operationId": "/profile/{profile_id}/comments/store",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/profile_id"
+                    }
+                ],
+                "requestBody": {
+                    "$ref": "#/components/requestBodies/request_comment_store"
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "example": true
+                                        },
+                                        "message": {
+                                            "example": "Solicitud procesada correctamente."
+                                        },
+                                        "data": {
+                                            "$ref": "#/components/schemas/CommentApiResource"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "$ref": "#/components/requestBodies/response_400"
+                    },
+                    "401": {
+                        "$ref": "#/components/requestBodies/response_401"
+                    },
+                    "403": {
+                        "$ref": "#/components/requestBodies/response_403"
+                    },
+                    "422": {
+                        "$ref": "#/components/requestBodies/comment_public_response_422"
+                    },
+                    "500": {
+                        "$ref": "#/components/requestBodies/response_500"
+                    }
+                },
+                "security": [
+                    {
+                        "api_key": []
+                    }
+                ]
+            }
+        },
         "/public/profile/{profile_id}": {
             "get": {
                 "tags": [
@@ -925,7 +1141,12 @@
                 "operationId": "/profile/{profile_id}/update",
                 "parameters": [
                     {
-                        "$ref": "#/components/parameters/profile_id"
+                        "name": "profile",
+                        "in": "path",
+                        "description": "Profile id or web_code",
+                        "schema": {
+                            "type": "string"
+                        }
                     }
                 ],
                 "requestBody": {
@@ -1282,6 +1503,47 @@
                 },
                 "type": "object"
             },
+            "CommentApiResource": {
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "example": 161
+                    },
+                    "title": {
+                        "type": "string",
+                        "example": "Jose amigo"
+                    },
+                    "message": {
+                        "type": "string",
+                        "example": "Descansa en paz mi colega 3"
+                    },
+                    "file": {
+                        "type": "string",
+                        "example": "http://albia.local/storage/deceased_profiles/9/comments/606d9028556ae.jpeg"
+                    },
+                    "approved": {
+                        "type": "boolean",
+                        "example": 0
+                    },
+                    "profile_id": {
+                        "type": "integer",
+                        "example": 11
+                    },
+                    "public": {
+                        "type": "boolean",
+                        "example": 1
+                    },
+                    "user_id": {
+                        "type": "integer",
+                        "example": 5
+                    },
+                    "created_at": {
+                        "type": "string",
+                        "example": "2021-04-07 12:57:44"
+                    }
+                },
+                "type": "object"
+            },
             "DeceasedProfileApiResource": {
                 "properties": {
                     "id": {
@@ -1509,9 +1771,6 @@
                     "application/json": {
                         "schema": {
                             "properties": {
-                                "success": {
-                                    "example": false
-                                },
                                 "message": {
                                     "example": "Unauthenticated."
                                 }
@@ -1531,7 +1790,7 @@
                                     "example": false
                                 },
                                 "message": {
-                                    "example": "auth.failed"
+                                    "example": "You do not have permissions for the requested resources"
                                 }
                             },
                             "type": "object"
@@ -1689,6 +1948,110 @@
                                         }
                                     },
                                     "type": "object"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            },
+            "request_comment_public_store": {
+                "required": true,
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "required": [
+                                "title",
+                                "message"
+                            ],
+                            "properties": {
+                                "title": {
+                                    "title": "required|string|max:255",
+                                    "type": "string",
+                                    "example": "De Angel tu amigo"
+                                },
+                                "message": {
+                                    "title": "required|string",
+                                    "type": "string",
+                                    "example": "Descansa en paz"
+                                },
+                                "file_base64": {
+                                    "title": "nullable|base64image",
+                                    "type": "string",
+                                    "example": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD//gAfQ29tcHJlc3NlZCBieSBqcGVnLXJlY29tcHJlc3P/2wCEAAcHBwcHBwgJCQgLDAsMCxAPDg4PEBkSExITE"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            },
+            "comment_public_response_422": {
+                "description": "Error: Unprocessable Entity",
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "properties": {
+                                "message": {
+                                    "example": "The given data was invalid."
+                                },
+                                "errors": {
+                                    "description": "these are the fields of the request",
+                                    "properties": {
+                                        "title": {
+                                            "example": [
+                                                "Sólo puede existir una ceremonia principal"
+                                            ]
+                                        },
+                                        "message": {
+                                            "example": [
+                                                "El campo lastname es obligatorio."
+                                            ]
+                                        },
+                                        "file_base64": {
+                                            "example": [
+                                                "El campo nacimiento es obligatorio."
+                                            ]
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            },
+            "request_comment_store": {
+                "required": true,
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "required": [
+                                "title",
+                                "message",
+                                "public"
+                            ],
+                            "properties": {
+                                "title": {
+                                    "title": "required|string|max:255",
+                                    "type": "string",
+                                    "example": "De Angel tu amigo"
+                                },
+                                "message": {
+                                    "title": "required|string",
+                                    "type": "string",
+                                    "example": "Descansa en paz"
+                                },
+                                "file_base64": {
+                                    "title": "nullable|base64image",
+                                    "type": "string",
+                                    "example": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD//gAfQ29tcHJlc3NlZCBieSBqcGVnLXJlY29tcHJlc3P/2wCEAAcHBwcHBwgJCQgLDAsMCxAPDg4PEBkSExITE"
+                                },
+                                "public": {
+                                    "title": "required|boolean",
+                                    "type": "boolean",
+                                    "example": false
                                 }
                             },
                             "type": "object"
@@ -1872,7 +2235,11 @@
         },
         {
             "name": "Ceremony",
-            "description": "API Endpoints of public ceremonies list"
+            "description": "API Endpoints of Ceremony"
+        },
+        {
+            "name": "Comment",
+            "description": "API Endpoints of Comment"
         },
         {
             "name": "Profile",

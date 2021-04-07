@@ -38,6 +38,7 @@
     "Sending": "Enviando",
     "Declarant does not exist": "No existe el declarante",
     "Message sent successfully": "Mensaje enviado correctamente",
-    "Remember Me": "Recuérdame"
+    "Remember Me": "Recuérdame",
+    "Bad Request": "Solicitud Incorrecta"
 
 }

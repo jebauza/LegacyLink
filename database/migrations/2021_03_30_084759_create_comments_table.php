@@ -19,7 +19,6 @@ class CreateCommentsTable extends Migration
             $table->string('title')->nullable();
             $table->text('message')->nullable();
             $table->string('path_file')->nullable();
-            $table->string('type_file')->nullable();
             $table->boolean('approved')->default(false);
 
             $table->unsignedBigInteger('profile_id');
@@ -29,6 +28,8 @@ class CreateCommentsTable extends Migration
 
             $table->unsignedBigInteger('user_id')->nullable();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('set null');
+
+            $table->bigInteger('approved_by')->nullable();
 
             $table->timestamps();
         });

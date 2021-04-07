@@ -157,7 +157,6 @@ class Controller extends BaseController
  *
  * @OA\RequestBody(request="response_401", description="Error: Unauthorized",
  *          @OA\JsonContent(
- *              @OA\Property(property="success", example=false),
  *              @OA\Property(property="message", example="Unauthenticated.")
  *          )
  * )
@@ -165,7 +164,7 @@ class Controller extends BaseController
  * @OA\RequestBody(request="response_403", description="Error: Forbidden",
  *          @OA\JsonContent(
  *              @OA\Property(property="success", example=false),
- *              @OA\Property(property="message", example="auth.failed")
+ *              @OA\Property(property="message", example="You do not have permissions for the requested resources")
  *          )
  * )
  *

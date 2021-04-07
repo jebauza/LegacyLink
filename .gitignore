@@ -13,3 +13,4 @@ npm-debug.log
 yarn-error.log
 .env.testing
 worker.log
+/storage/app/public

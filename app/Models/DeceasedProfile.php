@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Models\User;
 use DateTimeInterface;
+use App\Models\Comment;
 use App\Models\Invitation;
 use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Model;
@@ -162,7 +163,6 @@ class DeceasedProfile extends Model
                     ->limit(1);
     }
 
-
     /**
      * Get all of the comments for the DeceasedProfile
      *
@@ -171,5 +171,15 @@ class DeceasedProfile extends Model
     public function invitations()
     {
         return $this->hasMany(Invitation::class, 'profile_id', 'id');
+    }
+
+    /**
+     * Get all of the comments for the DeceasedProfile
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function comments()
+    {
+        return $this->hasMany(Comment::class, 'profile_id', 'id');
     }
 }
