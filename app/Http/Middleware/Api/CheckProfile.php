@@ -4,6 +4,7 @@ namespace App\Http\Middleware\API;
 
 use Closure;
 use Illuminate\Http\Request;
+use App\Models\DeceasedProfile;
 
 class CheckProfile
 {
@@ -18,15 +19,14 @@ class CheckProfile
     {
         $profile_id = $request->route('profile_id');
 
-        $profile = auth()->user()->deceased_profiles()
-                                ->where('deceased_profiles.id', $profile_id)
-                                ->first();
+        $profile = DeceasedProfile::find($profile_id);
 
         if (!$profile) {
+
             return response()->json([
                 'success' => false,
-                'message' => __('You do not have permissions for the requested resources'),
-            ], 403);
+                'message' => __('Bad Request'),
+            ], 400);
         }
 
         session(['profileWeb' => $profile]);

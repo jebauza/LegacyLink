@@ -14,17 +14,18 @@ class CheckRole
      * @param  \Closure  $next
      * @return mixed
      */
-    public function handle(Request $request, Closure $next, $role)
+    public function handle(Request $request, Closure $next, ...$roles)
     {
         $profile_id = $request->route('profile_id');
+        $profile = null;
 
-        if (!$profile = session('profileWeb')) {
+        if (auth()->check()) {
             $profile = auth()->user()->deceased_profiles()
                                     ->where('deceased_profiles.id', $profile_id)
                                     ->first();
         }
 
-        if ($profile->pivot->role != $role) {
+        if (!$profile || !in_array($profile->pivot->role, $roles)) {
             return response()->json([
                 'success' => false,
                 'message' => __('You do not have permissions for the requested resources'),

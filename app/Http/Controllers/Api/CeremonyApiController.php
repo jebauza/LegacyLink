@@ -15,7 +15,7 @@ use App\Http\Requests\Api\CeremonyStoreUpdateApiRequest;
 /**
  * @OA\Tag(
  *     name="Ceremony",
- *     description="API Endpoints of public ceremonies list"
+ *     description="API Endpoints of Ceremony"
  * )
  */
 class CeremonyApiController extends Controller
@@ -40,24 +40,20 @@ class CeremonyApiController extends Controller
      *          )
      *      ),
      *
-     *      @OA\Response(response=404, ref="#/components/requestBodies/response_404"),
+     *      @OA\Response(response=400, ref="#/components/requestBodies/response_400"),
      *
      *      @OA\Response(response=500, ref="#/components/requestBodies/response_500"),
      * )
      *
-     *  @param int $profile_id
      *  @return CeremonyApiResource
      */
-    public function indexPublic($profile_id)
+    public function indexPublic()
     {
-        if(!$profile = DeceasedProfile::find($profile_id)){
-            return $this->sendError404();
-        }
+        $profile = session('profileWeb');
 
-        $ceremonies = Ceremony::where('profile_id',$profile->id)
-                        ->where('visible', 'public')
-                        ->orderBy('start')
-                        ->get();
+        $ceremonies = $profile->ceremonies()->where('visible', 'public')
+                                            ->orderBy('start')
+                                            ->get();
 
         return $this->sendResponse(null, (CeremonyApiResource::collection($ceremonies)));
     }

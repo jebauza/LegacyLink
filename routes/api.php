@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\AuthApiController;
 use App\Http\Controllers\Api\UserApiController;
 use App\Http\Controllers\Api\CeremonyApiController;
-use App\Http\Controllers\Api\CommentaryApiController;
+use App\Http\Controllers\Api\CommentApiController;
 use App\Http\Controllers\Api\InvitationApiController;
 use App\Http\Controllers\Api\DeceasedProfileApiController;
 
@@ -20,11 +20,19 @@ use App\Http\Controllers\Api\DeceasedProfileApiController;
 |
 */
 
+// Public
+Route::prefix('public')->name('api.public.')->group(function () {
+    Route::get('profile/{profile}', [DeceasedProfileApiController::class, 'show'])->name('profile.show');
 
-Route::prefix('public')->group(function () {
-    Route::get('profile/{profile}', [DeceasedProfileApiController::class, 'show'])->name('api.public.profile.show');
-    Route::get('profile/{profile_id}/ceremonies', [CeremonyApiController::class, 'indexPublic'])->name('api.public.profile.ceremonies');
-    Route::get('profile/{profile_id}/comments/store', [CommentaryApiController::class, 'storePublic'])->name('api.public.Commentary.store');
+    Route::prefix('profile/{profile_id}')->middleware(['check_profile'])->group(function () {
+
+        Route::get('ceremonies', [CeremonyApiController::class, 'indexPublic'])->name('ceremonies.index');
+
+        Route::prefix('comments')->name('comments.')->group(function () {
+            Route::get('/', [CommentApiController::class, 'indexPublic'])->name('index');
+            Route::post('store', [CommentApiController::class, 'storePublic'])->name('store');
+        });
+    });
 });
 
 Route::middleware(['auth:api'])->name('api.')->group(function() {
@@ -43,15 +51,18 @@ Route::middleware(['auth:api'])->name('api.')->group(function() {
 
     Route::prefix('profile/{profile_id}')->middleware(['check_profile'])->group(function () {
 
+        // Profile
         Route::name('profile.')->middleware(['check_role:admin'])->group(function () {
             Route::post('update', [DeceasedProfileApiController::class, 'update'])->name('update');
         });
 
+        // Clients
         Route::prefix('clients')->middleware(['check_role:admin'])->name('clients.')->group(function () {
             Route::get('', [UserApiController::class, 'index'])->name('index');
             Route::delete('/{client_id}/detach', [UserApiController::class, 'detach'])->name('detach');
         });
 
+        // Ceremonies
         Route::prefix('ceremonies')->middleware(['check_role:admin'])->name('ceremonies.')->group(function () {
             Route::get('', [CeremonyApiController::class, 'index'])->name('index');
             Route::get('ceremony-types', [CeremonyApiController::class, 'getCeremonyTypes'])->name('getCeremonyTypes');
@@ -60,12 +71,17 @@ Route::middleware(['auth:api'])->name('api.')->group(function() {
             Route::delete('/{ceremony_id}/destroy', [CeremonyApiController::class, 'destroy'])->name('destroy');
         });
 
+        // Invitations
         Route::prefix('invitations')->middleware(['check_role:admin'])->name('invitations.')->group(function () {
             Route::get('', [InvitationApiController::class, 'index'])->name('index');
             Route::post('store', [InvitationApiController::class, 'store'])->name('store');
         });
 
-
+        // Comments
+        Route::prefix('comments')->name('comments.')->middleware(['check_role:admin,family,close_friend'])->group(function () {
+            Route::get('/', [CommentApiController::class, 'index'])->name('index');
+            Route::post('store', [CommentApiController::class, 'store'])->name('store');
+        });
 
     });
 
