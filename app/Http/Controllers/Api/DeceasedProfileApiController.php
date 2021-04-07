@@ -59,7 +59,6 @@ class DeceasedProfileApiController extends Controller
         return $this->sendResponse(null, (new DeceasedProfileApiResource($profile)));
     }
 
-
     /**
      * @OA\Post(
      *      path="/profile/{profile_id}/update",
@@ -69,7 +68,14 @@ class DeceasedProfileApiController extends Controller
      *      description="Return the public details of a specific profile",
      *      security={{"api_key": {}}},
      *
-     *      @OA\Parameter(ref="#/components/parameters/profile_id"),
+     *      @OA\Parameter(
+     *          name="profile",
+     *          in="path",
+     *          description="Profile id or web_code",
+     *          @OA\Schema(
+     *               type="string",
+     *          ),
+     *      ),
      *
      *      @OA\RequestBody(ref="#/components/requestBodies/request_deceased_profile_update"),
      *
