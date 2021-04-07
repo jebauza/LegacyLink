@@ -175,6 +175,8 @@ class DeceasedProfileController extends Controller
         try {
             DB::beginTransaction();
             $profile->fill($request->all());
+            $profile->office_id = $request->office;
+            $profile->adviser_id = $request->adviser;
             $profile->save();
 
             DB::commit();

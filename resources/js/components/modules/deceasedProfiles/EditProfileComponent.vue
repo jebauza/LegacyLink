@@ -82,7 +82,7 @@
                                     <div class="form-group col-sm-6">
                                         <label :class="['control-label', errorsProfile.office ? 'text-danger' : '']"><b>Sucursal</b></label>
                                         <vs-select :key="offices.length" filter v-model="formProfile.office" :placeholder="__('Select')" state="primary" :disabled="disableOffice">
-                                            <vs-option v-for="office in offices" :key="office.id" :label="office.name" :value="office.id">{{ office.name }}</vs-option>
+                                            <vs-option v-for="office in offices" :key="office.id" :label="`${office.name}, ${office.cp} ${office.city}`" :value="office.id">{{ `${office.name}, ${office.cp} ${office.city}` }}</vs-option>
                                         </vs-select>
                                         <small v-if="errorsProfile.office" class="form-control-feedback text-danger">
                                             {{ errorsProfile.office[0] }}
@@ -92,7 +92,8 @@
                                     <div class="form-group col-sm-6">
                                         <label :class="['control-label', errorsProfile.adviser ? 'text-danger' : '']"><b>Agente</b></label>
                                         <vs-select :key="advisers.length" filter v-model="formProfile.adviser" :placeholder="__('Select')" state="primary" :disabled="disableAdviser">
-                                            <vs-option v-for="adviser in advisers" :key="adviser.id" :label="adviser.fullName" :value="adviser.id">{{ adviser.fullName }}</vs-option>
+                                            <vs-option :key="0" :label="''" :value="''">{{ '' }}</vs-option>
+                                            <vs-option v-for="(adviser, index) in advisers" :key="index+1" :label="`${adviser.fullName}, ${adviser.email}`" :value="adviser.id">{{ `${adviser.fullName}, ${adviser.email}` }}</vs-option>
                                         </vs-select>
                                         <small v-if="errorsProfile.adviser" class="form-control-feedback text-danger">
                                             {{ errorsProfile.adviser[0] }}
@@ -349,7 +350,10 @@
 <script>
 export default {
     watch: {
-        'formProfile.adviser': function (newValue, oldValue) {
+        'formProfile.office': function (newValue, oldValue) {
+            if (oldValue != '') {
+                this.formProfile.adviser = ''
+            }
             this.getAdvisers();
         }
     },
@@ -419,7 +423,7 @@ export default {
             })
         },
         getAdvisers() {
-            const url = `/admin/ajax/employees?role=3&office=${this.formProfile.office}`;
+            const url = `/admin/ajax/employees?role=2-3&office=${this.formProfile.office}`;
 
             axios.get(url, )
             .then(res => {
