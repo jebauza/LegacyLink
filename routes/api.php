@@ -45,7 +45,7 @@ Route::middleware(['auth:api'])->name('api.')->group(function() {
         Route::post('register', [AuthApiController::class, 'register'])->name('register')->withoutMiddleware(['auth:api']);
 
         Route::get('logout', [AuthApiController::class, 'logout'])->name('logout');
-        Route::get('user/{profile_id}', [AuthApiController::class, 'user'])->name('user')->middleware(['check_profile']);
+        Route::get('user/{profile_id}', [AuthApiController::class, 'user'])->name('user')->middleware(['check_role']);
         Route::post('profile/join', [AuthApiController::class, 'profileJoin'])->name('join.profile');
     });
 

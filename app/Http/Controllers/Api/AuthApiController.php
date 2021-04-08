@@ -159,7 +159,7 @@ class AuthApiController extends Controller
      *      @OA\Response(response=401, ref="#/components/requestBodies/response_401"),
      * )
      */
-    public function user(Request $request)
+    public function user(Request $request, $profile_id)
     {
         $profile = session('profileWeb');
 

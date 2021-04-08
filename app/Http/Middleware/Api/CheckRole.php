@@ -25,7 +25,7 @@ class CheckRole
                                     ->first();
         }
 
-        if (!$profile || !in_array($profile->pivot->role, $roles)) {
+        if (!$profile || (!empty($roles) && !in_array($profile->pivot->role, $roles))) {
             return response()->json([
                 'success' => false,
                 'message' => __('You do not have permissions for the requested resources'),
