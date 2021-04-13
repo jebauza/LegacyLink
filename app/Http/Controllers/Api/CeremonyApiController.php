@@ -223,9 +223,10 @@ class CeremonyApiController extends Controller
      *      @OA\Response(response=500, ref="#/components/requestBodies/response_500"),
      * )
      */
-    public function update(CeremonyStoreUpdateApiRequest $request, $profile_id, $ceremony_id)
+    public function update(CeremonyStoreUpdateApiRequest $request)
     {
         $profile = session('profileWeb');
+        $ceremony_id = $request->route('ceremony_id');
 
         if(!$ceremony = $profile->ceremonies()->find($ceremony_id)) {
             return $this->sendError404();
@@ -277,9 +278,10 @@ class CeremonyApiController extends Controller
      *      @OA\Response(response=500, ref="#/components/requestBodies/response_500"),
      * )
      */
-    public function destroy(Request $request, $profile_id, $ceremony_id)
+    public function destroy(Request $request)
     {
         $profile = session('profileWeb');
+        $ceremony_id = $request->route('ceremony_id');
 
         if(!$ceremony = $profile->ceremonies()->find($ceremony_id)) {
             return $this->sendError404();

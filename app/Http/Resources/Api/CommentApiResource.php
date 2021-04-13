@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources\Api;
 
+use App\Http\Resources\Api\UserApiResource;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class CommentApiResource extends JsonResource
@@ -22,7 +23,7 @@ class CommentApiResource extends JsonResource
             'approved' => $this->approved,
             'profile_id' => $this->profile_id,
             'public' => $this->public,
-            'user_id' => $this->user_id,
+            'user' => $this->user ? $this->user->only('id','name','lastname','fullName') : null,
             'created_at' => $this->created_at->toDateTimeString()
         ];
     }
@@ -38,7 +39,12 @@ class CommentApiResource extends JsonResource
      *      @OA\Property(property="approved", type="boolean", example=0),
      *      @OA\Property(property="profile_id", type="integer", example=11),
      *      @OA\Property(property="public", type="boolean", example=1),
-     *      @OA\Property(property="user_id", type="integer", example=5),
+     *      @OA\Property(property="user", title="nullable|user",
+     *          @OA\Property(property="id", type="integer", example=1),
+     *          @OA\Property(property="name", type="string", example="Alberto"),
+     *          @OA\Property(property="lastname", type="string", example="Perez Castro"),
+     *          @OA\Property(property="fullName", type="string", example="Alberto Perez Castro"),
+     *      ),
      *      @OA\Property(property="created_at", type="string", example="2021-04-07 12:57:44"),
      * )
      */

@@ -16,11 +16,11 @@ class InvitationApiResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'phone' => $this->phone,
+            'profile_id' => $this->profile_id,
             'role' => $this->role,
-            'name' => $this->name,
-            'used_by' => $this->used_by,
-            'created_at' => $this->created_at
+            'message' => "Se le ha invitado a unirse a la web de " .$this->profile->fullName. " su link es " . config('albia.web_client_url') . "/invitation?token=" . $this->token . "&profile=" . $this->profile->web_code,
+            'created_by' => $this->created_by,
+            'created_at' => $this->created_at->toDateTimeString()
         ];
     }
 
@@ -29,10 +29,10 @@ class InvitationApiResource extends JsonResource
      * @OA\Schema(
      *      schema="InvitationApiResource",
      *      @OA\Property(property="id", type="integer", example=161),
-     *      @OA\Property(property="phone", type="string", example="+34622785623"),
+     *      @OA\Property(property="profile_id", type="integer", example=12),
      *      @OA\Property(property="role", type="string", example="family"),
-     *      @OA\Property(property="name", type="string", example="Carlos Perez"),
-     *      @OA\Property(property="used_by", type="string", example="2021-03-26 10:00:00 | null"),
+     *      @OA\Property(property="message", type="string", example="Se le ha invitado a unirse a la web de Pepe Gonzalez su link es https://web.celebrasuvida.es/invitation?token=ASDDXcM260755ad575d54&profile=xmrZJ10"),
+     *      @OA\Property(property="created_by", type="integer", example=31),
      *      @OA\Property(property="created_at", type="string", example="2021-03-26 10:00:00"),
      * )
      */

@@ -1087,6 +1087,210 @@
                 ]
             }
         },
+        "/profile/{profile_id}/comments/{comment_id}/update": {
+            "post": {
+                "tags": [
+                    "Comment"
+                ],
+                "summary": "Update comment",
+                "description": "Return comment",
+                "operationId": "/profile/{profile_id}/comments/{comment_id}/update",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/profile_id"
+                    },
+                    {
+                        "name": "comment_id",
+                        "in": "path",
+                        "description": "Comment identifier",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "example": 2
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "$ref": "#/components/requestBodies/request_comment_store"
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "example": true
+                                        },
+                                        "message": {
+                                            "example": "Solicitud procesada correctamente."
+                                        },
+                                        "data": {
+                                            "$ref": "#/components/schemas/CommentApiResource"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "$ref": "#/components/requestBodies/response_400"
+                    },
+                    "401": {
+                        "$ref": "#/components/requestBodies/response_401"
+                    },
+                    "403": {
+                        "$ref": "#/components/requestBodies/response_403"
+                    },
+                    "404": {
+                        "$ref": "#/components/requestBodies/response_404"
+                    },
+                    "422": {
+                        "$ref": "#/components/requestBodies/comment_public_response_422"
+                    },
+                    "500": {
+                        "$ref": "#/components/requestBodies/response_500"
+                    }
+                },
+                "security": [
+                    {
+                        "api_key": []
+                    }
+                ]
+            }
+        },
+        "/profile/{profile_id}/comments/{comment_id}/destroy": {
+            "delete": {
+                "tags": [
+                    "Comment"
+                ],
+                "summary": "Destroy Comment",
+                "description": "",
+                "operationId": "/profile/{profile_id}/comments/{comment_id}/destroy",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/profile_id"
+                    },
+                    {
+                        "name": "comment_id",
+                        "in": "path",
+                        "description": "Comment identifier",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "example": 2
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "example": true
+                                        },
+                                        "message": {
+                                            "example": "Solicitud procesada correctamente."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "$ref": "#/components/requestBodies/response_400"
+                    },
+                    "401": {
+                        "$ref": "#/components/requestBodies/response_401"
+                    },
+                    "403": {
+                        "$ref": "#/components/requestBodies/response_403"
+                    },
+                    "404": {
+                        "$ref": "#/components/requestBodies/response_404"
+                    },
+                    "500": {
+                        "$ref": "#/components/requestBodies/response_500"
+                    }
+                },
+                "security": [
+                    {
+                        "api_key": []
+                    }
+                ]
+            }
+        },
+        "/profile/{profile_id}/comments/{comment_id}/approve": {
+            "put": {
+                "tags": [
+                    "Comment"
+                ],
+                "summary": "Approve Comment",
+                "description": "",
+                "operationId": "/profile/{profile_id}/comments/{comment_id}/approve",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/profile_id"
+                    },
+                    {
+                        "name": "comment_id",
+                        "in": "path",
+                        "description": "Comment identifier",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "example": 2
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "example": true
+                                        },
+                                        "message": {
+                                            "example": "Solicitud procesada correctamente."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "$ref": "#/components/requestBodies/response_400"
+                    },
+                    "401": {
+                        "$ref": "#/components/requestBodies/response_401"
+                    },
+                    "403": {
+                        "$ref": "#/components/requestBodies/response_403"
+                    },
+                    "404": {
+                        "$ref": "#/components/requestBodies/response_404"
+                    },
+                    "500": {
+                        "$ref": "#/components/requestBodies/response_500"
+                    }
+                },
+                "security": [
+                    {
+                        "api_key": []
+                    }
+                ]
+            }
+        },
         "/public/profile/{profile_id}": {
             "get": {
                 "tags": [
@@ -1254,7 +1458,7 @@
                 "tags": [
                     "Invitation"
                 ],
-                "summary": "Store Invitation",
+                "summary": "Store Private Invitation",
                 "description": "",
                 "operationId": "/profile/{profile_id}/invitations/store",
                 "parameters": [
@@ -1533,9 +1737,27 @@
                         "type": "boolean",
                         "example": 1
                     },
-                    "user_id": {
-                        "type": "integer",
-                        "example": 5
+                    "user": {
+                        "title": "nullable|user",
+                        "properties": {
+                            "id": {
+                                "type": "integer",
+                                "example": 1
+                            },
+                            "name": {
+                                "type": "string",
+                                "example": "Alberto"
+                            },
+                            "lastname": {
+                                "type": "string",
+                                "example": "Perez Castro"
+                            },
+                            "fullName": {
+                                "type": "string",
+                                "example": "Alberto Perez Castro"
+                            }
+                        },
+                        "type": "object"
                     },
                     "created_at": {
                         "type": "string",
@@ -1590,21 +1812,21 @@
                         "type": "integer",
                         "example": 161
                     },
-                    "phone": {
-                        "type": "string",
-                        "example": "+34622785623"
+                    "profile_id": {
+                        "type": "integer",
+                        "example": 12
                     },
                     "role": {
                         "type": "string",
                         "example": "family"
                     },
-                    "name": {
+                    "message": {
                         "type": "string",
-                        "example": "Carlos Perez"
+                        "example": "Se le ha invitado a unirse a la web de Pepe Gonzalez su link es https://web.celebrasuvida.es/invitation?token=ASDDXcM260755ad575d54&profile=xmrZJ10"
                     },
-                    "used_by": {
-                        "type": "string",
-                        "example": "2021-03-26 10:00:00 | null"
+                    "created_by": {
+                        "type": "integer",
+                        "example": 31
                     },
                     "created_at": {
                         "type": "string",
@@ -2052,6 +2274,11 @@
                                     "title": "required|boolean",
                                     "type": "boolean",
                                     "example": false
+                                },
+                                "remove_file": {
+                                    "title": "nullable|boolean",
+                                    "type": "boolean",
+                                    "example": true
                                 }
                             },
                             "type": "object"
@@ -2153,28 +2380,13 @@
                     "application/json": {
                         "schema": {
                             "required": [
-                                "main",
-                                "start",
-                                "end",
-                                "address",
-                                "type_id",
-                                "visible"
+                                "role"
                             ],
                             "properties": {
-                                "phone": {
-                                    "title": "required|string|phone:ES,mobile",
-                                    "type": "string",
-                                    "example": "+34622453641"
-                                },
                                 "role": {
                                     "title": "required|string|in:admin,family,close_friend",
                                     "type": "string",
                                     "example": "family"
-                                },
-                                "name": {
-                                    "title": "required|string|max:20",
-                                    "type": "string",
-                                    "example": "Carlos Perez"
                                 }
                             },
                             "type": "object"
@@ -2194,19 +2406,9 @@
                                 "errors": {
                                     "description": "these are the fields of the request",
                                     "properties": {
-                                        "phone": {
-                                            "example": [
-                                                "El campo phone es obligatorio."
-                                            ]
-                                        },
                                         "role": {
                                             "example": [
                                                 "El campo rol es obligatorio."
-                                            ]
-                                        },
-                                        "name": {
-                                            "example": [
-                                                "El campo nombre es obligatorio."
                                             ]
                                         }
                                     },

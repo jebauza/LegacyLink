@@ -45,7 +45,7 @@ Route::middleware(['auth:api'])->name('api.')->group(function() {
         Route::post('register', [AuthApiController::class, 'register'])->name('register')->withoutMiddleware(['auth:api']);
 
         Route::get('logout', [AuthApiController::class, 'logout'])->name('logout');
-        Route::get('user/{profile_id}', [AuthApiController::class, 'user'])->name('user')->middleware(['check_role']);
+        Route::get('user/{profile_id?}', [AuthApiController::class, 'user'])->name('user');
         Route::post('profile/join', [AuthApiController::class, 'profileJoin'])->name('join.profile');
     });
 
@@ -81,6 +81,9 @@ Route::middleware(['auth:api'])->name('api.')->group(function() {
         Route::prefix('comments')->name('comments.')->middleware(['check_role:admin,family,close_friend'])->group(function () {
             Route::get('/', [CommentApiController::class, 'index'])->name('index');
             Route::post('store', [CommentApiController::class, 'store'])->name('store');
+            Route::post('/{comment_id}/update', [CommentApiController::class, 'update'])->name('update');
+            Route::delete('/{comment_id}/destroy', [CommentApiController::class, 'destroy'])->name('destroy');
+            Route::put('/{comment_id}/approve', [CommentApiController::class, 'approve'])->name('approve');
         });
 
     });

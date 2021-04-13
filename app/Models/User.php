@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Comment;
 use App\Models\DeceasedProfile;
 use Laravel\Passport\HasApiTokens;
 use Illuminate\Notifications\Notifiable;
@@ -70,5 +71,25 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(DeceasedProfile::class, 'deceased_profile_user', 'user_id', 'profile_id')
                     ->withPivot('profile_id','user_id','role','declarant','token')->withTimestamps();
+    }
+
+    /**
+     * Get all of the comments for the User
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function comments()
+    {
+        return $this->hasMany(Comment::class, 'user_id', 'id');
+    }
+
+    public function roleProfile($profile_id){
+        $profile = $this->deceased_profiles()->find($profile_id);
+
+        if ($profile) {
+            return $profile->pivot->role;
+        }
+
+        return null;
     }
 }
