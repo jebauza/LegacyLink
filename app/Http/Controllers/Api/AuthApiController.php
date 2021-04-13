@@ -161,7 +161,7 @@ class AuthApiController extends Controller
 
         $profile = null;
         if ($profile_id) {
-            $profile = $user->deceased_profiles()->where('id', $profile_id)->first();
+            $profile = $user->deceased_profiles()->find($profile_id);
             if ($profile) {
                 $user->add_profile = $profile->id;
                 $user->add_role = $profile->pivot->role;
