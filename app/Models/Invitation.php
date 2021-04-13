@@ -16,7 +16,7 @@ class Invitation extends Model
 
     protected $table = 'invitations';
 
-    protected $fillable = ['phone','message','role','email', 'name'];
+    protected $fillable = ['role'];
 
     /**
      * The "booted" method of the model.
@@ -26,11 +26,7 @@ class Invitation extends Model
     protected static function booted()
     {
         static::creating(function ($invitation) {
-            $invitation->phone = (string) PhoneNumber::make($invitation->phone)->ofCountry('ES'); // +3412345678;
-            $id = DB::table('invitations')->max('id');
-            $invitation->token = Str::random(8) . ($id ? $id+1 : 1);
-            $profile = DeceasedProfile::find($invitation->profile_id);
-            $invitation->message = "Se le ha invitado a unirse a la web de " .$profile->fullName. " su link es " . config('albia.web_client_url') . "/invitation?token=" . $invitation->token . "&profile=" . $profile->web_code;
+            $invitation->token = str_shuffle(Str::random(8)) . uniqid();
         });
     }
 

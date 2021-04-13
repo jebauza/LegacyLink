@@ -131,6 +131,21 @@ class Controller extends BaseController
 
         return response()->json($response, 404);
     }
+
+    /**
+     * return error response.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function sendError403()
+    {
+    	$response = [
+            'success' => false,
+            'message' => __('This action is unauthorized.')
+        ];
+
+        return response()->json($response, 403);
+    }
 }
 
 /**

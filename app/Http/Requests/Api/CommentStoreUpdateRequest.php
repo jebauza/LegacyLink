@@ -2,6 +2,8 @@
 
 namespace App\Http\Requests\Api;
 
+use App\Models\Comment;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Foundation\Http\FormRequest;
 
 class CommentStoreUpdateRequest extends FormRequest
@@ -24,6 +26,7 @@ class CommentStoreUpdateRequest extends FormRequest
      *          @OA\Property(property="message", type="string", example="Descansa en paz", title="required|string"),
      *          @OA\Property(property="file_base64", type="string", title="nullable|base64image", example="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD//gAfQ29tcHJlc3NlZCBieSBqcGVnLXJlY29tcHJlc3P/2wCEAAcHBwcHBwgJCQgLDAsMCxAPDg4PEBkSExITE"),
      *          @OA\Property(property="public", type="boolean", title="required|boolean", example=false),
+     *          @OA\Property(property="remove_file", type="boolean", title="nullable|boolean", example=true),
      *      )
      * )
      */
@@ -33,7 +36,8 @@ class CommentStoreUpdateRequest extends FormRequest
             'title' => 'required|string|max:255',
             'message' => 'required|string',
             'file_base64' => 'nullable|base64file',
-            'public' => 'required|boolean'
+            'public' => 'required|boolean',
+            'remove_file' => 'nullable|boolean'
         ];
     }
 }

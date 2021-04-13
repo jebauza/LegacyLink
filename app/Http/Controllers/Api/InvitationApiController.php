@@ -53,7 +53,7 @@ class InvitationApiController extends Controller
         $profile = session('profileWeb');
 
         $invitations = $profile->invitations()
-                                ->orderBy('name')
+                                ->orderBy('created_at')
                                 ->get();
 
         return $this->sendResponse(null, InvitationApiResource::collection($invitations));
@@ -64,7 +64,7 @@ class InvitationApiController extends Controller
      *      path="/profile/{profile_id}/invitations/store",
      *      operationId="/profile/{profile_id}/invitations/store",
      *      tags={"Invitation"},
-     *      summary="Store Invitation",
+     *      summary="Store Private Invitation",
      *      description="",
      *      security={{"api_key": {}}},
      *
@@ -93,22 +93,20 @@ class InvitationApiController extends Controller
     {
         $profile = session('profileWeb');
 
+        $invitation = $profile->invitations()->where('role', $request->role)->first();
+
         try {
             DB::beginTransaction();
-            $newInvitation = new Invitation($request->all());
-            $newInvitation->profile_id = $profile->id;
-            $newInvitation->from = auth()->user()->id;
-            if ($newInvitation->save()) {
-                $send = SMSHelper::sendingSMS($newInvitation->phone, $newInvitation->message);
-                if($send)
-                {
-                    $newInvitation->sms_response = json_encode($send);
-                    $newInvitation->save();
-                }
+            if(!$invitation) {
+                $invitation = new Invitation();
+                $invitation->profile_id = $profile->id;
+                $invitation->role = $request->role;
+                $invitation->created_by = auth()->user()->id;
             }
+            $invitation->save();
 
             DB::commit();
-            return $this->sendResponse(__('Saved successfully'), (new InvitationApiResource($newInvitation)), 201);
+            return $this->sendResponse(__('Saved successfully'), (new InvitationApiResource($invitation)), 201);
 
         } catch (\Exception $e) {
             DB::rollBack();

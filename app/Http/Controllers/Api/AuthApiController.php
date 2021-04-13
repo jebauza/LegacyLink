@@ -65,10 +65,6 @@ class AuthApiController extends Controller
      *          )
      *      ),
      * )
-     */
-
-    /**
-     * Login api.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
@@ -159,19 +155,23 @@ class AuthApiController extends Controller
      *      @OA\Response(response=401, ref="#/components/requestBodies/response_401"),
      * )
      */
-    public function user(Request $request, $profile_id)
+    public function user(Request $request, $profile_id = null)
     {
-        $profile = session('profileWeb');
-
         $user = auth()->user();
-        $user->add_profile = $profile->id;
-        $user->add_role = $profile->pivot->role;
+
+        $profile = null;
+        if ($profile_id) {
+            $profile = $user->deceased_profiles()->where('id', $profile_id)->first();
+            if ($profile) {
+                $user->add_profile = $profile->id;
+                $user->add_role = $profile->pivot->role;
+            }
+        }
 
         return $this->sendResponse(null, (new UserApiResource($user)));
     }
 
-
-  /**
+    /**
      * @OA\GET(
      *      path="/auth/login/declarant",
      *      operationId="/auth/login/declarant",
@@ -210,10 +210,6 @@ class AuthApiController extends Controller
      *          )
      *      ),
      * )
-     */
-
-    /**
-     * Attempt user admin by token
      *
      * @param Request $request
      * @param string $token
@@ -311,7 +307,7 @@ class AuthApiController extends Controller
 
         $invitation = Invitation::where('token',  $request->token)->first();
 
-        if (!$invitation || $invitation->used_by) {
+        if (!$invitation) {
             return response()->json([
                 'success' => false,
                 'message' => __('The invitation is invalid or has already been used'),
@@ -324,12 +320,12 @@ class AuthApiController extends Controller
             DB::beginTransaction();
             $client = $profile->clients()->find(auth()->user()->id);
             if ($client) {
-                $profile->clients()->updateExistingPivot(auth()->user()->id, ['role' => $invitation->role]);
+                if (!$client->pivot->declarant) {
+                    $profile->clients()->updateExistingPivot(auth()->user()->id, ['role' => $invitation->role]);
+                }
             } else {
                 $profile->clients()->attach(auth()->user()->id, ['role' => $invitation->role]);
             }
-            $invitation->used_by = now();
-            $invitation->to = auth()->user()->id;
             $invitation->save();
 
             DB::commit();
@@ -344,7 +340,6 @@ class AuthApiController extends Controller
             return $this->sendError500($e->getMessage());
         }
     }
-
 
     /**
      * @OA\Post(

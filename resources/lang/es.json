@@ -39,6 +39,7 @@
     "Declarant does not exist": "No existe el declarante",
     "Message sent successfully": "Mensaje enviado correctamente",
     "Remember Me": "Recuérdame",
-    "Bad Request": "Solicitud Incorrecta"
+    "Bad Request": "Solicitud Incorrecta",
+    "This action is unauthorized.": "Esta acción no está autorizada."
 
 }
