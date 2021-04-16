@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Route;
 use App\Http\Resources\Api\UserApiResource;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Auth\Events\Verified;
 
 /**
  * @OA\Tag(
@@ -248,6 +249,12 @@ class AuthApiController extends Controller
             $token->expires_at = Carbon::now()->addMonths(1);
         }
         $token->save();
+
+        if (! $user->hasVerifiedEmail()) {
+            $user->markEmailAsVerified();
+
+            event(new Verified($user));
+        }
 
         return response()->json([
             'success' => true,

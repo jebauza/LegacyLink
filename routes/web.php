@@ -1,8 +1,9 @@
 <?php
 
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Web\AuthController;
+use App\Http\Requests\EmailVerificationRequest;
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -14,6 +15,12 @@ use App\Http\Controllers\Web\AuthController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
+    $request->fulfill();
+
+    return view('auth.emailVerify');
+})->middleware(['signed'])->name('verification.verify');
 
 Route::get('/', function () {
     //return redirect()->route('login');

@@ -56,7 +56,7 @@
                         <tr>
                             <th>ID</th>
                             <th>{{ __('validation.attributes.name') }}</th>
-                            <th>Acesor</th>
+                            <th>Asesor</th>
                             <th>Declarante</th>
                             <th class="text-nowrap d-flex justify-content-center">{{ __('Actions') }}</th>
                         </tr>
