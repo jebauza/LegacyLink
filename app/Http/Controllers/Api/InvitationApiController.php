@@ -138,13 +138,55 @@ class InvitationApiController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * @OA\Delete(
+     *      path="/profile/{profile_id}/invitations/{invitation_id}/destroy",
+     *      operationId="/profile/{profile_id}/invitations/{invitation_id}/destroy",
+     *      tags={"Invitation"},
+     *      summary="Invitation Ceremony",
+     *      description="",
+     *      security={{"api_key": {}}},
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     *      @OA\Parameter(ref="#/components/parameters/profile_id"),
+     *
+     *      @OA\Parameter(name="invitation_id", in="path", required=true, description="Invitation identifier",
+     *          @OA\Schema(type="integer", example=2)
+     *      ),
+     *
+     *      @OA\Response(response=200, description="OK",
+     *          @OA\JsonContent(
+     *              @OA\Property(property="success", example=true),
+     *              @OA\Property(property="message", example="Solicitud procesada correctamente.")
+     *          )
+     *      ),
+     *
+     *      @OA\Response(response=401, ref="#/components/requestBodies/response_401"),
+     *
+     *      @OA\Response(response=403, ref="#/components/requestBodies/response_403"),
+     *
+     *      @OA\Response(response=404, ref="#/components/requestBodies/response_404"),
+     *
+     *      @OA\Response(response=500, ref="#/components/requestBodies/response_500"),
+     * )
      */
-    public function destroy($id)
+    public function destroy(Request $request)
     {
-        //
+        $profile = session('profileWeb');
+        $invitation_id = $request->route('invitation_id');
+
+        if(!$invitation = $profile->invitations()->find( $invitation_id)) {
+            return $this->sendError404();
+        }
+
+        try {
+            DB::beginTransaction();
+            $invitation->delete();
+
+            DB::commit();
+            return $this->sendResponse(__('Deleted successfully'), null, 200);
+
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return $this->sendError500($e->getMessage());
+        }
     }
 }

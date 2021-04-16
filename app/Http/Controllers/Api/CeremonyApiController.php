@@ -93,7 +93,8 @@ class CeremonyApiController extends Controller
     {
         $profile = session('profileWeb');
 
-        $ceremonies = $profile->ceremonies()->visibleClient($profile->pivot->role)
+        $ceremonies = $profile->ceremonies()
+                        ->visibleClient($profile->pivot->role)
                         ->orderBy('start')
                         ->get();
 

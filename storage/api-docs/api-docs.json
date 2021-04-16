@@ -1511,6 +1511,68 @@
                 ]
             }
         },
+        "/profile/{profile_id}/invitations/{invitation_id}/destroy": {
+            "delete": {
+                "tags": [
+                    "Invitation"
+                ],
+                "summary": "Invitation Ceremony",
+                "description": "",
+                "operationId": "/profile/{profile_id}/invitations/{invitation_id}/destroy",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/profile_id"
+                    },
+                    {
+                        "name": "invitation_id",
+                        "in": "path",
+                        "description": "Invitation identifier",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "example": 2
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "example": true
+                                        },
+                                        "message": {
+                                            "example": "Solicitud procesada correctamente."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "$ref": "#/components/requestBodies/response_401"
+                    },
+                    "403": {
+                        "$ref": "#/components/requestBodies/response_403"
+                    },
+                    "404": {
+                        "$ref": "#/components/requestBodies/response_404"
+                    },
+                    "500": {
+                        "$ref": "#/components/requestBodies/response_500"
+                    }
+                },
+                "security": [
+                    {
+                        "api_key": []
+                    }
+                ]
+            }
+        },
         "/profile/{profile_id}/clients": {
             "get": {
                 "tags": [
