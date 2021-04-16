@@ -437,4 +437,56 @@ class AuthApiController extends Controller
                 return $this->sendError500($e->getMessage());
             }
     }
+
+    /**
+     * @OA\Post(
+     *      path="/auth/verification-email/send",
+     *      operationId="/auth/verification-email/send",
+     *      tags={"Auth"},
+     *      summary="Send verification email",
+     *      description="Send verification email",
+     *
+     *      @OA\RequestBody(
+     *          required=true,
+     *          description="Send verification email",
+     *          @OA\JsonContent(
+     *              required={"email"},
+     *              @OA\Property(property="email", type="string", example="maria@gmail.com", title="required|string|email|max:255|exists:users,email")
+     *          ),
+     *      ),
+     *
+     *      @OA\Response(response=200, description="OK",
+     *          @OA\JsonContent(
+     *              @OA\Property(property="success", example=true),
+     *              @OA\Property(property="message", example="Correo electrónico de verificación enviado")
+     *          )
+     *      ),
+     *
+     *      @OA\Response(response=422, description="Error: Unprocessable Entity",
+     *          @OA\JsonContent(
+     *              @OA\Property(property="message", example="The given data was invalid."),
+     *              @OA\Property(property="errors", description="these are the fields of the request",
+     *                  @OA\Property(property="email", example={"El campo correo es obligatorio."})
+     *              )
+     *          )
+     *      ),
+     *
+     *      @OA\Response(response=500, ref="#/components/requestBodies/response_500"),
+     * )
+     */
+    public function verificationEmailSend(Request $request)
+    {
+        $request->validate([
+            'email' => 'required|string|email|max:255|exists:users,email',
+        ]);
+
+        $user = User::where('email', $request->email)->first();
+
+        $user->sendEmailVerificationNotification();
+
+        return response()->json([
+            'success' => true,
+            'message' => __('Verification email sent'),
+        ]);
+    }
 }
