@@ -5,17 +5,19 @@ use Carbon\Carbon;
 use App\Models\User;
 use App\Helpers\SMSHelper;
 use App\Models\Invitation;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Models\DeceasedProfile;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use Illuminate\Auth\Events\Verified;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
-use App\Http\Resources\Api\UserApiResource;
 use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Auth\Events\Verified;
+use App\Http\Resources\Api\UserApiResource;
 
 /**
  * @OA\Tag(
@@ -451,7 +453,7 @@ class AuthApiController extends Controller
      *          description="Send verification email",
      *          @OA\JsonContent(
      *              required={"email"},
-     *              @OA\Property(property="email", type="string", example="maria@gmail.com", title="required|string|email|max:255|exists:users,email")
+     *              @OA\Property(property="email", type="string", example="maria@gmail.com", title="required|email|exists:users,email")
      *          ),
      *      ),
      *
@@ -477,7 +479,7 @@ class AuthApiController extends Controller
     public function verificationEmailSend(Request $request)
     {
         $request->validate([
-            'email' => 'required|string|email|max:255|exists:users,email',
+            'email' => 'required|email|exists:users,email',
         ]);
 
         $user = User::where('email', $request->email)->first();
@@ -488,5 +490,62 @@ class AuthApiController extends Controller
             'success' => true,
             'message' => __('Verification email sent'),
         ]);
+    }
+
+    /**
+     * @OA\Post(
+     *      path="/auth/forget-password/send",
+     *      operationId="/auth/forget-password/send",
+     *      tags={"Auth"},
+     *      summary="Forget password",
+     *      description="Forget password",
+     *
+     *      @OA\RequestBody(
+     *          required=true,
+     *          @OA\JsonContent(
+     *              required={"forgot_email"},
+     *              @OA\Property(property="forgot_email", type="string", example="maria@gmail.com", title="required|email|exists:users,email")
+     *          ),
+     *      ),
+     *
+     *      @OA\Response(response=200, description="OK",
+     *          @OA\JsonContent(
+     *              @OA\Property(property="success", type="boolean", example=true),
+     *              @OA\Property(property="message", type="string", example="Notificación de restablecimiento de contraseña")
+     *          )
+     *      ),
+     *
+     *      @OA\Response(response=422, description="Error: Unprocessable Entity",
+     *          @OA\JsonContent(
+     *              @OA\Property(property="message", example="The given data was invalid."),
+     *              @OA\Property(property="errors", description="these are the fields of the request",
+     *                  @OA\Property(property="forgot_email", example={"El campo correo es obligatorio."})
+     *              )
+     *          )
+     *      ),
+     *
+     *      @OA\Response(response=500, ref="#/components/requestBodies/response_500"),
+     * )
+     */
+    public function forgetPassword(Request $request)
+    {
+        $request->validate([
+            'forgot_email' => 'required|email|exists:users,email',
+        ]);
+
+        $user = User::where('email', $request->forgot_email)->first();
+
+        $token = Str::random(60);
+
+        DB::table('password_resets')->insert(
+            ['email' => $user->email, 'token' => $token, 'created_at' => Carbon::now()]
+        );
+
+        $user->sendPasswordResetNotification($token);
+
+        return response()->json([
+                'success' => true,
+                'message' => __('Reset Password Notification'),
+            ]);
     }
 }

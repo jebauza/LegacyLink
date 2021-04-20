@@ -21,7 +21,6 @@ class ResetPasswordController extends Controller
             'email' => 'required|email|exists:employees,email',
             'password' => 'required|string|min:6|confirmed',
             'password_confirmation' => 'required',
-
         ]);
 
         $updatePassword = DB::table('password_resets')

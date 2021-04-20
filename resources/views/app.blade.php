@@ -4,8 +4,6 @@
 
 @include('sections.head')
 
-@yield('css')
-
 <body id="kt_body"
     class="header-mobile-fixed subheader-enabled subheader-fixed aside-enabled aside-fixed aside-secondary-enabled footer-fixed page-loading">
 

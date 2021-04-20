@@ -542,7 +542,7 @@
                                 ],
                                 "properties": {
                                     "email": {
-                                        "title": "required|string|email|max:255|exists:users,email",
+                                        "title": "required|email|exists:users,email",
                                         "type": "string",
                                         "example": "maria@gmail.com"
                                     }
@@ -584,6 +584,87 @@
                                             "description": "these are the fields of the request",
                                             "properties": {
                                                 "email": {
+                                                    "example": [
+                                                        "El campo correo es obligatorio."
+                                                    ]
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "$ref": "#/components/requestBodies/response_500"
+                    }
+                }
+            }
+        },
+        "/auth/forget-password/send": {
+            "post": {
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "Forget password",
+                "description": "Forget password",
+                "operationId": "/auth/forget-password/send",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "forgot_email"
+                                ],
+                                "properties": {
+                                    "forgot_email": {
+                                        "title": "required|email|exists:users,email",
+                                        "type": "string",
+                                        "example": "maria@gmail.com"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean",
+                                            "example": true
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Notificación de restablecimiento de contraseña"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Error: Unprocessable Entity",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "example": "The given data was invalid."
+                                        },
+                                        "errors": {
+                                            "description": "these are the fields of the request",
+                                            "properties": {
+                                                "forgot_email": {
                                                     "example": [
                                                         "El campo correo es obligatorio."
                                                     ]

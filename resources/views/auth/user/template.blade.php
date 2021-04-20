@@ -25,6 +25,8 @@
     <!--end::Global Theme Styles-->
     <!--begin::Layout Themes(used by all pages)-->
     <!--end::Layout Themes-->
+
+    @yield('css')
     <link rel="shortcut icon" href="{{ asset('media/logos/logo-albia-rgb.jpg') }}" />
 </head>
 <!--end::Head-->
@@ -32,37 +34,45 @@
 
 <body id="kt_body"
     class="header-mobile-fixed subheader-enabled aside-enabled aside-fixed aside-secondary-enabled page-loading">
+
     <!--begin::Main-->
     <div class="d-flex flex-column flex-root">
         <!--begin::Login-->
-        <div class="login login-6 login-signin-on login-signin-on d-flex flex-column-fluid" id="kt_login">
-            <div class="d-flex flex-column flex-lg-row flex-row-fluid text-center"
-                style="background-image: url(assets/media/bg/bg-3.jpg);">
-                <!--begin:Aside-->
-                <div class="d-flex w-100 flex-center p-15">
-                    <div class="login-wrapper">
-                        <!--begin:Aside Content-->
-                        <div class="text-dark-75">
-                            <a href="#">
-                                <img src="{{ asset('media/logos/logotipo-horizontal-pantones.png') }}"
-                                    class="max-h-75px" alt="" />
-                            </a>
-                            <h3 class="mb-8 mt-10 font-weight-bold">Su cuenta ha sido verificada exitosamente</h3>
-                            {{--  <p class="mb-15 text-muted font-weight-bold">The ultimate Bootstrap &amp; Angular 6 admin
-                                theme framework for next generation web apps.</p>
-                            <button type="button" id="kt_login_signup"
-                                class="btn btn-outline-primary btn-pill py-4 px-9 font-weight-bold">Get An
-                                Account</button>  --}}
-                        </div>
-                        <!--end:Aside Content-->
+        <div class="login login-4 d-flex flex-row-fluid" id="kt_login">
+            <div class="d-flex flex-center flex-row-fluid bgi-size-cover bgi-position-top bgi-no-repeat"
+                style="background-image: url('assets/media/bg/fondo.jpg');">
+                <div class="login-form text-center p-7 position-relative overflow-hidden">
+                    <!--begin::Login Header-->
+                    <div class="d-flex flex-center mb-15">
+                        <a href="#">
+                            <img src="{{ asset('media/logos/logotipo-horizontal-pantones.png') }}" class="max-h-100px"
+                                alt="" />
+                        </a>
                     </div>
+                    <!--end::Login Header-->
+
+                    @if (session('message'))
+                    <div class="alert alert-success">
+                        {{ session('message') }}
+                    </div>
+                    @endif
+
+                    @if (session('error'))
+                    <div class="alert alert-danger">
+                        {{ session('error') }}
+                    </div>
+                    @endif
+
+                    @yield('content')
+
                 </div>
-                <!--end:Aside-->
             </div>
         </div>
         <!--end::Login-->
     </div>
     <!--end::Main-->
+    <!-- JQuery, Bootstrap, VueJS -->
+    {{-- <script src="{{ asset('js/app.js') }}"></script> --}}
     <script>
         var HOST_URL = "https://preview.keenthemes.com/metronic/theme/html/tools/preview";
     </script>
@@ -76,9 +86,8 @@
     <script src="{{ asset('assets/plugins/custom/prismjs/prismjs.bundle.js') }}"></script>
     <script src="{{ asset('assets/js/scripts.bundle.js') }}"></script>
     <!--end::Global Theme Bundle-->
-    <!--begin::Page Scripts(used by this page)-->
-    <script src="assets/js/pages/custom/login/login-general.js"></script>
-    <!--end::Page Scripts-->
+
+    @yield('script')
 </body>
 <!--end::Body-->
 

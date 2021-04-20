@@ -213,6 +213,6 @@ return [
         'room_name'             => 'habitación',
         'additional_info'       => 'información adicional',
         'type_id'               => 'tipo',
-
+        'forgot_email'          => 'correo',
     ],
 ];

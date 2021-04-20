@@ -39,11 +39,13 @@ Route::middleware(['auth:api','verified'])->name('api.')->group(function() {
 
     // AUTHENTICATION
     Route::prefix('auth')->name('auth.')->group(function () {
-        // Route::post('register', [UserAuthController::class, 'register'])->name('register')->withoutMiddleware(['auth:api']);
+
         Route::post('login', [AuthApiController::class, 'login'])->name('login')->withoutMiddleware(['auth:api','verified']);
         Route::get('login/declarant', [AuthApiController::class, 'loginProfile'])->name('login.profile')->withoutMiddleware(['auth:api','verified']);
         Route::post('register', [AuthApiController::class, 'register'])->name('register')->withoutMiddleware(['auth:api','verified']);
         Route::post('verification-email/send', [AuthApiController::class, 'verificationEmailSend'])->name('verification.email.send')->withoutMiddleware(['auth:api','verified']);
+        Route::post('forget-password/send', [AuthApiController::class, 'forgetPassword'])->name('forget-password')->withoutMiddleware(['auth:api','verified']);
+        Route::post('reset-password', [AuthApiController::class, 'updatePassword'])->name('reset-password')->withoutMiddleware(['auth:api','verified']);
 
         Route::get('logout', [AuthApiController::class, 'logout'])->name('logout');
         Route::get('user/{profile_id?}', [AuthApiController::class, 'user'])->name('user');
