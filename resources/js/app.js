@@ -9,7 +9,7 @@ import Vuesax from 'vuesax';
 import 'vuesax/dist/vuesax.css';
 Vue.use(Vuesax, {
     colors: {
-        primary: '#0bb7af',
+        primary: '#98C5EA',
         success: '#187de4',
         danger: '#ee2d41',
         warning: '#ee9d01',

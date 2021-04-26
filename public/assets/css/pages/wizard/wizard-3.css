@@ -55,12 +55,12 @@
 }
 
 .wizard.wizard-3 .wizard-nav .wizard-steps .wizard-step[data-wizard-state=current] .wizard-label {
-    color: #98C5EA;
+    color: #81D3F2;
 }
 
 .wizard.wizard-3 .wizard-nav .wizard-steps .wizard-step[data-wizard-state=current] .wizard-label .wizard-bar:after {
     width: 100%;
-    background-color: #98C5EA;
+    background-color: #81D3F2;
 }
 
 @media (max-width: 991.98px) {
