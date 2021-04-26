@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\User;
 use DateTimeInterface;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -63,4 +64,17 @@ class Ceremony extends Model
     {
         return $this->belongsTo(CeremonyType::class,"type_id");
     }
+
+    /**
+     * The roles that belong to the Ceremony
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function users()
+    {
+        return $this->belongsToMany(User::class, 'ceremony_user', 'ceremony_id', 'user_id')
+                    ->withPivot('ceremony_id','user_id','assistance')
+                    ->withTimestamps();
+    }
+
 }

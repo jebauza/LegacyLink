@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\Api\CeremonyApiResource;
 use App\Http\Resources\Api\CeremonyTypeApiResource;
+use App\Http\Resources\Api\UserCeremonyApiResource;
 use App\Http\Requests\Api\CeremonyStoreUpdateApiRequest;
 
 /**
@@ -95,6 +96,7 @@ class CeremonyApiController extends Controller
 
         $ceremonies = $profile->ceremonies()
                         ->visibleClient($profile->pivot->role)
+                        ->with('users')
                         ->orderBy('start')
                         ->get();
 
@@ -139,7 +141,7 @@ class CeremonyApiController extends Controller
         return $this->sendResponse(null, (CeremonyTypeApiResource::collection($ceremonyTypes)));
     }
 
-     /**
+    /**
      * @OA\Post(
      *      path="/profile/{profile_id}/ceremonies/store",
      *      operationId="/profile/{profile_id}/ceremonies/store",

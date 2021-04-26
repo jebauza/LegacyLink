@@ -37,6 +37,145 @@
         }
     ],
     "paths": {
+        "/profile/{profile_id}/ceremonies/{ceremony_id}/assistance": {
+            "get": {
+                "tags": [
+                    "Ceremony"
+                ],
+                "summary": "Update ceremony attendance",
+                "description": "",
+                "operationId": "/profile/{profile_id}/ceremonies/{ceremony_id}/assistance",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/profile_id"
+                    },
+                    {
+                        "name": "ceremony_id",
+                        "in": "path",
+                        "description": "Ceremony identifier",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "example": 2
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "example": true
+                                        },
+                                        "message": {
+                                            "example": "Solicitud procesada correctamente."
+                                        },
+                                        "data": {
+                                            "$ref": "#/components/schemas/AssistanceApiResource"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "$ref": "#/components/requestBodies/response_401"
+                    },
+                    "403": {
+                        "$ref": "#/components/requestBodies/response_403"
+                    },
+                    "404": {
+                        "$ref": "#/components/requestBodies/response_404"
+                    },
+                    "500": {
+                        "$ref": "#/components/requestBodies/response_500"
+                    }
+                },
+                "security": [
+                    {
+                        "api_key": []
+                    }
+                ]
+            }
+        },
+        "/profile/{profile_id}/ceremonies/{ceremony_id}/assistance/update": {
+            "put": {
+                "tags": [
+                    "Ceremony"
+                ],
+                "summary": "Users who confirmed attendance at the ceremony",
+                "description": "",
+                "operationId": "/profile/{profile_id}/ceremonies/{ceremony_id}/assistance/update",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/profile_id"
+                    },
+                    {
+                        "name": "ceremony_id",
+                        "in": "path",
+                        "description": "Ceremony identifier",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "example": 2
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "$ref": "#/components/requestBodies/request_assistance_update"
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "example": true
+                                        },
+                                        "message": {
+                                            "example": "Solicitud procesada correctamente."
+                                        },
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/components/schemas/AssistanceApiResource"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "$ref": "#/components/requestBodies/response_401"
+                    },
+                    "403": {
+                        "$ref": "#/components/requestBodies/response_403"
+                    },
+                    "404": {
+                        "$ref": "#/components/requestBodies/response_404"
+                    },
+                    "422": {
+                        "$ref": "#/components/requestBodies/assistance_update_response_422"
+                    },
+                    "500": {
+                        "$ref": "#/components/requestBodies/response_500"
+                    }
+                },
+                "security": [
+                    {
+                        "api_key": []
+                    }
+                ]
+            }
+        },
         "/auth/login": {
             "post": {
                 "tags": [
@@ -1877,6 +2016,39 @@
                 },
                 "type": "object"
             },
+            "AssistanceApiResource": {
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "example": 161
+                    },
+                    "name": {
+                        "type": "string",
+                        "example": "Carlos"
+                    },
+                    "lastname": {
+                        "type": "string",
+                        "example": "Perez Perez"
+                    },
+                    "fullName": {
+                        "type": "string",
+                        "example": "Carlos Perez Perez"
+                    },
+                    "email": {
+                        "type": "string",
+                        "example": "carlos@gmail.com"
+                    },
+                    "phone": {
+                        "type": "string",
+                        "example": "+34622789562"
+                    },
+                    "assistance": {
+                        "type": "boolean",
+                        "example": "true"
+                    }
+                },
+                "type": "object"
+            },
             "CeremonyApiResource": {
                 "properties": {
                     "id": {
@@ -1913,6 +2085,12 @@
                     "additional_info": {
                         "type": "string",
                         "example": "Informacion adicional"
+                    },
+                    "assistance": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/AssistanceApiResource"
+                        }
                     }
                 },
                 "type": "object"
@@ -2153,8 +2331,8 @@
                 "description": "Profile identifier",
                 "required": true,
                 "schema": {
-                    "type": "integer",
-                    "example": "11"
+                    "type": "string",
+                    "example": "SdfRt12"
                 }
             }
         },
@@ -2272,6 +2450,52 @@
                                 },
                                 "message": {
                                     "example": "Internal Server Error"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            },
+            "request_assistance_update": {
+                "required": true,
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "required": [
+                                "assistance"
+                            ],
+                            "properties": {
+                                "assistance": {
+                                    "title": "required|boolean",
+                                    "type": "boolean",
+                                    "example": "true"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            },
+            "assistance_update_response_422": {
+                "description": "Error: Unprocessable Entity",
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "properties": {
+                                "message": {
+                                    "example": "The given data was invalid."
+                                },
+                                "errors": {
+                                    "description": "these are the fields of the request",
+                                    "properties": {
+                                        "assistance": {
+                                            "example": [
+                                                "El campo rol es obligatorio."
+                                            ]
+                                        }
+                                    },
+                                    "type": "object"
                                 }
                             },
                             "type": "object"

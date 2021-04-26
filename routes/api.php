@@ -1,11 +1,11 @@
 <?php
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\AuthApiController;
 use App\Http\Controllers\Api\UserApiController;
-use App\Http\Controllers\Api\CeremonyApiController;
 use App\Http\Controllers\Api\CommentApiController;
+use App\Http\Controllers\Api\CeremonyApiController;
+use App\Http\Controllers\Api\AssistanceApiController;
 use App\Http\Controllers\Api\InvitationApiController;
 use App\Http\Controllers\Api\DeceasedProfileApiController;
 
@@ -75,6 +75,9 @@ Route::middleware(['auth:api','verified'])->name('api.')->group(function() {
                 Route::put('/{ceremony_id}/update', [CeremonyApiController::class, 'update'])->name('update');
                 Route::delete('/{ceremony_id}/destroy', [CeremonyApiController::class, 'destroy'])->name('destroy');
             });
+
+            Route::get('/{ceremony_id}/assistance', [AssistanceApiController::class, 'index'])->name('assistance.index');
+            Route::put('/{ceremony_id}/assistance/update', [AssistanceApiController::class, 'update'])->name('assistance.update');
         });
 
         // Invitations

@@ -3,6 +3,7 @@ namespace App\Http\Resources\Api;
 
 
 use Illuminate\Http\Resources\Json\JsonResource;
+use App\Http\Resources\Api\AssistanceApiResource;
 use App\Http\Resources\Api\CeremonyTypeApiResource;
 
 class CeremonyApiResource extends JsonResource
@@ -25,7 +26,8 @@ class CeremonyApiResource extends JsonResource
             "address"=>$this->address,
             "room_name"=>$this->room_name,
             "additional_info"=>$this->additional_info,
-            "visible"=>$this->visible
+            "visible"=>$this->visible,
+            'assistance' => $this->when(auth()->check(), AssistanceApiResource::collection($this->users)),
         ];
     }
 
@@ -42,6 +44,9 @@ class CeremonyApiResource extends JsonResource
      *      @OA\Property(property="address", type="string", example="Carrer del Campament, 80, 46035 València, Valencia"),
      *      @OA\Property(property="room_name", type="string", example="Sala 03"),
      *      @OA\Property(property="additional_info", type="string", example="Informacion adicional"),
+     *      @OA\Property(property="assistance", type="array",
+     *          @OA\Items(ref="#/components/schemas/AssistanceApiResource")
+     *      ),
      * )
      */
 }

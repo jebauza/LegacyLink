@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\Comment;
+use App\Models\Ceremony;
 use App\Models\DeceasedProfile;
 use Laravel\Passport\HasApiTokens;
 use Illuminate\Auth\Events\Registered;
@@ -114,6 +115,18 @@ class User extends Authenticatable implements MustVerifyEmail
     public function comments()
     {
         return $this->hasMany(Comment::class, 'user_id', 'id');
+    }
+
+    /**
+     * The roles that belong to the User
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function ceremonies()
+    {
+        return $this->belongsToMany(Ceremony::class, 'ceremony_user', 'user_id', 'ceremony_id')
+                    ->withPivot('ceremony_id','user_id','assistance')
+                    ->withTimestamps();
     }
 
     public function roleProfile($profile_id){
