@@ -88,10 +88,23 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->name . ($this->lastname ? ' ' . $this->lastname : '');
     }
 
+    // Scope
     public function scopeEmailDni($query, $param)
     {
         if ($param) {
             $query->where('email', 'like', "%$param%")
+                    ->orWhere('dni', 'like', "%$param%");
+        }
+    }
+
+    // Scope
+    public function scopeSearch($query, $param)
+    {
+        if ($param) {
+            $query->where('name', 'like', "%$param%")
+                    ->orWhere('lastname', 'like', "%$param%")
+                    ->orWhere('email', 'like', "%$param%")
+                    ->orWhere('phone', 'like', "%$param%")
                     ->orWhere('dni', 'like', "%$param%");
         }
     }

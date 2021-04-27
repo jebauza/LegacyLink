@@ -55,6 +55,12 @@
     "If you did not request a password reset, no further action is required.": "Si no solicitó un restablecimiento de contraseña, no es necesario realizar ninguna otra acción.",
     "Hello": "Hola",
     "Regards": "Saludos",
-    "All rights reserved.": "Reservados todos los derechos."
+    "All rights reserved.": "Reservados todos los derechos.",
+    "Clients": "Clientes",
+    "Client administration": "Administración de clientes",
+    "Search": "Buscar",
+    "Status": "Estado",
+    "To block": "Bloquear",
+    "Activate": "Activar"
 
 }

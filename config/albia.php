@@ -28,6 +28,20 @@ return [
         ['name' => 'employees.activate', 'roles' => [1,2]],
         ['name' => 'employees.deactivate', 'roles' => [1,2]],
 
+        /* Webs */
+        ['name' => 'webs.view', 'roles' => [1,2,3]],
+        ['name' => 'webs.index', 'roles' => [1,2,3]],
+        ['name' => 'webs.store', 'roles' => [1,2,3]],
+        ['name' => 'webs.show', 'roles' => [1,2,3]],
+        ['name' => 'webs.update', 'roles' => [1,2,3]],
+
+        /* Users */
+        ['name' => 'users.view', 'roles' => [1,2,3]],
+        ['name' => 'users.index', 'roles' => [1,2,3]],
+        ['name' => 'users.store', 'roles' => [1,2,3]],
+        ['name' => 'users.show', 'roles' => [1,2,3]],
+        ['name' => 'users.update', 'roles' => [1,2,3]],
+
     ],
 
     'employees_admin' => [
