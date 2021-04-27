@@ -2225,6 +2225,10 @@
                         "type": "string",
                         "example": "Se le ha invitado a unirse a la web de Pepe Gonzalez su link es https://web.celebrasuvida.es/invitation?token=ASDDXcM260755ad575d54&profile=xmrZJ10"
                     },
+                    "url": {
+                        "type": "string",
+                        "example": "https://web.celebrasuvida.es/invitation?token=ASDDXcM260755ad575d54&profile=xmrZJ10"
+                    },
                     "created_by": {
                         "type": "integer",
                         "example": 31
