@@ -9,7 +9,7 @@ import Vuesax from 'vuesax';
 import 'vuesax/dist/vuesax.css';
 Vue.use(Vuesax, {
     colors: {
-        primary: '#0bb7af',
+        primary: '#98C5EA',
         success: '#187de4',
         danger: '#ee2d41',
         warning: '#ee9d01',
@@ -28,6 +28,7 @@ Vue.component('pagination', require('laravel-vue-pagination'));
 Vue.component('office', require('./components/modules/offices/OfficeComponent').default);
 Vue.component('employee', require('./components/modules/employees/EmployeeComponent').default);
 Vue.component('deceasedProfile', require('./components/modules/deceasedProfiles/DeceasedProfileComponent').default);
+Vue.component('user', require('./components/modules/users/UserComponent').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

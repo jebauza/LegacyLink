@@ -533,15 +533,9 @@ class AuthApiController extends Controller
             'forgot_email' => 'required|email|exists:users,email',
         ]);
 
-        $user = User::where('email', $request->forgot_email)->first();
-
-        $token = Str::random(60);
-
-        DB::table('password_resets')->insert(
-            ['email' => $user->email, 'token' => $token, 'created_at' => Carbon::now()]
-        );
-
-        $user->sendPasswordResetNotification($token);
+        if ($user = User::where('email', $request->forgot_email)->first()) {
+            $user->changePassword();
+        }
 
         return response()->json([
                 'success' => true,

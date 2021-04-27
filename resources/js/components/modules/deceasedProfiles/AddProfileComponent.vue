@@ -526,7 +526,7 @@ export default {
         },
         getClient() {
             console.log('pase');
-            const url = `/admin/ajax/users?emailDni=${this.loadClient.search}`;
+            const url = `/admin/ajax/clients?emailDni=${this.loadClient.search}`;
             this.loadClient.loading = true;
             this.loadClient.check = false;
             this.loadClient.client = '';

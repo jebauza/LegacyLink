@@ -41,7 +41,8 @@ Route::name('admin.')->group(function () {
         Route::get('offices', [OfficeController::class, 'indexView'])->name('offices.indexView')->middleware('permission:offices.view');
         Route::get('employees', [EmployeeController::class, 'indexView'])->name('employees.indexView');
         Route::get('webs', [DeceasedProfileController::class, 'indexView'])->name('webs.indexView');
-        Route::get('emails', [MailController::class, 'index']);
+        Route::get('clients', [UserController::class, 'indexView'])->name('clients.indexView');
+        // Route::get('emails', [MailController::class, 'index']);
 
         Route::prefix('ajax')->name('ajax.')->middleware('ajax')->group(function () {
 
@@ -84,9 +85,16 @@ Route::name('admin.')->group(function () {
             });
 
             // Users
-            Route::prefix('users')->name('users.')->group(function () {
+            Route::prefix('clients')->name('clients.')->group(function () {
                 Route::get('/', [UserController::class, 'index'])->name('index');
-                Route::put('/{users_id}/update', [UserController::class, 'update'])->name('update');
+                Route::get('/paginate', [UserController::class, 'paginate'])->name('paginate');
+                Route::post('/store', [UserController::class, 'store'])->name('store');
+                Route::put('/{client_id}/update', [UserController::class, 'update'])->name('update');
+                Route::put('/{client_id}/status', [UserController::class, 'changeStatus'])->name('status');
+                Route::delete('/{client_id}/destroy', [UserController::class, 'destroy'])->name('destroy');
+                Route::put('/{client_id}/restore', [UserController::class, 'restore'])->name('destroy.restore');
+                Route::delete('/{client_id}/destroy/force-delete', [UserController::class, 'forceDelete'])->name('destroy.force-delete');
+                Route::get('/{client_id}/send/verification-mail', [UserController::class, 'sendVerificationMail'])->name('send.verification-mail');
             });
 
             // Ceremonies

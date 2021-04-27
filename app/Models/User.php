@@ -2,12 +2,16 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use App\Models\Comment;
 use App\Models\Ceremony;
+use Illuminate\Support\Str;
 use App\Models\DeceasedProfile;
+use Illuminate\Support\Facades\DB;
 use Laravel\Passport\HasApiTokens;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Notifications\Notifiable;
+use Propaganistas\LaravelPhone\PhoneNumber;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use App\Notifications\User\VerifyEmailNotification;
@@ -29,6 +33,7 @@ class User extends Authenticatable implements MustVerifyEmail
         'lastname',
         'email',
         'phone',
+        'dni'
     ];
 
     /**
@@ -88,10 +93,46 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->name . ($this->lastname ? ' ' . $this->lastname : '');
     }
 
+    /**
+     * The "booted" method of the model.
+     *
+     * @return void
+     */
+    protected static function booted()
+    {
+        static::creating(function ($user) {
+            $user->phone = (string) PhoneNumber::make($user->phone)->ofCountry('ES'); // +3412345678;
+        });
+
+        static::updating(function ($user) {
+            $user->phone = (string) PhoneNumber::make($user->phone)->ofCountry('ES'); // +3412345678;
+        });
+    }
+
+    // Scope
     public function scopeEmailDni($query, $param)
     {
         if ($param) {
             $query->where('email', 'like', "%$param%")
+                    ->orWhere('dni', 'like', "%$param%");
+        }
+    }
+
+    public function scopeSoftDelete($query, $param)
+    {
+        if ($param && $param != "false") {
+            $query->onlyTrashed();
+        }
+    }
+
+    // Scope
+    public function scopeSearch($query, $param)
+    {
+        if ($param) {
+            $query->where('name', 'like', "%$param%")
+                    ->orWhere('lastname', 'like', "%$param%")
+                    ->orWhere('email', 'like', "%$param%")
+                    ->orWhere('phone', 'like', "%$param%")
                     ->orWhere('dni', 'like', "%$param%");
         }
     }
@@ -137,5 +178,21 @@ class User extends Authenticatable implements MustVerifyEmail
         }
 
         return null;
+    }
+
+    public function changePassword() {
+        $token = Str::random(60);
+
+        DB::table('password_resets')->insert(
+            ['email' => $this->email, 'token' => $token, 'created_at' => Carbon::now()]
+        );
+
+        $this->sendPasswordResetNotification($token);
+    }
+
+    public function changeStatus() {
+        $this->is_active = !$this->is_active;
+
+        $this->save();
     }
 }

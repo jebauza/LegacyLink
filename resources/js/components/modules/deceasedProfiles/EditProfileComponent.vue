@@ -561,7 +561,7 @@ export default {
             });
         },
         updateClient() {
-            const url = `/admin/ajax/users/${this.formClient.id}/update`;
+            const url = `/admin/ajax/clients/${this.formClient.id}/update`;
             const loading = this.$vs.loading({
                 type: 'points',
                 color: '#187de4',

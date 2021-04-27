@@ -78,7 +78,7 @@
                                         </template>
                                     </vs-tooltip>-->
                                     <vs-tooltip bottom>
-                                        <button class="btn btn-sm btn-clean btn-icon mr-2" @click="openModalAddEditShow('edit', profile)">
+                                        <button class="btn btn-sm btn-clean btn-icon mr-2 text-success" @click="openModalAddEditShow('edit', profile)">
                                             <i class="fas fa-pen"></i>
                                         </button>
                                         <template #tooltip>
@@ -86,7 +86,7 @@
                                         </template>
                                     </vs-tooltip>
                                     <vs-tooltip bottom>
-                                        <button class="btn btn-sm btn-clean btn-icon mr-2" @click="sendNotification(profile)">
+                                        <button class="btn btn-sm btn-clean btn-icon mr-2 text-success" @click="sendNotification(profile)">
                                             <i class="fa fa-comment-alt"></i>
                                         </button>
                                         <template #tooltip>
@@ -94,7 +94,7 @@
                                         </template>
                                     </vs-tooltip>
                                     <vs-tooltip bottom>
-                                        <button class="btn btn-sm btn-clean btn-icon mr-2" @click="askDestroy(profile)">
+                                        <button class="btn btn-sm btn-clean btn-icon mr-2 text-danger" @click="askDestroy(profile)">
                                             <i class="fas fa-trash-alt"></i>
                                         </button>
                                         <template #tooltip>
