@@ -61,6 +61,15 @@
     "Search": "Buscar",
     "Status": "Estado",
     "To block": "Bloquear",
-    "Activate": "Activar"
+    "Activate": "Activar",
+    "Client": "Cliente",
+    "Restore": "Restaurar",
+    "Destroy": "Destruir",
+    "Restored successfully": "Restaurado con éxito",
+    "Resend verification email": "Reenviar correo de verificación",
+    "A verification email has been sent to :email": "Se ha enviado un correo de verificacion a :email",
+    "Active": "Activo",
+    "Locked": "Bloqueado",
+    "Unverified": "Sin verificar"
 
 }

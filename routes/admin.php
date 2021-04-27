@@ -90,7 +90,11 @@ Route::name('admin.')->group(function () {
                 Route::get('/paginate', [UserController::class, 'paginate'])->name('paginate');
                 Route::post('/store', [UserController::class, 'store'])->name('store');
                 Route::put('/{client_id}/update', [UserController::class, 'update'])->name('update');
+                Route::put('/{client_id}/status', [UserController::class, 'changeStatus'])->name('status');
                 Route::delete('/{client_id}/destroy', [UserController::class, 'destroy'])->name('destroy');
+                Route::put('/{client_id}/restore', [UserController::class, 'restore'])->name('destroy.restore');
+                Route::delete('/{client_id}/destroy/force-delete', [UserController::class, 'forceDelete'])->name('destroy.force-delete');
+                Route::get('/{client_id}/send/verification-mail', [UserController::class, 'sendVerificationMail'])->name('send.verification-mail');
             });
 
             // Ceremonies

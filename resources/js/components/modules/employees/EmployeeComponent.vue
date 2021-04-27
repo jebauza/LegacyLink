@@ -74,7 +74,7 @@
                             <td>
                                 <div class="d-flex justify-content-center">
                                     <vs-tooltip bottom>
-                                        <button  class="btn btn-sm btn-clean btn-icon mr-2" @click="openModalAddEditShow('show', employee)">
+                                        <button  class="btn btn-sm btn-clean btn-icon mr-2 text-success" @click="openModalAddEditShow('show', employee)">
                                             <i class="far fa-eye"></i>
                                         </button>
                                         <template #tooltip>
@@ -82,7 +82,7 @@
                                         </template>
                                     </vs-tooltip>
                                     <vs-tooltip bottom>
-                                        <button class="btn btn-sm btn-clean btn-icon mr-2" @click="openModalAddEditShow('edit', employee)">
+                                        <button class="btn btn-sm btn-clean btn-icon mr-2 text-success" @click="openModalAddEditShow('edit', employee)">
                                             <i class="fas fa-pen"></i>
                                         </button>
                                         <template #tooltip>
@@ -90,7 +90,7 @@
                                         </template>
                                     </vs-tooltip>
                                     <vs-tooltip bottom>
-                                        <button class="btn btn-sm btn-clean btn-icon mr-2" @click="askDestroy(employee)">
+                                        <button class="btn btn-sm btn-clean btn-icon mr-2 text-danger" @click="askDestroy(employee)">
                                             <i class="fas fa-trash-alt"></i>
                                         </button>
                                         <template #tooltip>

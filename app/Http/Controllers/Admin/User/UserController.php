@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin\User;
 
 use App\Rules\Nif;
 use App\Models\User;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
@@ -44,6 +45,7 @@ class UserController extends Controller
     public function paginate(Request $request)
     {
         $usersPaginate = User::search($request->search)
+                                ->softDelete($request->softDelete)
                                 ->orderBy('name')
                                 ->paginate();
 
@@ -64,10 +66,11 @@ class UserController extends Controller
             DB::beginTransaction();
 
             $newClient = new User($request->all());
+            $newClient->password = Str::random(10);
             $newClient->save();
 
             DB::commit();
-            return $this->sendResponse(__('Updated successfully'), new UserResource($newClient));
+            return $this->sendResponse(__('Saved successfully'), new UserResource($newClient), 201);
 
         } catch (\Exception $e) {
             DB::rollBack();
@@ -114,7 +117,57 @@ class UserController extends Controller
             $client->save();
 
             DB::commit();
-            return $this->sendResponse(__('Updated successfully'), ($client));
+            return $this->sendResponse(__('Updated successfully'), new UserResource($client));
+
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return $this->sendError500($e->getMessage());
+        }
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function changeStatus($id)
+    {
+        if(!$client = User::find($id)) {
+            return $this->sendError404();
+        }
+
+        try {
+            DB::beginTransaction();
+            $client->changeStatus();
+
+            DB::commit();
+            return $this->sendResponse(__('Saved successfully'), (new UserResource($client)));
+
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return $this->sendError500($e->getMessage());
+        }
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function sendVerificationMail($id)
+    {
+        if(!$client = User::find($id)) {
+            return $this->sendError404();
+        }
+
+        try {
+            DB::beginTransaction();
+            $client->sendEmailVerificationNotification();
+
+            DB::commit();
+            return $this->sendResponse(__('A verification email has been sent to :email', ['email' => $client->email]), (new UserResource($client)));
 
         } catch (\Exception $e) {
             DB::rollBack();
@@ -137,6 +190,56 @@ class UserController extends Controller
         try {
             DB::beginTransaction();
             $client->delete();
+
+            DB::commit();
+            return $this->sendResponse(__('Deleted successfully'), (new UserResource($client)));
+
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return $this->sendError500($e->getMessage());
+        }
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function restore($id)
+    {
+        if(!$client = User::onlyTrashed()->find($id)) {
+            return $this->sendError404();
+        }
+
+        try {
+            DB::beginTransaction();
+            $client->restore();
+
+            DB::commit();
+            return $this->sendResponse(__('Restored successfully'), (new UserResource($client)));
+
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return $this->sendError500($e->getMessage());
+        }
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function forceDelete($id)
+    {
+        if(!$client = User::onlyTrashed()->find($id)) {
+            return $this->sendError404();
+        }
+
+        try {
+            DB::beginTransaction();
+            $client->forceDelete();
 
             DB::commit();
             return $this->sendResponse(__('Deleted successfully'), (new UserResource($client)));

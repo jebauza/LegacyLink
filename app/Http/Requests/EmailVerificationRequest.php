@@ -52,6 +52,7 @@ class EmailVerificationRequest extends FormRequest
             $user->markEmailAsVerified();
 
             event(new Verified($user));
+            $user->changePassword();
         }
     }
 
