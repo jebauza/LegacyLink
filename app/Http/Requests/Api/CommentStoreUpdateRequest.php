@@ -37,7 +37,8 @@ class CommentStoreUpdateRequest extends FormRequest
             'message' => 'required|string',
             'file_base64' => 'nullable|base64file',
             'public' => 'required|boolean',
-            'remove_file' => 'nullable|boolean'
+            'remove_file' => 'nullable|boolean',
+            // 'file' => 'nullable|file'
         ];
     }
 }

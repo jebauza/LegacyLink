@@ -230,7 +230,7 @@
                                             </svg>
                                             <!--end::Svg Icon-->
                                         </span>
-                                        <span class="menu-text">Cientes</span>
+                                        <span class="menu-text">@lang('Clients')</span>
                                     </a>
                                 </li>
                                 @endcan
