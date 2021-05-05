@@ -6,6 +6,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use Illuminate\Auth\Events\Verified;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\EmailVerificationRequest;
 
@@ -18,7 +19,25 @@ class AuthController extends Controller
      */
     public function emailVerify(EmailVerificationRequest $request)
     {
-        $request->fulfill();
+        $user = User::find($request->route('id'));
+
+        if (! $user->hasVerifiedEmail()) {
+            $user->markEmailAsVerified();
+
+            event(new Verified($user));
+            // $user->changePassword();
+        }
+
+        $profile_user = DB::table('deceased_profile_user')
+                        ->where('deceased_profile_user.user_id', $user->id)
+                        ->join('deceased_profiles', 'deceased_profiles.id', '=', 'deceased_profile_user.profile_id')
+                        ->select('deceased_profile_user.*', 'deceased_profiles.web_code')
+                        ->latest('deceased_profile_user.updated_at')
+                        ->first();
+
+        if ($profile_user) {
+            return redirect()->away(config('albia.web_client_url') . '/' . $profile_user->web_code);
+        }
 
         return view('auth.user.emailVerify');
     }

@@ -370,6 +370,7 @@ class AuthApiController extends Controller
      *              @OA\Property(property="phone", type="string", example="+34622459652", title="required|string|phone:ES,mobile|max:20"),
      *              @OA\Property(property="password", type="string", example="qweasd12", title="required|string|min:8|confirmed"),
      *              @OA\Property(property="password_confirmation", type="string", example="Dfghre3rtt5", title="required"),
+     *              @OA\Property(property="invitation_token", type="string", example="TwS78uHG608684d7061a4", title="nullable|string|exists:invitations,token"),
      *          ),
      *      ),
      *
@@ -377,9 +378,6 @@ class AuthApiController extends Controller
      *          @OA\JsonContent(
      *              @OA\Property(property="success", example=true),
      *              @OA\Property(property="message", example="User login successfully."),
-     *              @OA\Property(property="token_type", example="Bearer"),
-     *              @OA\Property(property="expires_at", example="2022-03-02 17:10:15"),
-     *              @OA\Property(property="access_token", example="eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiM2NhOGI5NzhiNDRmMDM5ODYyZDcyZDcwYmQ1ZDFlNGNhNWRiOWFhOWZiM2ZlOGRiN2Y3ZjMwNGFlZWRmOTg4NGRiYjZjZjI1ZGQ5NDNkZTQiLCJpYXQiOjE1OTcxMjk3MjAsIm5iZiI6MTU5NzEyOTcyMCwiZXhwIjoxNjI4NjY1NzE5LCJzdWIiOiI3Iiwic2NvcGVzIjpbXX0.PmPKlqkpQS0UxYVqXb6KdZtoouIUO7NyKW7bj9XweDMwmLUwmvvyCg7Z9wAMgJM0MsQl1-dTgd0XwP9e8Y9DbrAcvkjFVhOHnRPMsILSqNYk6XdFEIvqRtooOMjcdebRjuFO4Y39Tz8EAlfvVdYZu88J-j3ujJuIkE1fxo_wIeGL6gyjwUqeSiiUmM_BqFBvcBUfIaLYBXqkGtnrwNrKX10QcLfimCm6qgk3NtiQuEflFqWzkkq_uQoXOAOmk5UlPgUAWzxfvmmnSJ_B4rpKXa1DWCuP-ePL7ttA_DzuhWYlpTS4ovfdIvbTRg2p5eFOAqfko-1rzOwX1tjRQI4n6dsfVmyNAsfPTTVuF4se4gTomTx4uE-gDJ_yj52zeUHca5z4zkbTHZlH44TzF_MC2RfMQe6MLpNdT2EYlSzhWqlCDIMFF0-z101"),
      *          )
      *      ),
      *
@@ -392,7 +390,8 @@ class AuthApiController extends Controller
      *                  @OA\Property(property="email", example={"El campo correo es obligatorio."}),
      *                  @OA\Property(property="phone", example={"El campo correo es obligatorio."}),
      *                  @OA\Property(property="password", example={"El campo correo es obligatorio."}),
-     *                  @OA\Property(property="password_confirmation", example={"El campo correo es obligatorio."})
+     *                  @OA\Property(property="password_confirmation", example={"El campo correo es obligatorio."}),
+     *                  @OA\Property(property="invitation_token", example={"El campo correo es obligatorio."})
      *              )
      *          )
      *      ),
@@ -409,6 +408,7 @@ class AuthApiController extends Controller
                 'phone' => 'required|string|phone:ES,mobile|max:20',
                 'password' => 'required|string|min:8|confirmed',
                 'password_confirmation' => 'required',
+                'invitation_token' => 'nullable|string|exists:invitations,token'
             ]);
 
             try {
@@ -418,20 +418,16 @@ class AuthApiController extends Controller
                 if ($newUser->save()) {
                     DB::commit();
 
-                    $req = Request::create('api/auth/login', 'POST', [
-                        'email' => $newUser->email,
-                        'password' => $request->password,
-                    ]);
-                    $req->headers->set('Accept', 'application/json');
-                    $req->headers->set('X-Requested-With', 'XMLHttpRequest');
-
-                    $response = Route::dispatch($req);
-                    $content = json_decode($response->getContent(), true);
-                    if (! $response->isSuccessful()) {
-                        return response()->json($content, 500);
+                    if ($request->invitation_token) {
+                        $invitation = Invitation::where('token',  $request->invitation_token)->first();
+                        $profile = $invitation->profile;
+                        $profile->clients()->attach($newUser->id, ['role' => $invitation->role]);
                     }
 
-                    return response()->json($content);
+                    return response()->json([
+                        'success' => true,
+                        'message' => __('Verification email sent'),
+                    ], 201);
                 }
 
             } catch (\Exception $e) {
