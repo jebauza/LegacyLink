@@ -36,7 +36,7 @@ class AuthController extends Controller
                         ->first();
 
         if ($profile_user) {
-            return redirect()->away(config('albia.web_client_url') . '/' . $profile_user->web_code);
+            return redirect()->away(config('albia.web_client_url') . '/home/' . $profile_user->web_code);
         }
 
         return view('auth.user.emailVerify');
