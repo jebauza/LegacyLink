@@ -31,12 +31,16 @@ class AuthController extends Controller
         $profile_user = DB::table('deceased_profile_user')
                         ->where('deceased_profile_user.user_id', $user->id)
                         ->join('deceased_profiles', 'deceased_profiles.id', '=', 'deceased_profile_user.profile_id')
-                        ->select('deceased_profile_user.*', 'deceased_profiles.web_code')
+                        ->join('invitations', function ($join) {
+                            $join->on('deceased_profiles.id', '=', 'invitations.profile_id')
+                                 ->where('invitations.role', '>', 'deceased_profile_user.role');
+                        })
+                        ->select('deceased_profile_user.*', 'deceased_profiles.web_code', 'invitations.token')
                         ->latest('deceased_profile_user.updated_at')
                         ->first();
 
         if ($profile_user) {
-            return redirect()->away(config('albia.web_client_url') . '/home/' . $profile_user->web_code);
+            return redirect()->away(config('albia.web_client_url') . '/invitation?token=' . $profile_user->token . '&profile=' . $profile_user->web_code);
         }
 
         return view('auth.user.emailVerify');
