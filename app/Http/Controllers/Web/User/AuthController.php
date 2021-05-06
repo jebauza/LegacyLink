@@ -32,8 +32,8 @@ class AuthController extends Controller
                         ->where('deceased_profile_user.user_id', $user->id)
                         ->join('deceased_profiles', 'deceased_profiles.id', '=', 'deceased_profile_user.profile_id')
                         ->join('invitations', function ($join) {
-                            $join->on('deceased_profiles.id', '=', 'invitations.profile_id')
-                                 ->where('invitations.role', '>', 'deceased_profile_user.role');
+                            $join->on('deceased_profile_user.profile_id', '=', 'invitations.profile_id')
+                                 ->where('invitations.role', '=', 'deceased_profile_user.role');
                         })
                         ->select('deceased_profile_user.*', 'deceased_profiles.web_code', 'invitations.token')
                         ->latest('deceased_profile_user.updated_at')
