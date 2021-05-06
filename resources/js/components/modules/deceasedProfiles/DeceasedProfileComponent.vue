@@ -69,14 +69,14 @@
                             <td>{{ profile.declarant ? profile.declarant.fullName : '' }}</td>
                             <td>
                                 <div class="d-flex justify-content-center">
-                                    <!-- <vs-tooltip bottom>
-                                        <button  class="btn btn-sm btn-clean btn-icon mr-2" @click="openModalAddEditShow('show', profile)">
+                                    <vs-tooltip bottom>
+                                        <a :href="profile.urlWeb"  class="btn btn-sm btn-clean btn-icon mr-2 text-success" target="_blank">
                                             <i class="far fa-eye"></i>
-                                        </button>
+                                        </a>
                                         <template #tooltip>
                                             {{ __('Show') }}
                                         </template>
-                                    </vs-tooltip>-->
+                                    </vs-tooltip>
                                     <vs-tooltip bottom>
                                         <button class="btn btn-sm btn-clean btn-icon mr-2 text-success" @click="openModalAddEditShow('edit', profile)">
                                             <i class="fas fa-pen"></i>

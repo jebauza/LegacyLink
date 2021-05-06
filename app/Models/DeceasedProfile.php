@@ -51,7 +51,7 @@ class DeceasedProfile extends Model
         return $date->format('Y-m-d H:i:s');
     }
 
-    protected $appends = ['fullName', 'urlPhoto'];
+    protected $appends = ['fullName', 'urlPhoto', 'urlWeb'];
 
     // Attributes
     function getFullNameAttribute()
@@ -62,6 +62,11 @@ class DeceasedProfile extends Model
     function getUrlPhotoAttribute()
     {
         return Storage::disk('public')->exists($this->photo) ? Storage::disk('public')->url($this->photo) : null;
+    }
+
+    function getUrlWebAttribute()
+    {
+        return config('albia.web_client_url') . '/home/' . $this->web_code;
     }
 
     // SCOPES
