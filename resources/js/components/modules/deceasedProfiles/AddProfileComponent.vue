@@ -267,14 +267,20 @@
                                         <el-date-picker
                                                 v-model="formCeremony.start"
                                                 type="datetime"
-                                                placeholder="Inicio">
+                                                placeholder="Inicio"
+                                                :picker-options="pickerOptions"
+                                                default-time="12:00:00"
+                                                format="dd/MM/yyyy HH:mm:ss">
                                         </el-date-picker>
                                     </div>
                                     <div class="form-group col-sm-6 col-lg-4">
                                         <el-date-picker
                                                 v-model="formCeremony.end"
                                                 type="datetime"
-                                                placeholder="Fin">
+                                                placeholder="Fin"
+                                                :picker-options="pickerOptions"
+                                                default-time="12:00:00"
+                                                format="dd/MM/yyyy HH:mm:ss">
                                         </el-date-picker>
                                     </div>
                                     <div class="form-group col-sm-6 col-lg-4">
@@ -482,6 +488,29 @@ export default {
                 room_name: '',
                 aux_id: '',
                 id: ''
+            },
+
+            pickerOptions: {
+                shortcuts: [{
+                    text: 'Hoy',
+                    onClick(picker) {
+                        picker.$emit('pick', new Date());
+                    }
+                }, {
+                    text: 'Ayer',
+                    onClick(picker) {
+                        const date = new Date();
+                        date.setTime(date.getTime() - 3600 * 1000 * 24);
+                        picker.$emit('pick', date);
+                    }
+                }, {
+                    text: 'Mañama',
+                    onClick(picker) {
+                        const date = new Date();
+                        date.setTime(date.getTime() + 3600 * 1000 * 24);
+                        picker.$emit('pick', date);
+                    }
+                }]
             },
 
         }
