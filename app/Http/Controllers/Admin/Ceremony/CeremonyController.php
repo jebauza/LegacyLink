@@ -93,6 +93,7 @@ class CeremonyController extends Controller
             'main' => 'required|boolean',
             'room_name' => 'nullable|string|max:255',
             'type_id' => 'required|integer|exists:ceremony_types,id',
+            'streaming' => 'required|boolean',
         ]);
 
         try {

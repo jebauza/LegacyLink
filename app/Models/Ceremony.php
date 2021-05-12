@@ -24,7 +24,8 @@ class Ceremony extends Model
         'longitude',
         'type_id',
         'profile_id',
-        'visible'
+        'visible',
+        'streaming'
     ];
 
     protected $casts = [

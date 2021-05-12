@@ -50,6 +50,7 @@ class DeceasedProfileStoreRequest extends FormRequest
             'ceremonies.*.main' => 'required|boolean',
             'ceremonies.*.room_name' => 'nullable|string|max:255',
             'ceremonies.*.type_id' => 'required|integer|exists:ceremony_types,id',
+            'ceremonies.*.streaming' => 'required|boolean',
         ];
     }
 }

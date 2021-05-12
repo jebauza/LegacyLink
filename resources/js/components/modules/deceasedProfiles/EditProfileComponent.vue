@@ -210,7 +210,10 @@
                                         <el-date-picker
                                                 v-model="formCeremony.start"
                                                 type="datetime"
-                                                placeholder="Inicio">
+                                                placeholder="Inicio"
+                                                :picker-options="pickerOptions"
+                                                default-time="12:00:00"
+                                                format="dd/MM/yyyy HH:mm">
                                         </el-date-picker>
                                         <small v-if="errorsCeremony.start" class="form-control-feedback text-danger">
                                             {{ errorsCeremony.start[0] }}
@@ -220,7 +223,10 @@
                                         <el-date-picker
                                                 v-model="formCeremony.end"
                                                 type="datetime"
-                                                placeholder="Fin">
+                                                placeholder="Fin"
+                                                :picker-options="pickerOptions"
+                                                default-time="12:00:00"
+                                                format="dd/MM/yyyy HH:mm">
                                         </el-date-picker>
                                         <small v-if="errorsCeremony.end" class="form-control-feedback text-danger">
                                             {{ errorsCeremony.end[0] }}
@@ -251,13 +257,23 @@
                                             {{ errorsCeremony.address[0] }}
                                         </small>
                                     </div>
-                                    <div class="form-group col-sm-6 col-xl-4">
+                                    <div class="form-group col-sm-6 col-lg-4 col-xl-4">
                                         <el-input placeholder="Sala" v-model="formCeremony.room_name" clearable></el-input>
                                         <small v-if="errorsCeremony.room_name" class="form-control-feedback text-danger">
                                             {{ errorsCeremony.room_name[0] }}
                                         </small>
                                     </div>
-                                    <div class="form-group col-6 col-sm-5 col-lg-3 col-xl-2">
+                                    <div class="form-group col-sm-6 col-lg-2 col-xl-auto">
+                                         <vs-tooltip bottom>
+                                            <vs-switch v-model="formCeremony.streaming">
+                                                <i class='fas fa-video' ></i>
+                                            </vs-switch>
+                                            <template #tooltip>
+                                                Transmisión en vivo
+                                            </template>
+                                        </vs-tooltip>
+                                    </div>
+                                    <div class="form-group col-sm-5 col-lg-auto">
                                          <el-checkbox v-model="formCeremony.main" label="Principal" border></el-checkbox>
                                          <small v-if="errorsCeremony.main" class="form-control-feedback text-danger">
                                             {{ errorsCeremony.main[0] }}
@@ -287,6 +303,9 @@
                                                     Dirrección
                                                 </vs-th>
                                                 <vs-th>
+                                                    En vivo
+                                                </vs-th>
+                                                <vs-th>
 
                                                 </vs-th>
                                             </vs-tr>
@@ -304,6 +323,11 @@
                                                 </vs-td>
                                                 <vs-td>{{ ceremony.start }} / {{ ceremony.end }}</vs-td>
                                                 <vs-td>{{ ceremony.address }}</vs-td>
+                                                <vs-td>
+                                                    <div class="d-flex justify-content-center">
+														<i v-if="ceremony.streaming" class="fas fa-video text-success icon-md"></i>
+                                                    </div>
+                                                </vs-td>
                                                 <vs-td>
                                                     <div class="d-flex justify-content-center">
                                                         <vs-button icon color="primary" border @click="loadFormCeremony(ceremony)">
@@ -355,6 +379,12 @@ export default {
                 this.formProfile.adviser = ''
             }
             this.getAdvisers();
+        },
+        'formCeremony.start': function (newValue, oldValue) {
+            if (newValue instanceof Date) {
+                const date = new Date();
+                this.formCeremony.end = date.setTime(newValue.getTime() + 3600 * 1000 * 2);
+            }
         }
     },
 
@@ -402,10 +432,34 @@ export default {
                 additional_info: '',
                 address: '',
                 room_name: '',
+                streaming: false,
                 id: '',
                 profile_id: ''
             },
             errorsCeremony: {},
+
+            pickerOptions: {
+                shortcuts: [{
+                    text: 'Hoy',
+                    onClick(picker) {
+                        picker.$emit('pick', new Date());
+                    }
+                }, {
+                    text: 'Mañama',
+                    onClick(picker) {
+                        const date = new Date();
+                        date.setTime(date.getTime() + 3600 * 1000 * 24);
+                        picker.$emit('pick', date);
+                    }
+                }, {
+                    text: 'Pasado',
+                    onClick(picker) {
+                        const date = new Date();
+                        date.setTime(date.getTime() + 3600 * 1000 * 48);
+                        picker.$emit('pick', date);
+                    }
+                }]
+            },
 
         }
     },
@@ -520,6 +574,7 @@ export default {
                 additional_info: '',
                 address: '',
                 room_name: '',
+                streaming: false,
                 id: '',
                 profile_id: this.formProfile.id
             };
@@ -646,6 +701,7 @@ export default {
                 additional_info: ceremony.additional_info,
                 address:  ceremony.address,
                 room_name: ceremony.room_name,
+                streaming: ceremony.streaming ? true : false,
                 id: ceremony.id
             }
         },
