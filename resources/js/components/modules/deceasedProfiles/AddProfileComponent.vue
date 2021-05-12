@@ -293,10 +293,20 @@
                                     <div class="form-group col-sm-6 col-lg-6 col-xl-4">
                                         <el-input placeholder="Dirrección" v-model="formCeremony.address" clearable></el-input>
                                     </div>
-                                    <div class="form-group col-sm-6 col-xl-4">
+                                    <div class="form-group col-sm-6 col-lg-4 col-xl-4">
                                         <el-input placeholder="Sala" v-model="formCeremony.room_name" clearable></el-input>
                                     </div>
-                                    <div class="form-group col-6 col-sm-5 col-lg-3 col-xl-2">
+                                    <div class="form-group col-sm-6 col-lg-2 col-xl-auto">
+                                         <vs-tooltip bottom>
+                                            <vs-switch v-model="formCeremony.streaming">
+                                                <i class='fas fa-video' ></i>
+                                            </vs-switch>
+                                            <template #tooltip>
+                                                Transmisión en vivo
+                                            </template>
+                                        </vs-tooltip>
+                                    </div>
+                                    <div class="form-group col-sm-5 col-lg-auto">
                                          <el-checkbox v-model="formCeremony.main" label="Principal" border></el-checkbox>
                                     </div>
                                     <div class="form-group col-auto">
@@ -480,6 +490,7 @@ export default {
                 additional_info: '',
                 address: '',
                 room_name: '',
+                streaming: false,
                 aux_id: '',
                 id: ''
             },
@@ -593,6 +604,7 @@ export default {
                 additional_info: '',
                 address: '',
                 room_name: '',
+                streaming: false,
                 aux_id: ''
             };
             this.errors = {};
@@ -621,6 +633,7 @@ export default {
                 additional_info: this.formCeremony.additional_info,
                 address: this.formCeremony.address,
                 room_name: this.formCeremony.room_name,
+                streaming: this.formCeremony.streaming,
                 aux_id: Math.random().toString(36).substr(2, 5)
             });
 
@@ -642,6 +655,7 @@ export default {
                             additional_info: this.formCeremony.additional_info,
                             address: this.formCeremony.address,
                             room_name: this.formCeremony.room_name,
+                            streaming: this.formCeremony.streaming,
                             aux_id: this.formCeremony.aux_id,
                         }
                     }
@@ -667,6 +681,7 @@ export default {
                 additional_info: ceremony.additional_info,
                 address:  ceremony.address,
                 room_name: ceremony.room_name,
+                streaming: ceremony.streaming,
                 aux_id: ceremony.aux_id ? ceremony.aux_id : ''
             }
         },

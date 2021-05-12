@@ -134,9 +134,13 @@ class DeceasedProfileController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function showView($id)
     {
-        //
+        if ($profile = DeceasedProfile::find($id)) {
+            // no existe
+        }
+
+        return view('modules.deceased_profile.show', compact($profile));
     }
 
     /**
