@@ -3,8 +3,10 @@
 namespace App\Models;
 
 use App\Models\User;
+use App\Models\Video;
 use DateTimeInterface;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Ceremony extends Model
@@ -56,6 +58,20 @@ class Ceremony extends Model
         }
     }
 
+    public function scopeFilterByRole($query)
+    {
+        return $query->whereHas('profile', function (Builder $q) {
+            $q->filterByRole();
+        });
+    }
+
+    public function scopeStreaming($query)
+    {
+        $query->where('streaming', true);
+    }
+
+
+
     public function profile()
     {
         return $this->belongsTo(DeceasedProfile::class,'profile_id');
@@ -76,6 +92,16 @@ class Ceremony extends Model
         return $this->belongsToMany(User::class, 'ceremony_user', 'ceremony_id', 'user_id')
                     ->withPivot('ceremony_id','user_id','assistance')
                     ->withTimestamps();
+    }
+
+    /**
+     * Get the user associated with the Ceremony
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function video()
+    {
+        return $this->hasOne(Video::class, 'ceremony_id', 'id');
     }
 
 }

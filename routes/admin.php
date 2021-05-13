@@ -11,6 +11,7 @@ use App\Http\Controllers\Admin\Office\OfficeController;
 use App\Http\Controllers\Admin\Ceremony\CeremonyController;
 use App\Http\Controllers\Admin\Employee\EmployeeController;
 use App\Http\Controllers\Admin\Auth\ResetPasswordController;
+use App\Http\Controllers\Admin\Ceremony\StreamingController;
 use App\Http\Controllers\Admin\Province\ProvincesController;
 use App\Http\Controllers\Admin\Auth\ForgotPasswordController;
 use App\Http\Controllers\Admin\CeremonyType\CeremonyTypeController;
@@ -41,6 +42,7 @@ Route::name('admin.')->group(function () {
         Route::get('offices', [OfficeController::class, 'indexView'])->name('offices.indexView')->middleware('permission:offices.view');
         Route::get('employees', [EmployeeController::class, 'indexView'])->name('employees.indexView');
         Route::get('webs', [DeceasedProfileController::class, 'indexView'])->name('webs.indexView');
+        Route::get('streaming', [StreamingController::class, 'indexView'])->name('streaming.indexView');
         Route::get('webs/{profile_id}/show', [DeceasedProfileController::class, 'showView'])->name('webs.show.view');
         Route::get('clients', [UserController::class, 'indexView'])->name('clients.indexView');
         Route::get('emails', [MailController::class, 'index']);
@@ -83,6 +85,11 @@ Route::name('admin.')->group(function () {
                 Route::put('/{employee_id}/update', [DeceasedProfileController::class, 'update'])->name('update');
                  */
 
+            });
+
+             // Streaming
+             Route::prefix('streaming')->name('streaming.')->group(function () {
+                Route::get('/paginate', [StreamingController::class, 'paginate'])->name('paginate');
             });
 
             // Users

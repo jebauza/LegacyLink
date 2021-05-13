@@ -29,6 +29,7 @@ Vue.component('office', require('./components/modules/offices/OfficeComponent').
 Vue.component('employee', require('./components/modules/employees/EmployeeComponent').default);
 Vue.component('deceasedProfile', require('./components/modules/deceasedProfiles/DeceasedProfileComponent').default);
 Vue.component('user', require('./components/modules/users/UserComponent').default);
+Vue.component('streaming', require('./components/modules/streaming/StreamingComponent').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
