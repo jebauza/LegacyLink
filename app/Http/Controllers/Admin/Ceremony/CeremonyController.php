@@ -69,7 +69,11 @@ class CeremonyController extends Controller
      */
     public function show($id)
     {
-        //
+        if(!$ceremony = Ceremony::with('video')->find($id)) {
+            return $this->sendError404();
+        }
+
+        return $this->sendResponse(null, $ceremony);
     }
 
     /**

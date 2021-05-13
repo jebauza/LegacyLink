@@ -90,6 +90,7 @@ Route::name('admin.')->group(function () {
              // Streaming
              Route::prefix('streaming')->name('streaming.')->group(function () {
                 Route::get('/paginate', [StreamingController::class, 'paginate'])->name('paginate');
+                Route::post('/{ceremony_id}/save', [StreamingController::class, 'save'])->name('save');
             });
 
             // Users
@@ -112,6 +113,7 @@ Route::name('admin.')->group(function () {
                 Route::post('/store', [CeremonyController::class, 'store'])->name('store');
                 Route::put('/{ceremony_id}/update', [CeremonyController::class, 'update'])->name('update');
                 Route::delete('/{ceremony_id}/destroy', [CeremonyController::class, 'destroy'])->name('destroy');
+                Route::get('/{ceremony_id}/show', [CeremonyController::class, 'show'])->name('show');
             });
 
             Route::get('/roles', [RoleController::class, 'getRolesByAuthUserAssign'])->name('roles.ByAuthUserAssign');

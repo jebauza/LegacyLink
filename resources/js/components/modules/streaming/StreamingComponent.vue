@@ -47,7 +47,7 @@
                 </div>
             </div>
 
-            <div v-if="ceremonies.data.length" class="center">
+            <div v-if="ceremonies.data.length" class="table-responsive">
                 <!-- <table class="table table-hover">
                     <thead>
                         <tr>
@@ -72,12 +72,14 @@
                     </tbody>
                 </table> -->
 
-                <vs-table>
+                <vs-table >
                     <template #thead>
                         <vs-tr>
                             <vs-th>Fecha</vs-th>
                             <vs-th>Web</vs-th>
-                            <vs-th class="text-nowrap d-flex justify-content-center">{{ __('Actions') }}</vs-th>
+                            <vs-th>
+                                {{ __('Actions') }}
+                            </vs-th>
                         </vs-tr>
                     </template>
                     <template #tbody>
@@ -85,16 +87,27 @@
                         <vs-td>{{ ceremony.start }} - {{ ceremony.end }}</vs-td>
                         <vs-td></vs-td>
                         <vs-td>
-                            <div class="d-flex justify-content-center">
-                                <vs-tooltip bottom>
-                                    <button class="btn btn-sm btn-clean btn-icon mr-2 text-success">
-                                        <i class="far fa-eye"></i>
-                                    </button>
-                                    <template #tooltip>
-                                        {{ __('Show') }}
-                                    </template>
-                                </vs-tooltip>
+                            <div>
+                                 <button class="btn btn-sm btn-clean btn-icon mr-2 text-success">
+                                    <vs-tooltip bottom>
+                                        <i class="fas fa-video"></i>
+                                        <template #tooltip>
+                                            Ver streaming
+                                        </template>
+                                    </vs-tooltip>
+                                </button>
+
+                                <button class="btn btn-sm btn-clean btn-icon mr-2 text-success" @click="openModalAddEditShow(ceremony)">
+                                    <vs-tooltip bottom>
+                                        <i class="fas fa-cogs"></i>
+                                        <template #tooltip>
+                                            Configurar streaming
+                                        </template>
+                                    </vs-tooltip>
+                                </button>
+
                             </div>
+
                         </vs-td>
 
                         <template #expand>
@@ -116,16 +129,18 @@
 
         </div>
 
-
+        <streaming-form-add-edit ref="streamingFormAddEdit" @updateStreamingList="updateList()"></streaming-form-add-edit>
 
     </div>
 <!--end::Card-->
 </template>
 
 <script>
-
+import StreamingFormAddEdit from './StreamingFormAddEditComponent';
 
 export default {
+
+    components: {StreamingFormAddEdit},
 
     created() {
         this.getOffices()
@@ -186,6 +201,14 @@ export default {
                 declarant: ''
             };
         },
+
+        openModalAddEditShow(ceremony) {
+            this.$refs.streamingFormAddEdit.showForm(ceremony);
+        },
+
+        updateList(action = null) {
+            this.getCeremonies(this.ceremonies.current_page ?? 1 );
+        },
     },
 
 }
@@ -197,5 +220,9 @@ export default {
 }
 .vs-table__td {
     font-size: 12px !important;
+}
+.btn.btn-clean:hover:not(.btn-text):not(:disabled):not(.disabled) {
+    background-color: #EE2D41 !important;
+    color: #ffffff !important;
 }
 </style>
