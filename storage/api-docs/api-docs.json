@@ -1602,7 +1602,15 @@
                 "operationId": "/public/profile/{profile_id}",
                 "parameters": [
                     {
-                        "$ref": "#/components/parameters/profile_id"
+                        "parameter": "web_code",
+                        "name": "web_code",
+                        "in": "path",
+                        "description": "Profile code",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "example": "SdfRt12"
+                        }
                     }
                 ],
                 "responses": {
@@ -2092,6 +2100,13 @@
                         "items": {
                             "$ref": "#/components/schemas/AssistanceApiResource"
                         }
+                    },
+                    "streaming": {
+                        "type": "boolean",
+                        "example": "true"
+                    },
+                    "video": {
+                        "$ref": "#/components/schemas/VimeoApiResource"
                     }
                 },
                 "type": "object"
@@ -2322,6 +2337,23 @@
                     }
                 },
                 "type": "object"
+            },
+            "VimeoApiResource": {
+                "properties": {
+                    "ceremony_id": {
+                        "type": "integer",
+                        "example": 161
+                    },
+                    "vimeo_code": {
+                        "type": "string",
+                        "example": "548798286"
+                    },
+                    "vimeo_url": {
+                        "type": "string",
+                        "example": "https://vimeo.com/548798286"
+                    }
+                },
+                "type": "object"
             }
         },
         "responses": {
@@ -2336,8 +2368,8 @@
                 "description": "Profile identifier",
                 "required": true,
                 "schema": {
-                    "type": "string",
-                    "example": "SdfRt12"
+                    "type": "integer",
+                    "example": "3"
                 }
             }
         },

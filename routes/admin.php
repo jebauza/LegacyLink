@@ -43,9 +43,9 @@ Route::name('admin.')->group(function () {
         Route::get('employees', [EmployeeController::class, 'indexView'])->name('employees.indexView');
         Route::get('webs', [DeceasedProfileController::class, 'indexView'])->name('webs.indexView');
         Route::get('streaming', [StreamingController::class, 'indexView'])->name('streaming.indexView');
-        Route::get('webs/{profile_id}/show', [DeceasedProfileController::class, 'showView'])->name('webs.show.view');
+        // Route::get('webs/{profile_id}/show', [DeceasedProfileController::class, 'showView'])->name('webs.show.view');
         Route::get('clients', [UserController::class, 'indexView'])->name('clients.indexView');
-        Route::get('emails', [MailController::class, 'index']);
+        // Route::get('emails', [MailController::class, 'index']);
 
         Route::prefix('ajax')->name('ajax.')->middleware('ajax')->group(function () {
 

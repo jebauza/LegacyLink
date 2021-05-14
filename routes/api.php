@@ -22,7 +22,7 @@ use App\Http\Controllers\Api\DeceasedProfileApiController;
 
 // Public
 Route::prefix('public')->name('api.public.')->group(function () {
-    Route::get('profile/{profile}', [DeceasedProfileApiController::class, 'show'])->name('profile.show');
+    Route::get('profile/{web_code}', [DeceasedProfileApiController::class, 'show'])->name('profile.show');
 
     Route::prefix('profile/{profile_id}')->middleware(['check_profile'])->group(function () {
 

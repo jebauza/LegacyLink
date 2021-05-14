@@ -55,6 +55,7 @@
                     <thead>
                         <tr>
                             <th>ID</th>
+                            <th>CODE</th>
                             <th>{{ __('validation.attributes.name') }}</th>
                             <th>Asesor</th>
                             <th>Declarante</th>
@@ -64,6 +65,7 @@
                     <tbody>
                         <tr v-for="(profile, index) in deceasedProfiles.data" :key="index">
                             <th>{{ profile.id }}</th>
+                            <td>{{ profile.web_code }}</td>
                             <td>{{ profile.name }} {{ profile.last_name }}</td>
                             <td>{{ profile.adviser ? profile.adviser.fullName : '' }}</td>
                             <td>{{ profile.declarant ? profile.declarant.fullName : '' }}</td>

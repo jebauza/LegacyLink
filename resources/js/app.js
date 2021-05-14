@@ -23,6 +23,12 @@ import 'element-ui/lib/theme-chalk/index.css';
 import locale from 'element-ui/lib/locale/lang/es';
 Vue.use(ElementUI, { locale });
 
+/* moment */
+import moment from 'moment'
+import 'moment/locale/es';
+Vue.prototype.moment = moment
+Vue.use(require('vue-moment'));
+
 Vue.component('pagination', require('laravel-vue-pagination'));
 
 Vue.component('office', require('./components/modules/offices/OfficeComponent').default);

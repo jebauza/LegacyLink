@@ -4,7 +4,7 @@
         <div class="card-header flex-wrap border-0 pt-6 pb-0">
             <div class="card-title">
                 <h3 class="card-label">Streaming
-                <span class="d-block text-muted pt-2 font-size-sm">{{ __('Employee administration') }}</span></h3>
+                <span class="d-block text-muted pt-2 font-size-sm"></span></h3>
             </div>
             <div class="card-toolbar">
 
@@ -24,8 +24,8 @@
                 </div>
 
                 <div class="col-sm-6 col-lg-4 form-group">
-                    <label for="name" style="text-transform: uppercase;"><b>{{ __('validation.attributes.name') }}</b></label>
-                    <input v-model="searches.name" type="text" class="form-control" name="name" :placeholder="__('validation.attributes.name')">
+                    <label for="name" style="text-transform: uppercase;"><b>WEB</b></label>
+                    <input v-model="searches.web" type="text" class="form-control" name="web" placeholder="WEB">
                 </div>
 
                 <div class="col-10 col-sm-5 col-lg-3 form-group">
@@ -48,35 +48,13 @@
             </div>
 
             <div v-if="ceremonies.data.length" class="table-responsive">
-                <!-- <table class="table table-hover">
-                    <thead>
-                        <tr>
-                            <th>Fecha</th>
-                            <th>Web</th>
-                            <th>Sala</th>
-                            <th class="text-nowrap d-flex justify-content-center">{{ __('Actions') }}</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr v-for="(ceremony, index) in ceremonies.data" :key="index">
-                            <td>{{ ceremony.start }} - {{ ceremony.end }}</td>
-                            <td>{{ ceremony.start }}</td>
-                            <td>{{ ceremony.room_name }}</td>
-                            <td>
-                                <div class="d-flex justify-content-center">
-
-
-                                </div>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table> -->
-
                 <vs-table >
                     <template #thead>
                         <vs-tr>
                             <vs-th>Fecha</vs-th>
+                            <vs-th>Ceremonia</vs-th>
                             <vs-th>Web</vs-th>
+                            <vs-th>Declarante</vs-th>
                             <vs-th>
                                 {{ __('Actions') }}
                             </vs-th>
@@ -84,11 +62,13 @@
                     </template>
                     <template #tbody>
                     <vs-tr :key="index" v-for="(ceremony, index) in ceremonies.data">
-                        <vs-td>{{ ceremony.start }} - {{ ceremony.end }}</vs-td>
-                        <vs-td></vs-td>
+                        <vs-td>{{ moment(ceremony.start, 'YYYY-MM-DD hh:mm:ss').format('DD/MM/YYYY hh:mm') }} - {{ moment(ceremony.end, 'YYYY-MM-DD hh:mm:ss').format('DD/MM/YYYY hh:mm') }}</vs-td>
+                        <vs-td>{{ ceremony.type | type('name') }}</vs-td>
+                        <vs-td>{{ ceremony.profile | profile('fullName') }} - {{ ceremony.profile | profile('web_code') }}</vs-td>
+                        <vs-td>{{ ceremony.profile | profile('client_declarant.fullName') }} - {{ ceremony.profile | profile('client_declarant.email') }}</vs-td>
                         <vs-td>
                             <div>
-                                 <button class="btn btn-sm btn-clean btn-icon mr-2 text-success">
+                                 <button v-if="ceremony.video" class="btn btn-sm btn-clean btn-icon mr-2 text-success action_btn" @click="openModalShow(ceremony.video)">
                                     <vs-tooltip bottom>
                                         <i class="fas fa-video"></i>
                                         <template #tooltip>
@@ -97,7 +77,7 @@
                                     </vs-tooltip>
                                 </button>
 
-                                <button class="btn btn-sm btn-clean btn-icon mr-2 text-success" @click="openModalAddEditShow(ceremony)">
+                                <button class="btn btn-sm btn-clean btn-icon mr-2 text-success action_btn" @click="openModalAddEdit(ceremony)">
                                     <vs-tooltip bottom>
                                         <i class="fas fa-cogs"></i>
                                         <template #tooltip>
@@ -131,20 +111,35 @@
 
         <streaming-form-add-edit ref="streamingFormAddEdit" @updateStreamingList="updateList()"></streaming-form-add-edit>
 
+        <streaming-show ref="streamingShow"></streaming-show>
+
     </div>
 <!--end::Card-->
 </template>
 
 <script>
 import StreamingFormAddEdit from './StreamingFormAddEditComponent';
+import StreamingShow from './StreamingShowComponent';
 
 export default {
 
-    components: {StreamingFormAddEdit},
+    components: {StreamingFormAddEdit, StreamingShow},
 
     created() {
         this.getOffices()
         this.getCeremonies();
+    },
+
+    watch: {
+        'searches.office': function (newValue, oldValue) {
+            this.getCeremonies();
+        },
+        'searches.web': function (newValue, oldValue) {
+            this.getCeremonies();
+        },
+        'searches.declarant': function (newValue, oldValue) {
+            this.getCeremonies();
+        }
     },
 
     data() {
@@ -155,7 +150,7 @@ export default {
 
             searches: {
                 office: '',
-                name: '',
+                web: '',
                 declarant: ''
             },
         }
@@ -197,19 +192,45 @@ export default {
         clearSearches() {
             this.searches = {
                 office: '',
-                name: '',
+                web: '',
                 declarant: ''
             };
         },
 
-        openModalAddEditShow(ceremony) {
+        openModalAddEdit(ceremony) {
             this.$refs.streamingFormAddEdit.showForm(ceremony);
+        },
+
+        openModalShow(video) {
+            this.$refs.streamingShow.showStreaming(video);
         },
 
         updateList(action = null) {
             this.getCeremonies(this.ceremonies.current_page ?? 1 );
         },
     },
+
+    filters: {
+        type: function (type, option) {
+            if (type && type[option]) {
+                return type[option];
+            }
+
+            return '';
+        },
+
+        profile: function (profile, option) {
+            if (profile && profile[option]) {
+                return profile[option];
+            } else if (option == 'client_declarant.fullName' && profile.client_declarant) {
+                return profile.client_declarant[0].fullName;
+            } else if (option == 'client_declarant.email' && profile.client_declarant) {
+                return profile.client_declarant[0].email;
+            }
+
+            return '';
+        }
+    }
 
 }
 </script>
@@ -221,7 +242,7 @@ export default {
 .vs-table__td {
     font-size: 12px !important;
 }
-.btn.btn-clean:hover:not(.btn-text):not(:disabled):not(.disabled) {
+.btn.btn-clean.action_btn:hover:not(.btn-text):not(:disabled):not(.disabled) {
     background-color: #EE2D41 !important;
     color: #ffffff !important;
 }

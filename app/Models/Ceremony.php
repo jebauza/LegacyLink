@@ -70,6 +70,34 @@ class Ceremony extends Model
         $query->where('streaming', true);
     }
 
+    public function scopeOffice($query, $param)
+    {
+        if ($param) {
+            return $query->whereHas('profile', function (Builder $query) use ($param){
+                $query->office($param);
+            });
+        }
+    }
+
+    public function scopeProfile($query, $param)
+    {
+        if ($param) {
+            return $query->whereHas('profile', function (Builder $query) use ($param){
+                $query->name($param)
+                        ->orWhere('web_code', 'like', "%$param%");
+            });
+        }
+    }
+
+    public function scopeDeclarant($query, $param)
+    {
+        if ($param) {
+            return $query->whereHas('profile', function (Builder $query) use ($param){
+                $query->declarant($param);
+            });
+        }
+    }
+
 
 
     public function profile()

@@ -96,7 +96,7 @@ class CeremonyApiController extends Controller
 
         $ceremonies = $profile->ceremonies()
                         ->visibleClient($profile->pivot->role)
-                        ->with('users')
+                        ->with('users', 'video')
                         ->orderBy('start')
                         ->get();
 

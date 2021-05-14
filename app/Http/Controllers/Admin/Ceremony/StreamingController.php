@@ -26,7 +26,10 @@ class StreamingController extends Controller
 
         $ceremonyPaginate = Ceremony::filterByRole()
                             ->streaming()
-                            ->with('video','profile.clientDeclarant')
+                            ->office($request->office)
+                            ->profile($request->web)
+                            ->declarant($request->declarant)
+                            ->with('video','profile.clientDeclarant', 'type')
                             ->orderBy('start', 'DESC')
                             ->paginate();
 

@@ -29,7 +29,10 @@ class DeceasedProfileApiController extends Controller
      *      summary="Get the public details of deseased profile",
      *      description="Return the public details of a specific profile",
      *
-     *      @OA\Parameter(ref="#/components/parameters/profile_id"),
+     *      @OA\Parameter(parameter="web_code", name="web_code", in="path", required=true,
+     *          description="Profile code",
+     *          @OA\Schema(type="string", example="SdfRt12")
+     *      ),
      *
      *      @OA\Response(response=200, description="OK",
      *          @OA\JsonContent(
@@ -44,12 +47,11 @@ class DeceasedProfileApiController extends Controller
      *      @OA\Response(response=500, ref="#/components/requestBodies/response_500"),
      * )
      *
-     * @param int $profile_id
+     * @param int $web_code
      */
-    public function show($profile)
+    public function show($web_code)
     {
-        $profile = DeceasedProfile::where('id', $profile)
-                                    ->orWhere('web_code', $profile)
+        $profile = DeceasedProfile::where('web_code', $profile)
                                     ->first();
 
         if(!$profile){

@@ -2,6 +2,7 @@
 namespace App\Http\Resources\Api;
 
 
+use App\Http\Resources\Api\VimeoApiResource;
 use Illuminate\Http\Resources\Json\JsonResource;
 use App\Http\Resources\Api\AssistanceApiResource;
 use App\Http\Resources\Api\CeremonyTypeApiResource;
@@ -28,6 +29,8 @@ class CeremonyApiResource extends JsonResource
             "additional_info"=>$this->additional_info,
             "visible"=>$this->visible,
             'assistance' => $this->when(auth()->check(), AssistanceApiResource::collection($this->users)),
+            'streaming' => $this->streaming,
+            'video' => $this->streaming ? (new VimeoApiResource($this->video)) : null
         ];
     }
 
@@ -47,6 +50,8 @@ class CeremonyApiResource extends JsonResource
      *      @OA\Property(property="assistance", type="array",
      *          @OA\Items(ref="#/components/schemas/AssistanceApiResource")
      *      ),
+     *      @OA\Property(property="streaming", type="boolean", example="true"),
+     *      @OA\Property(property="video", ref="#/components/schemas/VimeoApiResource"),
      * )
      */
 }
