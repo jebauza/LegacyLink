@@ -19,6 +19,10 @@ class UserApiResource extends JsonResource
             $add_data['profile_id'] = $this->add_profile;
         }
 
+        if ($this->add_web_code) {
+            $add_data['web_code'] = $this->add_web_code;
+        }
+
         if ($this->add_role) {
             $add_data['role'] = $this->add_role;
         }
@@ -60,6 +64,7 @@ class UserApiResource extends JsonResource
      *      @OA\Property(property="phone", type="string", example="+34622789562"),
      *      @OA\Property(property="is_active", type="boolean", example=true),
      *      @OA\Property(property="profile_id", type="integer", example=2),
+     *      @OA\Property(property="web_code", type="string", example="hHdfss2"),
      *      @OA\Property(property="role", type="string", example="admin"),
      * )
      */

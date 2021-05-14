@@ -2331,6 +2331,10 @@
                         "type": "integer",
                         "example": 2
                     },
+                    "web_code": {
+                        "type": "string",
+                        "example": "hHdfss2"
+                    },
                     "role": {
                         "type": "string",
                         "example": "admin"
