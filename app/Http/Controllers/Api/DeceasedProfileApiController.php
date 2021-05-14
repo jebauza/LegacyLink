@@ -51,7 +51,7 @@ class DeceasedProfileApiController extends Controller
      */
     public function show($web_code)
     {
-        $profile = DeceasedProfile::where('web_code', $profile)
+        $profile = DeceasedProfile::where('web_code', $web_code)
                                     ->first();
 
         if(!$profile){
