@@ -39,7 +39,7 @@ class CommentStoreUpdateRequest extends FormRequest
             'file_base64' => 'nullable|base64image',
             'public' => 'required|boolean',
             'remove_file' => 'nullable|boolean',
-            'file' => 'nullable|file|max:25000|mimetypes:video/h264,video/mpeg,video/x-ms-asf,video/x-flv,video/mp4,application/x-mpegURL,video/MP2T,video/3gpp,video/quicktime,video/x-msvideo,video/x-ms-wmv,video/avi,video/x-matroska,image/jpeg,image/gif,image/png,image/svg+xml,image/bmp,image/tiff,image/vnd.adobe.photoshop'
+            'file' => 'nullable|file|max:25000|mimetypes:video/h264,video/mpeg,video/x-ms-asf,video/x-flv,video/mp4,application/vnd.apple.mpegurl,video/3gpp,video/quicktime,video/x-msvideo,video/x-ms-wmv,video/avi,video/x-matroska,image/jpeg,image/gif,image/png,image/svg+xml,image/bmp,image/tiff,image/vnd.adobe.photoshop'
         ];
     }
 }

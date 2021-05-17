@@ -35,12 +35,24 @@ class Comment extends Model
         });
     }
 
-    protected $appends = ['file'];
+    protected $appends = ['file','typeFile'];
 
     // Attributes
     function getFileAttribute()
     {
         return Storage::disk('public')->exists($this->path_file) ? Storage::disk('public')->url($this->path_file) : null;
+    }
+
+    function getTypeFileAttribute()
+    {
+        if ($this->path_file) {
+            $ext = strripos($this->path_file, ".") === false ? null : substr($this->path_file, strripos($this->path_file, ".") + 1);
+            $type = UploadFile::getTypeFileByExt($ext);
+
+            return $type;
+        }
+
+        return null;
     }
 
     /**

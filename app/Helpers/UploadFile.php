@@ -64,4 +64,19 @@ class UploadFile
         return $extension;
     }
 
+    public static function getTypeFileByExt($ext) {
+
+        if ($ext) {
+            $videos = ['h264','mpeg','asf','flv','mp4','m3u8','3gp','qt','avi','wmv','mkv'];
+            $images = ['jpeg','gif','png','svg','bmp','tiff','psd'];
+
+            if (in_array(strtolower($ext), $videos)) {
+                return 'video';
+            } else if (in_array(strtolower($ext), $images)) {
+                return 'image';
+            }
+        }
+
+        return null;
+    }
 }

@@ -2194,6 +2194,11 @@
                         "type": "string",
                         "example": "http://albia.local/storage/deceased_profiles/9/comments/606d9028556ae.jpeg"
                     },
+                    "type_file": {
+                        "title": "video|image",
+                        "type": "string",
+                        "example": "image"
+                    },
                     "approved": {
                         "type": "boolean",
                         "example": 0
