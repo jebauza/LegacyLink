@@ -90,6 +90,7 @@ Route::middleware(['auth:api','verified'])->name('api.')->group(function() {
         // Comments
         Route::prefix('comments')->name('comments.')->middleware(['check_role:admin,family,close_friend'])->group(function () {
             Route::get('/', [CommentApiController::class, 'index'])->name('index');
+            Route::get('/private', [CommentApiController::class, 'indexPrivate'])->name('indexPrivate');
             Route::post('store', [CommentApiController::class, 'store'])->name('store');
             Route::post('/{comment_id}/update', [CommentApiController::class, 'update'])->name('update');
             Route::delete('/{comment_id}/destroy', [CommentApiController::class, 'destroy'])->name('destroy');

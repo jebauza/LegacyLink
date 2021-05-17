@@ -63,6 +63,48 @@ class CommentApiController extends Controller
 
     /**
      * @OA\Get(
+     *      path="/profile/{profile_id}/comments/private",
+     *      operationId="/profile/{profile_id}/comments/private",
+     *      tags={"Comment"},
+     *      summary="Get public comment",
+     *      description="Return list public comment",
+     *      security={{"api_key": {}}},
+     *
+     *      @OA\Parameter(ref="#/components/parameters/profile_id"),
+     *
+     *      @OA\Response(response=200, description="OK",
+     *          @OA\JsonContent(
+     *              @OA\Property(property="success", example=true),
+     *              @OA\Property(property="message", example="Solicitud procesada correctamente."),
+     *              @OA\Property(property="data", type="array",
+     *                  @OA\Items(ref="#/components/schemas/CommentApiResource")
+     *              ),
+     *          )
+     *      ),
+     *
+     *      @OA\Response(response=400, ref="#/components/requestBodies/response_400"),
+     *
+     *      @OA\Response(response=500, ref="#/components/requestBodies/response_500"),
+     * )
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function indexPrivate()
+    {
+        $profile = session('profileWeb');
+
+        $comments = $profile->comments()
+                            ->where('public', false)
+                            ->where('approved', true)
+                            ->with('user')
+                            ->latest()
+                            ->get();
+
+        return $this->sendResponse(null, CommentApiResource::collection($comments));
+    }
+
+    /**
+     * @OA\Get(
      *      path="/profile/{profile_id}/comments",
      *      operationId="/profile/{profile_id}/comments",
      *      tags={"Comment"},
@@ -214,9 +256,9 @@ class CommentApiController extends Controller
             $newComment->public = $request->public ? true : false;
             $newComment->approved = !$newComment->hasModeration($profile->pivot->role);
             $newComment->user_id = auth()->user()->id;
-            if($request->file_base64) {
+            if($request->file) {
                 $dirPath = 'deceased_profiles/' . $profile->id . '/comments';
-                $path = UploadFile::upload($request->file_base64, $dirPath, true);
+                $path = UploadFile::upload($request->file, $dirPath);
                 $newComment->path_file = $path;
             }
             $newComment->save();

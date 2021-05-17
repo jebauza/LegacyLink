@@ -1219,6 +1219,58 @@
                 }
             }
         },
+        "/profile/{profile_id}/comments/private": {
+            "get": {
+                "tags": [
+                    "Comment"
+                ],
+                "summary": "Get public comment",
+                "description": "Return list public comment",
+                "operationId": "/profile/{profile_id}/comments/private",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/profile_id"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "example": true
+                                        },
+                                        "message": {
+                                            "example": "Solicitud procesada correctamente."
+                                        },
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/components/schemas/CommentApiResource"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "$ref": "#/components/requestBodies/response_400"
+                    },
+                    "500": {
+                        "$ref": "#/components/requestBodies/response_500"
+                    }
+                },
+                "security": [
+                    {
+                        "api_key": []
+                    }
+                ]
+            }
+        },
         "/profile/{profile_id}/comments": {
             "get": {
                 "tags": [
@@ -2767,6 +2819,9 @@
                                     "title": "nullable|boolean",
                                     "type": "boolean",
                                     "example": true
+                                },
+                                "file": {
+                                    "title": "nullable|file|max:25000|mimetypes:video/h264,video/mpeg,video/x-ms-asf,video/x-flv,video/mp4,application/x-mpegURL,video/MP2T,video/3gpp,video/quicktime,video/x-msvideo,video/x-ms-wmv,video/avi,video/x-matroska,image/jpeg,image/gif,image/png,image/svg+xml,image/bmp,image/tiff,image/vnd.adobe.photoshop"
                                 }
                             },
                             "type": "object"
