@@ -27,7 +27,7 @@ class CommentStoreUpdateRequest extends FormRequest
      *          @OA\Property(property="file_base64", type="string", title="nullable|base64image", example="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD//gAfQ29tcHJlc3NlZCBieSBqcGVnLXJlY29tcHJlc3P/2wCEAAcHBwcHBwgJCQgLDAsMCxAPDg4PEBkSExITE"),
      *          @OA\Property(property="public", type="boolean", title="required|boolean", example=false),
      *          @OA\Property(property="remove_file", type="boolean", title="nullable|boolean", example=true),
-     *          @OA\Property(property="file", title="nullable|file|max:25000|mimetypes:video/h264,video/mpeg,video/x-ms-asf,video/x-flv,video/mp4,application/x-mpegURL,video/MP2T,video/3gpp,video/quicktime,video/x-msvideo,video/x-ms-wmv,video/avi,video/x-matroska,image/jpeg,image/gif,image/png,image/svg+xml,image/bmp,image/tiff,image/vnd.adobe.photoshop"),
+     *          @OA\Property(property="file", type="file",example="file", title="nullable|file|max:25000|mimetypes:video/h264,video/mpeg,video/x-ms-asf,video/x-flv,video/mp4,application/x-mpegURL,video/MP2T,video/3gpp,video/quicktime,video/x-msvideo,video/x-ms-wmv,video/avi,video/x-matroska,image/jpeg,image/gif,image/png,image/svg+xml,image/bmp,image/tiff,image/vnd.adobe.photoshop"),
      *      )
      * )
      */
