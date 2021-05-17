@@ -81,6 +81,7 @@ Route::name('admin.')->group(function () {
                 Route::post('store', [DeceasedProfileController::class, 'store'])->name('store');
                 Route::delete('/{profile_id}/destroy', [DeceasedProfileController::class, 'destroy'])->name('destroy');
                 Route::put('/{profile_id}/update', [DeceasedProfileController::class, 'update'])->name('update');
+                Route::put('/{profile_id}/update/declarant', [DeceasedProfileController::class, 'updateDeclarant'])->name('updateDeclarant');
                 /* Route::get('show', [DeceasedProfileController::class, 'show'])->name('show');
                 Route::put('/{employee_id}/update', [DeceasedProfileController::class, 'update'])->name('update');
                  */

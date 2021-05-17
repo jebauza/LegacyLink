@@ -11,10 +11,11 @@
 
             <div class="modal-body">
                     <div class="form-row">
-                        <vimeo-player v-if="video" ref="player" :video-id="video.vimeo_code" :autoplay="true"/>
+                        <vimeo-player v-if="video" ref="player" :video-id="video.vimeo_code" @ready="onReadyStreaming" :autoplay="true"/>
                     </div>
             </div>
             <div class="modal-footer">
+                <button @click="updateStreaming()" type="button" class="btn btn-primary">Actualizar</button>
                 <button @click="closeStreaming()" type="button" class="btn btn-secondary" data-dismiss="modal">{{ __('Cancel') }}</button>
             </div>
         </div>
@@ -28,25 +29,37 @@ import { vueVimeoPlayer } from 'vue-vimeo-player'
 export default {
     components: { vueVimeoPlayer },
 
-    mounted() {
-
+    watch: {
+        'playerReady': function (newValue, oldValue) {
+            if (newValue) {
+                this.$refs.player.play();
+            }
+        }
     },
 
     data() {
         return {
-            video: null
+            video: null,
+            playerReady: false
         }
     },
 
     methods: {
         showStreaming(video) {
+            this.playerReady = false;
             this.video = video;
-            this.$refs.player.update(video.vimeo_code)
             $('#modalShowStreaming').modal('show');
+        },
+        onReadyStreaming() {
+            this.playerReady = true;
         },
         closeStreaming() {
             this.video = null;
             $('#modalShowStreaming').modal('hide');
+            this.$refs.player.pause();
+        },
+        updateStreaming() {
+            this.$refs.player.update(this.video.vimeo_code)
         }
     },
 

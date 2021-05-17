@@ -155,10 +155,36 @@
 
                             <div class="tab-pane" id="kt_tab_client_edit" role="tabpanel">
 
+                                <div class="row">
+                                    <div class="form-group col-auto">
+                                        <div class="input-group">
+                                            <input @keyup.enter="getClient()" v-model="loadClient.search" type="text" class="form-control" placeholder="Buscar DNI o Correo"/>
+                                            <div class="input-group-append">
+                                                <button @click="getClient()" button class="btn btn-success" type="button"><i class="fa fa-search"></i></button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="form-group col-12">
+                                        <label><b>Clientes</b></label>
+                                        <vs-select v-if="loadClient.clients.length > 0" :key="advisers.length" filter v-model="loadClient.client" :placeholder="__('Select')" state="dark" >
+                                            <vs-option :key="0" :label="''" :value="''">{{ '' }}</vs-option>
+                                            <vs-option v-for="(user, index) in loadClient.clients" :key="index+1" :label="`${user.fullName}, (${user.email}, ${user.dni})`" :value="user.id">{{ `${user.fullName}, ( ${user.email}, ${user.dni} )` }}</vs-option>
+                                        </vs-select>
+                                        <el-alert v-else
+                                            title="No se ha encontrado ningún cliente"
+                                            type="error"
+                                            show-icon>
+                                        </el-alert>
+                                    </div>
+                                </div>
+
                                 <div class="form-row">
                                     <div class="form-group col-sm-6">
                                         <label :class="['control-label', errorsClient.name ? 'text-danger' : '']"><b>{{ __('validation.attributes.name') }}</b></label>
-                                        <input v-model="formClient.name" type="text" :class="['form-control', errorsClient.name ? 'is-invalid' : '']" name="client_name" :placeholder="__('validation.attributes.name')" required :disabled="modalType=='show'">
+                                        <input v-model="formClient.name" type="text" :class="['form-control', errorsClient.name ? 'is-invalid' : '']" name="client_name" :placeholder="__('validation.attributes.name')" disabled>
                                         <small v-if="errorsClient.name" class="form-control-feedback text-danger">
                                             {{ errorsClient.name[0] }}
                                         </small>
@@ -166,7 +192,7 @@
 
                                     <div class="form-group col-sm-6">
                                         <label :class="['control-label', errorsClient.lastname ? 'text-danger' : '']"><b>{{ __('validation.attributes.last_name') }}</b></label>
-                                        <input v-model="formClient.lastname" type="text" :class="['form-control', errorsClient.lastname ? 'is-invalid' : '']" name="client_lastname" :placeholder="__('validation.attributes.last_name')" required :disabled="modalType=='show'">
+                                        <input v-model="formClient.lastname" type="text" :class="['form-control', errorsClient.lastname ? 'is-invalid' : '']" name="client_lastname" :placeholder="__('validation.attributes.last_name')" disabled>
                                         <small v-if="errorsClient.lastname" class="form-control-feedback text-danger">
                                             {{ errorsClient.lastname[0] }}
                                         </small>
@@ -174,7 +200,7 @@
 
                                     <div class="form-group col-sm-6 col-lg-4">
                                         <label :class="['control-label', errorsClient.dni ? 'text-danger' : '']"><b>DNI</b></label>
-                                        <input v-model="formClient.dni" type="text" :class="['form-control', errorsClient.dni ? 'is-invalid' : '']" name="client_dni" placeholder="dni" required :disabled="modalType=='show'">
+                                        <input v-model="formClient.dni" type="text" :class="['form-control', errorsClient.dni ? 'is-invalid' : '']" name="client_dni" placeholder="dni" required disabled>
                                         <small v-if="errorsClient.dni" class="form-control-feedback text-danger">
                                             {{ errorsClient.dni[0] }}
                                         </small>
@@ -182,7 +208,7 @@
 
                                     <div class="form-group col-sm-6 col-lg-4">
                                         <label :class="['control-label', errorsClient.email ? 'text-danger' : '']"><b>{{ __('validation.attributes.email') }}</b></label>
-                                        <input  v-model="formClient.email" type="email" :class="['form-control', errorsClient.email ? 'is-invalid' : '']" name="client_email" :placeholder="__('validation.attributes.email')" :disabled="modalType=='show'">
+                                        <input  v-model="formClient.email" type="email" :class="['form-control', errorsClient.email ? 'is-invalid' : '']" name="client_email" :placeholder="__('validation.attributes.email')" disabled>
                                         <small v-if="errorsClient.email" class="form-control-feedback text-danger">
                                             {{ errorsClient.email[0] }}
                                         </small>
@@ -190,7 +216,7 @@
 
                                     <div class="form-group col-sm-6 col-lg-4">
                                         <label :class="['control-label', errorsClient.phone ? 'text-danger' : '']"><b>{{ __('validation.attributes.phone') }}</b></label>
-                                        <input v-model="formClient.phone" type="text" :class="['form-control', errorsClient.phone ? 'is-invalid' : '']" name="client_phone" :placeholder="__('validation.attributes.phone')" :disabled="modalType=='show'">
+                                        <input v-model="formClient.phone" type="text" :class="['form-control', errorsClient.phone ? 'is-invalid' : '']" name="client_phone" :placeholder="__('validation.attributes.phone')" disabled>
                                         <small v-if="errorsClient.phone" class="form-control-feedback text-danger">
                                             {{ errorsClient.phone[0] }}
                                         </small>
@@ -385,6 +411,21 @@ export default {
                 const date = new Date();
                 this.formCeremony.end = date.setTime(newValue.getTime() + 3600 * 1000 * 2);
             }
+        },
+        'loadClient.client': function (newValue, oldValue) {
+            if (newValue != this.formClient.id) {
+                const client = this.loadClient.clients.find(c => c.id == newValue);
+                if (client) {
+                    this.formClient = {
+                        name: client.name,
+                        lastname: client.lastname,
+                        dni: client.dni,
+                        email: client.email,
+                        phone: client.phone,
+                        id: client.id
+                    }
+                }
+            }
         }
     },
 
@@ -461,6 +502,12 @@ export default {
                 }]
             },
 
+            loadClient: {
+                search: '',
+                client: '',
+                clients: []
+            },
+
         }
     },
 
@@ -510,7 +557,8 @@ export default {
             })
         },
         showForm(action, profile) {
-            console.log(profile);
+            this.initLoadClient(profile);
+
             this.clearForm();
             this.modalType = action;
 
@@ -616,7 +664,7 @@ export default {
             });
         },
         updateClient() {
-            const url = `/admin/ajax/clients/${this.formClient.id}/update`;
+            const url = `/admin/ajax/webs/${this.formProfile.id}/update/declarant`;
             const loading = this.$vs.loading({
                 type: 'points',
                 color: '#187de4',
@@ -624,7 +672,9 @@ export default {
                 text: this.__('Loading') + '...'
             });
 
-            axios.put(url, this.formClient)
+            axios.put(url, {
+                client_id: this.formClient.id
+            })
             .then(res => {
                 loading.close();
                 Swal.fire({
@@ -781,6 +831,33 @@ export default {
             })
         },
 
+        getClient() {
+            const url = `/admin/ajax/clients?emailDni=${this.loadClient.search}`;
+            this.loadClient.client = '';
+            this.loadClient.clients = [];
+
+            if (this.loadClient.search) {
+                const loading = this.$vs.loading({
+                    type: 'points',
+                    color: '#187de4',
+                    text: this.__('Loading') + '...'
+                });
+                axios.get(url)
+                .then(res => {
+                    loading.close();
+                    this.loadClient.clients = res.data.data;
+                })
+                .catch(err => {
+                    loading.close();
+                    console.error(err);
+                })
+            }
+        },
+        initLoadClient(profile) {
+            this.loadClient.client = profile.declarant.id;
+            this.loadClient.search = profile.declarant.email;
+            this.loadClient.clients.push(profile.declarant);
+        }
     },
 
     computed: {

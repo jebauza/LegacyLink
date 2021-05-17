@@ -193,6 +193,48 @@ class DeceasedProfileController extends Controller
     }
 
     /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function updateDeclarant(Request $request, $id)
+    {
+        $request->validate([
+            'client_id' => 'required|integer|exists:users,id',
+        ]);
+
+        $profile = DeceasedProfile::find($id);
+        $client = User::find($request->client_id);
+        if(!$profile || !$client) {
+            return $this->sendError404();
+        }
+
+        try {
+            DB::beginTransaction();
+            $oldClient = $profile->clientDeclarant->first();
+
+            if ($oldClient->id != $client->id) {
+                $profile->clients()->detach($oldClient->id);
+                $profile->clients()->attach($client->id, [
+                    'role' => 'admin',
+                    'declarant' => true,
+                    'token' => $profile->id . Str::random(5) . $client->id,
+                ]);
+                NotificationDeclarantJob::dispatch($profile);
+            }
+
+            DB::commit();
+            return $this->sendResponse(__('Updated successfully'), (new DeceasedProfileResource($profile)));
+
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return $this->sendError500($e->getMessage());
+        }
+    }
+
+    /**
      * Remove the specified resource from storage.
      *
      * @param  int  $id
