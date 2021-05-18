@@ -29,7 +29,7 @@ class StreamingController extends Controller
                             ->office($request->office)
                             ->profile($request->web)
                             ->declarant($request->declarant)
-                            ->with('video','profile.clientDeclarant', 'type')
+                            ->with('video', 'type', 'profile.clientDeclarant')
                             ->orderBy('start', 'DESC')
                             ->paginate();
 
@@ -66,6 +66,33 @@ class StreamingController extends Controller
             $video->ceremony_id = $ceremony->id;
             $video->save();
 
+            DB::commit();
+            return $this->sendResponse(__('Saved successfully'), $video, 200);
+
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return $this->sendError500($e->getMessage());
+        }
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function delete(Request $request, $id)
+    {
+        if(!$ceremony = Ceremony::find($id)) {
+            return $this->sendError404();
+        }
+
+        try {
+            DB::beginTransaction();
+            $video = $ceremony->video;
+            if ($video) {
+                $video->delete();
+            }
             DB::commit();
             return $this->sendResponse(__('Saved successfully'), $video, 200);
 

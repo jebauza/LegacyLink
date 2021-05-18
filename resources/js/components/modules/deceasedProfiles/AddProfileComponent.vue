@@ -348,6 +348,9 @@
                                                     Dirrección
                                                 </vs-th>
                                                 <vs-th>
+                                                    En vivo
+                                                </vs-th>
+                                                <vs-th>
 
                                                 </vs-th>
                                             </vs-tr>
@@ -365,6 +368,11 @@
                                                 </vs-td>
                                                 <vs-td>{{ ceremony.start }} / {{ ceremony.end }}</vs-td>
                                                 <vs-td>{{ ceremony.address }}</vs-td>
+                                                <vs-td>
+                                                    <div class="d-flex justify-content-center">
+														<i v-if="ceremony.streaming" class="fas fa-video text-success icon-md"></i>
+                                                    </div>
+                                                </vs-td>
                                                 <vs-td>
                                                     <div class="d-flex justify-content-center">
                                                         <vs-button icon color="primary" border @click="loadFormCeremony(ceremony)">

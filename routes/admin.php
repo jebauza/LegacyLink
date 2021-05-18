@@ -20,7 +20,8 @@ use App\Http\Controllers\Admin\DeceasedProfile\DeceasedProfileController;
 Route::name('admin.')->group(function () {
 
     Route::get('/', function () {
-        return redirect()->route('admin.home');
+        // return redirect()->route('admin.home');
+        return redirect()->route('admin.webs.indexView');
     })->name('path');
 
     Route::post('register', [RegisterController::class, 'register'])->name('register');
@@ -42,7 +43,7 @@ Route::name('admin.')->group(function () {
         Route::get('offices', [OfficeController::class, 'indexView'])->name('offices.indexView')->middleware('permission:offices.view');
         Route::get('employees', [EmployeeController::class, 'indexView'])->name('employees.indexView');
         Route::get('webs', [DeceasedProfileController::class, 'indexView'])->name('webs.indexView');
-        Route::get('streaming', [StreamingController::class, 'indexView'])->name('streaming.indexView');
+        Route::get('ceremonies/streaming', [StreamingController::class, 'indexView'])->name('streaming.indexView');
         // Route::get('webs/{profile_id}/show', [DeceasedProfileController::class, 'showView'])->name('webs.show.view');
         Route::get('clients', [UserController::class, 'indexView'])->name('clients.indexView');
         // Route::get('emails', [MailController::class, 'index']);
@@ -88,12 +89,6 @@ Route::name('admin.')->group(function () {
 
             });
 
-             // Streaming
-             Route::prefix('streaming')->name('streaming.')->group(function () {
-                Route::get('/paginate', [StreamingController::class, 'paginate'])->name('paginate');
-                Route::post('/{ceremony_id}/save', [StreamingController::class, 'save'])->name('save');
-            });
-
             // Users
             Route::prefix('clients')->name('clients.')->group(function () {
                 Route::get('/', [UserController::class, 'index'])->name('index');
@@ -115,6 +110,13 @@ Route::name('admin.')->group(function () {
                 Route::put('/{ceremony_id}/update', [CeremonyController::class, 'update'])->name('update');
                 Route::delete('/{ceremony_id}/destroy', [CeremonyController::class, 'destroy'])->name('destroy');
                 Route::get('/{ceremony_id}/show', [CeremonyController::class, 'show'])->name('show');
+
+                // Streaming
+                Route::prefix('streaming')->name('streaming.')->group(function () {
+                    Route::get('/paginate', [StreamingController::class, 'paginate'])->name('paginate');
+                    Route::post('/{ceremony_id}/save', [StreamingController::class, 'save'])->name('save');
+                    Route::delete('/{ceremony_id}/save', [StreamingController::class, 'save'])->name('save');
+                });
             });
 
             Route::get('/roles', [RoleController::class, 'getRolesByAuthUserAssign'])->name('roles.ByAuthUserAssign');

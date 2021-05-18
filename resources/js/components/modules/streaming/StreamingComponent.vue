@@ -158,7 +158,7 @@ export default {
 
     methods: {
         getCeremonies(page = 1) {
-            const url = `admin/ajax/streaming/paginate?page=${page}`;
+            const url = `admin/ajax/ceremonies/streaming/paginate?page=${page}`;
             const loading = this.$vs.loading({
                 type: 'points',
                 color: '#187de4',

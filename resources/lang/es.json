@@ -70,6 +70,8 @@
     "A verification email has been sent to :email": "Se ha enviado un correo de verificacion a :email",
     "Active": "Activo",
     "Locked": "Bloqueado",
-    "Unverified": "Sin verificar"
+    "Unverified": "Sin verificar",
+    "Are you sure you want to delete this setting?": "¿Está seguro de que desea eliminar esta configuración?",
+    "If you delete this data, will it not be able to recover it?": "¿Si borra estos datos, no podrá recuperarlos?"
 
 }

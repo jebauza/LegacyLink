@@ -49,6 +49,7 @@
             </div>
             <div class="modal-footer">
                 <button type="submit" class="btn btn-primary">{{ __('Save') }}</button>
+                <button v-if="ceremony && ceremony.video" @click="askDelete()" type="button" class="btn btn-danger">Eliminar</button>
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ __('Cancel') }}</button>
             </div>
             </form>
@@ -137,7 +138,7 @@ export default {
         },
 
         saveConfig() {
-            const url = `/admin/ajax/streaming/${this.ceremony.id}/save`;
+            const url = `/admin/ajax/ceremonies/streaming/${this.ceremony.id}/save`;
             const loading = this.$vs.loading({
                 type: 'points',
                 color: '#187de4',
@@ -170,6 +171,30 @@ export default {
                     });
                 }
             })
+        },
+
+        askDelete() {
+            const self = this;
+            Swal.fire({
+                title: this.__('Are you sure you want to delete this setting?'),
+                text: this.__('If you delete this data, will it not be able to recover it?'),
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#187de4',
+                cancelButtonColor: '#d33',
+                confirmButtonText: this.__("Yes, I'm sure!"),
+                cancelButtonText: this.__('Cancel'),
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    self.deleteVideo();
+                }
+            });
+        },
+
+        deleteVideo() {
+            const url = `/admin/ajax/ceremonies/streaming/${this.ceremony.id}/save`;
+
+            console.log('eliminar video');
         }
     },
 }

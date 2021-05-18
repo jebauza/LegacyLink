@@ -162,10 +162,8 @@ class DeceasedProfile extends Model
      */
     public function clientDeclarant()
     {
-        return $this->belongsToMany(User::class, 'deceased_profile_user', 'profile_id', 'user_id')
-                    ->withPivot('profile_id','user_id','role','declarant','token')->withTimestamps()
-                    ->wherePivot('declarant', true)
-                    ->limit(1);
+        return $this->clients()
+                    ->wherePivot('declarant', true);
     }
 
     /**
