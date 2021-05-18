@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\AuthApiController;
 use App\Http\Controllers\Api\UserApiController;
+use App\Http\Controllers\Api\CandleApiController;
 use App\Http\Controllers\Api\CommentApiController;
 use App\Http\Controllers\Api\CeremonyApiController;
 use App\Http\Controllers\Api\AssistanceApiController;
@@ -31,6 +32,13 @@ Route::prefix('public')->name('api.public.')->group(function () {
         Route::prefix('comments')->name('comments.')->group(function () {
             Route::get('/', [CommentApiController::class, 'indexPublic'])->name('index');
             Route::post('store', [CommentApiController::class, 'storePublic'])->name('store');
+        });
+
+        // Candles
+        Route::prefix('candles')->name('candles.')->group(function () {
+            Route::get('/', [CandleApiController::class, 'indexPublic'])->name('indexPublic');
+            Route::post('store', [CandleApiController::class, 'storePublic'])->name('storePublic');
+            // Route::post('store', [InvitationApiController::class, 'store'])->name('store');
         });
     });
 });
@@ -95,6 +103,12 @@ Route::middleware(['auth:api','verified'])->name('api.')->group(function() {
             Route::post('/{comment_id}/update', [CommentApiController::class, 'update'])->name('update');
             Route::delete('/{comment_id}/destroy', [CommentApiController::class, 'destroy'])->name('destroy');
             Route::put('/{comment_id}/approve', [CommentApiController::class, 'approve'])->name('approve');
+        });
+
+
+        // Candles
+        Route::prefix('candles')->name('candles.')->middleware(['check_role:admin'])->group(function () {
+            Route::delete('/{candle_id}/destroy', [CandleApiController::class, 'destroy'])->name('destroy');
         });
 
     });

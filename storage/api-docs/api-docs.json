@@ -824,6 +824,207 @@
                 }
             }
         },
+        "/public/profile/{profile_id}/candles": {
+            "get": {
+                "tags": [
+                    "Candle"
+                ],
+                "summary": "Get public Candle",
+                "description": "Return list public Candle",
+                "operationId": "/public/profile/{profile_id}/candles",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/profile_id"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "example": true
+                                        },
+                                        "message": {
+                                            "example": "Solicitud procesada correctamente."
+                                        },
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/components/schemas/CandleApiResource"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "$ref": "#/components/requestBodies/response_400"
+                    },
+                    "500": {
+                        "$ref": "#/components/requestBodies/response_500"
+                    }
+                }
+            }
+        },
+        "/public/profile/{profile_id}/candles/store": {
+            "post": {
+                "tags": [
+                    "Candle"
+                ],
+                "summary": "Store Candle",
+                "description": "",
+                "operationId": "/public/profile/{profile_id}/candles/store",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/profile_id"
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "message"
+                                ],
+                                "properties": {
+                                    "message": {
+                                        "type": "string",
+                                        "example": "De Juan"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "example": true
+                                        },
+                                        "message": {
+                                            "example": "Solicitud procesada correctamente."
+                                        },
+                                        "data": {
+                                            "$ref": "#/components/schemas/CandleApiResource"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "$ref": "#/components/requestBodies/response_401"
+                    },
+                    "403": {
+                        "$ref": "#/components/requestBodies/response_403"
+                    },
+                    "422": {
+                        "description": "Error: Unprocessable Entity",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "example": "The given data was invalid."
+                                        },
+                                        "errors": {
+                                            "description": "these are the fields of the request",
+                                            "properties": {
+                                                "message": {
+                                                    "example": [
+                                                        "El campo message es obligatorio."
+                                                    ]
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "$ref": "#/components/requestBodies/response_500"
+                    }
+                }
+            }
+        },
+        "/profile/{profile_id}/candles/{candle_id}/destroy": {
+            "delete": {
+                "tags": [
+                    "Candle"
+                ],
+                "summary": "Destroy Candle",
+                "description": "",
+                "operationId": "/profile/{profile_id}/candles/{candle_id}/destroy",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/profile_id"
+                    },
+                    {
+                        "name": "candle_id",
+                        "in": "path",
+                        "description": "Candle identifier",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "example": 2
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "example": true
+                                        },
+                                        "message": {
+                                            "example": "Solicitud procesada correctamente."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "$ref": "#/components/requestBodies/response_401"
+                    },
+                    "403": {
+                        "$ref": "#/components/requestBodies/response_403"
+                    },
+                    "404": {
+                        "$ref": "#/components/requestBodies/response_404"
+                    },
+                    "500": {
+                        "$ref": "#/components/requestBodies/response_500"
+                    }
+                },
+                "security": [
+                    {
+                        "api_key": []
+                    }
+                ]
+            }
+        },
         "/public/profile/{profile_id}/ceremonies": {
             "get": {
                 "tags": [
@@ -2110,6 +2311,23 @@
                 },
                 "type": "object"
             },
+            "CandleApiResource": {
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "example": 161
+                    },
+                    "message": {
+                        "type": "string",
+                        "example": "De Manuel"
+                    },
+                    "profile_id": {
+                        "type": "integer",
+                        "example": 161
+                    }
+                },
+                "type": "object"
+            },
             "CeremonyApiResource": {
                 "properties": {
                     "id": {
@@ -2984,6 +3202,10 @@
         {
             "name": "Auth",
             "description": "API Endpoints of Auth"
+        },
+        {
+            "name": "Candle",
+            "description": "API Endpoints of Candle"
         },
         {
             "name": "Ceremony",

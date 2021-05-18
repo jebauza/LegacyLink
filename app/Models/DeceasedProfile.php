@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\User;
+use App\Models\Candle;
 use DateTimeInterface;
 use App\Models\Comment;
 use App\Models\Invitation;
@@ -184,5 +185,15 @@ class DeceasedProfile extends Model
     public function comments()
     {
         return $this->hasMany(Comment::class, 'profile_id', 'id');
+    }
+
+    /**
+     * Get all of the comments for the DeceasedProfile
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function candles()
+    {
+        return $this->hasMany(Candle::class, 'profile_id', 'id');
     }
 }
