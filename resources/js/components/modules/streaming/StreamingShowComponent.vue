@@ -74,7 +74,11 @@ export default {
             this.$refs.player.play();
         },
         error(e) {
-            // this.errorVideo = true;
+            if (!this.playerReady) {
+                this.errorVideo = true;
+            } else {
+                this.$refs.player.play();
+            }
         }
     },
 
