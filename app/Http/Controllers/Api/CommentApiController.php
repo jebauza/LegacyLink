@@ -345,9 +345,13 @@ class CommentApiController extends Controller
             DB::beginTransaction();
             $comment->fill($request->all());
             $comment->public = $request->public ? true : false;
-            if($request->file_base64) {
+            if($request->file) {
                 $dirPath = 'deceased_profiles/' . $profile->id . '/comments';
-                $path = UploadFile::upload($request->file_base64, $dirPath, true);
+                $path = UploadFile::upload($request->file, $dirPath);
+                if ($comment->path_file) {
+                    $comment->deleteFile();
+                    $comment->path_file = null;
+                }
                 $comment->path_file = $path;
             }
             if ($request->remove_file) {
