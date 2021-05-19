@@ -72,6 +72,8 @@
     "Locked": "Bloqueado",
     "Unverified": "Sin verificar",
     "Are you sure you want to delete this setting?": "¿Está seguro de que desea eliminar esta configuración?",
-    "If you delete this data, will it not be able to recover it?": "¿Si borra estos datos, no podrá recuperarlos?"
+    "If you delete this data, will it not be able to recover it?": "¿Si borra estos datos, no podrá recuperarlos?",
+    "You do not have permissions for this action": "No tiene permisos para esta acción",
+    "We have e-mailed your password reset link!": "¡Hemos enviado su enlace de restablecimiento de contraseña por correo electrónico!"
 
 }

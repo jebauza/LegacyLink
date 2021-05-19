@@ -28,6 +28,16 @@ class EmployeeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function profileView()
+    {
+        return view('modules.employee.profile');
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function index(Request $request)
     {
         $employyes = Employee::filterByRole()
@@ -153,6 +163,43 @@ class EmployeeController extends Controller
 
             DB::commit();
             return $this->sendResponse(__('Updated successfully'), (new EmployeeResource($employee)));
+
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return $this->sendError500($e->getMessage());
+        }
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function updateProfile(Request $request)
+    {
+        $employee = $request->user();
+
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'last_name' => 'required|string|max:255',
+            'phone' => 'required|string|max:255',
+            'email' => "required|email|unique:employees,email,".$employee->id.",id",
+            'password' => 'nullable|string|min:8|confirmed',
+            'password_confirmation' => 'required_with:password',
+        ]);
+
+        try {
+            DB::beginTransaction();
+            $employee->fill($request->all());
+            if ($request->password) {
+                $employee->password = Hash::make($request->password);
+            }
+            $employee->save();
+
+            DB::commit();
+            return $this->sendResponse(__('Updated successfully'), $employee);
 
         } catch (\Exception $e) {
             DB::rollBack();

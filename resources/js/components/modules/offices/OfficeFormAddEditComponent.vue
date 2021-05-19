@@ -283,7 +283,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 form label {
     text-transform: uppercase;
 }

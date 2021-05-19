@@ -41,12 +41,17 @@ Route::name('admin.')->group(function () {
         Route::post('logout', [LoginController::class, 'logout'])->name('logout');
 
         Route::get('offices', [OfficeController::class, 'indexView'])->name('offices.indexView')->middleware('permission:offices.view');
-        Route::get('employees', [EmployeeController::class, 'indexView'])->name('employees.indexView');
         Route::get('webs', [DeceasedProfileController::class, 'indexView'])->name('webs.indexView');
         Route::get('ceremonies/streaming', [StreamingController::class, 'indexView'])->name('streaming.indexView');
         // Route::get('webs/{profile_id}/show', [DeceasedProfileController::class, 'showView'])->name('webs.show.view');
         Route::get('clients', [UserController::class, 'indexView'])->name('clients.indexView');
         // Route::get('emails', [MailController::class, 'index']);
+
+        // Employees
+        Route::prefix('employees')->name('employees.')->group(function () {
+            Route::get('/', [EmployeeController::class, 'indexView'])->name('indexView');
+            Route::get('/profile', [EmployeeController::class, 'profileView'])->name('profileView');
+        });
 
         Route::prefix('ajax')->name('ajax.')->middleware('ajax')->group(function () {
 
@@ -70,6 +75,7 @@ Route::name('admin.')->group(function () {
                 Route::get('show', [EmployeeController::class, 'show'])->name('show');
                 Route::put('/{employee_id}/update', [EmployeeController::class, 'update'])->name('update');
                 Route::delete('/{employee_id}/destroy', [EmployeeController::class, 'destroy'])->name('destroy');
+                Route::put('/profile', [EmployeeController::class, 'updateProfile'])->name('updateProfile');
 
             });
 

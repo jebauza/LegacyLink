@@ -256,4 +256,7 @@ export default {
 th {
     text-transform: uppercase;
 }
+.vs-select-content {
+    max-width: none;
+}
 </style>

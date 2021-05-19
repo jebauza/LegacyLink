@@ -810,7 +810,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 .vs-input {
     width: 100%;
 }

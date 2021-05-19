@@ -282,7 +282,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 .vs-select-content {
     max-width: none;
 }

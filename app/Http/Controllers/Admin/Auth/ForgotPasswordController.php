@@ -7,6 +7,7 @@ use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use App\Models\Employee;
 use Illuminate\Support\Facades\Mail;
 
 class ForgotPasswordController extends Controller
@@ -23,20 +24,18 @@ class ForgotPasswordController extends Controller
             'forgot_email' => 'required|email|exists:employees,email',
         ]);
 
-        $email = $request->forgot_email;
+        if ($employee = Employee::where('email', $request->forgot_email)->first()) {
+            $token = Str::random(60);
 
-        $token = Str::random(60);
+            DB::table('password_resets')->insert(
+                ['email' => $employee->email, 'token' => $token, 'created_at' => Carbon::now()]
+            );
 
-        DB::table('password_resets')->insert(
-            ['email' => $email, 'token' => $token, 'created_at' => Carbon::now()]
-        );
+            $employee->sendPasswordResetNotification($token);
 
-        Mail::send('auth.password.verify',['token' => $token], function($message) use ($email) {
-                  //$message->from($email);
-                  $message->to($email);
-                  $message->subject('Reset Password Notification');
-               });
-
-        return back()->with('message', 'We have e-mailed your password reset link!');
+            return back()->with('message', __('We have e-mailed your password reset link!'));
+        } else {
+            return back()->with('error', 'Correo inválido');
+        }
     }
 }

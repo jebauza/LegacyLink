@@ -235,7 +235,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 .vs-table__th__content {
     font-size: 1rem !important;
 }
@@ -245,5 +245,8 @@ export default {
 .btn.btn-clean.action_btn:hover:not(.btn-text):not(:disabled):not(.disabled) {
     background-color: #EE2D41 !important;
     color: #ffffff !important;
+}
+.vs-select-content {
+    max-width: none;
 }
 </style>

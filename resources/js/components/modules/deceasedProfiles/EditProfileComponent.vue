@@ -564,7 +564,7 @@ export default {
 
             this.formProfile= {
                 office: profile.office.id,
-                adviser: profile.adviser.id,
+                adviser: (profile.adviser && profile.adviser.id) ? profile.adviser.id : '',
                 name: profile.name,
                 last_name: profile.last_name,
                 birthday: moment(profile.birthday).format('YYYY-MM-DD'),
@@ -874,7 +874,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 .vs-input {
     width: 100%;
 }
