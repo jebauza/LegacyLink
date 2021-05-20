@@ -40,17 +40,6 @@ class Ceremony extends Model
         return $date->format('Y-m-d H:i:s');
     }
 
-    // SCOPES
-    public function scopeVisibleClient($query, $clientRole)
-    {
-        if ($clientRole) {
-            if ($clientRole == 'close_friend') {
-                $query->where('visible', 'close_friend')
-                        ->orWhere('visible', 'public');
-            }
-        }
-    }
-
     public function scopeDeceasedProfile($query, $param)
     {
         if ($param) {

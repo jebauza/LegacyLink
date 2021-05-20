@@ -47,6 +47,7 @@ class CeremonyApiResource extends JsonResource
      *      @OA\Property(property="address", type="string", example="Carrer del Campament, 80, 46035 València, Valencia"),
      *      @OA\Property(property="room_name", type="string", example="Sala 03"),
      *      @OA\Property(property="additional_info", type="string", example="Informacion adicional"),
+     *      @OA\Property(property="visible", type="string", example="private", title="private|public"),
      *      @OA\Property(property="assistance", type="array",
      *          @OA\Items(ref="#/components/schemas/AssistanceApiResource")
      *      ),

@@ -2365,6 +2365,11 @@
                         "type": "string",
                         "example": "Informacion adicional"
                     },
+                    "visible": {
+                        "title": "private|public",
+                        "type": "string",
+                        "example": "private"
+                    },
                     "assistance": {
                         "type": "array",
                         "items": {
@@ -2869,7 +2874,7 @@
                                     "example": 3
                                 },
                                 "visible": {
-                                    "title": "required|string|in:family,close_friend,public",
+                                    "title": "required|string|in:private,public",
                                     "type": "string",
                                     "example": "public"
                                 }

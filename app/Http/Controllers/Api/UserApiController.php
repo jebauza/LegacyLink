@@ -133,6 +133,10 @@ class UserApiController extends Controller
             return $this->sendError404();
         }
 
+        if ($client->pivot->declarant) {
+            return $this->sendError(__('The declaring customer cannot be removed.'));
+        }
+
         try {
             DB::beginTransaction();
             $profile->clients()->detach($client_id);

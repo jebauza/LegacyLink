@@ -99,7 +99,7 @@ class AssistanceApiController extends Controller
     {
         $profile = session('profileWeb');
         $ceremony_id = $request->route('ceremony_id');
-        $ceremony = $profile->ceremonies()->visibleClient($profile->pivot->role)->with('users')->find($ceremony_id);
+        $ceremony = $profile->ceremonies()->with('users')->find($ceremony_id);
 
         if(!$ceremony) {
             return $this->sendError404();
@@ -118,7 +118,7 @@ class AssistanceApiController extends Controller
             $userAssistance = $ceremony->users()->find(auth()->user()->id);
 
             DB::commit();
-            return $this->sendResponse(__('Saved successfully'), (new AssistanceApiResource($userAssistance)), 201);
+            return $this->sendResponse(__('Saved successfully'), (new AssistanceApiResource($userAssistance)), 200);
 
         } catch (\Exception $e) {
             DB::rollBack();

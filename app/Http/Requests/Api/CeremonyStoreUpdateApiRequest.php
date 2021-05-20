@@ -27,7 +27,7 @@ class CeremonyStoreUpdateApiRequest extends FormRequest
      *          @OA\Property(property="room_name", type="string", example="sala 4", title="nullable|string|max:255"),
      *          @OA\Property(property="additional_info", type="string", example="sala 4", title="nullable|string"),
      *          @OA\Property(property="type_id", type="integer", example=3, title="required|integer|exists:ceremony_types,id"),
-     *          @OA\Property(property="visible", type="string", example="public", title="required|string|in:family,close_friend,public")
+     *          @OA\Property(property="visible", type="string", example="public", title="required|string|in:private,public")
      *      )
      * )
      */
@@ -42,7 +42,7 @@ class CeremonyStoreUpdateApiRequest extends FormRequest
             'additional_info' => 'nullable|string',
             'address' => 'required|string|max:255',
             'type_id' => 'required|integer|exists:ceremony_types,id',
-            'visible' => 'required|string|in:family,close_friend,public'
+            'visible' => 'required|string|in:private,public'
         ];
     }
 

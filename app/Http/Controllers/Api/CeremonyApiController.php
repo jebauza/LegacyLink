@@ -53,6 +53,7 @@ class CeremonyApiController extends Controller
         $profile = session('profileWeb');
 
         $ceremonies = $profile->ceremonies()->where('visible', 'public')
+                                            ->with('users', 'video')
                                             ->orderBy('start')
                                             ->get();
 
@@ -95,7 +96,6 @@ class CeremonyApiController extends Controller
         $profile = session('profileWeb');
 
         $ceremonies = $profile->ceremonies()
-                        ->visibleClient($profile->pivot->role)
                         ->with('users', 'video')
                         ->orderBy('start')
                         ->get();
