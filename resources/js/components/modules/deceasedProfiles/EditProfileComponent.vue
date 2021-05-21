@@ -882,8 +882,4 @@ export default {
 .el-input {
     width: 100% !important;
 }
-
-i {
-    color: unset !important
-}
 </style>
