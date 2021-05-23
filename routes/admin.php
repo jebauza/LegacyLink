@@ -38,6 +38,7 @@ Route::name('admin.')->group(function () {
     Route::middleware('auth')->group(function () {
 
         Route::get('home', [HomeController::class, 'home'])->name('home');
+
         Route::post('logout', [LoginController::class, 'logout'])->name('logout');
 
         Route::get('offices', [OfficeController::class, 'indexView'])->name('offices.indexView')->middleware('permission:offices.view');

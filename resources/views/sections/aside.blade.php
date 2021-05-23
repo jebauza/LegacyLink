@@ -8,7 +8,7 @@
         <div class="aside-brand d-flex flex-column align-items-center flex-column-auto py-5 py-lg-12">
 
             <!--begin::Logo-->
-            <a href="index.html">
+            <a href="{{ route('admin.home') }}">
                 <img alt="Logo" src="{{ asset('media/logos/logo-albia-rgb.jpg') }}" class="max-h-70px" />
             </a>
 
@@ -25,7 +25,7 @@
 
                 <!--begin::Item-->
                 <li class="nav-item mb-3" data-toggle="tooltip" data-placement="right" data-container="body"
-                    data-boundary="window" title="Latest Projects">
+                    data-boundary="window" title="Latest Projects" hidden>
                     <a href="#" class="nav-link btn btn-icon btn-clean btn-lg active" data-toggle="tab"
                         data-target="#kt_aside_tab_1" role="tab">
                         <span class="svg-icon svg-icon-xl">

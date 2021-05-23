@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Models\Office;
 use App\Models\OfficeEmployee;
+use Illuminate\Support\Facades\DB;
 use Laravel\Passport\HasApiTokens;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Traits\HasRoles;

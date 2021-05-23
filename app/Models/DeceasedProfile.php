@@ -75,11 +75,15 @@ class DeceasedProfile extends Model
     {
         $authUser = auth()->user();
 
-        if (!$authUser->hasRole('Super Admin')) {
+        if ($authUser->hasRole('Admin Sucursal')) {
             $offices = $authUser->offices()->pluck('offices.id');
             return $query->whereHas('office', function (Builder $query) use ($offices){
                 $query->whereIn('office_id', $offices);
             });
+        }
+
+        if ($authUser->hasRole('Asesor')) {
+            return $query->where('adviser_id', $authUser->id);
         }
     }
 
