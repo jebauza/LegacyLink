@@ -179,6 +179,7 @@ class CeremonyApiController extends Controller
             DB::beginTransaction();
             $newCeremony = new Ceremony($request->all());
             $newCeremony->profile_id = $profile->id;
+            $newCeremony->streaming = false;
             $newCeremony->save();
 
             DB::commit();
@@ -237,7 +238,7 @@ class CeremonyApiController extends Controller
 
         try {
             DB::beginTransaction();
-            $ceremony->fill($request->all());
+            $ceremony->fill($request->except('streaming'));
             $ceremony->profile_id = $profile->id;
             $ceremony->save();
 

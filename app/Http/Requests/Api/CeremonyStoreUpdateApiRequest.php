@@ -57,8 +57,9 @@ class CeremonyStoreUpdateApiRequest extends FormRequest
 
     public function checkMain($validator)
     {
+        $ceremony_id = $this->route('ceremony_id') ?? null;
         $profile = session('profileWeb');
-        if ($this->main && $profile && $profile->ceremonies()->where('main', true)->count() > 0) {
+        if (!$this->main && $profile && $profile->ceremonies()->where('main', true)->where('id', '<>', $ceremony_id)->count() < 1) {
             $validator->errors()->add('main', __('There can only be one main ceremony'));
         }
     }

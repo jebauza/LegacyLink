@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Models\User;
 use App\Models\Video;
 use DateTimeInterface;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -38,6 +39,35 @@ class Ceremony extends Model
     protected function serializeDate(DateTimeInterface $date)
     {
         return $date->format('Y-m-d H:i:s');
+    }
+
+    /**
+     * The "booted" method of the model.
+     *
+     * @return void
+     */
+    protected static function booted()
+    {
+        static::creating(function ($ceremony) {
+            if ($ceremony->main) {
+                DB::table('ceremonies')->where('profile_id', $ceremony->profile_id)->update(['main' => false]);
+            }
+        });
+
+        static::updating(function ($ceremony) {
+            if ($ceremony->main) {
+                DB::table('ceremonies')->where('profile_id', $ceremony->profile_id)->update(['main' => false]);
+            }
+        });
+
+        static::deleted(function ($ceremony) {
+            if ($ceremony->main && DB::table('ceremonies')->where('profile_id', $ceremony->profile_id)->count() > 0) {
+                DB::table('ceremonies')->where('profile_id', $ceremony->profile_id)
+                                        ->orderBy('start')
+                                        ->take(1)
+                                        ->update(['main' => true]);
+            }
+        });
     }
 
     public function scopeDeceasedProfile($query, $param)
