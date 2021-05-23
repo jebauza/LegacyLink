@@ -106,7 +106,7 @@
                     </div>
 
             </div>
-            <div class="modal-footer">
+            <div v-if="modalType!='show'" class="modal-footer">
                 <button type="submit" class="btn btn-primary">{{ __('Save') }}</button>
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ __('Cancel') }}</button>
             </div>

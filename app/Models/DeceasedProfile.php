@@ -26,7 +26,9 @@ class DeceasedProfile extends Model
         'death',
         'adviser_id',
         'office_id',
-        'photo'
+        'photo',
+        'title_epitaph',
+        'message_epitaph'
     ];
 
     protected $casts = [
@@ -42,7 +44,9 @@ class DeceasedProfile extends Model
     protected static function booted()
     {
         static::created(function ($profile) {
-            $profile->web_code = Str::random(5) . $profile->id;
+            $profile->web_code = Str::random(3) . $profile->id . Str::random(3);
+            $profile->title_epitaph = 'Para nosotros no te has ido, estás en nuestros corazones';
+            $profile->message_epitaph = 'FUISTE UNA PERSONA MUY ESPECIAL SIEMPRE TE LLEVAREMOS EN NUESTROS CORAZONES ASÍ COMO TODAS LAS AVENTURAS VIVIDAS NOS REENCONTRAREMOS EN LA OTRA VIDA';
             $profile->save();
         });
     }

@@ -2499,6 +2499,14 @@
                     "web_code": {
                         "type": "string",
                         "example": "TztH29"
+                    },
+                    "title_epitaph": {
+                        "type": "string",
+                        "example": "UN GRAN HOMBRE TU FAMILIA NUNCA TE OLVIDARÁ"
+                    },
+                    "message_epitaph": {
+                        "type": "string",
+                        "example": "FUISTE UNA PERSONA MUY ESPECIAL SIEMPRE TE LLEVAREMOS EN NUESTROS CORAZONES ASÍ COMO TODAS LAS AVENTURAS VIVIDAS NOS REENCONTRAREMOS EN LA OTRA VIDA"
                     }
                 },
                 "type": "object"
@@ -3094,6 +3102,14 @@
                                 "photo_base64": {
                                     "title": "nullable|base64image",
                                     "type": "string"
+                                },
+                                "title_epitaph": {
+                                    "title": "nullable|string|max:255",
+                                    "type": "string"
+                                },
+                                "message_epitaph": {
+                                    "title": "nullable|string",
+                                    "type": "string"
                                 }
                             },
                             "type": "object"
@@ -3135,7 +3151,17 @@
                                         },
                                         "photo_base64": {
                                             "example": [
-                                                "El campo defunción es obligatorio."
+                                                "El campo photo_base64 es obligatorio."
+                                            ]
+                                        },
+                                        "title_epitaph": {
+                                            "example": [
+                                                "El campo title_epitaph es obligatorio."
+                                            ]
+                                        },
+                                        "message_epitaph": {
+                                            "example": [
+                                                "El campo message_epitaph es obligatorio."
                                             ]
                                         }
                                     },

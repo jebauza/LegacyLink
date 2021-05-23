@@ -111,6 +111,8 @@ class DeceasedProfileApiController extends Controller
             $profile->last_name = $request->lastname;
             $profile->birthday = $request->birthday;
             $profile->death = $request->death;
+            $profile->title_epitaph = $request->title_epitaph;
+            $profile->message_epitaph = $request->message_epitaph;
             if($request->photo_base64) {
                 $dirPath = 'deceased_profiles/' . $profile->id;
                 $path = UploadFile::upload($request->photo_base64, $dirPath, true);

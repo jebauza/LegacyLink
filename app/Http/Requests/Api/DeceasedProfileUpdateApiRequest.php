@@ -26,6 +26,8 @@ class DeceasedProfileUpdateApiRequest extends FormRequest
      *          @OA\Property(property="birthday", type="string", example="1975-03-21", title="required|date|date_format:Y-m-d"),
      *          @OA\Property(property="death", type="string", example="2021-03-21", title="required|date|date_format:Y-m-d|after:birthday"),
      *          @OA\Property(property="photo_base64", type="string", title="nullable|base64image"),
+     *          @OA\Property(property="title_epitaph", type="string", title="nullable|string|max:255"),
+     *          @OA\Property(property="message_epitaph", type="string", title="nullable|string"),
      *      )
      * )
      */
@@ -37,6 +39,8 @@ class DeceasedProfileUpdateApiRequest extends FormRequest
             'birthday' => 'required|date|date_format:Y-m-d',
             'death' => 'required|date|date_format:Y-m-d|after:birthday',
             'photo_base64' => 'nullable|base64image',
+            'title_epitaph' => 'nullable|string|max:255',
+            'message_epitaph' => 'nullable|string'
         ];
     }
 
@@ -49,7 +53,9 @@ class DeceasedProfileUpdateApiRequest extends FormRequest
      *                  @OA\Property(property="lastname", example={"El campo lastname es obligatorio."}),
      *                  @OA\Property(property="birthday", example={"El campo nacimiento es obligatorio."}),
      *                  @OA\Property(property="death", example={"El campo defunción es obligatorio."}),
-     *                  @OA\Property(property="photo_base64", example={"El campo defunción es obligatorio."}),
+     *                  @OA\Property(property="photo_base64", example={"El campo photo_base64 es obligatorio."}),
+     *                  @OA\Property(property="title_epitaph", example={"El campo title_epitaph es obligatorio."}),
+     *                  @OA\Property(property="message_epitaph", example={"El campo message_epitaph es obligatorio."}),
      *              )
      *          )
      * )

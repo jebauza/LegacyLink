@@ -4,7 +4,7 @@
 
 <!-- Bread crumb and right sidebar toggle -->
 @include('sections.breadcrumb', ['pages' => [
-['name' => 'Oficinas', 'url' => '']
+['name' => 'Centros', 'url' => '']
 ]
 ])
 
