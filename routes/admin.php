@@ -50,7 +50,7 @@ Route::name('admin.')->group(function () {
 
         // Employees
         Route::prefix('employees')->name('employees.')->group(function () {
-            Route::get('/', [EmployeeController::class, 'indexView'])->name('indexView');
+            Route::get('/', [EmployeeController::class, 'indexView'])->name('indexView')->middleware('permission:employees.view');
             Route::get('/profile', [EmployeeController::class, 'profileView'])->name('profileView');
         });
 
@@ -63,8 +63,8 @@ Route::name('admin.')->group(function () {
                 Route::get('/paginate', [OfficeController::class, 'paginate'])->name('paginate');
                 Route::post('store', [OfficeController::class, 'store'])->name('store')->middleware('permission:offices.store');
                 Route::get('show', [OfficeController::class, 'show'])->name('show');
-                Route::put('/{office_id}/update', [OfficeController::class, 'update'])->name('update')->middleware('permission:offices.store');
-                Route::delete('/{office_id}/destroy', [OfficeController::class, 'destroy'])->name('destroy');
+                Route::put('/{office_id}/update', [OfficeController::class, 'update'])->name('update')->middleware('permission:offices.update');
+                Route::delete('/{office_id}/destroy', [OfficeController::class, 'destroy'])->name('destroy')->middleware('permission:offices.destroy');
             });
 
             // Employee
@@ -72,14 +72,14 @@ Route::name('admin.')->group(function () {
 
                 Route::get('/', [EmployeeController::class, 'index'])->name('index');
                 Route::get('/paginate', [EmployeeController::class, 'paginate'])->name('paginate');
-                Route::post('store', [EmployeeController::class, 'store'])->name('store');
+                Route::post('store', [EmployeeController::class, 'store'])->name('store')->middleware('permission:employees.store');
                 Route::get('show', [EmployeeController::class, 'show'])->name('show');
-                Route::put('/{employee_id}/update', [EmployeeController::class, 'update'])->name('update');
-                Route::delete('/{employee_id}/destroy', [EmployeeController::class, 'destroy'])->name('destroy');
+                Route::put('/{employee_id}/update', [EmployeeController::class, 'update'])->name('update')->middleware('permission:employees.update');
+                Route::delete('/{employee_id}/destroy', [EmployeeController::class, 'destroy'])->name('destroy')->middleware('permission:employees.destroy');
                 Route::put('/profile', [EmployeeController::class, 'updateProfile'])->name('updateProfile');
-                Route::put('/{employee_id}/status', [EmployeeController::class, 'changeStatus'])->name('status');
-                Route::put('/{employee_id}/restore', [EmployeeController::class, 'restore'])->name('destroy.restore');
-                Route::delete('/{employee_id}/destroy/force-delete', [EmployeeController::class, 'forceDelete'])->name('destroy.force-delete');
+                Route::put('/{employee_id}/status', [EmployeeController::class, 'changeStatus'])->name('status')->middleware('permission:employees.status');
+                Route::put('/{employee_id}/restore', [EmployeeController::class, 'restore'])->name('destroy.restore')->middleware('permission:employees.force-delete');
+                Route::delete('/{employee_id}/destroy/force-delete', [EmployeeController::class, 'forceDelete'])->name('destroy.force-delete')->middleware('permission:employees.force-delete');
 
             });
 
@@ -108,7 +108,7 @@ Route::name('admin.')->group(function () {
                 Route::put('/{client_id}/status', [UserController::class, 'changeStatus'])->name('status');
                 Route::delete('/{client_id}/destroy', [UserController::class, 'destroy'])->name('destroy');
                 Route::put('/{client_id}/restore', [UserController::class, 'restore'])->name('destroy.restore');
-                Route::delete('/{client_id}/destroy/force-delete', [UserController::class, 'forceDelete'])->name('destroy.force-delete');
+                Route::delete('/{client_id}/destroy/force-delete', [UserController::class, 'forceDelete'])->name('destroy.force-delete')->middleware('permission:users.force-delete');
                 Route::get('/{client_id}/send/verification-mail', [UserController::class, 'sendVerificationMail'])->name('send.verification-mail');
             });
 

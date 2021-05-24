@@ -18,6 +18,7 @@ return [
         ['name' => 'offices.store', 'roles' => [1]],
         ['name' => 'offices.show', 'roles' => [1]],
         ['name' => 'offices.update', 'roles' => [1]],
+        ['name' => 'offices.destroy', 'roles' => [1]],
 
         /* Employee */
         ['name' => 'employees.view', 'roles' => [1,2]],
@@ -25,8 +26,9 @@ return [
         ['name' => 'employees.store', 'roles' => [1,2]],
         ['name' => 'employees.show', 'roles' => [1,2]],
         ['name' => 'employees.update', 'roles' => [1,2]],
-        ['name' => 'employees.activate', 'roles' => [1,2]],
-        ['name' => 'employees.deactivate', 'roles' => [1,2]],
+        ['name' => 'employees.destroy', 'roles' => [1,2]],
+        ['name' => 'employees.status', 'roles' => [1,2]],
+        ['name' => 'employees.force-delete', 'roles' => [1,2]],
 
         /* Webs */
         ['name' => 'webs.view', 'roles' => [1,2,3]],
@@ -41,6 +43,9 @@ return [
         ['name' => 'users.store', 'roles' => [1,2,3]],
         ['name' => 'users.show', 'roles' => [1,2,3]],
         ['name' => 'users.update', 'roles' => [1,2,3]],
+        ['name' => 'users.destroy', 'roles' => [1,2,3]],
+        ['name' => 'users.status', 'roles' => [1,2,3]],
+        ['name' => 'users.force-delete', 'roles' => [1,2]],
 
     ],
 
