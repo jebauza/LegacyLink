@@ -35,7 +35,7 @@ Route::name('admin.')->group(function () {
     Route::get('reset-password/{token}', [ResetPasswordController::class, 'getPassword']);
     Route::post('reset-password', [ResetPasswordController::class, 'updatePassword'])->name('reset-password');
 
-    Route::middleware('auth')->group(function () {
+    Route::middleware(['auth', 'check_active'])->group(function () {
 
         Route::get('home', [HomeController::class, 'home'])->name('home');
 
@@ -77,6 +77,9 @@ Route::name('admin.')->group(function () {
                 Route::put('/{employee_id}/update', [EmployeeController::class, 'update'])->name('update');
                 Route::delete('/{employee_id}/destroy', [EmployeeController::class, 'destroy'])->name('destroy');
                 Route::put('/profile', [EmployeeController::class, 'updateProfile'])->name('updateProfile');
+                Route::put('/{employee_id}/status', [EmployeeController::class, 'changeStatus'])->name('status');
+                Route::put('/{employee_id}/restore', [EmployeeController::class, 'restore'])->name('destroy.restore');
+                Route::delete('/{employee_id}/destroy/force-delete', [EmployeeController::class, 'forceDelete'])->name('destroy.force-delete');
 
             });
 

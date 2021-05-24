@@ -25,6 +25,7 @@ class EmployeeResource extends JsonResource
             'extra_info' => $this->extra_info,
             'offices' => $this->offices,
             'role' => $this->roles->first(),
+            'deleted_at' => $this->deleted_at
         ];
     }
 

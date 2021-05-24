@@ -137,6 +137,13 @@ class Employee extends Authenticatable
         }
     }
 
+    public function scopeSoftDelete($query, $param)
+    {
+        if ($param && $param != "false") {
+            $query->onlyTrashed();
+        }
+    }
+
 
     //RELATIONS
     /**
@@ -165,5 +172,11 @@ class Employee extends Authenticatable
         }
 
         return collect([]);
+    }
+
+    public function changeStatus() {
+        $this->is_active = !$this->is_active;
+
+        $this->save();
     }
 }
