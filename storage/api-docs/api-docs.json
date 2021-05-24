@@ -2522,6 +2522,23 @@
                     "is_active": {
                         "type": "boolean",
                         "example": true
+                    },
+                    "profile": {
+                        "properties": {
+                            "role": {
+                                "type": "string",
+                                "example": "admin"
+                            },
+                            "profile_id": {
+                                "type": "integer",
+                                "example": 7
+                            },
+                            "declarant": {
+                                "type": "boolean",
+                                "example": "false"
+                            }
+                        },
+                        "type": "object"
                     }
                 },
                 "type": "object"

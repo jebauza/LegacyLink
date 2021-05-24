@@ -350,7 +350,7 @@
                                                 <vs-td>{{ ceremony.start }} / {{ ceremony.end }}</vs-td>
                                                 <vs-td>{{ ceremony.address }}</vs-td>
                                                 <vs-td>
-                                                    <div class="d-flex justify-content-center">
+                                                    <div class="d-flex justify-content-center text-success">
 														<i v-if="ceremony.streaming" class="fas fa-video text-success icon-md"></i>
                                                     </div>
                                                 </vs-td>

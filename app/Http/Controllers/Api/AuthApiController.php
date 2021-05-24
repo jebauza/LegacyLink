@@ -80,6 +80,7 @@ class AuthApiController extends Controller
         ]);
 
         $credentials = $request->only('email', 'password');
+        $credentials['is_active'] = true;
 
         if(!Auth::guard('api-user')->attempt($credentials)) {
             return response()->json([
@@ -89,10 +90,9 @@ class AuthApiController extends Controller
         }
 
         $user = Auth::guard('api-user')->user();
-        $user->tokens()
-                ->where('revoked', false)
-                ->update(['revoked' => true]);
-                // ->delete();
+        if ($user->tokens()->count() > 3) {
+            $user->tokens->last()->delete();
+        }
 
         $tokenResult = $user->createToken($user->email);
 
@@ -169,7 +169,6 @@ class AuthApiController extends Controller
                 $user->add_profile = $profile->id;
                 $user->add_web_code = $profile->web_code;
                 $user->add_role = $profile->pivot->role;
-
             }
         }
 
@@ -234,7 +233,7 @@ class AuthApiController extends Controller
 
         $user = $profile ? $profile->clientDeclarant()->first() : null;
 
-        if(!$user) {
+        if(!$user || !$user->is_active) {
             return response()->json([
                 'success' => false,
                 'message' => __('auth.failed'),
@@ -242,10 +241,10 @@ class AuthApiController extends Controller
         }
 
         Auth::guard('api-user')->login($user);
-        $user->tokens()
-                ->where('revoked', false)
-                ->update(['revoked' => true]);
 
+        if ($user->tokens()->count() > 9) {
+            $user->tokens->last()->delete();
+        }
         $tokenResult = $user->createToken($user->email);
 
         $token = $tokenResult->token;

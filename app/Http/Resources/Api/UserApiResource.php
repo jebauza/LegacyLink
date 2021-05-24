@@ -36,6 +36,7 @@ class UserApiResource extends JsonResource
             'email' => $this->email,
             'phone' => $this->phone,
             'is_active' => $this->is_active,
+            'profile' => $this->when(!empty($this->pivot), !empty($this->pivot) ? $this->pivot->only('role','profile_id','declarant') : null),
         ]);
     }
 
@@ -51,6 +52,11 @@ class UserApiResource extends JsonResource
      *      @OA\Property(property="email", type="string", example="carlos@gmail.com"),
      *      @OA\Property(property="phone", type="string", example="+34622789562"),
      *      @OA\Property(property="is_active", type="boolean", example=true),
+     *      @OA\Property(property="profile",
+     *          @OA\Property(property="role", type="string", example="admin"),
+     *          @OA\Property(property="profile_id", type="integer", example=7),
+     *          @OA\Property(property="declarant", type="boolean", example="false"),
+     *      ),
      * )
      *
      * @OA\Schema(
