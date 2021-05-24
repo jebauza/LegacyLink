@@ -48,6 +48,7 @@ class NotificationDeclarantJob implements ShouldQueue
         $this->profile = $this->profile->fresh('clientDeclarant');
         $client = $this->profile->clientDeclarant->first();
         $token = $client->pivot->token;
+        $adviser = $this->profile->adviser;
 
         if ($this->send_sms) {
             $message = 'Su acceso para la web de ' . $this->profile->fullName . ' es ' . config('albia.web_client_url') . '/admin?token=' . $token . ' .Este acceso es intransferible, solo usted puede utilizarlo.';
@@ -55,7 +56,12 @@ class NotificationDeclarantJob implements ShouldQueue
         }
 
         if ($this->send_email) {
-            Mail::to($client->email)->send(new DeclarantAccessMail($this->profile));
+            $mail = Mail::to($client->email);
+            if ($adviser && $adviser->email) {
+                $mail->cc($adviser->email);
+            }
+
+            $mail->send(new DeclarantAccessMail($this->profile));
         }
     }
 }

@@ -108,6 +108,8 @@ class DeceasedProfileController extends Controller
                         'token' => $newDProfile->id . Str::random(5) . $client->id,
                     ]);
 
+
+
                     NotificationDeclarantJob::dispatch($newDProfile, $request->client_sendSms, $request->client_sendEmail);
                     // NotificationDeclarantJob::dispatchNow($newDProfile);
                 }

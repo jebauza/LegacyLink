@@ -250,7 +250,7 @@ class AuthApiController extends Controller
 
         $token = $tokenResult->token;
         if ($request->remember_me) {
-            $token->expires_at = Carbon::now()->addMonths(1);
+            $token->expires_at = Carbon::now()->addMonths(12);
         }
         $token->save();
 

@@ -91,8 +91,7 @@ Route::middleware(['auth:api','verified'])->name('api.')->group(function() {
         // Invitations
         Route::prefix('invitations')->middleware(['check_role:admin'])->name('invitations.')->group(function () {
             Route::get('', [InvitationApiController::class, 'index'])->name('index');
-            Route::post('store', [InvitationApiController::class, 'store'])->name('store');
-            Route::delete('/{invitation_id}/destroy', [InvitationApiController::class, 'destroy'])->name('destroy');
+            Route::put('/{invitation_id}/update/token', [InvitationApiController::class, 'updateToken'])->name('update.token');
         });
 
         // Comments

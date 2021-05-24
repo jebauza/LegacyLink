@@ -2015,72 +2015,14 @@
                 ]
             }
         },
-        "/profile/{profile_id}/invitations/store": {
-            "post": {
+        "/profile/{profile_id}/invitations/{invitation_id}/update/token": {
+            "put": {
                 "tags": [
                     "Invitation"
                 ],
-                "summary": "Store Private Invitation",
+                "summary": "Update Private Invitation",
                 "description": "",
-                "operationId": "/profile/{profile_id}/invitations/store",
-                "parameters": [
-                    {
-                        "$ref": "#/components/parameters/profile_id"
-                    }
-                ],
-                "requestBody": {
-                    "$ref": "#/components/requestBodies/request_invitation_store"
-                },
-                "responses": {
-                    "201": {
-                        "description": "OK",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "properties": {
-                                        "success": {
-                                            "example": true
-                                        },
-                                        "message": {
-                                            "example": "Solicitud procesada correctamente."
-                                        },
-                                        "data": {
-                                            "$ref": "#/components/schemas/InvitationApiResource"
-                                        }
-                                    },
-                                    "type": "object"
-                                }
-                            }
-                        }
-                    },
-                    "401": {
-                        "$ref": "#/components/requestBodies/response_401"
-                    },
-                    "403": {
-                        "$ref": "#/components/requestBodies/response_403"
-                    },
-                    "422": {
-                        "$ref": "#/components/requestBodies/invitation_store_response_422"
-                    },
-                    "500": {
-                        "$ref": "#/components/requestBodies/response_500"
-                    }
-                },
-                "security": [
-                    {
-                        "api_key": []
-                    }
-                ]
-            }
-        },
-        "/profile/{profile_id}/invitations/{invitation_id}/destroy": {
-            "delete": {
-                "tags": [
-                    "Invitation"
-                ],
-                "summary": "Invitation Ceremony",
-                "description": "",
-                "operationId": "/profile/{profile_id}/invitations/{invitation_id}/destroy",
+                "operationId": "/profile/{profile_id}/invitations/{invitation_id}/update/token",
                 "parameters": [
                     {
                         "$ref": "#/components/parameters/profile_id"
@@ -2108,6 +2050,9 @@
                                         },
                                         "message": {
                                             "example": "Solicitud procesada correctamente."
+                                        },
+                                        "data": {
+                                            "$ref": "#/components/schemas/InvitationApiResource"
                                         }
                                     },
                                     "type": "object"

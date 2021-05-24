@@ -48,6 +48,8 @@ class DeceasedProfile extends Model
             $profile->title_epitaph = 'Para nosotros no te has ido, estás en nuestros corazones';
             $profile->message_epitaph = 'FUISTE UNA PERSONA MUY ESPECIAL SIEMPRE TE LLEVAREMOS EN NUESTROS CORAZONES ASÍ COMO TODAS LAS AVENTURAS VIVIDAS NOS REENCONTRAREMOS EN LA OTRA VIDA';
             $profile->save();
+
+            $profile->createInvitations();
         });
     }
 
@@ -203,5 +205,17 @@ class DeceasedProfile extends Model
     public function candles()
     {
         return $this->hasMany(Candle::class, 'profile_id', 'id');
+    }
+
+    public function createInvitations()
+    {
+        $roles = ['admin', 'family','close_friend'];
+
+        foreach ($roles as $key => $role) {
+            $invitation = new Invitation();
+            $invitation->profile_id = $this->id;
+            $invitation->role = $role;
+            $invitation->save();
+        }
     }
 }
