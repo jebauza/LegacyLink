@@ -284,7 +284,7 @@
                                         </el-date-picker>
                                     </div>
                                     <div class="form-group col-sm-6 col-lg-4">
-                                        <el-select v-if="ceremony_types.length" v-model="formCeremony.type_id" filterable placeholder="Select">
+                                        <el-select v-if="ceremony_types.length" v-model="formCeremony.type_id" filterable placeholder="Tipo de evento">
                                             <el-option v-for="item in ceremony_types" :key="item.id" :label="item.name" :value="item.id"></el-option>
                                         </el-select>
                                     </div>

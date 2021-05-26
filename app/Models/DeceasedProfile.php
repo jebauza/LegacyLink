@@ -114,11 +114,7 @@ class DeceasedProfile extends Model
             return $query->whereHas('clients', function (Builder $query) use ($param){
                 $query->where('deceased_profile_user.declarant', true)
                         ->where(function($query) use ($param){
-                            $query->where('users.name', 'like',"%$param%")
-                                    ->orWhere('users.lastname', 'like',"%$param%")
-                                    ->orWhere('users.phone', 'like',"%$param%")
-                                    ->orWhere('users.email', 'like',"%$param%")
-                                    ->orWhere('users.dni', 'like',"%$param%");
+                            $query->search($param);
                         });
             });
         }

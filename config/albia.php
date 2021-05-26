@@ -36,6 +36,7 @@ return [
         ['name' => 'webs.store', 'roles' => [1,2,3]],
         ['name' => 'webs.show', 'roles' => [1,2,3]],
         ['name' => 'webs.update', 'roles' => [1,2,3]],
+        ['name' => 'webs.destroy', 'roles' => [1,2]],
 
         /* Users */
         ['name' => 'users.view', 'roles' => [1,2,3]],

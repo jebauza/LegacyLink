@@ -126,7 +126,8 @@ class Employee extends Authenticatable
     {
         if ($param) {
             $query->where('name', 'like', "%$param%")
-                ->orWhere('last_name', 'like', "%$param%");
+                ->orWhere('last_name', 'like', "%$param%")
+                ->orWhere(DB::raw("CONCAT(employees.name, ' ', employees.last_name)"), 'LIKE', "%$param%");
         }
     }
 

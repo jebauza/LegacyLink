@@ -131,6 +131,7 @@ class User extends Authenticatable implements MustVerifyEmail
         if ($param) {
             $query->where('name', 'like', "%$param%")
                     ->orWhere('lastname', 'like', "%$param%")
+                    ->orWhere(DB::raw("CONCAT(users.name, ' ', users.lastname)"), 'LIKE', "%$param%")
                     ->orWhere('email', 'like', "%$param%")
                     ->orWhere('phone', 'like', "%$param%")
                     ->orWhere('dni', 'like', "%$param%");

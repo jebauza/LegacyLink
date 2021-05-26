@@ -90,7 +90,7 @@ Route::name('admin.')->group(function () {
                 Route::get('/{profile_id}/send-notification', [DeceasedProfileController::class, 'sendNotification'])->name('sendNotification');
                 Route::get('/paginate', [DeceasedProfileController::class, 'paginate'])->name('paginate');
                 Route::post('store', [DeceasedProfileController::class, 'store'])->name('store');
-                Route::delete('/{profile_id}/destroy', [DeceasedProfileController::class, 'destroy'])->name('destroy');
+                Route::delete('/{profile_id}/destroy', [DeceasedProfileController::class, 'destroy'])->name('destroy')->middleware('permission:webs.destroy');
                 Route::put('/{profile_id}/update', [DeceasedProfileController::class, 'update'])->name('update');
                 Route::put('/{profile_id}/update/declarant', [DeceasedProfileController::class, 'updateDeclarant'])->name('updateDeclarant');
                 /* Route::get('show', [DeceasedProfileController::class, 'show'])->name('show');
