@@ -29,8 +29,10 @@ class CeremonyApiResource extends JsonResource
             "additional_info"=>$this->additional_info,
             "visible"=>$this->visible,
             'assistance' => $this->when(auth()->check(), AssistanceApiResource::collection($this->users)),
+            'count_assistance' => $this->users->count(),
             'streaming' => $this->streaming,
-            'video' => $this->streaming ? (new VimeoApiResource($this->video)) : null
+            'video' => $this->streaming ? (new VimeoApiResource($this->video)) : null,
+            'office' => $this->profile ? $this->profile->office : null
         ];
     }
 

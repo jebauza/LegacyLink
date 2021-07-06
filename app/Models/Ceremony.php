@@ -117,8 +117,6 @@ class Ceremony extends Model
         }
     }
 
-
-
     public function profile()
     {
         return $this->belongsTo(DeceasedProfile::class,'profile_id');

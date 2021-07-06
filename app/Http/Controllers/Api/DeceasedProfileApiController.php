@@ -103,6 +103,7 @@ class DeceasedProfileApiController extends Controller
     public function update(DeceasedProfileUpdateApiRequest $request, $profile_id)
     {
         $path = null;
+        $path_wall = null;
         $profile = session('profileWeb');
 
         try {
@@ -121,6 +122,15 @@ class DeceasedProfileApiController extends Controller
                 }
                 $profile->photo = $path;
             }
+
+            if($request->wall_image_base64) {
+                $dirPath = 'deceased_profiles/' . $profile->id;
+                $path_wall = UploadFile::upload($request->wall_image_base64, $dirPath, true);
+                if($profile->wall_image) {
+                    UploadFile::delete($profile->wall_image);
+                }
+                $profile->wall_image = $path_wall;
+            }
             $profile->save();
 
             DB::commit();
@@ -129,6 +139,9 @@ class DeceasedProfileApiController extends Controller
             DB::rollBack();
             if($path){
                 UploadFile::delete($path);
+            }
+            if($path_wall){
+                UploadFile::delete($path_wall);
             }
             return $this->sendError500($e->getMessage());
         }

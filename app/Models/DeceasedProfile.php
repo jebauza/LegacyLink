@@ -27,6 +27,7 @@ class DeceasedProfile extends Model
         'adviser_id',
         'office_id',
         'photo',
+        'wall_image',
         'title_epitaph',
         'message_epitaph'
     ];
@@ -58,7 +59,7 @@ class DeceasedProfile extends Model
         return $date->format('Y-m-d H:i:s');
     }
 
-    protected $appends = ['fullName', 'urlPhoto', 'urlWeb'];
+    protected $appends = ['fullName', 'urlPhoto', 'urlWeb', 'urlWallImage'];
 
     // Attributes
     function getFullNameAttribute()
@@ -69,6 +70,11 @@ class DeceasedProfile extends Model
     function getUrlPhotoAttribute()
     {
         return Storage::disk('public')->exists($this->photo) ? Storage::disk('public')->url($this->photo) : null;
+    }
+
+    function getUrlWallImageAttribute()
+    {
+        return Storage::disk('public')->exists($this->wall_image) ? Storage::disk('public')->url($this->wall_image) : asset('media/img/default-wall.jpeg');
     }
 
     function getUrlWebAttribute()

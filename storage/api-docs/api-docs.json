@@ -74,7 +74,10 @@
                                             "example": "Solicitud procesada correctamente."
                                         },
                                         "data": {
-                                            "$ref": "#/components/schemas/AssistanceApiResource"
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/components/schemas/AssistanceApiResource"
+                                            }
                                         }
                                     },
                                     "type": "object"
@@ -2441,6 +2444,10 @@
                         "type": "string",
                         "example": "https://albia.celebratuvida.es/fdfhjduruiuinsdkd.jpg"
                     },
+                    "wall_image": {
+                        "type": "string",
+                        "example": "https://albia.celebratuvida.es/fdfhjduruiuinsdkd.jpg"
+                    },
                     "web_code": {
                         "type": "string",
                         "example": "TztH29"
@@ -3065,6 +3072,10 @@
                                     "title": "nullable|base64image",
                                     "type": "string"
                                 },
+                                "wall_image_base64": {
+                                    "title": "nullable|base64image",
+                                    "type": "string"
+                                },
                                 "title_epitaph": {
                                     "title": "nullable|string|max:255",
                                     "type": "string"
@@ -3114,6 +3125,11 @@
                                         "photo_base64": {
                                             "example": [
                                                 "El campo photo_base64 es obligatorio."
+                                            ]
+                                        },
+                                        "wall_image_base64": {
+                                            "example": [
+                                                "El campo wall_image_base64 es obligatorio."
                                             ]
                                         },
                                         "title_epitaph": {

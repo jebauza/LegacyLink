@@ -30,7 +30,9 @@ class AssistanceApiController extends Controller
      *          @OA\JsonContent(
      *              @OA\Property(property="success", example=true),
      *              @OA\Property(property="message", example="Solicitud procesada correctamente."),
-     *              @OA\Property(property="data", ref="#/components/schemas/AssistanceApiResource"),
+     *              @OA\Property(property="data", type="array",
+     *                  @OA\Items(ref="#/components/schemas/AssistanceApiResource")
+     *              ),
      *          )
      *      ),
      *
