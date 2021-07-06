@@ -2,15 +2,24 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
+use App\Models\Comment;
+use App\Models\Ceremony;
+use Illuminate\Support\Str;
 use App\Models\DeceasedProfile;
+use Illuminate\Support\Facades\DB;
 use Laravel\Passport\HasApiTokens;
+use Illuminate\Auth\Events\Registered;
 use Illuminate\Notifications\Notifiable;
+use Propaganistas\LaravelPhone\PhoneNumber;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
+use App\Notifications\User\VerifyEmailNotification;
+use App\Notifications\User\ResetPasswordNotification;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class User extends Authenticatable
+class User extends Authenticatable implements MustVerifyEmail
 {
     use HasFactory, Notifiable, HasApiTokens, SoftDeletes;
 
@@ -21,8 +30,10 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name',
+        'lastname',
         'email',
-        'password',
+        'phone',
+        'dni'
     ];
 
     /**
@@ -44,12 +55,87 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    /**
+     * The event map for the model.
+     *
+     * @var array
+     */
+    protected $dispatchesEvents = [
+        'created' => Registered::class
+    ];
+
+    /**
+     * Send the email verification notification.
+     *
+     * @return void
+     */
+    public function sendEmailVerificationNotification()
+    {
+        $this->notify(new VerifyEmailNotification); // my notification
+    }
+
+    /**
+     * Send the password reset notification.
+     *
+     * @param  string  $token
+     * @return void
+     */
+    public function sendPasswordResetNotification($token)
+    {
+        $this->notify(new ResetPasswordNotification($token));
+    }
+
     protected $appends = ['fullName'];
 
     // Attributes
     function getFullNameAttribute()
     {
         return $this->name . ($this->lastname ? ' ' . $this->lastname : '');
+    }
+
+    /**
+     * The "booted" method of the model.
+     *
+     * @return void
+     */
+    protected static function booted()
+    {
+        static::creating(function ($user) {
+            $user->phone = (string) PhoneNumber::make($user->phone)->ofCountry('ES'); // +3412345678;
+        });
+
+        static::updating(function ($user) {
+            $user->phone = (string) PhoneNumber::make($user->phone)->ofCountry('ES'); // +3412345678;
+        });
+    }
+
+    // Scope
+    public function scopeEmailDni($query, $param)
+    {
+        if ($param) {
+            $query->where('email', 'like', "%$param%")
+                    ->orWhere('dni', 'like', "%$param%");
+        }
+    }
+
+    public function scopeSoftDelete($query, $param)
+    {
+        if ($param && $param != "false") {
+            $query->onlyTrashed();
+        }
+    }
+
+    // Scope
+    public function scopeSearch($query, $param)
+    {
+        if ($param) {
+            $query->where('name', 'like', "%$param%")
+                    ->orWhere('lastname', 'like', "%$param%")
+                    ->orWhere(DB::raw("CONCAT(users.name, ' ', users.lastname)"), 'LIKE', "%$param%")
+                    ->orWhere('email', 'like', "%$param%")
+                    ->orWhere('phone', 'like', "%$param%")
+                    ->orWhere('dni', 'like', "%$param%");
+        }
     }
 
     /**
@@ -60,6 +146,54 @@ class User extends Authenticatable
     public function deceased_profiles()
     {
         return $this->belongsToMany(DeceasedProfile::class, 'deceased_profile_user', 'user_id', 'profile_id')
-                    ->withPivot('profile_id','user_id','role')->withTimestamps();
+                    ->withPivot('profile_id','user_id','role','declarant','token')->withTimestamps();
+    }
+
+    /**
+     * Get all of the comments for the User
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function comments()
+    {
+        return $this->hasMany(Comment::class, 'user_id', 'id');
+    }
+
+    /**
+     * The roles that belong to the User
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function ceremonies()
+    {
+        return $this->belongsToMany(Ceremony::class, 'ceremony_user', 'user_id', 'ceremony_id')
+                    ->withPivot('ceremony_id','user_id','assistance')
+                    ->withTimestamps();
+    }
+
+    public function roleProfile($profile_id){
+        $profile = $this->deceased_profiles()->find($profile_id);
+
+        if ($profile) {
+            return $profile->pivot->role;
+        }
+
+        return null;
+    }
+
+    public function changePassword() {
+        $token = Str::random(60);
+
+        DB::table('password_resets')->insert(
+            ['email' => $this->email, 'token' => $token, 'created_at' => Carbon::now()]
+        );
+
+        $this->sendPasswordResetNotification($token);
+    }
+
+    public function changeStatus() {
+        $this->is_active = !$this->is_active;
+
+        $this->save();
     }
 }

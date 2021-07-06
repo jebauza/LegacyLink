@@ -43,16 +43,17 @@ class DeployCommand extends Command
      */
     public function handle()
     {
-        Artisan::call('migrate');
         Artisan::call('cache:clear');
         Artisan::call('config:clear');
+        Artisan::call('migrate');
         Artisan::call('view:clear');
         Artisan::call('route:clear');
         Artisan::call('clear-compiled');
+        Artisan::call('passport:install');
+        Artisan::call('queue:restart');
 
         $this->createUpdatePermissions();
         $this->createUpdateCeremonyTypes();
-
 
         $this->optimizeApp();
         $this->info('Scripts launched successfully');

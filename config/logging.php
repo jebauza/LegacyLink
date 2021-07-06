@@ -99,6 +99,13 @@ return [
         'emergency' => [
             'path' => storage_path('logs/laravel.log'),
         ],
+
+        'sms' => [
+            'driver' => 'single',
+            'path' => storage_path('logs/sms.log'),
+            'level' => 'debug',
+            'days' => 60,
+        ],
     ],
 
 ];

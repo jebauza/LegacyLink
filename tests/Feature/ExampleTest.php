@@ -2,8 +2,10 @@
 
 namespace Tests\Feature;
 
-use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
+use Vimeo\Laravel\Facades\Vimeo;
+use Illuminate\Support\Facades\Http;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class ExampleTest extends TestCase
 {
@@ -14,8 +16,12 @@ class ExampleTest extends TestCase
      */
     public function testBasicTest()
     {
-        $response = $this->get('/');
+       /*  $response = $this->get('/');
 
-        $response->assertStatus(200);
+        $response->assertStatus(200); */
+
+        $vimeo = Vimeo::request('/me/videos', ['per_page' => 5], 'GET');
+
+        dd($vimeo);
     }
 }

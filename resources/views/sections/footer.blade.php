@@ -9,7 +9,7 @@
         <!--begin::Copyright-->
         <div class="text-dark order-2 order-md-1">
             <span class="text-muted font-weight-bold mr-2">{{ now()->format('Y') }}©</span>
-            <a href="http://keenthemes.com/metronic" target="_blank" class="text-dark-75 text-hover-primary">Albia</a>
+            <a href="https://www.albia.es/" target="_blank" class="text-dark-75 text-hover-primary">Albia</a>
         </div>
 
         <!--end::Copyright-->

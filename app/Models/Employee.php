@@ -4,15 +4,18 @@ namespace App\Models;
 
 use App\Models\Office;
 use App\Models\OfficeEmployee;
+use Illuminate\Support\Facades\DB;
 use Laravel\Passport\HasApiTokens;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Traits\HasRoles;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Builder;
+use Propaganistas\LaravelPhone\PhoneNumber;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use App\Notifications\Employee\ResetPasswordNotification;
 
 class Employee extends Authenticatable
 {
@@ -52,6 +55,33 @@ class Employee extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    /**
+     * Send the password reset notification.
+     *
+     * @param  string  $token
+     * @return void
+     */
+    public function sendPasswordResetNotification($token)
+    {
+        $this->notify(new ResetPasswordNotification($token));
+    }
+
+    /**
+     * The "booted" method of the model.
+     *
+     * @return void
+     */
+    protected static function booted()
+    {
+        static::creating(function ($employee) {
+            $employee->phone = (string) PhoneNumber::make($employee->phone)->ofCountry('ES'); // +3412345678;
+        });
+
+        static::updating(function ($employee) {
+            $employee->phone = (string) PhoneNumber::make($employee->phone)->ofCountry('ES'); // +3412345678;
+        });
+    }
+
     protected $appends = ['fullName'];
 
     // Attributes
@@ -77,7 +107,8 @@ class Employee extends Authenticatable
     {
         if ($param) {
             $query->whereHas('roles', function (Builder $query) use ($param){
-                $query->where('id', $param);
+                $roles = explode("-", $param);
+                $query->whereIn('id', $roles);
             });
         }
     }
@@ -95,7 +126,8 @@ class Employee extends Authenticatable
     {
         if ($param) {
             $query->where('name', 'like', "%$param%")
-                ->orWhere('last_name', 'like', "%$param%");
+                ->orWhere('last_name', 'like', "%$param%")
+                ->orWhere(DB::raw("CONCAT(employees.name, ' ', employees.last_name)"), 'LIKE', "%$param%");
         }
     }
 
@@ -103,6 +135,13 @@ class Employee extends Authenticatable
     {
         if ($param) {
             $query->where('email', 'like', "%$param%");
+        }
+    }
+
+    public function scopeSoftDelete($query, $param)
+    {
+        if ($param && $param != "false") {
+            $query->onlyTrashed();
         }
     }
 
@@ -134,5 +173,11 @@ class Employee extends Authenticatable
         }
 
         return collect([]);
+    }
+
+    public function changeStatus() {
+        $this->is_active = !$this->is_active;
+
+        $this->save();
     }
 }

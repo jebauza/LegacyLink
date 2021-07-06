@@ -26,20 +26,4 @@ class CeremonyResource extends JsonResource
             "additional_info"=>$this->additional_info,
         ];
     }
-
-    /**
-     *
-     * @OA\Schema(
-     *      schema="CeremonyResource",
-     *      @OA\Property(property="id", type="integer", example=161),
-     *      @OA\Property(property="type", type="string", example="Carlos"),
-     *      @OA\Property(property="profile_id", type="integer", example=161),
-     *      @OA\Property(property="main", type="boolean", example=true),
-     *      @OA\Property(property="start", type="date", example="2021-03-20 08:00:00"),
-     *      @OA\Property(property="end", type="date", example="2021-03-20 16:00:00"),
-     *      @OA\Property(property="address", type="string", example="Carrer del Campament, 80, 46035 València, Valencia"),
-     *      @OA\Property(property="room_name", type="string", example="Sala 03"),
-     *      @OA\Property(property="additional_info", type="string", example="Informacion adicional"),
-     * )
-     */
 }

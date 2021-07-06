@@ -37,6 +37,148 @@
         }
     ],
     "paths": {
+        "/profile/{profile_id}/ceremonies/{ceremony_id}/assistance": {
+            "get": {
+                "tags": [
+                    "Ceremony"
+                ],
+                "summary": "Update ceremony attendance",
+                "description": "",
+                "operationId": "/profile/{profile_id}/ceremonies/{ceremony_id}/assistance",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/profile_id"
+                    },
+                    {
+                        "name": "ceremony_id",
+                        "in": "path",
+                        "description": "Ceremony identifier",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "example": 2
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "example": true
+                                        },
+                                        "message": {
+                                            "example": "Solicitud procesada correctamente."
+                                        },
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/components/schemas/AssistanceApiResource"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "$ref": "#/components/requestBodies/response_401"
+                    },
+                    "403": {
+                        "$ref": "#/components/requestBodies/response_403"
+                    },
+                    "404": {
+                        "$ref": "#/components/requestBodies/response_404"
+                    },
+                    "500": {
+                        "$ref": "#/components/requestBodies/response_500"
+                    }
+                },
+                "security": [
+                    {
+                        "api_key": []
+                    }
+                ]
+            }
+        },
+        "/profile/{profile_id}/ceremonies/{ceremony_id}/assistance/update": {
+            "put": {
+                "tags": [
+                    "Ceremony"
+                ],
+                "summary": "Users who confirmed attendance at the ceremony",
+                "description": "",
+                "operationId": "/profile/{profile_id}/ceremonies/{ceremony_id}/assistance/update",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/profile_id"
+                    },
+                    {
+                        "name": "ceremony_id",
+                        "in": "path",
+                        "description": "Ceremony identifier",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "example": 2
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "$ref": "#/components/requestBodies/request_assistance_update"
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "example": true
+                                        },
+                                        "message": {
+                                            "example": "Solicitud procesada correctamente."
+                                        },
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/components/schemas/AssistanceApiResource"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "$ref": "#/components/requestBodies/response_401"
+                    },
+                    "403": {
+                        "$ref": "#/components/requestBodies/response_403"
+                    },
+                    "404": {
+                        "$ref": "#/components/requestBodies/response_404"
+                    },
+                    "422": {
+                        "$ref": "#/components/requestBodies/assistance_update_response_422"
+                    },
+                    "500": {
+                        "$ref": "#/components/requestBodies/response_500"
+                    }
+                },
+                "security": [
+                    {
+                        "api_key": []
+                    }
+                ]
+            }
+        },
         "/auth/login": {
             "post": {
                 "tags": [
@@ -160,14 +302,19 @@
                 ]
             }
         },
-        "/auth/user": {
+        "/auth/user/{profile_id}": {
             "get": {
                 "tags": [
                     "Auth"
                 ],
                 "summary": "Authenticated user information",
                 "description": "",
-                "operationId": "auth/user",
+                "operationId": "/auth/user/{profile_id}",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/profile_id"
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "OK",
@@ -182,7 +329,7 @@
                                             "example": "User login successfully."
                                         },
                                         "data": {
-                                            "$ref": "#/components/schemas/UserResource"
+                                            "$ref": "#/components/schemas/UserAuthApiResource"
                                         }
                                     },
                                     "type": "object"
@@ -279,22 +426,418 @@
                 }
             }
         },
-        "/public/profile/{profile_id}/ceremonies": {
+        "/auth/profile/join": {
+            "post": {
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "Add user to profile",
+                "description": "Add user to profile",
+                "operationId": "/auth/profile/join",
+                "requestBody": {
+                    "description": "Pass user credentials",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "token"
+                                ],
+                                "properties": {
+                                    "token": {
+                                        "type": "string",
+                                        "example": "Dfghre3rtt5"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "example": true
+                                        },
+                                        "message": {
+                                            "example": "Added to invitation profile successfully"
+                                        },
+                                        "profile_id": {
+                                            "example": 3
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "$ref": "#/components/requestBodies/response_401"
+                    },
+                    "403": {
+                        "$ref": "#/components/requestBodies/response_403"
+                    },
+                    "422": {
+                        "description": "Error: Unprocessable Entity",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "example": "The given data was invalid."
+                                        },
+                                        "errors": {
+                                            "description": "these are the fields of the request",
+                                            "properties": {
+                                                "token": {
+                                                    "example": [
+                                                        "El campo correo es obligatorio."
+                                                    ]
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "api_key": []
+                    }
+                ]
+            }
+        },
+        "/auth/register": {
+            "post": {
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "Register user",
+                "description": "Register user",
+                "operationId": "/auth/register",
+                "requestBody": {
+                    "description": "Pass user credentials",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "name",
+                                    "lastname",
+                                    "email",
+                                    "phone",
+                                    "password",
+                                    "password_confirmation"
+                                ],
+                                "properties": {
+                                    "name": {
+                                        "title": "required|string|max:255",
+                                        "type": "string",
+                                        "example": "Maria Luisa"
+                                    },
+                                    "lastname": {
+                                        "title": "required|string|max:255",
+                                        "type": "string",
+                                        "example": "Perez Perez"
+                                    },
+                                    "email": {
+                                        "title": "required|string|email|max:255|unique:users,email",
+                                        "type": "string",
+                                        "example": "maria@gmail.com"
+                                    },
+                                    "phone": {
+                                        "title": "required|string|phone:ES,mobile|max:20",
+                                        "type": "string",
+                                        "example": "+34622459652"
+                                    },
+                                    "password": {
+                                        "title": "required|string|min:8|confirmed",
+                                        "type": "string",
+                                        "example": "qweasd12"
+                                    },
+                                    "password_confirmation": {
+                                        "title": "required",
+                                        "type": "string",
+                                        "example": "Dfghre3rtt5"
+                                    },
+                                    "invitation_token": {
+                                        "title": "nullable|string|exists:invitations,token",
+                                        "type": "string",
+                                        "example": "TwS78uHG608684d7061a4"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "example": true
+                                        },
+                                        "message": {
+                                            "example": "User login successfully."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Error: Unprocessable Entity",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "example": "The given data was invalid."
+                                        },
+                                        "errors": {
+                                            "description": "these are the fields of the request",
+                                            "properties": {
+                                                "name": {
+                                                    "example": [
+                                                        "El campo correo es obligatorio."
+                                                    ]
+                                                },
+                                                "lastname": {
+                                                    "example": [
+                                                        "El campo correo es obligatorio."
+                                                    ]
+                                                },
+                                                "email": {
+                                                    "example": [
+                                                        "El campo correo es obligatorio."
+                                                    ]
+                                                },
+                                                "phone": {
+                                                    "example": [
+                                                        "El campo correo es obligatorio."
+                                                    ]
+                                                },
+                                                "password": {
+                                                    "example": [
+                                                        "El campo correo es obligatorio."
+                                                    ]
+                                                },
+                                                "password_confirmation": {
+                                                    "example": [
+                                                        "El campo correo es obligatorio."
+                                                    ]
+                                                },
+                                                "invitation_token": {
+                                                    "example": [
+                                                        "El campo correo es obligatorio."
+                                                    ]
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "$ref": "#/components/requestBodies/response_500"
+                    }
+                },
+                "security": [
+                    {
+                        "api_key": []
+                    }
+                ]
+            }
+        },
+        "/auth/verification-email/send": {
+            "post": {
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "Send verification email",
+                "description": "Send verification email",
+                "operationId": "/auth/verification-email/send",
+                "requestBody": {
+                    "description": "Send verification email",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "email"
+                                ],
+                                "properties": {
+                                    "email": {
+                                        "title": "required|email|exists:users,email",
+                                        "type": "string",
+                                        "example": "maria@gmail.com"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "example": true
+                                        },
+                                        "message": {
+                                            "example": "Correo electrónico de verificación enviado"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Error: Unprocessable Entity",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "example": "The given data was invalid."
+                                        },
+                                        "errors": {
+                                            "description": "these are the fields of the request",
+                                            "properties": {
+                                                "email": {
+                                                    "example": [
+                                                        "El campo correo es obligatorio."
+                                                    ]
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "$ref": "#/components/requestBodies/response_500"
+                    }
+                }
+            }
+        },
+        "/auth/forget-password/send": {
+            "post": {
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "Forget password",
+                "description": "Forget password",
+                "operationId": "/auth/forget-password/send",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "forgot_email"
+                                ],
+                                "properties": {
+                                    "forgot_email": {
+                                        "title": "required|email|exists:users,email",
+                                        "type": "string",
+                                        "example": "maria@gmail.com"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean",
+                                            "example": true
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Notificación de restablecimiento de contraseña"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Error: Unprocessable Entity",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "example": "The given data was invalid."
+                                        },
+                                        "errors": {
+                                            "description": "these are the fields of the request",
+                                            "properties": {
+                                                "forgot_email": {
+                                                    "example": [
+                                                        "El campo correo es obligatorio."
+                                                    ]
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "$ref": "#/components/requestBodies/response_500"
+                    }
+                }
+            }
+        },
+        "/public/profile/{profile_id}/candles": {
             "get": {
                 "tags": [
-                    "Ceremony"
+                    "Candle"
                 ],
-                "summary": "Get the public ceremonies list",
-                "description": "Return the list of ceremonies associated with a specific profile",
-                "operationId": "/public/profile/{profile_id}/ceremonies",
+                "summary": "Get public Candle",
+                "description": "Return list public Candle",
+                "operationId": "/public/profile/{profile_id}/candles",
                 "parameters": [
                     {
-                        "name": "profile_id",
-                        "in": "path",
-                        "description": "Profile_id",
-                        "schema": {
-                            "type": "integer"
-                        }
+                        "$ref": "#/components/parameters/profile_id"
                     }
                 ],
                 "responses": {
@@ -313,7 +856,7 @@
                                         "data": {
                                             "type": "array",
                                             "items": {
-                                                "$ref": "#/components/schemas/CeremonyResource"
+                                                "$ref": "#/components/schemas/CandleApiResource"
                                             }
                                         }
                                     },
@@ -322,13 +865,987 @@
                             }
                         }
                     },
+                    "400": {
+                        "$ref": "#/components/requestBodies/response_400"
+                    },
+                    "500": {
+                        "$ref": "#/components/requestBodies/response_500"
+                    }
+                }
+            }
+        },
+        "/public/profile/{profile_id}/candles/store": {
+            "post": {
+                "tags": [
+                    "Candle"
+                ],
+                "summary": "Store Candle",
+                "description": "",
+                "operationId": "/public/profile/{profile_id}/candles/store",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/profile_id"
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "message"
+                                ],
+                                "properties": {
+                                    "message": {
+                                        "type": "string",
+                                        "example": "De Juan"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "example": true
+                                        },
+                                        "message": {
+                                            "example": "Solicitud procesada correctamente."
+                                        },
+                                        "data": {
+                                            "$ref": "#/components/schemas/CandleApiResource"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "$ref": "#/components/requestBodies/response_401"
+                    },
+                    "403": {
+                        "$ref": "#/components/requestBodies/response_403"
+                    },
+                    "422": {
+                        "description": "Error: Unprocessable Entity",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "example": "The given data was invalid."
+                                        },
+                                        "errors": {
+                                            "description": "these are the fields of the request",
+                                            "properties": {
+                                                "message": {
+                                                    "example": [
+                                                        "El campo message es obligatorio."
+                                                    ]
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "$ref": "#/components/requestBodies/response_500"
+                    }
+                }
+            }
+        },
+        "/profile/{profile_id}/candles/{candle_id}/destroy": {
+            "delete": {
+                "tags": [
+                    "Candle"
+                ],
+                "summary": "Destroy Candle",
+                "description": "",
+                "operationId": "/profile/{profile_id}/candles/{candle_id}/destroy",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/profile_id"
+                    },
+                    {
+                        "name": "candle_id",
+                        "in": "path",
+                        "description": "Candle identifier",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "example": 2
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "example": true
+                                        },
+                                        "message": {
+                                            "example": "Solicitud procesada correctamente."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "$ref": "#/components/requestBodies/response_401"
+                    },
+                    "403": {
+                        "$ref": "#/components/requestBodies/response_403"
+                    },
                     "404": {
                         "$ref": "#/components/requestBodies/response_404"
                     },
                     "500": {
                         "$ref": "#/components/requestBodies/response_500"
                     }
+                },
+                "security": [
+                    {
+                        "api_key": []
+                    }
+                ]
+            }
+        },
+        "/public/profile/{profile_id}/ceremonies": {
+            "get": {
+                "tags": [
+                    "Ceremony"
+                ],
+                "summary": "Get the public ceremonies list",
+                "description": "Return the list of public ceremonies associated with a specific profile",
+                "operationId": "/public/profile/{profile_id}/ceremonies",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/profile_id"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "example": true
+                                        },
+                                        "message": {
+                                            "example": "Solicitud procesada correctamente."
+                                        },
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/components/schemas/CeremonyApiResource"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "$ref": "#/components/requestBodies/response_400"
+                    },
+                    "500": {
+                        "$ref": "#/components/requestBodies/response_500"
+                    }
                 }
+            }
+        },
+        "/profile/{profile_id}/ceremonies": {
+            "get": {
+                "tags": [
+                    "Ceremony"
+                ],
+                "summary": "Get the public ceremonies list",
+                "description": "Return the list of public ceremonies associated with a specific profile",
+                "operationId": "/profile/{profile_id}/ceremonies",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/profile_id"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "example": true
+                                        },
+                                        "message": {
+                                            "example": "Solicitud procesada correctamente."
+                                        },
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/components/schemas/CeremonyApiResource"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "$ref": "#/components/requestBodies/response_401"
+                    },
+                    "403": {
+                        "$ref": "#/components/requestBodies/response_403"
+                    },
+                    "500": {
+                        "$ref": "#/components/requestBodies/response_500"
+                    }
+                },
+                "security": [
+                    {
+                        "api_key": []
+                    }
+                ]
+            }
+        },
+        "/profile/{profile_id}/ceremonies/ceremony-types": {
+            "get": {
+                "tags": [
+                    "Ceremony"
+                ],
+                "summary": "Get the public ceremony types list",
+                "description": "Return the list of ceremony types",
+                "operationId": "/profile/{profile_id}/ceremonies/ceremony-types",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/profile_id"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "example": true
+                                        },
+                                        "message": {
+                                            "example": "Solicitud procesada correctamente."
+                                        },
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/components/schemas/CeremonyTypeApiResource"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "$ref": "#/components/requestBodies/response_401"
+                    },
+                    "403": {
+                        "$ref": "#/components/requestBodies/response_403"
+                    },
+                    "500": {
+                        "$ref": "#/components/requestBodies/response_500"
+                    }
+                },
+                "security": [
+                    {
+                        "api_key": []
+                    }
+                ]
+            }
+        },
+        "/profile/{profile_id}/ceremonies/store": {
+            "post": {
+                "tags": [
+                    "Ceremony"
+                ],
+                "summary": "Store Ceremony",
+                "description": "",
+                "operationId": "/profile/{profile_id}/ceremonies/store",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/profile_id"
+                    }
+                ],
+                "requestBody": {
+                    "$ref": "#/components/requestBodies/request_ceremony_store"
+                },
+                "responses": {
+                    "201": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "example": true
+                                        },
+                                        "message": {
+                                            "example": "Solicitud procesada correctamente."
+                                        },
+                                        "data": {
+                                            "$ref": "#/components/schemas/CeremonyApiResource"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "$ref": "#/components/requestBodies/response_401"
+                    },
+                    "403": {
+                        "$ref": "#/components/requestBodies/response_403"
+                    },
+                    "422": {
+                        "$ref": "#/components/requestBodies/ceremony_store_response_422"
+                    },
+                    "500": {
+                        "$ref": "#/components/requestBodies/response_500"
+                    }
+                },
+                "security": [
+                    {
+                        "api_key": []
+                    }
+                ]
+            }
+        },
+        "/profile/{profile_id}/ceremonies/{ceremony_id}/update": {
+            "put": {
+                "tags": [
+                    "Ceremony"
+                ],
+                "summary": "Update Ceremony",
+                "description": "",
+                "operationId": "/profile/{profile_id}/ceremonies/{ceremony_id}/update",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/profile_id"
+                    },
+                    {
+                        "name": "ceremony_id",
+                        "in": "path",
+                        "description": "Ceremony identifier",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "example": 2
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "$ref": "#/components/requestBodies/request_ceremony_store"
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "example": true
+                                        },
+                                        "message": {
+                                            "example": "Solicitud procesada correctamente."
+                                        },
+                                        "data": {
+                                            "$ref": "#/components/schemas/CeremonyApiResource"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "$ref": "#/components/requestBodies/response_401"
+                    },
+                    "403": {
+                        "$ref": "#/components/requestBodies/response_403"
+                    },
+                    "404": {
+                        "$ref": "#/components/requestBodies/response_404"
+                    },
+                    "422": {
+                        "$ref": "#/components/requestBodies/ceremony_store_response_422"
+                    },
+                    "500": {
+                        "$ref": "#/components/requestBodies/response_500"
+                    }
+                },
+                "security": [
+                    {
+                        "api_key": []
+                    }
+                ]
+            }
+        },
+        "/profile/{profile_id}/ceremonies/{ceremony_id}/destroy": {
+            "delete": {
+                "tags": [
+                    "Ceremony"
+                ],
+                "summary": "Destroy Ceremony",
+                "description": "",
+                "operationId": "/profile/{profile_id}/ceremonies/{ceremony_id}/destroy",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/profile_id"
+                    },
+                    {
+                        "name": "ceremony_id",
+                        "in": "path",
+                        "description": "Ceremony identifier",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "example": 2
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "example": true
+                                        },
+                                        "message": {
+                                            "example": "Solicitud procesada correctamente."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "$ref": "#/components/requestBodies/response_401"
+                    },
+                    "403": {
+                        "$ref": "#/components/requestBodies/response_403"
+                    },
+                    "404": {
+                        "$ref": "#/components/requestBodies/response_404"
+                    },
+                    "500": {
+                        "$ref": "#/components/requestBodies/response_500"
+                    }
+                },
+                "security": [
+                    {
+                        "api_key": []
+                    }
+                ]
+            }
+        },
+        "/public/profile/{profile_id}/comments": {
+            "get": {
+                "tags": [
+                    "Comment"
+                ],
+                "summary": "Get public comment",
+                "description": "Return list public comment",
+                "operationId": "/public/profile/{profile_id}/comments",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/profile_id"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "example": true
+                                        },
+                                        "message": {
+                                            "example": "Solicitud procesada correctamente."
+                                        },
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/components/schemas/CommentApiResource"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "$ref": "#/components/requestBodies/response_400"
+                    },
+                    "500": {
+                        "$ref": "#/components/requestBodies/response_500"
+                    }
+                }
+            }
+        },
+        "/profile/{profile_id}/comments/private": {
+            "get": {
+                "tags": [
+                    "Comment"
+                ],
+                "summary": "Get public comment",
+                "description": "Return list public comment",
+                "operationId": "/profile/{profile_id}/comments/private",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/profile_id"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "example": true
+                                        },
+                                        "message": {
+                                            "example": "Solicitud procesada correctamente."
+                                        },
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/components/schemas/CommentApiResource"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "$ref": "#/components/requestBodies/response_400"
+                    },
+                    "500": {
+                        "$ref": "#/components/requestBodies/response_500"
+                    }
+                },
+                "security": [
+                    {
+                        "api_key": []
+                    }
+                ]
+            }
+        },
+        "/profile/{profile_id}/comments": {
+            "get": {
+                "tags": [
+                    "Comment"
+                ],
+                "summary": "Get comment",
+                "description": "Return list comment",
+                "operationId": "/profile/{profile_id}/comments",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/profile_id"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "example": true
+                                        },
+                                        "message": {
+                                            "example": "Solicitud procesada correctamente."
+                                        },
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/components/schemas/CommentApiResource"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "$ref": "#/components/requestBodies/response_400"
+                    },
+                    "401": {
+                        "$ref": "#/components/requestBodies/response_401"
+                    },
+                    "403": {
+                        "$ref": "#/components/requestBodies/response_403"
+                    },
+                    "500": {
+                        "$ref": "#/components/requestBodies/response_500"
+                    }
+                },
+                "security": [
+                    {
+                        "api_key": []
+                    }
+                ]
+            }
+        },
+        "/public/profile/{profile_id}/comments/store": {
+            "post": {
+                "tags": [
+                    "Comment"
+                ],
+                "summary": "Store public comment",
+                "description": "Return new public comment",
+                "operationId": "/public/profile/{profile_id}/comments/store",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/profile_id"
+                    }
+                ],
+                "requestBody": {
+                    "$ref": "#/components/requestBodies/request_comment_public_store"
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "example": true
+                                        },
+                                        "message": {
+                                            "example": "Solicitud procesada correctamente."
+                                        },
+                                        "data": {
+                                            "$ref": "#/components/schemas/CommentApiResource"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "$ref": "#/components/requestBodies/response_400"
+                    },
+                    "422": {
+                        "$ref": "#/components/requestBodies/comment_public_response_422"
+                    },
+                    "500": {
+                        "$ref": "#/components/requestBodies/response_500"
+                    }
+                }
+            }
+        },
+        "/profile/{profile_id}/comments/store": {
+            "post": {
+                "tags": [
+                    "Comment"
+                ],
+                "summary": "Store comment",
+                "description": "Return new comment",
+                "operationId": "/profile/{profile_id}/comments/store",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/profile_id"
+                    }
+                ],
+                "requestBody": {
+                    "$ref": "#/components/requestBodies/request_comment_store"
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "example": true
+                                        },
+                                        "message": {
+                                            "example": "Solicitud procesada correctamente."
+                                        },
+                                        "data": {
+                                            "$ref": "#/components/schemas/CommentApiResource"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "$ref": "#/components/requestBodies/response_400"
+                    },
+                    "401": {
+                        "$ref": "#/components/requestBodies/response_401"
+                    },
+                    "403": {
+                        "$ref": "#/components/requestBodies/response_403"
+                    },
+                    "422": {
+                        "$ref": "#/components/requestBodies/comment_public_response_422"
+                    },
+                    "500": {
+                        "$ref": "#/components/requestBodies/response_500"
+                    }
+                },
+                "security": [
+                    {
+                        "api_key": []
+                    }
+                ]
+            }
+        },
+        "/profile/{profile_id}/comments/{comment_id}/update": {
+            "post": {
+                "tags": [
+                    "Comment"
+                ],
+                "summary": "Update comment",
+                "description": "Return comment",
+                "operationId": "/profile/{profile_id}/comments/{comment_id}/update",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/profile_id"
+                    },
+                    {
+                        "name": "comment_id",
+                        "in": "path",
+                        "description": "Comment identifier",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "example": 2
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "$ref": "#/components/requestBodies/request_comment_store"
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "example": true
+                                        },
+                                        "message": {
+                                            "example": "Solicitud procesada correctamente."
+                                        },
+                                        "data": {
+                                            "$ref": "#/components/schemas/CommentApiResource"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "$ref": "#/components/requestBodies/response_400"
+                    },
+                    "401": {
+                        "$ref": "#/components/requestBodies/response_401"
+                    },
+                    "403": {
+                        "$ref": "#/components/requestBodies/response_403"
+                    },
+                    "404": {
+                        "$ref": "#/components/requestBodies/response_404"
+                    },
+                    "422": {
+                        "$ref": "#/components/requestBodies/comment_public_response_422"
+                    },
+                    "500": {
+                        "$ref": "#/components/requestBodies/response_500"
+                    }
+                },
+                "security": [
+                    {
+                        "api_key": []
+                    }
+                ]
+            }
+        },
+        "/profile/{profile_id}/comments/{comment_id}/destroy": {
+            "delete": {
+                "tags": [
+                    "Comment"
+                ],
+                "summary": "Destroy Comment",
+                "description": "",
+                "operationId": "/profile/{profile_id}/comments/{comment_id}/destroy",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/profile_id"
+                    },
+                    {
+                        "name": "comment_id",
+                        "in": "path",
+                        "description": "Comment identifier",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "example": 2
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "example": true
+                                        },
+                                        "message": {
+                                            "example": "Solicitud procesada correctamente."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "$ref": "#/components/requestBodies/response_400"
+                    },
+                    "401": {
+                        "$ref": "#/components/requestBodies/response_401"
+                    },
+                    "403": {
+                        "$ref": "#/components/requestBodies/response_403"
+                    },
+                    "404": {
+                        "$ref": "#/components/requestBodies/response_404"
+                    },
+                    "500": {
+                        "$ref": "#/components/requestBodies/response_500"
+                    }
+                },
+                "security": [
+                    {
+                        "api_key": []
+                    }
+                ]
+            }
+        },
+        "/profile/{profile_id}/comments/{comment_id}/approve": {
+            "put": {
+                "tags": [
+                    "Comment"
+                ],
+                "summary": "Approve Comment",
+                "description": "",
+                "operationId": "/profile/{profile_id}/comments/{comment_id}/approve",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/profile_id"
+                    },
+                    {
+                        "name": "comment_id",
+                        "in": "path",
+                        "description": "Comment identifier",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "example": 2
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "example": true
+                                        },
+                                        "message": {
+                                            "example": "Solicitud procesada correctamente."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "$ref": "#/components/requestBodies/response_400"
+                    },
+                    "401": {
+                        "$ref": "#/components/requestBodies/response_401"
+                    },
+                    "403": {
+                        "$ref": "#/components/requestBodies/response_403"
+                    },
+                    "404": {
+                        "$ref": "#/components/requestBodies/response_404"
+                    },
+                    "500": {
+                        "$ref": "#/components/requestBodies/response_500"
+                    }
+                },
+                "security": [
+                    {
+                        "api_key": []
+                    }
+                ]
             }
         },
         "/public/profile/{profile_id}": {
@@ -341,11 +1858,14 @@
                 "operationId": "/public/profile/{profile_id}",
                 "parameters": [
                     {
-                        "name": "profile_id",
+                        "parameter": "web_code",
+                        "name": "web_code",
                         "in": "path",
-                        "description": "Profile id",
+                        "description": "Profile code",
+                        "required": true,
                         "schema": {
-                            "type": "integer"
+                            "type": "string",
+                            "example": "SdfRt12"
                         }
                     }
                 ],
@@ -363,7 +1883,7 @@
                                             "example": "Solicitud procesada correctamente."
                                         },
                                         "data": {
-                                            "$ref": "#/components/schemas/DeceasedProfileResource"
+                                            "$ref": "#/components/schemas/DeceasedProfileApiResource"
                                         }
                                     },
                                     "type": "object"
@@ -379,11 +1899,309 @@
                     }
                 }
             }
+        },
+        "/profile/{profile_id}/update": {
+            "post": {
+                "tags": [
+                    "Profile"
+                ],
+                "summary": "Get the public details of deseased profile",
+                "description": "Return the public details of a specific profile",
+                "operationId": "/profile/{profile_id}/update",
+                "parameters": [
+                    {
+                        "name": "profile",
+                        "in": "path",
+                        "description": "Profile id or web_code",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "$ref": "#/components/requestBodies/request_deceased_profile_update"
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "example": true
+                                        },
+                                        "message": {
+                                            "example": "Solicitud procesada correctamente."
+                                        },
+                                        "data": {
+                                            "$ref": "#/components/schemas/DeceasedProfileApiResource"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "$ref": "#/components/requestBodies/response_401"
+                    },
+                    "403": {
+                        "$ref": "#/components/requestBodies/response_403"
+                    },
+                    "422": {
+                        "$ref": "#/components/requestBodies/deceased_profile_update_response_422"
+                    },
+                    "500": {
+                        "$ref": "#/components/requestBodies/response_500"
+                    }
+                },
+                "security": [
+                    {
+                        "api_key": []
+                    }
+                ]
+            }
+        },
+        "/profile/{profile_id}/invitations": {
+            "get": {
+                "tags": [
+                    "Invitation"
+                ],
+                "summary": "Get the invitations list",
+                "description": "Return the list of invitations",
+                "operationId": "/profile/{profile_id}/invitations",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/profile_id"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "example": true
+                                        },
+                                        "message": {
+                                            "example": "Solicitud procesada correctamente."
+                                        },
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/components/schemas/InvitationApiResource"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "$ref": "#/components/requestBodies/response_401"
+                    },
+                    "403": {
+                        "$ref": "#/components/requestBodies/response_403"
+                    },
+                    "500": {
+                        "$ref": "#/components/requestBodies/response_500"
+                    }
+                },
+                "security": [
+                    {
+                        "api_key": []
+                    }
+                ]
+            }
+        },
+        "/profile/{profile_id}/invitations/{invitation_id}/update/token": {
+            "put": {
+                "tags": [
+                    "Invitation"
+                ],
+                "summary": "Update Private Invitation",
+                "description": "",
+                "operationId": "/profile/{profile_id}/invitations/{invitation_id}/update/token",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/profile_id"
+                    },
+                    {
+                        "name": "invitation_id",
+                        "in": "path",
+                        "description": "Invitation identifier",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "example": 2
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "example": true
+                                        },
+                                        "message": {
+                                            "example": "Solicitud procesada correctamente."
+                                        },
+                                        "data": {
+                                            "$ref": "#/components/schemas/InvitationApiResource"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "$ref": "#/components/requestBodies/response_401"
+                    },
+                    "403": {
+                        "$ref": "#/components/requestBodies/response_403"
+                    },
+                    "404": {
+                        "$ref": "#/components/requestBodies/response_404"
+                    },
+                    "500": {
+                        "$ref": "#/components/requestBodies/response_500"
+                    }
+                },
+                "security": [
+                    {
+                        "api_key": []
+                    }
+                ]
+            }
+        },
+        "/profile/{profile_id}/clients": {
+            "get": {
+                "tags": [
+                    "Client"
+                ],
+                "summary": "Get lists of people associated with the profile",
+                "description": "Return lists of people",
+                "operationId": "/profile/{profile_id}/clients",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/profile_id"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "example": true
+                                        },
+                                        "message": {
+                                            "example": "Solicitud procesada correctamente."
+                                        },
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/components/schemas/UserApiResource"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "$ref": "#/components/requestBodies/response_401"
+                    },
+                    "403": {
+                        "$ref": "#/components/requestBodies/response_403"
+                    },
+                    "500": {
+                        "$ref": "#/components/requestBodies/response_500"
+                    }
+                },
+                "security": [
+                    {
+                        "api_key": []
+                    }
+                ]
+            }
+        },
+        "/profile/{profile_id}/clients/{client_id}/detach": {
+            "delete": {
+                "tags": [
+                    "Client"
+                ],
+                "summary": "Remove client from profile",
+                "description": "Remove client from profile",
+                "operationId": "/profile/{profile_id}/clients/{client_id}/detach",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/profile_id"
+                    },
+                    {
+                        "name": "client_id",
+                        "in": "path",
+                        "description": "Client id",
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "example": true
+                                        },
+                                        "message": {
+                                            "example": "Solicitud procesada correctamente."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "$ref": "#/components/requestBodies/response_401"
+                    },
+                    "403": {
+                        "$ref": "#/components/requestBodies/response_403"
+                    },
+                    "404": {
+                        "$ref": "#/components/requestBodies/response_404"
+                    },
+                    "500": {
+                        "$ref": "#/components/requestBodies/response_500"
+                    }
+                },
+                "security": [
+                    {
+                        "api_key": []
+                    }
+                ]
+            }
         }
     },
     "components": {
         "schemas": {
-            "AdviserResource": {
+            "AdviserApiResource": {
                 "properties": {
                     "id": {
                         "type": "integer",
@@ -408,15 +2226,64 @@
                 },
                 "type": "object"
             },
-            "CeremonyResource": {
+            "AssistanceApiResource": {
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "example": 161
+                    },
+                    "name": {
+                        "type": "string",
+                        "example": "Carlos"
+                    },
+                    "lastname": {
+                        "type": "string",
+                        "example": "Perez Perez"
+                    },
+                    "fullName": {
+                        "type": "string",
+                        "example": "Carlos Perez Perez"
+                    },
+                    "email": {
+                        "type": "string",
+                        "example": "carlos@gmail.com"
+                    },
+                    "phone": {
+                        "type": "string",
+                        "example": "+34622789562"
+                    },
+                    "assistance": {
+                        "type": "boolean",
+                        "example": "true"
+                    }
+                },
+                "type": "object"
+            },
+            "CandleApiResource": {
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "example": 161
+                    },
+                    "message": {
+                        "type": "string",
+                        "example": "De Manuel"
+                    },
+                    "profile_id": {
+                        "type": "integer",
+                        "example": 161
+                    }
+                },
+                "type": "object"
+            },
+            "CeremonyApiResource": {
                 "properties": {
                     "id": {
                         "type": "integer",
                         "example": 161
                     },
                     "type": {
-                        "type": "string",
-                        "example": "Carlos"
+                        "$ref": "#/components/schemas/CeremonyTypeApiResource"
                     },
                     "profile_id": {
                         "type": "integer",
@@ -445,11 +2312,106 @@
                     "additional_info": {
                         "type": "string",
                         "example": "Informacion adicional"
+                    },
+                    "visible": {
+                        "title": "private|public",
+                        "type": "string",
+                        "example": "private"
+                    },
+                    "assistance": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/AssistanceApiResource"
+                        }
+                    },
+                    "streaming": {
+                        "type": "boolean",
+                        "example": "true"
+                    },
+                    "video": {
+                        "$ref": "#/components/schemas/VimeoApiResource"
                     }
                 },
                 "type": "object"
             },
-            "DeceasedProfileResource": {
+            "CeremonyTypeApiResource": {
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "example": 161
+                    },
+                    "name": {
+                        "type": "string",
+                        "example": "Incineración"
+                    }
+                },
+                "type": "object"
+            },
+            "CommentApiResource": {
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "example": 161
+                    },
+                    "title": {
+                        "type": "string",
+                        "example": "Jose amigo"
+                    },
+                    "message": {
+                        "type": "string",
+                        "example": "Descansa en paz mi colega 3"
+                    },
+                    "file": {
+                        "type": "string",
+                        "example": "http://albia.local/storage/deceased_profiles/9/comments/606d9028556ae.jpeg"
+                    },
+                    "type_file": {
+                        "title": "video|image",
+                        "type": "string",
+                        "example": "image"
+                    },
+                    "approved": {
+                        "type": "boolean",
+                        "example": 0
+                    },
+                    "profile_id": {
+                        "type": "integer",
+                        "example": 11
+                    },
+                    "public": {
+                        "type": "boolean",
+                        "example": 1
+                    },
+                    "user": {
+                        "title": "nullable|user",
+                        "properties": {
+                            "id": {
+                                "type": "integer",
+                                "example": 1
+                            },
+                            "name": {
+                                "type": "string",
+                                "example": "Alberto"
+                            },
+                            "lastname": {
+                                "type": "string",
+                                "example": "Perez Castro"
+                            },
+                            "fullName": {
+                                "type": "string",
+                                "example": "Alberto Perez Castro"
+                            }
+                        },
+                        "type": "object"
+                    },
+                    "created_at": {
+                        "type": "string",
+                        "example": "2021-04-07 12:57:44"
+                    }
+                },
+                "type": "object"
+            },
+            "DeceasedProfileApiResource": {
                 "properties": {
                     "id": {
                         "type": "integer",
@@ -476,12 +2438,65 @@
                         "example": "2021-03-20"
                     },
                     "adviser": {
-                        "$ref": "#/components/schemas/AdviserResource"
+                        "$ref": "#/components/schemas/AdviserApiResource"
+                    },
+                    "photo": {
+                        "type": "string",
+                        "example": "https://albia.celebratuvida.es/fdfhjduruiuinsdkd.jpg"
+                    },
+                    "wall_image": {
+                        "type": "string",
+                        "example": "https://albia.celebratuvida.es/fdfhjduruiuinsdkd.jpg"
+                    },
+                    "web_code": {
+                        "type": "string",
+                        "example": "TztH29"
+                    },
+                    "title_epitaph": {
+                        "type": "string",
+                        "example": "UN GRAN HOMBRE TU FAMILIA NUNCA TE OLVIDARÁ"
+                    },
+                    "message_epitaph": {
+                        "type": "string",
+                        "example": "FUISTE UNA PERSONA MUY ESPECIAL SIEMPRE TE LLEVAREMOS EN NUESTROS CORAZONES ASÍ COMO TODAS LAS AVENTURAS VIVIDAS NOS REENCONTRAREMOS EN LA OTRA VIDA"
                     }
                 },
                 "type": "object"
             },
-            "UserResource": {
+            "InvitationApiResource": {
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "example": 161
+                    },
+                    "profile_id": {
+                        "type": "integer",
+                        "example": 12
+                    },
+                    "role": {
+                        "type": "string",
+                        "example": "family"
+                    },
+                    "message": {
+                        "type": "string",
+                        "example": "Se le ha invitado a unirse a la web de Pepe Gonzalez su link es https://web.celebrasuvida.es/invitation?token=ASDDXcM260755ad575d54&profile=xmrZJ10"
+                    },
+                    "url": {
+                        "type": "string",
+                        "example": "https://web.celebrasuvida.es/invitation?token=ASDDXcM260755ad575d54&profile=xmrZJ10"
+                    },
+                    "created_by": {
+                        "type": "integer",
+                        "example": 31
+                    },
+                    "created_at": {
+                        "type": "string",
+                        "example": "2021-03-26 10:00:00"
+                    }
+                },
+                "type": "object"
+            },
+            "UserApiResource": {
                 "properties": {
                     "id": {
                         "type": "integer",
@@ -514,6 +2529,89 @@
                     "is_active": {
                         "type": "boolean",
                         "example": true
+                    },
+                    "profile": {
+                        "properties": {
+                            "role": {
+                                "type": "string",
+                                "example": "admin"
+                            },
+                            "profile_id": {
+                                "type": "integer",
+                                "example": 7
+                            },
+                            "declarant": {
+                                "type": "boolean",
+                                "example": "false"
+                            }
+                        },
+                        "type": "object"
+                    }
+                },
+                "type": "object"
+            },
+            "UserAuthApiResource": {
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "example": 161
+                    },
+                    "dni": {
+                        "type": "string",
+                        "example": "46485700M"
+                    },
+                    "name": {
+                        "type": "string",
+                        "example": "Carlos"
+                    },
+                    "lastname": {
+                        "type": "string",
+                        "example": "Perez Perez"
+                    },
+                    "fullName": {
+                        "type": "string",
+                        "example": "Carlos Perez Perez"
+                    },
+                    "email": {
+                        "type": "string",
+                        "example": "carlos@gmail.com"
+                    },
+                    "phone": {
+                        "type": "string",
+                        "example": "+34622789562"
+                    },
+                    "is_active": {
+                        "type": "boolean",
+                        "example": true
+                    },
+                    "profile_id": {
+                        "type": "integer",
+                        "example": 2
+                    },
+                    "web_code": {
+                        "type": "string",
+                        "example": "hHdfss2"
+                    },
+                    "role": {
+                        "type": "string",
+                        "example": "admin"
+                    }
+                },
+                "type": "object"
+            },
+            "VimeoApiResource": {
+                "properties": {
+                    "ceremony_id": {
+                        "type": "integer",
+                        "example": 161
+                    },
+                    "vimeo_code": {
+                        "type": "string",
+                        "example": "548798286"
+                    },
+                    "vimeo_url": {
+                        "type": "string",
+                        "example": "https://vimeo.com/548798286"
                     }
                 },
                 "type": "object"
@@ -522,6 +2620,18 @@
         "responses": {
             "401": {
                 "$ref": "#/components/requestBodies/response_401"
+            }
+        },
+        "parameters": {
+            "profile_id": {
+                "name": "profile_id",
+                "in": "path",
+                "description": "Profile identifier",
+                "required": true,
+                "schema": {
+                    "type": "integer",
+                    "example": "3"
+                }
             }
         },
         "requestBodies": {
@@ -564,6 +2674,9 @@
                     "application/json": {
                         "schema": {
                             "properties": {
+                                "success": {
+                                    "example": false
+                                },
                                 "message": {
                                     "example": "Solicitud Incorrecta"
                                 }
@@ -598,7 +2711,7 @@
                                     "example": false
                                 },
                                 "message": {
-                                    "example": "auth.failed"
+                                    "example": "You do not have permissions for the requested resources"
                                 }
                             },
                             "type": "object"
@@ -642,12 +2755,444 @@
                     }
                 }
             },
-            "deceasedProfile_show_response_200": {
-                "description": "OK",
+            "request_assistance_update": {
+                "required": true,
                 "content": {
                     "application/json": {
                         "schema": {
-                            "$ref": "#/components/schemas/DeceasedProfileResource"
+                            "required": [
+                                "assistance"
+                            ],
+                            "properties": {
+                                "assistance": {
+                                    "title": "required|boolean",
+                                    "type": "boolean",
+                                    "example": "true"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            },
+            "assistance_update_response_422": {
+                "description": "Error: Unprocessable Entity",
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "properties": {
+                                "message": {
+                                    "example": "The given data was invalid."
+                                },
+                                "errors": {
+                                    "description": "these are the fields of the request",
+                                    "properties": {
+                                        "assistance": {
+                                            "example": [
+                                                "El campo rol es obligatorio."
+                                            ]
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            },
+            "request_ceremony_store": {
+                "required": true,
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "required": [
+                                "main",
+                                "start",
+                                "end",
+                                "address",
+                                "type_id",
+                                "visible"
+                            ],
+                            "properties": {
+                                "main": {
+                                    "title": "required|boolean",
+                                    "type": "boolean",
+                                    "example": true
+                                },
+                                "start": {
+                                    "title": "required|date|date_format:Y-m-d H:i:s",
+                                    "type": "string",
+                                    "example": "2021-03-21 08:00:00"
+                                },
+                                "end": {
+                                    "title": "required|date|date_format:Y-m-d H:i:s|after:start",
+                                    "type": "string",
+                                    "example": "2021-03-21 11:00:00"
+                                },
+                                "address": {
+                                    "title": "required|string|max:255",
+                                    "type": "string",
+                                    "example": "Carrer del Campament, 80, 46035 València, Valencia"
+                                },
+                                "room_name": {
+                                    "title": "nullable|string|max:255",
+                                    "type": "string",
+                                    "example": "sala 4"
+                                },
+                                "additional_info": {
+                                    "title": "nullable|string",
+                                    "type": "string",
+                                    "example": "sala 4"
+                                },
+                                "type_id": {
+                                    "title": "required|integer|exists:ceremony_types,id",
+                                    "type": "integer",
+                                    "example": 3
+                                },
+                                "visible": {
+                                    "title": "required|string|in:private,public",
+                                    "type": "string",
+                                    "example": "public"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            },
+            "ceremony_store_response_422": {
+                "description": "Error: Unprocessable Entity",
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "properties": {
+                                "message": {
+                                    "example": "The given data was invalid."
+                                },
+                                "errors": {
+                                    "description": "these are the fields of the request",
+                                    "properties": {
+                                        "main": {
+                                            "example": [
+                                                "Sólo puede existir una ceremonia principal"
+                                            ]
+                                        },
+                                        "start": {
+                                            "example": [
+                                                "El campo lastname es obligatorio."
+                                            ]
+                                        },
+                                        "end": {
+                                            "example": [
+                                                "El campo nacimiento es obligatorio."
+                                            ]
+                                        },
+                                        "address": {
+                                            "example": [
+                                                "El campo defunción es obligatorio."
+                                            ]
+                                        },
+                                        "type_id": {
+                                            "example": [
+                                                "El campo defunción es obligatorio."
+                                            ]
+                                        },
+                                        "visible": {
+                                            "example": [
+                                                "El campo defunción es obligatorio."
+                                            ]
+                                        },
+                                        "room_name": {
+                                            "example": [
+                                                "El campo defunción es obligatorio."
+                                            ]
+                                        },
+                                        "additional_info": {
+                                            "example": [
+                                                "El campo defunción es obligatorio."
+                                            ]
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            },
+            "request_comment_public_store": {
+                "required": true,
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "required": [
+                                "title",
+                                "message"
+                            ],
+                            "properties": {
+                                "title": {
+                                    "title": "required|string|max:255",
+                                    "type": "string",
+                                    "example": "De Angel tu amigo"
+                                },
+                                "message": {
+                                    "title": "required|string",
+                                    "type": "string",
+                                    "example": "Descansa en paz"
+                                },
+                                "file_base64": {
+                                    "title": "nullable|base64image",
+                                    "type": "string",
+                                    "example": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD//gAfQ29tcHJlc3NlZCBieSBqcGVnLXJlY29tcHJlc3P/2wCEAAcHBwcHBwgJCQgLDAsMCxAPDg4PEBkSExITE"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            },
+            "comment_public_response_422": {
+                "description": "Error: Unprocessable Entity",
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "properties": {
+                                "message": {
+                                    "example": "The given data was invalid."
+                                },
+                                "errors": {
+                                    "description": "these are the fields of the request",
+                                    "properties": {
+                                        "title": {
+                                            "example": [
+                                                "Sólo puede existir una ceremonia principal"
+                                            ]
+                                        },
+                                        "message": {
+                                            "example": [
+                                                "El campo lastname es obligatorio."
+                                            ]
+                                        },
+                                        "file_base64": {
+                                            "example": [
+                                                "El campo nacimiento es obligatorio."
+                                            ]
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            },
+            "request_comment_store": {
+                "required": true,
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "required": [
+                                "title",
+                                "message",
+                                "public"
+                            ],
+                            "properties": {
+                                "title": {
+                                    "title": "required|string|max:255",
+                                    "type": "string",
+                                    "example": "De Angel tu amigo"
+                                },
+                                "message": {
+                                    "title": "required|string",
+                                    "type": "string",
+                                    "example": "Descansa en paz"
+                                },
+                                "file_base64": {
+                                    "title": "nullable|base64image",
+                                    "type": "string",
+                                    "example": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD//gAfQ29tcHJlc3NlZCBieSBqcGVnLXJlY29tcHJlc3P/2wCEAAcHBwcHBwgJCQgLDAsMCxAPDg4PEBkSExITE"
+                                },
+                                "public": {
+                                    "title": "required|boolean",
+                                    "type": "boolean",
+                                    "example": false
+                                },
+                                "remove_file": {
+                                    "title": "nullable|boolean",
+                                    "type": "boolean",
+                                    "example": true
+                                },
+                                "file": {
+                                    "title": "nullable|file|max:25000|mimetypes:video/h264,video/mpeg,video/x-ms-asf,video/x-flv,video/mp4,application/x-mpegURL,video/MP2T,video/3gpp,video/quicktime,video/x-msvideo,video/x-ms-wmv,video/avi,video/x-matroska,image/jpeg,image/gif,image/png,image/svg+xml,image/bmp,image/tiff,image/vnd.adobe.photoshop",
+                                    "type": "file",
+                                    "example": "file"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            },
+            "request_deceased_profile_update": {
+                "required": true,
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "required": [
+                                "name",
+                                "lastname",
+                                "birthday",
+                                "death"
+                            ],
+                            "properties": {
+                                "name": {
+                                    "title": "required|string|max:255",
+                                    "type": "string",
+                                    "example": "Carlos"
+                                },
+                                "lastname": {
+                                    "title": "required|string|max:255",
+                                    "type": "string",
+                                    "example": "Gonzalez Perez"
+                                },
+                                "birthday": {
+                                    "title": "required|date|date_format:Y-m-d",
+                                    "type": "string",
+                                    "example": "1975-03-21"
+                                },
+                                "death": {
+                                    "title": "required|date|date_format:Y-m-d|after:birthday",
+                                    "type": "string",
+                                    "example": "2021-03-21"
+                                },
+                                "photo_base64": {
+                                    "title": "nullable|base64image",
+                                    "type": "string"
+                                },
+                                "wall_image_base64": {
+                                    "title": "nullable|base64image",
+                                    "type": "string"
+                                },
+                                "title_epitaph": {
+                                    "title": "nullable|string|max:255",
+                                    "type": "string"
+                                },
+                                "message_epitaph": {
+                                    "title": "nullable|string",
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            },
+            "deceased_profile_update_response_422": {
+                "description": "Error: Unprocessable Entity",
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "properties": {
+                                "message": {
+                                    "example": "The given data was invalid."
+                                },
+                                "errors": {
+                                    "description": "these are the fields of the request",
+                                    "properties": {
+                                        "name": {
+                                            "example": [
+                                                "El campo nombre es obligatorio."
+                                            ]
+                                        },
+                                        "lastname": {
+                                            "example": [
+                                                "El campo lastname es obligatorio."
+                                            ]
+                                        },
+                                        "birthday": {
+                                            "example": [
+                                                "El campo nacimiento es obligatorio."
+                                            ]
+                                        },
+                                        "death": {
+                                            "example": [
+                                                "El campo defunción es obligatorio."
+                                            ]
+                                        },
+                                        "photo_base64": {
+                                            "example": [
+                                                "El campo photo_base64 es obligatorio."
+                                            ]
+                                        },
+                                        "wall_image_base64": {
+                                            "example": [
+                                                "El campo wall_image_base64 es obligatorio."
+                                            ]
+                                        },
+                                        "title_epitaph": {
+                                            "example": [
+                                                "El campo title_epitaph es obligatorio."
+                                            ]
+                                        },
+                                        "message_epitaph": {
+                                            "example": [
+                                                "El campo message_epitaph es obligatorio."
+                                            ]
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            },
+            "request_invitation_store": {
+                "required": true,
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "required": [
+                                "role"
+                            ],
+                            "properties": {
+                                "role": {
+                                    "title": "required|string|in:admin,family,close_friend",
+                                    "type": "string",
+                                    "example": "family"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            },
+            "invitation_store_response_422": {
+                "description": "Error: Unprocessable Entity",
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "properties": {
+                                "message": {
+                                    "example": "The given data was invalid."
+                                },
+                                "errors": {
+                                    "description": "these are the fields of the request",
+                                    "properties": {
+                                        "role": {
+                                            "example": [
+                                                "El campo rol es obligatorio."
+                                            ]
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            },
+                            "type": "object"
                         }
                     }
                 }
@@ -668,11 +3213,27 @@
             "description": "API Endpoints of Auth"
         },
         {
+            "name": "Candle",
+            "description": "API Endpoints of Candle"
+        },
+        {
             "name": "Ceremony",
-            "description": "API Endpoints of public ceremonies list"
+            "description": "API Endpoints of Ceremony"
+        },
+        {
+            "name": "Comment",
+            "description": "API Endpoints of Comment"
         },
         {
             "name": "Profile",
+            "description": "API Profile"
+        },
+        {
+            "name": "Invitation",
+            "description": "API Endpoints of Invitation"
+        },
+        {
+            "name": "Client",
             "description": "API Profile"
         }
     ],

@@ -70,5 +70,9 @@ class Kernel extends HttpKernel
         'role_or_permission' => \Spatie\Permission\Middlewares\RoleOrPermissionMiddleware::class,
 
         'ajax' => \App\Http\Middleware\CheckAjax::class,
+        'check_role' => \App\Http\Middleware\Api\CheckRole::class,
+        'check_profile' => \App\Http\Middleware\Api\CheckProfile::class,
+        'check_active' => \App\Http\Middleware\CheckActive::class,
+
     ];
 }

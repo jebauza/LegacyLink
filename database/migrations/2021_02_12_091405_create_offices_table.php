@@ -17,6 +17,7 @@ class CreateOfficesTable extends Migration
             $table->id();
             $table->string('name', 255);
             $table->string('cif', 100)->nullable();
+            $table->string('business_name')->nullable();
             $table->string('address', 255);
             $table->string('extra_address', 255)->nullable();
             $table->string('city', 255)->nullable();

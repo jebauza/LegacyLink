@@ -28,6 +28,16 @@ class EmployeeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function profileView()
+    {
+        return view('modules.employee.profile');
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function index(Request $request)
     {
         $employyes = Employee::filterByRole()
@@ -48,6 +58,7 @@ class EmployeeController extends Controller
     public function paginate(Request $request)
     {
         $employeesPaginate = Employee::filterByRole()
+                                    ->softDelete($request->softDelete)
                                     ->name($request->name)
                                     ->email($request->email)
                                     ->office($request->office)
@@ -161,6 +172,43 @@ class EmployeeController extends Controller
     }
 
     /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function updateProfile(Request $request)
+    {
+        $employee = $request->user();
+
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'last_name' => 'required|string|max:255',
+            'phone' => 'required|string|max:255',
+            'email' => "required|email|unique:employees,email,".$employee->id.",id",
+            'password' => 'nullable|string|min:8|confirmed',
+            'password_confirmation' => 'required_with:password',
+        ]);
+
+        try {
+            DB::beginTransaction();
+            $employee->fill($request->all());
+            if ($request->password) {
+                $employee->password = Hash::make($request->password);
+            }
+            $employee->save();
+
+            DB::commit();
+            return $this->sendResponse(__('Updated successfully'), $employee);
+
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return $this->sendError500($e->getMessage());
+        }
+    }
+
+    /**
      * Remove the specified resource from storage.
      *
      * @param  int  $id
@@ -168,7 +216,96 @@ class EmployeeController extends Controller
      */
     public function destroy($id)
     {
-        //
+        if(!$employee = Employee::find($id)) {
+            return $this->sendError404();
+        }
+
+        try {
+            DB::beginTransaction();
+            $employee->delete();
+
+            DB::commit();
+            return $this->sendResponse(__('Deleted successfully'), (new EmployeeResource($employee)));
+
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return $this->sendError500($e->getMessage());
+        }
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function changeStatus($id)
+    {
+        if(!$employee = Employee::find($id)) {
+            return $this->sendError404();
+        }
+
+        try {
+            DB::beginTransaction();
+            $employee->changeStatus();
+
+            DB::commit();
+            return $this->sendResponse(__('Saved successfully'), $employee);
+
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return $this->sendError500($e->getMessage());
+        }
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function restore($id)
+    {
+        if(!$employee = Employee::onlyTrashed()->find($id)) {
+            return $this->sendError404();
+        }
+
+        try {
+            DB::beginTransaction();
+            $employee->restore();
+
+            DB::commit();
+            return $this->sendResponse(__('Restored successfully'), $employee);
+
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return $this->sendError500($e->getMessage());
+        }
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function forceDelete($id)
+    {
+        if(!$employee = Employee::onlyTrashed()->find($id)) {
+            return $this->sendError404();
+        }
+
+        try {
+            DB::beginTransaction();
+            $employee->forceDelete();
+
+            DB::commit();
+            return $this->sendResponse(__('Deleted successfully'), $employee);
+
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return $this->sendError500($e->getMessage());
+        }
     }
 
 

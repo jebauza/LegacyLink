@@ -20,26 +20,8 @@ class DeceasedProfileResource extends JsonResource
             "last_name"=>$this->last_name,
             "birthday"=>$this->birthday->format('Y-m-d'),
             "death"=>$this->death->format('Y-m-d'),
-            "adviser"=>new AdviserResource($this->adviser)
+            "adviser"=>new AdviserResource($this->adviser),
+            "photo"=>$this->photo
         ];
     }
-
-    /**
-     * @OA\RequestBody(
-     *      request="deceasedProfile_show_response_200",
-     *      description="OK",
-     *      @OA\JsonContent( ref="#/components/schemas/DeceasedProfileResource" )
-     * )
-     *
-     * @OA\Schema(
-     *      schema="DeceasedProfileResource",
-     *      @OA\Property(property="id", type="integer", example=161),
-     *      @OA\Property(property="user_id", type="integer", example=6),
-     *      @OA\Property(property="name", type="string", example="Carlos"),
-     *      @OA\Property(property="last_name", type="string", example="Perez Perez"),
-     *      @OA\Property(property="birthday", type="date", example="1965-08-11"),
-     *      @OA\Property(property="death", type="date", example="2021-03-20"),
-     *      @OA\Property(property="adviser", ref="#/components/schemas/AdviserResource"),
-     * )
-     */
 }

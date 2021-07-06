@@ -1,8 +1,9 @@
 <?php
 
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Web\AuthController;
+use App\Http\Controllers\Web\User\AuthController;
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -14,6 +15,13 @@ use App\Http\Controllers\Web\AuthController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+
+Route::prefix('users')->name('web.users.')->group(function () {
+    Route::get('/email/verify/{id}/{hash}', [AuthController::class, 'emailVerify'])->middleware(['signed'])->name('email.verify');
+    Route::get('/reset-password', [AuthController::class, 'getResetPassword']);
+    Route::post('/reset-password', [AuthController::class, 'updatePassword'])->name('reset.password');
+});
 
 Route::get('/', function () {
     //return redirect()->route('login');

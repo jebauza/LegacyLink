@@ -8,7 +8,7 @@
         <div class="aside-brand d-flex flex-column align-items-center flex-column-auto py-5 py-lg-12">
 
             <!--begin::Logo-->
-            <a href="index.html">
+            <a href="{{ route('admin.home') }}">
                 <img alt="Logo" src="{{ asset('media/logos/logo-albia-rgb.jpg') }}" class="max-h-70px" />
             </a>
 
@@ -25,7 +25,7 @@
 
                 <!--begin::Item-->
                 <li class="nav-item mb-3" data-toggle="tooltip" data-placement="right" data-container="body"
-                    data-boundary="window" title="Latest Projects">
+                    data-boundary="window" title="Latest Projects" hidden>
                     <a href="#" class="nav-link btn btn-icon btn-clean btn-lg active" data-toggle="tab"
                         data-target="#kt_aside_tab_1" role="tab">
                         <span class="svg-icon svg-icon-xl">
@@ -124,7 +124,7 @@
                             <!--begin::Menu Nav-->
                             <ul class="menu-nav">
                                 <li class="menu-item menu-item-active" aria-haspopup="true">
-                                    <a href="index.html" class="menu-link">
+                                    <a href="{{ route('admin.home') }}" class="menu-link">
                                         <span class="svg-icon menu-icon">
 
                                             <!--begin::Svg Icon | path:assets/media/svg/icons/Design/Layers.svg-->
@@ -208,6 +208,33 @@
                                 </li>
                                 @endcan
 
+                                @can('users.view')
+                                <li class="menu-item @if(Route::is('admin.clients.indexView')) menu-item-active @endif"
+                                    aria-haspopup="true">
+                                    <a href="{{ route('admin.clients.indexView') }}" class="menu-link">
+                                        <span class="svg-icon menu-icon">
+
+                                            <!--begin::Svg Icon | path:C:\wamp64\www\keenthemes\themes\metronic\theme\html\demo3\dist/../src/media/svg/icons\Communication\Adress-book2.svg-->
+                                            <svg xmlns="http://www.w3.org/2000/svg"
+                                                xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px"
+                                                viewBox="0 0 24 24" version="1.1">
+                                                <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                                    <rect x="0" y="0" width="24" height="24" />
+                                                    <path
+                                                        d="M18,2 L20,2 C21.6568542,2 23,3.34314575 23,5 L23,19 C23,20.6568542 21.6568542,22 20,22 L18,22 L18,2 Z"
+                                                        fill="#000000" opacity="0.3" />
+                                                    <path
+                                                        d="M5,2 L17,2 C18.6568542,2 20,3.34314575 20,5 L20,19 C20,20.6568542 18.6568542,22 17,22 L5,22 C4.44771525,22 4,21.5522847 4,21 L4,3 C4,2.44771525 4.44771525,2 5,2 Z M12,11 C13.1045695,11 14,10.1045695 14,9 C14,7.8954305 13.1045695,7 12,7 C10.8954305,7 10,7.8954305 10,9 C10,10.1045695 10.8954305,11 12,11 Z M7.00036205,16.4995035 C6.98863236,16.6619875 7.26484009,17 7.4041679,17 C11.463736,17 14.5228466,17 16.5815,17 C16.9988413,17 17.0053266,16.6221713 16.9988413,16.5 C16.8360465,13.4332455 14.6506758,12 11.9907452,12 C9.36772908,12 7.21569918,13.5165724 7.00036205,16.4995035 Z"
+                                                        fill="#000000" />
+                                                </g>
+                                            </svg>
+                                            <!--end::Svg Icon-->
+                                        </span>
+                                        <span class="menu-text">@lang('Clients')</span>
+                                    </a>
+                                </li>
+                                @endcan
+
                                 <li class="menu-item @if(Route::is('admin.webs.indexView')) menu-item-active @endif"
                                     aria-haspopup="true">
                                     <a href="{{ route('admin.webs.indexView') }}" class="menu-link">
@@ -233,6 +260,29 @@
                                             <!--end::Svg Icon-->
                                         </span>
                                         <span class="menu-text">Webs</span>
+                                    </a>
+                                </li>
+
+                                <li class="menu-item @if(Route::is('admin.streaming.indexView')) menu-item-active @endif"
+                                    aria-haspopup="true">
+                                    <a href="{{ route('admin.streaming.indexView') }}" class="menu-link">
+                                        <span class="svg-icon menu-icon">
+
+                                            <!--begin::Svg Icon | path:C:\wamp64\www\keenthemes\themes\metronic\theme\html\demo3\dist/../src/media/svg/icons\Devices\Server.svg-->
+                                            <svg xmlns="http://www.w3.org/2000/svg"
+                                                xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px"
+                                                viewBox="0 0 24 24" version="1.1">
+                                                <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                                    <rect x="0" y="0" width="24" height="24" />
+                                                    <rect fill="#000000" x="2" y="6" width="13" height="12" rx="2" />
+                                                    <path
+                                                        d="M22,8.4142119 L22,15.5857848 C22,16.1380695 21.5522847,16.5857848 21,16.5857848 C20.7347833,16.5857848 20.4804293,16.4804278 20.2928929,16.2928912 L16.7071064,12.7071013 C16.3165823,12.3165768 16.3165826,11.6834118 16.7071071,11.2928877 L20.2928936,7.70710477 C20.683418,7.31658067 21.316583,7.31658098 21.7071071,7.70710546 C21.8946433,7.89464181 22,8.14899558 22,8.4142119 Z"
+                                                        fill="#000000" opacity="0.3" />
+                                                </g>
+                                            </svg>
+                                            <!--end::Svg Icon-->
+                                        </span>
+                                        <span class="menu-text">Transmisión en vivo</span>
                                     </a>
                                 </li>
 

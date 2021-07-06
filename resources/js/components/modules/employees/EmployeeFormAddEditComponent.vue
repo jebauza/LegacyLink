@@ -65,7 +65,7 @@
 
                     <div class="form-row">
                         <div class="form-group col-sm-6">
-                            <label :class="['control-label', errors.offices ? 'text-danger' : '']"><b>{{ __('validation.attributes.role') }}</b></label>
+                            <label :class="['control-label', errors.role ? 'text-danger' : '']"><b>{{ __('validation.attributes.role') }}</b></label>
                             <vs-select :key="roles.length" filter :placeholder="__('Select')" v-model="form.role" state="primary" :disabled="modalType=='show'">
                                 <vs-option v-for="role in roles" :key="role.id" :label="role.name" :value="role.id">
                                     {{ role.name }}
@@ -148,7 +148,7 @@ export default {
             })
             .catch(err => {
                 console.error(err);
-            })
+            });
         },
         getRoles() {
             const url = `/admin/ajax/roles`;
@@ -282,7 +282,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 .vs-select-content {
     max-width: none;
 }

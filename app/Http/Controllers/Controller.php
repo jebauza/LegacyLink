@@ -42,14 +42,17 @@ use Illuminate\Routing\Controller as BaseController;
  *      )
  * )
  *
- *
- *
  * @OA\SecurityScheme(
  *      securityScheme="api_key",
  *      type="apiKey",
  *      in="header",
  *      description="Enter in the following field 'Bearer' followed by the token obtained in the endpoint /auth/login",
  *      name="Authorization"
+ * )
+ *
+ * @OA\Parameter(parameter="profile_id", name="profile_id", in="path", required=true,
+ *      description="Profile identifier",
+ *      @OA\Schema(type="integer", example="3")
  * )
  *
  */
@@ -128,6 +131,21 @@ class Controller extends BaseController
 
         return response()->json($response, 404);
     }
+
+    /**
+     * return error response.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function sendError403()
+    {
+    	$response = [
+            'success' => false,
+            'message' => __('This action is unauthorized.')
+        ];
+
+        return response()->json($response, 403);
+    }
 }
 
 /**
@@ -147,6 +165,7 @@ class Controller extends BaseController
  *
  * @OA\RequestBody(request="response_400", description="Error: Bad Request",
  *          @OA\JsonContent(
+ *              @OA\Property(property="success", example=false),
  *              @OA\Property(property="message", example="Solicitud Incorrecta")
  *          )
  * )
@@ -160,7 +179,7 @@ class Controller extends BaseController
  * @OA\RequestBody(request="response_403", description="Error: Forbidden",
  *          @OA\JsonContent(
  *              @OA\Property(property="success", example=false),
- *              @OA\Property(property="message", example="auth.failed")
+ *              @OA\Property(property="message", example="You do not have permissions for the requested resources")
  *          )
  * )
  *

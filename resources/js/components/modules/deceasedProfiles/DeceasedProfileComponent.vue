@@ -21,10 +21,9 @@
 
                 <div class="col-sm-6 col-lg-4 form-group">
                     <label style="text-transform: uppercase;"><b>{{ __('validation.attributes.dprofile_office') }}</b></label>
-                        <select class="form-control" v-model="searches.office">
-                            <option value=""></option>
-                            <option v-for="(o, index) in offices" :key="index" :value="o.id">{{ o.name }}</option>
-                        </select>
+                    <vs-select :key="offices.length" filter v-model="searches.office" :placeholder="__('Select')">
+                        <vs-option v-for="office in offices" :key="office.id" :label="office.name" :value="office.id">{{ office.name }}</vs-option>
+                    </vs-select>
                 </div>
 
                 <div class="col-sm-6 col-lg-4 form-group">
@@ -33,8 +32,8 @@
                 </div>
 
                 <div class="col-10 col-sm-5 col-lg-3 form-group">
-                    <label for="email" style="text-transform: uppercase;"><b>{{ __('validation.attributes.email') }}</b></label>
-                    <input v-model="searches.email" type="text" class="form-control" name="email" :placeholder="__('validation.attributes.email')">
+                    <label for="declarant" style="text-transform: uppercase;"><b>declarante</b></label>
+                    <input v-model="searches.declarant" type="text" class="form-control" name="declarant" placeholder="nif, email, nombre, teléfono">
                 </div>
 
                 <div class="col-auto form-group">
@@ -56,8 +55,10 @@
                     <thead>
                         <tr>
                             <th>ID</th>
+                            <th>CODE</th>
                             <th>{{ __('validation.attributes.name') }}</th>
-                            <th>Acesor</th>
+                            <th>Centro</th>
+                            <th>Asesor</th>
                             <th>Declarante</th>
                             <th class="text-nowrap d-flex justify-content-center">{{ __('Actions') }}</th>
                         </tr>
@@ -65,21 +66,23 @@
                     <tbody>
                         <tr v-for="(profile, index) in deceasedProfiles.data" :key="index">
                             <th>{{ profile.id }}</th>
+                            <td>{{ profile.web_code }}</td>
                             <td>{{ profile.name }} {{ profile.last_name }}</td>
+                            <td>{{ profile.office ? profile.office.name : '' }}</td>
                             <td>{{ profile.adviser ? profile.adviser.fullName : '' }}</td>
-                            <td>{{ profile.admin ? profile.admin.fullName : '' }}</td>
+                            <td>{{ profile.declarant ? profile.declarant.fullName : '' }}</td>
                             <td>
                                 <div class="d-flex justify-content-center">
                                     <vs-tooltip bottom>
-                                        <button  class="btn btn-sm btn-clean btn-icon mr-2" @click="openModalAddEditShow('show', profile)">
+                                        <a :href="profile.urlWeb"  class="btn btn-sm btn-clean btn-icon mr-2 text-success" target="_blank">
                                             <i class="far fa-eye"></i>
-                                        </button>
+                                        </a>
                                         <template #tooltip>
                                             {{ __('Show') }}
                                         </template>
                                     </vs-tooltip>
                                     <vs-tooltip bottom>
-                                        <button class="btn btn-sm btn-clean btn-icon mr-2" @click="openModalAddEditShow('edit', profile)">
+                                        <button class="btn btn-sm btn-clean btn-icon mr-2 text-success" @click="openModalAddEditShow('edit', profile)">
                                             <i class="fas fa-pen"></i>
                                         </button>
                                         <template #tooltip>
@@ -87,7 +90,15 @@
                                         </template>
                                     </vs-tooltip>
                                     <vs-tooltip bottom>
-                                        <button class="btn btn-sm btn-clean btn-icon mr-2" @click="askDestroy(profile)">
+                                        <button class="btn btn-sm btn-clean btn-icon mr-2 text-success" @click="sendNotification(profile)">
+                                            <i class="fa fa-comment-alt"></i>
+                                        </button>
+                                        <template #tooltip>
+                                            {{ __('Send notification') }}
+                                        </template>
+                                    </vs-tooltip>
+                                    <vs-tooltip bottom>
+                                        <button class="btn btn-sm btn-clean btn-icon mr-2 text-danger" @click="askDestroy(profile)">
                                             <i class="fas fa-trash-alt"></i>
                                         </button>
                                         <template #tooltip>
@@ -108,17 +119,20 @@
 
         </div>
 
-        <deceased-profile-form-add-edit ref="deceasedProfileFormAddEdit" @updateDeceasedProfileList="updateList()"></deceased-profile-form-add-edit>
+        <add-profile ref="AddFormProfile" @updateDeceasedProfileList="updateList()"></add-profile>
+
+        <edit-profile ref="EditFormProfile" @updateDeceasedProfileList="updateList()"></edit-profile>
 
     </div>
 <!--end::Card-->
 </template>
 
 <script>
-import DeceasedProfileFormAddEdit from './DeceasedProfileFormAddEditComponent';
+import AddProfile from './AddProfileComponent';
+import EditProfile from './EditProfileComponent';
 
 export default {
-    components: {DeceasedProfileFormAddEdit},
+    components: {AddProfile, EditProfile},
 
     created() {
         this.getDeceasedProfiles();
@@ -131,7 +145,7 @@ export default {
         'searches.name': function (newValue, oldValue) {
             this.getDeceasedProfiles();
         },
-        'searches.email': function (newValue, oldValue) {
+        'searches.declarant': function (newValue, oldValue) {
             this.getDeceasedProfiles();
         }
     },
@@ -142,8 +156,9 @@ export default {
             offices: [],
 
             searches: {
+                office: '',
                 name: '',
-                email: ''
+                declarant: ''
             },
         }
     },
@@ -164,7 +179,7 @@ export default {
                 this.getOffices()
                 this.deceasedProfiles = res.data.data;
                 this.deceasedProfiles.data = this.deceasedProfiles.data.map(p => {
-                    p.admin = p.clients.find(client => client.pivot.role === 'admin');
+                    p.declarant = p.clients.find(client => client.pivot.declarant == true);
                     return p;
                 });
             })
@@ -184,13 +199,49 @@ export default {
                 console.error(err);
             })
         },
-        openModalAddEditShow(action, employee = null) {
-            this.$refs.deceasedProfileFormAddEdit.showForm(action, employee);
+        openModalAddEditShow(action, profile = null) {
+
+            if (action == 'add') {
+                this.$refs.AddFormProfile.showForm(action, null);
+            } else {
+                this.$refs.EditFormProfile.showForm(action, profile);
+            }
         },
         updateList(action = null) {
             this.getDeceasedProfiles(this.deceasedProfiles.current_page ?? 1 );
         },
-        /* askDestroy(employee) {
+        sendNotification(profile) {
+            const url = `/admin/ajax/webs/${profile.id}/send-notification`;
+            const loading = this.$vs.loading({
+                type: 'points',
+                color: '#187de4',
+                text: this.__('Sending') + '...'
+            });
+
+            axios.get(url)
+            .then(res => {
+                loading.close();
+                Swal.fire({
+                    title: res.data.message,
+                    text: res.data.data ? res.data.data.message : '',
+                    icon: "success",
+                    timer: 3000,
+                    showConfirmButton: false
+                });
+            }).catch(err => {
+                loading.close();
+                if(err.response.data.message) {
+                    Swal.fire({
+                        title: 'Error!',
+                        text: err.response.data.message,
+                        icon: "error",
+                        showCloseButton: true,
+                        closeButtonColor: '#ee2d41',
+                    });
+                }
+            });
+        },
+        askDestroy(profile) {
             const self = this;
             Swal.fire({
                 title: this.__('Are you sure you want to delete this record?'),
@@ -203,12 +254,12 @@ export default {
                 cancelButtonText: this.__('Cancel'),
             }).then((result) => {
                 if (result.isConfirmed) {
-                    self.destroy(employee.id);
+                    self.destroy(profile);
                 }
             });
         },
-        destroy(id) {
-            const url = `/admin/ajax/employees/${id}/destroy`;
+        destroy(profile) {
+            const url = `/admin/ajax/webs/${profile.id}/destroy`;
             const loading = this.$vs.loading({
                 type: 'points',
                 color: '#187de4',
@@ -224,7 +275,7 @@ export default {
                     timer: 1500,
                     showConfirmButton: false
                 });
-                this.getEmployees();
+                this.getDeceasedProfiles();
             }).catch(err => {
                 loading.close();
                 if(err.response.data.message) {
@@ -237,11 +288,12 @@ export default {
                     });
                 }
             });
-        }, */
+        },
         clearSearches() {
             this.searches = {
+                office: '',
                 name: '',
-                email: '',
+                declarant: ''
             };
         },
 
@@ -249,8 +301,11 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 th {
     text-transform: uppercase;
+}
+.vs-select-content {
+    max-width: none;
 }
 </style>

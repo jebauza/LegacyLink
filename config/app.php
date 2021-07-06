@@ -52,7 +52,7 @@ return [
     |
     */
 
-    'url' => env('APP_URL', 'http://localhost'),
+    'url' => env('APP_URL', 'https://albia.celebrasuvida.es'),
 
     'asset_url' => env('ASSET_URL', null),
 
@@ -167,6 +167,8 @@ return [
          */
         Spatie\Permission\PermissionServiceProvider::class,
         App\Providers\TranslationServiceProvider::class,
+        Maatwebsite\Excel\ExcelServiceProvider::class,
+        Vimeo\Laravel\VimeoServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -228,7 +230,33 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
+        'Excel' => Maatwebsite\Excel\Facades\Excel::class,
+        'Vimeo' => Vimeo\Laravel\Facades\Vimeo::class,
 
     ],
+
+    'debug_blacklist' => [
+        '_COOKIE' => array_keys($_COOKIE),
+        '_SERVER' => array_keys($_SERVER),
+        '_ENV' => array_keys($_ENV),
+    ],
+
+    /* 'debug_blacklist' => [
+        '_ENV' => [
+            'APP_KEY',
+            'DB_DATABASE',
+            'DB_USERNAME',
+            'DB_PASSWORD',
+        ],
+        '_SERVER' => [
+            'APP_KEY',
+            'DB_DATABASE',
+            'DB_USERNAME',
+            'DB_PASSWORD',
+        ],
+        '_POST' => [
+            'password',
+        ],
+    ], */
 
 ];

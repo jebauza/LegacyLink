@@ -21,7 +21,6 @@ class ResetPasswordController extends Controller
             'email' => 'required|email|exists:employees,email',
             'password' => 'required|string|min:6|confirmed',
             'password_confirmation' => 'required',
-
         ]);
 
         $updatePassword = DB::table('password_resets')
@@ -30,7 +29,7 @@ class ResetPasswordController extends Controller
 
         if(!$updatePassword)
         {
-            return back()->withInput()->withErrors(['email' => 'Invalid email or token!']);
+            return back()->withInput()->withErrors(['email' => __('Invalid email or token!')]);
             //return back()->withInput()->with('error', 'Invalid token!');
         }
 
@@ -39,7 +38,7 @@ class ResetPasswordController extends Controller
 
         DB::table('password_resets')->where(['email'=> $request->email])->delete();
 
-        return redirect()->route('admin.login')->with('message', 'Your password has been changed!');
+        return redirect()->route('admin.login')->with('message', __('Your password has been changed!'));
 
     }
 }

@@ -20,5 +20,7 @@
 
     <link rel="stylesheet" href="{{ asset('css/template.css') }}">
 
+    @yield('css')
+
     <link rel="shortcut icon" href="{{ asset('media/logos/logo-albia-rgb.jpg') }}" />
 </head>

@@ -59,17 +59,17 @@
                     </thead>
                     <tbody>
                         <tr v-for="(office, index) in offices.data" :key="index">
-                            <th>{{ index + 1 }}</th>
+                            <th>{{ index + offices.from }}</th>
                             <td>{{ office.cif }}</td>
                             <td>{{ office.name }}</td>
-                            <td>{{ office.address }}</td>
+                            <td>{{ office.fullAddress }}</td>
                             <td>{{ office.email }}</td>
                             <td>{{ office.phone }}</td>
                             <td>{{ office.contact_person }}</td>
                             <td>
                                 <div class="d-flex justify-content-center">
                                     <vs-tooltip bottom>
-                                        <button  class="btn btn-sm btn-clean btn-icon mr-2" @click="openModalAddEditShow('show', employee)">
+                                        <button  class="btn btn-sm btn-clean btn-icon mr-2 text-success" @click="openModalAddEditShow('show', office)">
                                             <i class="far fa-eye"></i>
                                         </button>
                                         <template #tooltip>
@@ -77,7 +77,7 @@
                                         </template>
                                     </vs-tooltip>
                                     <vs-tooltip bottom>
-                                        <button class="btn btn-sm btn-clean btn-icon mr-2" @click="openModalAddEditShow('edit', employee)">
+                                        <button class="btn btn-sm btn-clean btn-icon mr-2 text-success" @click="openModalAddEditShow('edit', office)">
                                             <i class="fas fa-pen"></i>
                                         </button>
                                         <template #tooltip>
@@ -85,7 +85,7 @@
                                         </template>
                                     </vs-tooltip>
                                     <vs-tooltip bottom>
-                                        <button class="btn btn-sm btn-clean btn-icon mr-2" @click="askDestroy(employee)">
+                                        <button class="btn btn-sm btn-clean btn-icon mr-2 text-danger" @click="askDestroy(office)">
                                             <i class="fas fa-trash-alt"></i>
                                         </button>
                                         <template #tooltip>
@@ -228,7 +228,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 th {
     text-transform: uppercase;
 }

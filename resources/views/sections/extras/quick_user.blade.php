@@ -51,9 +51,14 @@
                             <span class="navi-text text-muted text-hover-primary">{{ auth()->user()->email }}</span>
                         </span>
                     </a>
+                    <a href="{{ route('admin.employees.profileView') }}"
+                        class="btn btn-sm btn-light-primary font-weight-bolder py-2 px-5">
+                        <i class="fas fa-user-cog"></i> Perfil</a>
+
                     <a href="{{ route('admin.logout') }}"
                         onclick="event.preventDefault();document.getElementById('logout-form').submit();"
-                        class="btn btn-sm btn-light-primary font-weight-bolder py-2 px-5">{{ __('Logout') }}</a>
+                        class="btn btn-sm btn-light-danger font-weight-bolder py-2 px-5">
+                        <i class="fas fa-door-open"></i> Salir</a>
 
                     <form id="logout-form" action="{{ route('admin.logout') }}" method="POST" class="d-none">
                         @csrf

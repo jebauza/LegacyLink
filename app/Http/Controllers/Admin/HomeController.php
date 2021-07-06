@@ -15,6 +15,8 @@ class HomeController extends Controller
      */
     public function home()
     {
-        return view('app');
+        // return view('app');
+
+        return redirect()->route('admin.webs.indexView');
     }
 }

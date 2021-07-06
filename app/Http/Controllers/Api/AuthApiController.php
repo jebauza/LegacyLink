@@ -2,11 +2,22 @@
 namespace App\Http\Controllers\Api;
 
 use Carbon\Carbon;
+use App\Models\User;
+use App\Helpers\SMSHelper;
+use App\Models\Invitation;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Models\DeceasedProfile;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
-use App\Http\Resources\UserResource;
+use Illuminate\Auth\Events\Verified;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Route;
+use Illuminate\Database\Eloquent\Builder;
+use App\Http\Resources\Api\UserApiResource;
 
 /**
  * @OA\Tag(
@@ -57,10 +68,6 @@ class AuthApiController extends Controller
      *          )
      *      ),
      * )
-     */
-
-    /**
-     * Login api.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
@@ -73,6 +80,7 @@ class AuthApiController extends Controller
         ]);
 
         $credentials = $request->only('email', 'password');
+        $credentials['is_active'] = true;
 
         if(!Auth::guard('api-user')->attempt($credentials)) {
             return response()->json([
@@ -82,10 +90,9 @@ class AuthApiController extends Controller
         }
 
         $user = Auth::guard('api-user')->user();
-        $user->tokens()
-                ->where('revoked', false)
-                ->update(['revoked' => true]);
-                // ->delete();
+        if ($user->tokens()->count() > 3) {
+            $user->tokens->last()->delete();
+        }
 
         $tokenResult = $user->createToken($user->email);
 
@@ -131,33 +138,44 @@ class AuthApiController extends Controller
 
     /**
      * @OA\Get(
-     *      path="/auth/user",
-     *      operationId="auth/user",
+     *      path="/auth/user/{profile_id}",
+     *      operationId="/auth/user/{profile_id}",
      *      tags={"Auth"},
      *      summary="Authenticated user information",
      *      description="",
      *      security={{"api_key": {}}},
      *
+     *      @OA\Parameter(ref="#/components/parameters/profile_id"),
+     *
      *      @OA\Response(response=200, description="OK",
      *          @OA\JsonContent(
      *              @OA\Property(property="success", example=true),
      *              @OA\Property(property="message", example="User login successfully."),
-     *              @OA\Property(property="data", ref="#/components/schemas/UserResource")),
+     *              @OA\Property(property="data", ref="#/components/schemas/UserAuthApiResource")),
      *          )
      *      ),
      *
      *      @OA\Response(response=401, ref="#/components/requestBodies/response_401"),
      * )
      */
-    public function user(Request $request)
+    public function user(Request $request, $profile_id = null)
     {
-        $user = $request->user();
+        $user = auth()->user();
 
-        return $this->sendResponse(null, (new UserResource($user)));
+        $profile = null;
+        if ($profile_id) {
+            $profile = $user->deceased_profiles()->find($profile_id);
+            if ($profile) {
+                $user->add_profile = $profile->id;
+                $user->add_web_code = $profile->web_code;
+                $user->add_role = $profile->pivot->role;
+            }
+        }
+
+        return $this->sendResponse(null, (new UserApiResource($user)));
     }
 
-
-  /**
+    /**
      * @OA\GET(
      *      path="/auth/login/declarant",
      *      operationId="/auth/login/declarant",
@@ -196,10 +214,6 @@ class AuthApiController extends Controller
      *          )
      *      ),
      * )
-     */
-
-    /**
-     * Attempt user admin by token
      *
      * @param Request $request
      * @param string $token
@@ -211,11 +225,15 @@ class AuthApiController extends Controller
             'token' => 'required|string',
         ]);
 
-        $profile = DeceasedProfile::where('token', $request->token)->first();
+        $profile = DeceasedProfile::whereHas('clientDeclarant', function (Builder $query) use($request){
+            $query->where('deceased_profile_user.token', $request->token);
+        })
+        ->with('clientDeclarant')
+        ->first();
 
-        $user = $profile ? $profile->clients()->wherePivot('declarant', true)->first() : null;
+        $user = $profile ? $profile->clientDeclarant()->first() : null;
 
-        if(!$user) {
+        if(!$user || !$user->is_active) {
             return response()->json([
                 'success' => false,
                 'message' => __('auth.failed'),
@@ -223,17 +241,23 @@ class AuthApiController extends Controller
         }
 
         Auth::guard('api-user')->login($user);
-        $user->tokens()
-                ->where('revoked', false)
-                ->update(['revoked' => true]);
 
+        if ($user->tokens()->count() > 9) {
+            $user->tokens->last()->delete();
+        }
         $tokenResult = $user->createToken($user->email);
 
         $token = $tokenResult->token;
         if ($request->remember_me) {
-            $token->expires_at = Carbon::now()->addMonths(1);
+            $token->expires_at = Carbon::now()->addMonths(12);
         }
         $token->save();
+
+        if (! $user->hasVerifiedEmail()) {
+            $user->markEmailAsVerified();
+
+            event(new Verified($user));
+        }
 
         return response()->json([
             'success' => true,
@@ -243,5 +267,276 @@ class AuthApiController extends Controller
             'expires_at' => Carbon::parse($token->expires_at)->toDateTimeString(),
             'access_token' => $tokenResult->accessToken
         ]);
+    }
+
+    /**
+     * @OA\Post(
+     *      path="/auth/profile/join",
+     *      operationId="/auth/profile/join",
+     *      tags={"Auth"},
+     *      summary="Add user to profile",
+     *      description="Add user to profile",
+     *      security={{"api_key": {}}},
+     *
+     *      @OA\RequestBody(
+     *          required=true,
+     *          description="Pass user credentials",
+     *          @OA\JsonContent(
+     *              required={"token"},
+     *              @OA\Property(property="token", type="string", example="Dfghre3rtt5"),
+     *          ),
+     *      ),
+     *
+     *      @OA\Response(response=200, description="OK",
+     *          @OA\JsonContent(
+     *              @OA\Property(property="success", example=true),
+     *              @OA\Property(property="message", example="Added to invitation profile successfully"),
+     *              @OA\Property(property="profile_id", example=3),
+     *          )
+     *      ),
+     *
+     *      @OA\Response(response=401, ref="#/components/requestBodies/response_401"),
+     *
+     *      @OA\Response(response=403, ref="#/components/requestBodies/response_403"),
+     *
+     *      @OA\Response(response=422, description="Error: Unprocessable Entity",
+     *          @OA\JsonContent(
+     *              @OA\Property(property="message", example="The given data was invalid."),
+     *              @OA\Property(property="errors", description="these are the fields of the request",
+     *                  @OA\Property(property="token", example={"El campo correo es obligatorio."})
+     *              )
+     *          )
+     *      ),
+     * )
+     */
+    public function profileJoin(Request $request)
+    {
+        $request->validate([
+            'token' => 'required|string',
+        ]);
+
+        $invitation = Invitation::where('token',  $request->token)->first();
+
+        if (!$invitation) {
+            return response()->json([
+                'success' => false,
+                'message' => __('The invitation is invalid or has already been used'),
+            ], 403);
+        }
+
+        $profile = $invitation->profile;
+
+        try {
+            DB::beginTransaction();
+            $client = $profile->clients()->find(auth()->user()->id);
+            if ($client) {
+                if (!$client->pivot->declarant) {
+                    $profile->clients()->updateExistingPivot(auth()->user()->id, ['role' => $invitation->role]);
+                }
+            } else {
+                $profile->clients()->attach(auth()->user()->id, ['role' => $invitation->role]);
+            }
+            $invitation->save();
+
+            DB::commit();
+            return response()->json([
+                'success' => true,
+                'message' => __('Added to invitation profile successfully'),
+                'profile_id'=> $profile->id
+            ]);
+
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return $this->sendError500($e->getMessage());
+        }
+    }
+
+    /**
+     * @OA\Post(
+     *      path="/auth/register",
+     *      operationId="/auth/register",
+     *      tags={"Auth"},
+     *      summary="Register user",
+     *      description="Register user",
+     *      security={{"api_key": {}}},
+     *
+     *      @OA\RequestBody(
+     *          required=true,
+     *          description="Pass user credentials",
+     *          @OA\JsonContent(
+     *              required={"name","lastname","email","phone","password","password_confirmation"},
+     *              @OA\Property(property="name", type="string", example="Maria Luisa", title="required|string|max:255"),
+     *              @OA\Property(property="lastname", type="string", example="Perez Perez", title="required|string|max:255"),
+     *              @OA\Property(property="email", type="string", example="maria@gmail.com", title="required|string|email|max:255|unique:users,email"),
+     *              @OA\Property(property="phone", type="string", example="+34622459652", title="required|string|phone:ES,mobile|max:20"),
+     *              @OA\Property(property="password", type="string", example="qweasd12", title="required|string|min:8|confirmed"),
+     *              @OA\Property(property="password_confirmation", type="string", example="Dfghre3rtt5", title="required"),
+     *              @OA\Property(property="invitation_token", type="string", example="TwS78uHG608684d7061a4", title="nullable|string|exists:invitations,token"),
+     *          ),
+     *      ),
+     *
+     *      @OA\Response(response=200, description="OK",
+     *          @OA\JsonContent(
+     *              @OA\Property(property="success", example=true),
+     *              @OA\Property(property="message", example="User login successfully."),
+     *          )
+     *      ),
+     *
+     *      @OA\Response(response=422, description="Error: Unprocessable Entity",
+     *          @OA\JsonContent(
+     *              @OA\Property(property="message", example="The given data was invalid."),
+     *              @OA\Property(property="errors", description="these are the fields of the request",
+     *                  @OA\Property(property="name", example={"El campo correo es obligatorio."}),
+     *                  @OA\Property(property="lastname", example={"El campo correo es obligatorio."}),
+     *                  @OA\Property(property="email", example={"El campo correo es obligatorio."}),
+     *                  @OA\Property(property="phone", example={"El campo correo es obligatorio."}),
+     *                  @OA\Property(property="password", example={"El campo correo es obligatorio."}),
+     *                  @OA\Property(property="password_confirmation", example={"El campo correo es obligatorio."}),
+     *                  @OA\Property(property="invitation_token", example={"El campo correo es obligatorio."})
+     *              )
+     *          )
+     *      ),
+     *
+     *      @OA\Response(response=500, ref="#/components/requestBodies/response_500"),
+     * )
+     */
+    public function register(Request $request)
+    {
+            $request->validate([
+                'name' => 'required|string|max:255',
+                'lastname' => 'required|string|max:255',
+                'email' => 'required|string|email|max:255|unique:users,email',
+                'phone' => 'required|string|phone:ES,mobile|max:20',
+                'password' => 'required|string|min:8|confirmed',
+                'password_confirmation' => 'required',
+                'invitation_token' => 'nullable|string|exists:invitations,token'
+            ]);
+
+            try {
+                DB::beginTransaction();
+                $newUser = new User($request->all());
+                $newUser->password = Hash::make($request->password);
+                if ($newUser->save()) {
+                    DB::commit();
+
+                    if ($request->invitation_token) {
+                        $invitation = Invitation::where('token',  $request->invitation_token)->first();
+                        $profile = $invitation->profile;
+                        $profile->clients()->attach($newUser->id, ['role' => $invitation->role]);
+                    }
+
+                    return response()->json([
+                        'success' => true,
+                        'message' => __('Verification email sent'),
+                    ], 201);
+                }
+
+            } catch (\Exception $e) {
+                DB::rollBack();
+                return $this->sendError500($e->getMessage());
+            }
+    }
+
+    /**
+     * @OA\Post(
+     *      path="/auth/verification-email/send",
+     *      operationId="/auth/verification-email/send",
+     *      tags={"Auth"},
+     *      summary="Send verification email",
+     *      description="Send verification email",
+     *
+     *      @OA\RequestBody(
+     *          required=true,
+     *          description="Send verification email",
+     *          @OA\JsonContent(
+     *              required={"email"},
+     *              @OA\Property(property="email", type="string", example="maria@gmail.com", title="required|email|exists:users,email")
+     *          ),
+     *      ),
+     *
+     *      @OA\Response(response=200, description="OK",
+     *          @OA\JsonContent(
+     *              @OA\Property(property="success", example=true),
+     *              @OA\Property(property="message", example="Correo electrónico de verificación enviado")
+     *          )
+     *      ),
+     *
+     *      @OA\Response(response=422, description="Error: Unprocessable Entity",
+     *          @OA\JsonContent(
+     *              @OA\Property(property="message", example="The given data was invalid."),
+     *              @OA\Property(property="errors", description="these are the fields of the request",
+     *                  @OA\Property(property="email", example={"El campo correo es obligatorio."})
+     *              )
+     *          )
+     *      ),
+     *
+     *      @OA\Response(response=500, ref="#/components/requestBodies/response_500"),
+     * )
+     */
+    public function verificationEmailSend(Request $request)
+    {
+        $request->validate([
+            'email' => 'required|email|exists:users,email',
+        ]);
+
+        $user = User::where('email', $request->email)->first();
+
+        $user->sendEmailVerificationNotification();
+
+        return response()->json([
+            'success' => true,
+            'message' => __('Verification email sent'),
+        ]);
+    }
+
+    /**
+     * @OA\Post(
+     *      path="/auth/forget-password/send",
+     *      operationId="/auth/forget-password/send",
+     *      tags={"Auth"},
+     *      summary="Forget password",
+     *      description="Forget password",
+     *
+     *      @OA\RequestBody(
+     *          required=true,
+     *          @OA\JsonContent(
+     *              required={"forgot_email"},
+     *              @OA\Property(property="forgot_email", type="string", example="maria@gmail.com", title="required|email|exists:users,email")
+     *          ),
+     *      ),
+     *
+     *      @OA\Response(response=200, description="OK",
+     *          @OA\JsonContent(
+     *              @OA\Property(property="success", type="boolean", example=true),
+     *              @OA\Property(property="message", type="string", example="Notificación de restablecimiento de contraseña")
+     *          )
+     *      ),
+     *
+     *      @OA\Response(response=422, description="Error: Unprocessable Entity",
+     *          @OA\JsonContent(
+     *              @OA\Property(property="message", example="The given data was invalid."),
+     *              @OA\Property(property="errors", description="these are the fields of the request",
+     *                  @OA\Property(property="forgot_email", example={"El campo correo es obligatorio."})
+     *              )
+     *          )
+     *      ),
+     *
+     *      @OA\Response(response=500, ref="#/components/requestBodies/response_500"),
+     * )
+     */
+    public function forgetPassword(Request $request)
+    {
+        $request->validate([
+            'forgot_email' => 'required|email|exists:users,email',
+        ]);
+
+        if ($user = User::where('email', $request->forgot_email)->first()) {
+            $user->changePassword();
+        }
+
+        return response()->json([
+                'success' => true,
+                'message' => __('Reset Password Notification'),
+            ]);
     }
 }
