@@ -69,7 +69,7 @@ class DeceasedProfile extends Model
 
     function getUrlPhotoAttribute()
     {
-        return Storage::disk('public')->exists($this->photo) ? Storage::disk('public')->url($this->photo) : null;
+        return Storage::disk('public')->exists($this->photo) ? Storage::disk('public')->url($this->photo) : asset('media/img/blank.png');
     }
 
     function getUrlWallImageAttribute()
