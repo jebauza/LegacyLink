@@ -893,9 +893,14 @@
                         "application/json": {
                             "schema": {
                                 "required": [
+                                    "author",
                                     "message"
                                 ],
                                 "properties": {
+                                    "author": {
+                                        "type": "string",
+                                        "example": "Maria"
+                                    },
                                     "message": {
                                         "type": "string",
                                         "example": "De Juan"
@@ -946,6 +951,11 @@
                                         "errors": {
                                             "description": "these are the fields of the request",
                                             "properties": {
+                                                "author": {
+                                                    "example": [
+                                                        "El campo author es obligatorio."
+                                                    ]
+                                                },
                                                 "message": {
                                                     "example": [
                                                         "El campo message es obligatorio."
@@ -2264,6 +2274,10 @@
                     "id": {
                         "type": "integer",
                         "example": 161
+                    },
+                    "author": {
+                        "type": "string",
+                        "example": "Juan Carlos"
                     },
                     "message": {
                         "type": "string",

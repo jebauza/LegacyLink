@@ -19,6 +19,7 @@ class CandleApiResource extends JsonResource
     {
         return [
             "id"=>$this->id,
+            "author"=>$this->author,
             "message"=>$this->message,
             "profile_id"=>$this->profile_id
         ];
@@ -29,6 +30,7 @@ class CandleApiResource extends JsonResource
      * @OA\Schema(
      *      schema="CandleApiResource",
      *      @OA\Property(property="id", type="integer", example=161),
+     *      @OA\Property(property="author", type="string", example="Juan Carlos"),
      *      @OA\Property(property="message", type="string", example="De Manuel"),
      *      @OA\Property(property="profile_id", type="integer", example=161),
      * )
