@@ -74,7 +74,8 @@ class CandleApiController extends Controller
      *      @OA\RequestBody(
      *          required=true,
      *          @OA\JsonContent(
-     *              required={"message"},
+     *              required={"author","message"},
+     *              @OA\Property(property="author", type="string", example="Maria"),
      *              @OA\Property(property="message", type="string", example="De Juan")
      *          ),
      *      ),
@@ -95,6 +96,7 @@ class CandleApiController extends Controller
      *          @OA\JsonContent(
      *              @OA\Property(property="message", example="The given data was invalid."),
      *              @OA\Property(property="errors", description="these are the fields of the request",
+     *                  @OA\Property(property="author", example={"El campo author es obligatorio."}),
      *                  @OA\Property(property="message", example={"El campo message es obligatorio."})
      *              )
      *          )
@@ -108,6 +110,7 @@ class CandleApiController extends Controller
         $profile = session('profileWeb');
 
         $request->validate([
+            'author' => 'required|string|max:255',
             'message' => 'required|string|max:255'
         ]);
 

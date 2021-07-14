@@ -12,7 +12,7 @@ class Candle extends Model
 
     protected $table = 'candles';
 
-    protected $fillable = ['message'];
+    protected $fillable = ['author','message'];
 
     public function profile()
     {
