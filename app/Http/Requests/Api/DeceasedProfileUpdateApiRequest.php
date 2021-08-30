@@ -29,6 +29,7 @@ class DeceasedProfileUpdateApiRequest extends FormRequest
      *          @OA\Property(property="wall_image_base64", type="string", title="nullable|base64image"),
      *          @OA\Property(property="title_epitaph", type="string", title="nullable|string|max:255"),
      *          @OA\Property(property="message_epitaph", type="string", title="nullable|string"),
+     *          @OA\Property(property="template", type="string", title="required|string|in:1,2,3,4"),
      *      )
      * )
      */
@@ -42,7 +43,8 @@ class DeceasedProfileUpdateApiRequest extends FormRequest
             'photo_base64' => 'nullable|base64image',
             'wall_image_base64' => 'nullable|base64image',
             'title_epitaph' => 'nullable|string|max:255',
-            'message_epitaph' => 'nullable|string'
+            'message_epitaph' => 'nullable|string',
+            'template' => 'required|string|in:1,2,3,4'
         ];
     }
 

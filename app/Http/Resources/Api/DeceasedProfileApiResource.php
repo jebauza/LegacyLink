@@ -27,6 +27,7 @@ class DeceasedProfileApiResource extends JsonResource
             "web_code"=>$this->web_code,
             "title_epitaph"=>$this->title_epitaph,
             "message_epitaph"=>$this->message_epitaph,
+            "template"=>$this->template,
         ];
     }
 
@@ -46,6 +47,7 @@ class DeceasedProfileApiResource extends JsonResource
      *      @OA\Property(property="web_code", type="string", example="TztH29"),
      *      @OA\Property(property="title_epitaph", type="string", example="UN GRAN HOMBRE TU FAMILIA NUNCA TE OLVIDARÁ"),
      *      @OA\Property(property="message_epitaph", type="string", example="FUISTE UNA PERSONA MUY ESPECIAL SIEMPRE TE LLEVAREMOS EN NUESTROS CORAZONES ASÍ COMO TODAS LAS AVENTURAS VIVIDAS NOS REENCONTRAREMOS EN LA OTRA VIDA"),
+     *      @OA\Property(property="template", type="string", example="1"),
      * )
      */
 }

@@ -29,7 +29,8 @@ class DeceasedProfile extends Model
         'photo',
         'wall_image',
         'title_epitaph',
-        'message_epitaph'
+        'message_epitaph',
+        'template',
     ];
 
     protected $casts = [
