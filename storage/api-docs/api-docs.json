@@ -2473,6 +2473,10 @@
                     "message_epitaph": {
                         "type": "string",
                         "example": "FUISTE UNA PERSONA MUY ESPECIAL SIEMPRE TE LLEVAREMOS EN NUESTROS CORAZONES ASÍ COMO TODAS LAS AVENTURAS VIVIDAS NOS REENCONTRAREMOS EN LA OTRA VIDA"
+                    },
+                    "template": {
+                        "type": "string",
+                        "example": "1"
                     }
                 },
                 "type": "object"
@@ -3096,6 +3100,10 @@
                                 },
                                 "message_epitaph": {
                                     "title": "nullable|string",
+                                    "type": "string"
+                                },
+                                "template": {
+                                    "title": "required|string|in:1,2,3,4",
                                     "type": "string"
                                 }
                             },
