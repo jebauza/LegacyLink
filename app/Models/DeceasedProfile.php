@@ -70,12 +70,44 @@ class DeceasedProfile extends Model
 
     function getUrlPhotoAttribute()
     {
-        return Storage::disk('public')->exists($this->photo) ? Storage::disk('public')->url($this->photo) : asset('media/img/blank.png');
+        if (Storage::disk('public')->exists($this->photo)) {
+            return Storage::disk('public')->url($this->photo);
+        }
+
+        $photo_template = [
+            "1" => "imagen-redonda-template1.png",
+            "2" => "imagen-redonda-template2.jpg",
+            "3" => "imagen-redonda-template3.png",
+            "4" => "imagen-redonda-template4.png",
+        ];
+        if ($this->template && array_key_exists($this->template, $photo_template)) {
+            return asset('media/img/template/' . $photo_template[$this->template]);
+        }
+
+        // return asset('media/img/blank.png');
+        return asset('media/img/template/' . $photo_template["1"]);
     }
 
     function getUrlWallImageAttribute()
     {
-        return Storage::disk('public')->exists($this->wall_image) ? Storage::disk('public')->url($this->wall_image) : asset('media/img/default-wall.jpeg');
+        if (Storage::disk('public')->exists($this->wall_image)) {
+            return Storage::disk('public')->url($this->wall_image);
+        } elseif (Storage::disk('public_media')->exists($this->wall_image)) {
+            return Storage::disk('public_media')->url($this->wall_image);
+        }
+
+        $fondo_template = [
+            "1" => "fondo-rectangular-template1.jpg",
+            "2" => "fondo-rectangular-template2.jpg",
+            "3" => "fondo-rectangular-template3.png",
+            "4" => "fondo-rectangular-template4.png",
+        ];
+        if ($this->template && array_key_exists($this->template, $fondo_template)) {
+            return asset('media/img/template/' . $fondo_template[$this->template]);
+        }
+
+        // return asset('media/img/default-wall.jpeg');
+        return asset('media/img/template/' . $fondo_template["1"]);
     }
 
     function getUrlWebAttribute()

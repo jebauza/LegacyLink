@@ -131,7 +131,14 @@ class DeceasedProfileApiController extends Controller
                     UploadFile::delete($profile->wall_image);
                 }
                 $profile->wall_image = $path_wall;
+            } elseif ($request->wallImagePredefinida) {
+                $path_wall = 'img/' . $request->wallImagePredefinida;
+                if($profile->wall_image) {
+                    UploadFile::delete($profile->wall_image);
+                }
+                $profile->wall_image = $path_wall;
             }
+
             $profile->save();
 
             DB::commit();
