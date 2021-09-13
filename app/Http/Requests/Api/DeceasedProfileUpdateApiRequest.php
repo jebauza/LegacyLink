@@ -20,7 +20,7 @@ class DeceasedProfileUpdateApiRequest extends FormRequest
      /**
      * @OA\RequestBody(required=true, request="request_deceased_profile_update",
      *      @OA\JsonContent(
-     *          required={"name","lastname","birthday","death"},
+     *          required={"name","lastname","birthday","death","template"},
      *          @OA\Property(property="name", type="string", example="Carlos", title="required|string|max:255"),
      *          @OA\Property(property="lastname", type="string", example="Gonzalez Perez", title="required|string|max:255"),
      *          @OA\Property(property="birthday", type="string", example="1975-03-21", title="required|date|date_format:Y-m-d"),
@@ -30,6 +30,7 @@ class DeceasedProfileUpdateApiRequest extends FormRequest
      *          @OA\Property(property="title_epitaph", type="string", title="nullable|string|max:255"),
      *          @OA\Property(property="message_epitaph", type="string", title="nullable|string"),
      *          @OA\Property(property="template", type="string", title="required|string|in:1,2,3,4"),
+     *          @OA\Property(property="wallImagePredefinida", type="string", title="nullable|string|in:imagen1.jpg,imagen2.jpg,imagen3.jpg,imagen4.jpg,imagen5.jpg,imagen6.jpg"),
      *      )
      * )
      */
@@ -44,7 +45,8 @@ class DeceasedProfileUpdateApiRequest extends FormRequest
             'wall_image_base64' => 'nullable|base64image',
             'title_epitaph' => 'nullable|string|max:255',
             'message_epitaph' => 'nullable|string',
-            'template' => 'required|string|in:1,2,3,4'
+            'template' => 'required|string|in:1,2,3,4',
+            'wallImagePredefinida' => 'nullable|string|in:imagen1.jpg,imagen2.jpg,imagen3.jpg,imagen4.jpg,imagen5.jpg,imagen6.jpg'
         ];
     }
 
