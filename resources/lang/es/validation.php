@@ -193,6 +193,7 @@ return [
         'state'                 => 'provincia',
         'country'               => 'país',
         'dprofile_death'        => 'defunción',
+        'dprofile_template'     => 'plantilla',
         'dprofile_birthday'     => 'nacimiento',
         'dprofile_office'       => 'centro',
         'dprofile_adviser'      => 'agente',

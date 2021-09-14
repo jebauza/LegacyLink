@@ -146,6 +146,106 @@
                                     </div>
                                 </div>
 
+                                <div class="row ">
+                                    <div class="col-12">
+                                        <el-card :class="['box-card', errors.dprofile_template ? 'border-danger' : '']">
+                                            <div slot="header" class="clearfix">
+                                                <label :class="['control-label', errors.dprofile_template ? 'text-danger' : '']"><b>Plantilla</b></label>
+                                            </div>
+                                            <div class="row " >
+                                                <div class="col-md-6 col-lg-3 d-flex justify-content-center">
+                                                    <div :class="['card',form.dprofile_template == '1' ? 'selected_image' : '']" style="width: 12rem;">
+                                                        <!-- <img src="media/img/template/miniaturaPlantilla1.JPG" class="img-thumbnail img-responsive" alt="Cinque Terre" style="width: 12rem;height: 12rem"> -->
+                                                        <el-tooltip class="item" effect="dark" content="Vista Previa Otoño" placement="top">
+                                                           <el-image
+                                                                :class="['img-thumbnail', 'img-responsive',form.dprofile_template == '1' ? 'selected_image' : '']"
+                                                                alt="Cinque Terre"
+                                                                style="width: 12rem;height: 12rem"
+                                                                :src="'media/img/template/miniaturaPlantilla1.JPG'"
+                                                                :preview-src-list="['media/img/template/miniaturaPlantilla1.JPG']">
+                                                            </el-image>
+                                                        </el-tooltip>
+                                                        <div class="card-body py-1 text-center">
+                                                            <!-- <p class="card-text">Otoño</p> -->
+                                                            <label class="form-check-label">
+                                                                <input type="radio" class="form-check-input" value="1" v-model="form.dprofile_template">
+                                                                <span class="ml-2">Otoño</span>
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="pt-3 pt-md-0 col-md-6 col-lg-3 d-flex justify-content-center">
+                                                    <div :class="['card',form.dprofile_template == '2' ? 'selected_image' : '']" style="width: 12rem;">
+                                                        <!-- <img src="media/img/template/miniaturaPlantilla2.JPG" class="img-thumbnail img-responsive" alt="Cinque Terre" style="width: 12rem;height: 12rem"> -->
+                                                        <el-tooltip class="item" effect="dark" content="Vista Previa Verano" placement="top">
+                                                           <el-image
+                                                                :class="['img-thumbnail', 'img-responsive',form.dprofile_template == '2' ? 'selected_image' : '']"
+                                                                alt="Cinque Terre"
+                                                                style="width: 12rem;height: 12rem"
+                                                                :src="'media/img/template/miniaturaPlantilla2.JPG'"
+                                                                :preview-src-list="['media/img/template/miniaturaPlantilla2.JPG']">
+                                                            </el-image>
+                                                        </el-tooltip>
+
+                                                        <div class="card-body py-1 text-center">
+                                                            <!-- <p class="card-text">Verano</p> -->
+                                                            <label class="form-check-label">
+                                                                <input type="radio" class="form-check-input" value="2" v-model="form.dprofile_template"> <span class="ml-2">Verano</span>
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="pt-3 pt-lg-0 col-md-6 col-lg-3 d-flex justify-content-center">
+                                                    <div :class="['card',form.dprofile_template == '3' ? 'selected_image' : '']" style="width: 12rem;">
+                                                        <el-tooltip class="item" effect="dark" content="Vista Previa Invierno" placement="top">
+                                                           <el-image
+                                                                :class="['img-thumbnail', 'img-responsive',form.dprofile_template == '3' ? 'selected_image' : '']"
+                                                                alt="Cinque Terre"
+                                                                style="width: 12rem;height: 12rem"
+                                                                :src="'media/img/template/miniaturaPlantilla3.JPG'"
+                                                                :preview-src-list="['media/img/template/miniaturaPlantilla3.JPG']">
+                                                            </el-image>
+                                                        </el-tooltip>
+                                                        <div class="card-body py-1 text-center">
+                                                            <!-- <p class="card-text">Invierno</p> -->
+                                                            <label class="form-check-label">
+                                                                <input type="radio" class="form-check-input" value="3" v-model="form.dprofile_template"> <span class="ml-2">Invierno</span>
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="pt-3 pt-lg-0 col-md-6 col-lg-3 d-flex justify-content-center">
+                                                    <div :class="['card',form.dprofile_template == '4' ? 'selected_image' : '']" style="width: 12rem;">
+                                                        <el-tooltip class="item" effect="dark" content="Vista Previa Invierno" placement="top">
+                                                           <el-image
+                                                                :class="['img-thumbnail', 'img-responsive',form.dprofile_template == '4' ? 'selected_image' : '']"
+                                                                alt="Cinque Terre"
+                                                                style="width: 12rem;height: 12rem"
+                                                                :src="'media/img/template/miniaturaPlantilla4.JPG'"
+                                                                :preview-src-list="['media/img/template/miniaturaPlantilla4.JPG']">
+                                                            </el-image>
+                                                        </el-tooltip>
+                                                        <div class="card-body py-1 text-center">
+                                                            <!-- <p class="card-text">Primavera</p> -->
+                                                            <label class="form-check-label">
+                                                                <input type="radio" class="form-check-input" value="4" v-model="form.dprofile_template"> <span class="ml-2">Primavera</span>
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </el-card>
+                                        <small v-if="errors.dprofile_template" class="form-control-feedback text-danger">
+                                            {{ errors.dprofile_template[0] }}
+                                        </small>
+
+                                    </div>
+
+                                </div>
+
 
                             </div>
 
@@ -487,6 +587,7 @@ export default {
                 dprofile_lastname: '',
                 dprofile_birthday: '',
                 dprofile_death: '',
+                dprofile_template: '',
 
                 client_name: '',
                 client_lastname: '',
@@ -536,7 +637,6 @@ export default {
                     }
                 }]
             },
-
         }
     },
 
@@ -622,6 +722,7 @@ export default {
                 dprofile_lastname: '',
                 dprofile_birthday: '',
                 dprofile_death: '',
+                dprofile_template: '',
                 client_name: '',
                 client_lastname: '',
                 client_dni: '',
@@ -793,7 +894,7 @@ export default {
                     }
                 }
             }
-        }
+        },
     },
 
     computed: {
@@ -824,5 +925,13 @@ i {
 }
 label {
     text-transform: uppercase;
+}
+.selected_image {
+    background-color: #08c !important;
+    color: white !important;
+}
+.img-thumbnail {
+    border: 0px solid #E4E6EF !important;
+    border-radius: 0rem !important;
 }
 </style>

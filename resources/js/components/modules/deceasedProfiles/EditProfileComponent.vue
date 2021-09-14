@@ -146,6 +146,110 @@
                                     </div>
 
                                     <div class="form-group col-12">
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <el-card :class="['box-card', errorsProfile.template ? 'border-danger' : '']">
+                                                    <div slot="header" class="clearfix">
+                                                        <label :class="['control-label', errorsProfile.template ? 'text-danger' : '']"><b>Plantilla</b></label>
+                                                    </div>
+                                                    <div class="row " >
+                                                        <div class="col-md-6 col-lg-3 d-flex justify-content-center">
+                                                            <div :class="['card',formProfile.template == '1' ? 'selected_image' : '']" style="width: 12rem;">
+                                                                <!-- <img src="media/img/template/miniaturaPlantilla1.JPG" class="img-thumbnail img-responsive" alt="Cinque Terre" style="width: 12rem;height: 12rem"> -->
+                                                                <el-tooltip class="item" effect="dark" content="Vista Previa Otoño" placement="top">
+                                                                <el-image
+                                                                        :class="['img-thumbnail', 'img-responsive',formProfile.template == '1' ? 'selected_image' : '']"
+                                                                        alt="Cinque Terre"
+                                                                        style="width: 12rem;height: 12rem"
+                                                                        :src="'media/img/template/miniaturaPlantilla1.JPG'"
+                                                                        :preview-src-list="['media/img/template/miniaturaPlantilla1.JPG']">
+                                                                    </el-image>
+                                                                </el-tooltip>
+                                                                <div class="card-body py-1 text-center">
+                                                                    <!-- <p class="card-text">Otoño</p> -->
+                                                                    <label class="form-check-label">
+                                                                        <input type="radio" class="form-check-input" value="1" v-model="formProfile.template">
+                                                                        <span :class="['ml-2',formProfile.template == '1' ? 'text-white' : '']">Otoño</span>
+                                                                    </label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="pt-3 pt-md-0 col-md-6 col-lg-3 d-flex justify-content-center">
+                                                            <div :class="['card',formProfile.template == '2' ? 'selected_image' : '']" style="width: 12rem;">
+                                                                <!-- <img src="media/img/template/miniaturaPlantilla2.JPG" class="img-thumbnail img-responsive" alt="Cinque Terre" style="width: 12rem;height: 12rem"> -->
+                                                                <el-tooltip class="item" effect="dark" content="Vista Previa Verano" placement="top">
+                                                                <el-image
+                                                                        :class="['img-thumbnail', 'img-responsive',formProfile.template == '2' ? 'selected_image' : '']"
+                                                                        alt="Cinque Terre"
+                                                                        style="width: 12rem;height: 12rem"
+                                                                        :src="'media/img/template/miniaturaPlantilla2.JPG'"
+                                                                        :preview-src-list="['media/img/template/miniaturaPlantilla2.JPG']">
+                                                                    </el-image>
+                                                                </el-tooltip>
+
+                                                                <div class="card-body py-1 text-center">
+                                                                    <!-- <p class="card-text">Verano</p> -->
+                                                                    <label class="form-check-label">
+                                                                        <input type="radio" class="form-check-input" value="2" v-model="formProfile.template">
+                                                                        <span :class="['ml-2',formProfile.template == '2' ? 'text-white' : '']">Verano</span>
+                                                                    </label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="pt-3 pt-lg-0 col-md-6 col-lg-3 d-flex justify-content-center">
+                                                            <div :class="['card',formProfile.template == '3' ? 'selected_image' : '']" style="width: 12rem;">
+                                                                <el-tooltip class="item" effect="dark" content="Vista Previa Invierno" placement="top">
+                                                                <el-image
+                                                                        :class="['img-thumbnail', 'img-responsive',formProfile.template == '3' ? 'selected_image' : '']"
+                                                                        alt="Cinque Terre"
+                                                                        style="width: 12rem;height: 12rem"
+                                                                        :src="'media/img/template/miniaturaPlantilla3.JPG'"
+                                                                        :preview-src-list="['media/img/template/miniaturaPlantilla3.JPG']">
+                                                                    </el-image>
+                                                                </el-tooltip>
+                                                                <div class="card-body py-1 text-center">
+                                                                    <!-- <p class="card-text">Invierno</p> -->
+                                                                    <label class="form-check-label">
+                                                                        <input type="radio" class="form-check-input" value="3" v-model="formProfile.template">
+                                                                        <span :class="['ml-2',formProfile.template == '3' ? 'text-white' : '']">Invierno</span>
+                                                                    </label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="pt-3 pt-lg-0 col-md-6 col-lg-3 d-flex justify-content-center">
+                                                            <div :class="['card',formProfile.template == '4' ? 'selected_image' : '']" style="width: 12rem;">
+                                                                <el-tooltip class="item" effect="dark" content="Vista Previa Invierno" placement="top">
+                                                                <el-image
+                                                                        :class="['img-thumbnail', 'img-responsive',formProfile.template == '4' ? 'selected_image' : '']"
+                                                                        alt="Cinque Terre"
+                                                                        style="width: 12rem;height: 12rem"
+                                                                        :src="'media/img/template/miniaturaPlantilla4.JPG'"
+                                                                        :preview-src-list="['media/img/template/miniaturaPlantilla4.JPG']">
+                                                                    </el-image>
+                                                                </el-tooltip>
+                                                                <div class="card-body py-1 text-center">
+                                                                    <!-- <p class="card-text">Primavera</p> -->
+                                                                    <label class="form-check-label">
+                                                                        <input type="radio" class="form-check-input" value="4" v-model="formProfile.template">
+                                                                        <span :class="['ml-2',formProfile.template == '4' ? 'text-white' : '']">Primavera</span>
+                                                                    </label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </el-card>
+                                                <small v-if="errorsProfile.template" class="form-control-feedback text-danger">
+                                                    {{ errorsProfile.template[0] }}
+                                                </small>
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group col-12">
                                         <button type="button" @click="updateProfile()"  class="btn btn-primary float-right">Actualizar</button>
                                     </div>
                                 </div>
@@ -450,6 +554,7 @@ export default {
                 last_name: '',
                 birthday: '',
                 death: '',
+                template: '',
                 id: ''
             },
             errorsProfile: {},
@@ -569,6 +674,7 @@ export default {
                 last_name: profile.last_name,
                 birthday: moment(profile.birthday).format('YYYY-MM-DD'),
                 death: moment(profile.death).format('YYYY-MM-DD'),
+                template: profile.template,
                 id:  profile.id
             },
 
@@ -594,6 +700,7 @@ export default {
                 last_name: '',
                 birthday: '',
                 death: '',
+                template: '',
                 id: ''
             };
             this.errorsProfile= {};
@@ -881,5 +988,14 @@ export default {
 
 .el-input {
     width: 100% !important;
+}
+
+.selected_image {
+    background-color: #08c !important;
+    color: white !important;
+}
+.img-thumbnail {
+    border: 0px solid #E4E6EF !important;
+    border-radius: 0rem !important;
 }
 </style>
