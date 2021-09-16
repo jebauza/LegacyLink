@@ -3108,7 +3108,7 @@
                                     "type": "string"
                                 },
                                 "wallImagePredefinida": {
-                                    "title": "nullable|string|in:imagen1.jpg,imagen2.jpg,imagen3.jpg,imagen4.jpg,imagen5.jpg,imagen6.jpg",
+                                    "title": "nullable|string|in:1,2,3,4",
                                     "type": "string"
                                 }
                             },
