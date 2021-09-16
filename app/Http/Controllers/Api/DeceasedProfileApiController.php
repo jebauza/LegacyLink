@@ -132,7 +132,13 @@ class DeceasedProfileApiController extends Controller
                 }
                 $profile->wall_image = $path_wall;
             } elseif ($request->wallImagePredefinida) {
-                $path_wall = 'img/' . $request->wallImagePredefinida;
+                $files = [
+                    "1" => "fondo-rectangular-template1.jpg",
+                    "2" => "fondo-rectangular-template2.jpg",
+                    "3" => "fondo-rectangular-template3.png",
+                    "4" => "fondo-rectangular-template4.png",
+                ];
+                $path_wall = 'img/template/' . $files[$request->wallImagePredefinida];
                 if($profile->wall_image) {
                     UploadFile::delete($profile->wall_image);
                 }

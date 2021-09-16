@@ -30,7 +30,7 @@ class DeceasedProfileUpdateApiRequest extends FormRequest
      *          @OA\Property(property="title_epitaph", type="string", title="nullable|string|max:255"),
      *          @OA\Property(property="message_epitaph", type="string", title="nullable|string"),
      *          @OA\Property(property="template", type="string", title="required|string|in:1,2,3,4"),
-     *          @OA\Property(property="wallImagePredefinida", type="string", title="nullable|string|in:imagen1.jpg,imagen2.jpg,imagen3.jpg,imagen4.jpg,imagen5.jpg,imagen6.jpg"),
+     *          @OA\Property(property="wallImagePredefinida", type="string", title="nullable|string|in:1,2,3,4"),
      *      )
      * )
      */
@@ -46,7 +46,7 @@ class DeceasedProfileUpdateApiRequest extends FormRequest
             'title_epitaph' => 'nullable|string|max:255',
             'message_epitaph' => 'nullable|string',
             'template' => 'required|string|in:1,2,3,4',
-            'wallImagePredefinida' => 'nullable|string|in:imagen1.jpg,imagen2.jpg,imagen3.jpg,imagen4.jpg,imagen5.jpg,imagen6.jpg'
+            'wallImagePredefinida' => 'nullable|string|in:1,2,3,4'
         ];
     }
 
