@@ -32,7 +32,7 @@ class DeceasedProfileStoreRequest extends FormRequest
             'dprofile_lastname' => 'required|string|max:255',
             'dprofile_birthday' => 'required|date|date_format:Y-m-d',
             'dprofile_death' => 'required|date|date_format:Y-m-d|after:dprofile_birthday',
-            'dprofile_template' => 'required|string|in:1,2,3,4',
+            'dprofile_template' => 'required|string|in:1',
 
             'client_id' => 'nullable|integer|exists:users,id',
             'client_name' => 'required|string|max:255',

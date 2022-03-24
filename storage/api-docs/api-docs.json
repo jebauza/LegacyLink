@@ -3104,7 +3104,7 @@
                                     "type": "string"
                                 },
                                 "template": {
-                                    "title": "required|string|in:1,2,3,4",
+                                    "title": "required|string|in:1",
                                     "type": "string"
                                 },
                                 "wallImagePredefinida": {

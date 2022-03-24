@@ -146,7 +146,7 @@
                                     </div>
                                 </div>
 
-                                <div class="row ">
+                                <!-- <div class="row">
                                     <div class="col-12">
                                         <el-card :class="['box-card', errors.dprofile_template ? 'border-danger' : '']">
                                             <div slot="header" class="clearfix">
@@ -155,7 +155,6 @@
                                             <div class="row " >
                                                 <div class="col-md-6 col-lg-3 d-flex justify-content-center">
                                                     <div :class="['card',form.dprofile_template == '1' ? 'selected_image' : '']" style="width: 12rem;">
-                                                        <!-- <img src="media/img/template/miniaturaPlantilla1.JPG" class="img-thumbnail img-responsive" alt="Cinque Terre" style="width: 12rem;height: 12rem"> -->
                                                         <el-tooltip class="item" effect="dark" content="Vista Previa Otoño" placement="top">
                                                            <el-image
                                                                 :class="['img-thumbnail', 'img-responsive',form.dprofile_template == '1' ? 'selected_image' : '']"
@@ -166,7 +165,6 @@
                                                             </el-image>
                                                         </el-tooltip>
                                                         <div class="card-body py-1 text-center">
-                                                            <!-- <p class="card-text">Otoño</p> -->
                                                             <label class="form-check-label">
                                                                 <input type="radio" class="form-check-input" value="1" v-model="form.dprofile_template">
                                                                 <span class="ml-2">Otoño</span>
@@ -177,7 +175,6 @@
 
                                                 <div class="pt-3 pt-md-0 col-md-6 col-lg-3 d-flex justify-content-center">
                                                     <div :class="['card',form.dprofile_template == '2' ? 'selected_image' : '']" style="width: 12rem;">
-                                                        <!-- <img src="media/img/template/miniaturaPlantilla2.JPG" class="img-thumbnail img-responsive" alt="Cinque Terre" style="width: 12rem;height: 12rem"> -->
                                                         <el-tooltip class="item" effect="dark" content="Vista Previa Verano" placement="top">
                                                            <el-image
                                                                 :class="['img-thumbnail', 'img-responsive',form.dprofile_template == '2' ? 'selected_image' : '']"
@@ -189,7 +186,6 @@
                                                         </el-tooltip>
 
                                                         <div class="card-body py-1 text-center">
-                                                            <!-- <p class="card-text">Verano</p> -->
                                                             <label class="form-check-label">
                                                                 <input type="radio" class="form-check-input" value="2" v-model="form.dprofile_template"> <span class="ml-2">Verano</span>
                                                             </label>
@@ -209,7 +205,6 @@
                                                             </el-image>
                                                         </el-tooltip>
                                                         <div class="card-body py-1 text-center">
-                                                            <!-- <p class="card-text">Invierno</p> -->
                                                             <label class="form-check-label">
                                                                 <input type="radio" class="form-check-input" value="3" v-model="form.dprofile_template"> <span class="ml-2">Invierno</span>
                                                             </label>
@@ -229,7 +224,6 @@
                                                             </el-image>
                                                         </el-tooltip>
                                                         <div class="card-body py-1 text-center">
-                                                            <!-- <p class="card-text">Primavera</p> -->
                                                             <label class="form-check-label">
                                                                 <input type="radio" class="form-check-input" value="4" v-model="form.dprofile_template"> <span class="ml-2">Primavera</span>
                                                             </label>
@@ -241,10 +235,8 @@
                                         <small v-if="errors.dprofile_template" class="form-control-feedback text-danger">
                                             {{ errors.dprofile_template[0] }}
                                         </small>
-
                                     </div>
-
-                                </div>
+                                </div> -->
 
 
                             </div>
@@ -587,7 +579,7 @@ export default {
                 dprofile_lastname: '',
                 dprofile_birthday: '',
                 dprofile_death: '',
-                dprofile_template: '',
+                dprofile_template: '1',
 
                 client_name: '',
                 client_lastname: '',
@@ -722,7 +714,7 @@ export default {
                 dprofile_lastname: '',
                 dprofile_birthday: '',
                 dprofile_death: '',
-                dprofile_template: '',
+                dprofile_template: '1',
                 client_name: '',
                 client_lastname: '',
                 client_dni: '',
