@@ -54,6 +54,7 @@ class DeployCommand extends Command
 
         $this->createUpdatePermissions();
         $this->createUpdateCeremonyTypes();
+        $this->runScript();
 
         $this->optimizeApp();
         $this->info('Scripts launched successfully');
@@ -147,5 +148,12 @@ class DeployCommand extends Command
         }
 
         $this->info('Updated ceremony_types');
+    }
+
+    private function runScript()
+    {
+        DB::table('deceased_profiles')
+              ->where('template', '<>', '1')
+              ->update(['template' => '1']);
     }
 }

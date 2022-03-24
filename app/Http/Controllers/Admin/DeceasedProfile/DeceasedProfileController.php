@@ -173,7 +173,7 @@ class DeceasedProfileController extends Controller
             'last_name' => 'required|string|max:255',
             'birthday' => 'required|date|date_format:Y-m-d',
             'death' => 'required|date|date_format:Y-m-d|after:birthday',
-            'template' => 'required|string|in:1,2,3,4',
+            'template' => 'required|string|in:1',
         ]);
 
         if(!$profile = DeceasedProfile::find($id)) {

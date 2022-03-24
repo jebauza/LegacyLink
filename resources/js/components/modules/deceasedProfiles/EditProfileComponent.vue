@@ -145,7 +145,7 @@
                                         </small>
                                     </div>
 
-                                    <div class="form-group col-12">
+                                    <!-- <div class="form-group col-12">
                                         <div class="row">
                                             <div class="col-12">
                                                 <el-card :class="['box-card', errorsProfile.template ? 'border-danger' : '']">
@@ -155,7 +155,6 @@
                                                     <div class="row " >
                                                         <div class="col-md-6 col-lg-3 d-flex justify-content-center">
                                                             <div :class="['card',formProfile.template == '1' ? 'selected_image' : '']" style="width: 12rem;">
-                                                                <!-- <img src="media/img/template/miniaturaPlantilla1.JPG" class="img-thumbnail img-responsive" alt="Cinque Terre" style="width: 12rem;height: 12rem"> -->
                                                                 <el-tooltip class="item" effect="dark" content="Vista Previa Otoño" placement="top">
                                                                 <el-image
                                                                         :class="['img-thumbnail', 'img-responsive',formProfile.template == '1' ? 'selected_image' : '']"
@@ -166,7 +165,6 @@
                                                                     </el-image>
                                                                 </el-tooltip>
                                                                 <div class="card-body py-1 text-center">
-                                                                    <!-- <p class="card-text">Otoño</p> -->
                                                                     <label class="form-check-label">
                                                                         <input type="radio" class="form-check-input" value="1" v-model="formProfile.template">
                                                                         <span :class="['ml-2',formProfile.template == '1' ? 'text-white' : '']">Otoño</span>
@@ -177,7 +175,6 @@
 
                                                         <div class="pt-3 pt-md-0 col-md-6 col-lg-3 d-flex justify-content-center">
                                                             <div :class="['card',formProfile.template == '2' ? 'selected_image' : '']" style="width: 12rem;">
-                                                                <!-- <img src="media/img/template/miniaturaPlantilla2.JPG" class="img-thumbnail img-responsive" alt="Cinque Terre" style="width: 12rem;height: 12rem"> -->
                                                                 <el-tooltip class="item" effect="dark" content="Vista Previa Verano" placement="top">
                                                                 <el-image
                                                                         :class="['img-thumbnail', 'img-responsive',formProfile.template == '2' ? 'selected_image' : '']"
@@ -189,7 +186,6 @@
                                                                 </el-tooltip>
 
                                                                 <div class="card-body py-1 text-center">
-                                                                    <!-- <p class="card-text">Verano</p> -->
                                                                     <label class="form-check-label">
                                                                         <input type="radio" class="form-check-input" value="2" v-model="formProfile.template">
                                                                         <span :class="['ml-2',formProfile.template == '2' ? 'text-white' : '']">Verano</span>
@@ -210,7 +206,6 @@
                                                                     </el-image>
                                                                 </el-tooltip>
                                                                 <div class="card-body py-1 text-center">
-                                                                    <!-- <p class="card-text">Invierno</p> -->
                                                                     <label class="form-check-label">
                                                                         <input type="radio" class="form-check-input" value="3" v-model="formProfile.template">
                                                                         <span :class="['ml-2',formProfile.template == '3' ? 'text-white' : '']">Invierno</span>
@@ -231,7 +226,6 @@
                                                                     </el-image>
                                                                 </el-tooltip>
                                                                 <div class="card-body py-1 text-center">
-                                                                    <!-- <p class="card-text">Primavera</p> -->
                                                                     <label class="form-check-label">
                                                                         <input type="radio" class="form-check-input" value="4" v-model="formProfile.template">
                                                                         <span :class="['ml-2',formProfile.template == '4' ? 'text-white' : '']">Primavera</span>
@@ -244,10 +238,9 @@
                                                 <small v-if="errorsProfile.template" class="form-control-feedback text-danger">
                                                     {{ errorsProfile.template[0] }}
                                                 </small>
-
                                             </div>
                                         </div>
-                                    </div>
+                                    </div> -->
 
                                     <div class="form-group col-12">
                                         <button type="button" @click="updateProfile()"  class="btn btn-primary float-right">Actualizar</button>
@@ -554,7 +547,7 @@ export default {
                 last_name: '',
                 birthday: '',
                 death: '',
-                template: '',
+                template: '1',
                 id: ''
             },
             errorsProfile: {},
@@ -700,7 +693,7 @@ export default {
                 last_name: '',
                 birthday: '',
                 death: '',
-                template: '',
+                template: '1',
                 id: ''
             };
             this.errorsProfile= {};
