@@ -4,7 +4,7 @@
         <div class="card-header flex-wrap border-0 pt-6 pb-0">
             <div class="card-title">
                 <h3 class="card-label">Webs
-                <span class="d-block text-muted pt-2 font-size-sm">{{ __('Employee administration') }}</span></h3>
+                <span class="d-block text-muted pt-2 font-size-sm">Administración de las Webs</span></h3>
             </div>
             <div class="card-toolbar">
                 <!--begin::Button-->

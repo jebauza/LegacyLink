@@ -1,1 +1,16 @@
-.text-success-green{color:#28a745!important}.label-light-success-green{color:#28a745;background-color:#adf7bd}i{color:unset!important}.vs-select-content{max-width:none}
+.text-success-green {
+    color: #28a745 !important;
+}
+
+.label-light-success-green {
+    color: #28a745;
+    background-color: #adf7bd;
+}
+
+i {
+    color: unset !important
+}
+
+.vs-select-content {
+    max-width: none;
+}

@@ -874,6 +874,56 @@
                 }
             }
         },
+        "/public/profile/{profile_id}/candles/paginate": {
+            "get": {
+                "tags": [
+                    "Candle"
+                ],
+                "summary": "Get public Candle paginate",
+                "description": "Return paginate public Candle",
+                "operationId": "/public/profile/{profile_id}/candles/paginate",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/profile_id"
+                    },
+                    {
+                        "$ref": "#/components/parameters/page"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "example": true
+                                        },
+                                        "message": {
+                                            "example": "Solicitud procesada correctamente."
+                                        },
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/components/schemas/CandlePaginateApiResource"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "$ref": "#/components/requestBodies/response_400"
+                    },
+                    "500": {
+                        "$ref": "#/components/requestBodies/response_500"
+                    }
+                }
+            }
+        },
         "/public/profile/{profile_id}/candles/store": {
             "post": {
                 "tags": [
@@ -1433,6 +1483,56 @@
                 }
             }
         },
+        "/public/profile/{profile_id}/comments/paginate": {
+            "get": {
+                "tags": [
+                    "Comment"
+                ],
+                "summary": "Get public comment paginate",
+                "description": "Return paginate public comment",
+                "operationId": "/public/profile/{profile_id}/comments/paginate",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/profile_id"
+                    },
+                    {
+                        "$ref": "#/components/parameters/page"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "example": true
+                                        },
+                                        "message": {
+                                            "example": "Solicitud procesada correctamente."
+                                        },
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/components/schemas/CommentPaginateApiResource"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "$ref": "#/components/requestBodies/response_400"
+                    },
+                    "500": {
+                        "$ref": "#/components/requestBodies/response_500"
+                    }
+                }
+            }
+        },
         "/profile/{profile_id}/comments/private": {
             "get": {
                 "tags": [
@@ -1463,6 +1563,61 @@
                                             "type": "array",
                                             "items": {
                                                 "$ref": "#/components/schemas/CommentApiResource"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "$ref": "#/components/requestBodies/response_400"
+                    },
+                    "500": {
+                        "$ref": "#/components/requestBodies/response_500"
+                    }
+                },
+                "security": [
+                    {
+                        "api_key": []
+                    }
+                ]
+            }
+        },
+        "/profile/{profile_id}/comments/private/paginate": {
+            "get": {
+                "tags": [
+                    "Comment"
+                ],
+                "summary": "Get private comment paginate",
+                "description": "Return paginate private comment",
+                "operationId": "/profile/{profile_id}/comments/private/paginate",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/profile_id"
+                    },
+                    {
+                        "$ref": "#/components/parameters/page"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "example": true
+                                        },
+                                        "message": {
+                                            "example": "Solicitud procesada correctamente."
+                                        },
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/components/schemas/CommentPaginateApiResource"
                                             }
                                         }
                                     },
@@ -2290,6 +2445,45 @@
                 },
                 "type": "object"
             },
+            "CandlePaginateApiResource": {
+                "properties": {
+                    "current_page": {
+                        "type": "integer",
+                        "example": 1
+                    },
+                    "from": {
+                        "type": "integer",
+                        "example": 1
+                    },
+                    "to": {
+                        "type": "integer",
+                        "example": 1
+                    },
+                    "last_page": {
+                        "type": "integer",
+                        "example": 1
+                    },
+                    "per_page": {
+                        "type": "integer",
+                        "example": 15
+                    },
+                    "count": {
+                        "type": "integer",
+                        "example": 1
+                    },
+                    "total": {
+                        "type": "integer",
+                        "example": 1
+                    },
+                    "items": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/CandleApiResource"
+                        }
+                    }
+                },
+                "type": "object"
+            },
             "CeremonyApiResource": {
                 "properties": {
                     "id": {
@@ -2421,6 +2615,45 @@
                     "created_at": {
                         "type": "string",
                         "example": "2021-04-07 12:57:44"
+                    }
+                },
+                "type": "object"
+            },
+            "CommentPaginateApiResource": {
+                "properties": {
+                    "current_page": {
+                        "type": "integer",
+                        "example": 1
+                    },
+                    "from": {
+                        "type": "integer",
+                        "example": 1
+                    },
+                    "to": {
+                        "type": "integer",
+                        "example": 1
+                    },
+                    "last_page": {
+                        "type": "integer",
+                        "example": 1
+                    },
+                    "per_page": {
+                        "type": "integer",
+                        "example": 15
+                    },
+                    "count": {
+                        "type": "integer",
+                        "example": 1
+                    },
+                    "total": {
+                        "type": "integer",
+                        "example": 1
+                    },
+                    "items": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/CommentApiResource"
+                        }
                     }
                 },
                 "type": "object"
@@ -2649,6 +2882,15 @@
                 "schema": {
                     "type": "integer",
                     "example": "3"
+                }
+            },
+            "page": {
+                "name": "page",
+                "in": "query",
+                "description": "Page for pagination",
+                "schema": {
+                    "type": "integer",
+                    "example": 1
                 }
             }
         },
@@ -3063,7 +3305,8 @@
                                 "name",
                                 "lastname",
                                 "birthday",
-                                "death"
+                                "death",
+                                "template"
                             ],
                             "properties": {
                                 "name": {
@@ -3103,7 +3346,11 @@
                                     "type": "string"
                                 },
                                 "template": {
-                                    "title": "required|string|in:1,2,3,4",
+                                    "title": "required|string|in:1",
+                                    "type": "string"
+                                },
+                                "wallImagePredefinida": {
+                                    "title": "nullable|string|in:1,2,3,4",
                                     "type": "string"
                                 }
                             },

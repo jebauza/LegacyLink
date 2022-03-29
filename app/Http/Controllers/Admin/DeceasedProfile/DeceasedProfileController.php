@@ -88,6 +88,7 @@ class DeceasedProfileController extends Controller
             $newDProfile->last_name = $request->dprofile_lastname;
             $newDProfile->birthday = $request->dprofile_birthday;
             $newDProfile->death = $request->dprofile_death;
+            $newDProfile->template = $request->dprofile_template;
             $newDProfile->adviser_id = $request->dprofile_adviser;
             $newDProfile->office_id = $request->dprofile_office;
             if ($newDProfile->save()) {
@@ -172,6 +173,7 @@ class DeceasedProfileController extends Controller
             'last_name' => 'required|string|max:255',
             'birthday' => 'required|date|date_format:Y-m-d',
             'death' => 'required|date|date_format:Y-m-d|after:birthday',
+            'template' => 'required|string|in:1',
         ]);
 
         if(!$profile = DeceasedProfile::find($id)) {

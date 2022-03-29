@@ -55,6 +55,17 @@ use Illuminate\Routing\Controller as BaseController;
  *      @OA\Schema(type="integer", example="3")
  * )
  *
+ * @OA\Parameter(
+ *      parameter="page",
+ *      name="page",
+ *      in="query",
+ *      description="Page for pagination",
+ *      @OA\Schema(
+ *          type="integer",
+ *          example=1
+ *      )
+ * )
+ *
  */
 class Controller extends BaseController
 {
