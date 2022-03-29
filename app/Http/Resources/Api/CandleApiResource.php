@@ -34,5 +34,19 @@ class CandleApiResource extends JsonResource
      *      @OA\Property(property="message", type="string", example="De Manuel"),
      *      @OA\Property(property="profile_id", type="integer", example=161),
      * )
+     *
+     * @OA\Schema(
+     *      schema="CandlePaginateApiResource",
+     *      @OA\Property(property="current_page", type="integer", example=1),
+     *      @OA\Property(property="from", type="integer", example=1),
+     *      @OA\Property(property="to", type="integer", example=1),
+     *      @OA\Property(property="last_page", type="integer", example=1),
+     *      @OA\Property(property="per_page", type="integer", example=15),
+     *      @OA\Property(property="count", type="integer", example=1),
+     *      @OA\Property(property="total", type="integer", example=1),
+     *      @OA\Property(property="items", type="array",
+     *          @OA\Items(ref="#/components/schemas/CandleApiResource")
+     *      ),
+     * )
      */
 }

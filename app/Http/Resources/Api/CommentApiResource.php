@@ -49,5 +49,19 @@ class CommentApiResource extends JsonResource
      *      ),
      *      @OA\Property(property="created_at", type="string", example="2021-04-07 12:57:44"),
      * )
+     *
+     * @OA\Schema(
+     *      schema="CommentPaginateApiResource",
+     *      @OA\Property(property="current_page", type="integer", example=1),
+     *      @OA\Property(property="from", type="integer", example=1),
+     *      @OA\Property(property="to", type="integer", example=1),
+     *      @OA\Property(property="last_page", type="integer", example=1),
+     *      @OA\Property(property="per_page", type="integer", example=15),
+     *      @OA\Property(property="count", type="integer", example=1),
+     *      @OA\Property(property="total", type="integer", example=1),
+     *      @OA\Property(property="items", type="array",
+     *          @OA\Items(ref="#/components/schemas/CommentApiResource")
+     *      ),
+     * )
      */
 }
