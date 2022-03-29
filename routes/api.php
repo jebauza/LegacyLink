@@ -31,12 +31,14 @@ Route::prefix('public')->name('api.public.')->group(function () {
 
         Route::prefix('comments')->name('comments.')->group(function () {
             Route::get('/', [CommentApiController::class, 'indexPublic'])->name('index');
+            Route::get('/paginate', [CommentApiController::class, 'paginatePublic'])->name('paginate');
             Route::post('store', [CommentApiController::class, 'storePublic'])->name('store');
         });
 
         // Candles
         Route::prefix('candles')->name('candles.')->group(function () {
             Route::get('/', [CandleApiController::class, 'indexPublic'])->name('indexPublic');
+            Route::get('/paginate', [CandleApiController::class, 'paginatePublic'])->name('paginatePublic');
             Route::post('store', [CandleApiController::class, 'storePublic'])->name('storePublic');
             // Route::post('store', [InvitationApiController::class, 'store'])->name('store');
         });
@@ -98,6 +100,7 @@ Route::middleware(['auth:api','verified'])->name('api.')->group(function() {
         Route::prefix('comments')->name('comments.')->middleware(['check_role:admin,family,close_friend'])->group(function () {
             Route::get('/', [CommentApiController::class, 'index'])->name('index');
             Route::get('/private', [CommentApiController::class, 'indexPrivate'])->name('indexPrivate');
+            Route::get('/private/paginate', [CommentApiController::class, 'paginatePrivate'])->name('paginatePrivate');
             Route::post('store', [CommentApiController::class, 'store'])->name('store');
             Route::post('/{comment_id}/update', [CommentApiController::class, 'update'])->name('update');
             Route::delete('/{comment_id}/destroy', [CommentApiController::class, 'destroy'])->name('destroy');

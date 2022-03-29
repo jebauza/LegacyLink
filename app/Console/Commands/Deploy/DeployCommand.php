@@ -152,8 +152,6 @@ class DeployCommand extends Command
 
     private function runScript()
     {
-        DB::table('deceased_profiles')
-              ->where('template', '<>', '1')
-              ->update(['template' => '1']);
+        
     }
 }

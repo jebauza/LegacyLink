@@ -3,17 +3,11 @@
 namespace App\Http\Controllers\Api;
 
 use App\Models\Candle;
-use App\Models\Ceremony;
-use App\Models\CeremonyType;
 use Illuminate\Http\Request;
-use App\Models\DeceasedProfile;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\Api\CandleApiResource;
-use App\Http\Resources\Api\CeremonyApiResource;
-use App\Http\Resources\Api\CeremonyTypeApiResource;
-use App\Http\Resources\Api\UserCeremonyApiResource;
-use App\Http\Requests\Api\CeremonyStoreUpdateApiRequest;
+use App\Http\Resources\Api\PaginationApiResource;
 
 /**
  * @OA\Tag(
@@ -59,6 +53,46 @@ class CandleApiController extends Controller
                             ->get();
 
         return $this->sendResponse(null, CandleApiResource::collection($candles));
+    }
+
+    /**
+     * @OA\Get(
+     *      path="/public/profile/{profile_id}/candles/paginate",
+     *      operationId="/public/profile/{profile_id}/candles/paginate",
+     *      tags={"Candle"},
+     *      summary="Get public Candle paginate",
+     *      description="Return paginate public Candle",
+     *
+     *      @OA\Parameter(ref="#/components/parameters/profile_id"),
+     *      @OA\Parameter(ref="#/components/parameters/page"),
+     *
+     *      @OA\Response(response=200, description="OK",
+     *          @OA\JsonContent(
+     *              @OA\Property(property="success", example=true),
+     *              @OA\Property(property="message", example="Solicitud procesada correctamente."),
+     *              @OA\Property(property="data", type="array",
+     *                  @OA\Items(ref="#/components/schemas/CandlePaginateApiResource")
+     *              ),
+     *          )
+     *      ),
+     *
+     *      @OA\Response(response=400, ref="#/components/requestBodies/response_400"),
+     *
+     *      @OA\Response(response=500, ref="#/components/requestBodies/response_500"),
+     * )
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function paginatePublic()
+    {
+        $profile = session('profileWeb');
+
+        $paginateCandles = $profile->candles()
+                            ->latest()
+                            ->paginate();
+
+        $paginateCandles->setCollection(CandleApiResource::collection($paginateCandles->getCollection())->collection);
+        return $this->sendResponse(null, new PaginationApiResource($paginateCandles));
     }
 
     /**

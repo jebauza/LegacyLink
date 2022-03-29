@@ -6,8 +6,8 @@ use App\Helpers\UploadFile;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Gate;
 use App\Http\Resources\Api\CommentApiResource;
+use App\Http\Resources\Api\PaginationApiResource;
 use App\Http\Requests\Api\CommentPublicStoreRequest;
 use App\Http\Requests\Api\CommentStoreUpdateRequest;
 
@@ -63,6 +63,49 @@ class CommentApiController extends Controller
 
     /**
      * @OA\Get(
+     *      path="/public/profile/{profile_id}/comments/paginate",
+     *      operationId="/public/profile/{profile_id}/comments/paginate",
+     *      tags={"Comment"},
+     *      summary="Get public comment paginate",
+     *      description="Return paginate public comment",
+     *
+     *      @OA\Parameter(ref="#/components/parameters/profile_id"),
+     *      @OA\Parameter(ref="#/components/parameters/page"),
+     *
+     *      @OA\Response(response=200, description="OK",
+     *          @OA\JsonContent(
+     *              @OA\Property(property="success", example=true),
+     *              @OA\Property(property="message", example="Solicitud procesada correctamente."),
+     *              @OA\Property(property="data", type="array",
+     *                  @OA\Items(ref="#/components/schemas/CommentPaginateApiResource")
+     *              ),
+     *          )
+     *      ),
+     *
+     *      @OA\Response(response=400, ref="#/components/requestBodies/response_400"),
+     *
+     *      @OA\Response(response=500, ref="#/components/requestBodies/response_500"),
+     * )
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function paginatePublic()
+    {
+        $profile = session('profileWeb');
+
+        $paginateComments = $profile->comments()
+                            ->where('public', true)
+                            ->where('approved', true)
+                            ->with('user')
+                            ->latest()
+                            ->paginate();
+
+        $paginateComments->setCollection(CommentApiResource::collection($paginateComments->getCollection())->collection);
+        return $this->sendResponse(null, new PaginationApiResource($paginateComments));
+    }
+
+    /**
+     * @OA\Get(
      *      path="/profile/{profile_id}/comments/private",
      *      operationId="/profile/{profile_id}/comments/private",
      *      tags={"Comment"},
@@ -101,6 +144,50 @@ class CommentApiController extends Controller
                             ->get();
 
         return $this->sendResponse(null, CommentApiResource::collection($comments));
+    }
+
+    /**
+     * @OA\Get(
+     *      path="/profile/{profile_id}/comments/private/paginate",
+     *      operationId="/profile/{profile_id}/comments/private/paginate",
+     *      tags={"Comment"},
+     *      summary="Get private comment paginate",
+     *      description="Return paginate private comment",
+     *      security={{"api_key": {}}},
+     *
+     *      @OA\Parameter(ref="#/components/parameters/profile_id"),
+     *      @OA\Parameter(ref="#/components/parameters/page"),
+     *
+     *      @OA\Response(response=200, description="OK",
+     *          @OA\JsonContent(
+     *              @OA\Property(property="success", example=true),
+     *              @OA\Property(property="message", example="Solicitud procesada correctamente."),
+     *              @OA\Property(property="data", type="array",
+     *                  @OA\Items(ref="#/components/schemas/CommentPaginateApiResource")
+     *              ),
+     *          )
+     *      ),
+     *
+     *      @OA\Response(response=400, ref="#/components/requestBodies/response_400"),
+     *
+     *      @OA\Response(response=500, ref="#/components/requestBodies/response_500"),
+     * )
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function paginatePrivate()
+    {
+        $profile = session('profileWeb');
+
+        $paginateComments = $profile->comments()
+                            ->where('public', false)
+                            ->where('approved', true)
+                            ->with('user')
+                            ->latest()
+                            ->paginate();
+
+        $paginateComments->setCollection(CommentApiResource::collection($paginateComments->getCollection())->collection);
+        return $this->sendResponse(null, new PaginationApiResource($paginateComments));
     }
 
     /**
