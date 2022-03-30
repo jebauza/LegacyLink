@@ -26,8 +26,8 @@ class DeceasedProfileApiController extends Controller
      *      path="/public/profile/{profile_id}",
      *      operationId="/public/profile/{profile_id}",
      *      tags={"Profile"},
-     *      summary="Get the public details of deseased profile",
-     *      description="Return the public details of a specific profile",
+     *      summary="Get the public profile details of the deceased",
+     *      description="Returns the public profile data of the deceased",
      *
      *      @OA\Parameter(parameter="web_code", name="web_code", in="path", required=true,
      *          description="Profile code",
@@ -66,8 +66,8 @@ class DeceasedProfileApiController extends Controller
      *      path="/profile/{profile_id}/update",
      *      operationId="/profile/{profile_id}/update",
      *      tags={"Profile"},
-     *      summary="Get the public details of deseased profile",
-     *      description="Return the public details of a specific profile",
+     *      summary="Update profile",
+     *      description="Return profile",
      *      security={{"api_key": {}}},
      *
      *      @OA\Parameter(

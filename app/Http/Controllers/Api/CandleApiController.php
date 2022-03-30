@@ -22,8 +22,8 @@ class CandleApiController extends Controller
      *      path="/public/profile/{profile_id}/candles",
      *      operationId="/public/profile/{profile_id}/candles",
      *      tags={"Candle"},
-     *      summary="Get public Candle",
-     *      description="Return list public Candle",
+     *      summary="Get public Candles",
+     *      description="Return list of public candles",
      *
      *      @OA\Parameter(ref="#/components/parameters/profile_id"),
      *
@@ -60,8 +60,8 @@ class CandleApiController extends Controller
      *      path="/public/profile/{profile_id}/candles/paginate",
      *      operationId="/public/profile/{profile_id}/candles/paginate",
      *      tags={"Candle"},
-     *      summary="Get public Candle paginate",
-     *      description="Return paginate public Candle",
+     *      summary="Get pagination of public candles",
+     *      description="Return pagination of public candles",
      *
      *      @OA\Parameter(ref="#/components/parameters/profile_id"),
      *      @OA\Parameter(ref="#/components/parameters/page"),
@@ -89,7 +89,7 @@ class CandleApiController extends Controller
 
         $paginateCandles = $profile->candles()
                             ->latest()
-                            ->paginate();
+                            ->paginate(10);
 
         $paginateCandles->setCollection(CandleApiResource::collection($paginateCandles->getCollection())->collection);
         return $this->sendResponse(null, new PaginationApiResource($paginateCandles));
@@ -100,7 +100,7 @@ class CandleApiController extends Controller
      *      path="/public/profile/{profile_id}/candles/store",
      *      operationId="/public/profile/{profile_id}/candles/store",
      *      tags={"Candle"},
-     *      summary="Store Candle",
+     *      summary="Create Candle",
      *      description="",
      *
      *      @OA\Parameter(ref="#/components/parameters/profile_id"),

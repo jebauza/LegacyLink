@@ -27,7 +27,7 @@ class CeremonyApiController extends Controller
      *      operationId="/public/profile/{profile_id}/ceremonies",
      *      tags={"Ceremony"},
      *      summary="Get the public ceremonies list",
-     *      description="Return the list of public ceremonies associated with a specific profile",
+     *      description="Return list of public ceremonies associated with a specific profile",
      *
      *      @OA\Parameter(ref="#/components/parameters/profile_id"),
      *
@@ -65,8 +65,8 @@ class CeremonyApiController extends Controller
      *      path="/profile/{profile_id}/ceremonies",
      *      operationId="/profile/{profile_id}/ceremonies",
      *      tags={"Ceremony"},
-     *      summary="Get the public ceremonies list",
-     *      description="Return the list of public ceremonies associated with a specific profile",
+     *      summary="Get the ceremonies list",
+     *      description="Return list of public ceremonies associated with a specific profile",
      *      security={{"api_key": {}}},
      *
      *      @OA\Parameter(ref="#/components/parameters/profile_id"),
@@ -146,7 +146,7 @@ class CeremonyApiController extends Controller
      *      path="/profile/{profile_id}/ceremonies/store",
      *      operationId="/profile/{profile_id}/ceremonies/store",
      *      tags={"Ceremony"},
-     *      summary="Store Ceremony",
+     *      summary="Create Ceremony",
      *      description="",
      *      security={{"api_key": {}}},
      *

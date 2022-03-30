@@ -832,8 +832,8 @@
                 "tags": [
                     "Candle"
                 ],
-                "summary": "Get public Candle",
-                "description": "Return list public Candle",
+                "summary": "Get public Candles",
+                "description": "Return list of public candles",
                 "operationId": "/public/profile/{profile_id}/candles",
                 "parameters": [
                     {
@@ -879,8 +879,8 @@
                 "tags": [
                     "Candle"
                 ],
-                "summary": "Get public Candle paginate",
-                "description": "Return paginate public Candle",
+                "summary": "Get pagination of public candles",
+                "description": "Return pagination of public candles",
                 "operationId": "/public/profile/{profile_id}/candles/paginate",
                 "parameters": [
                     {
@@ -929,7 +929,7 @@
                 "tags": [
                     "Candle"
                 ],
-                "summary": "Store Candle",
+                "summary": "Create Candle",
                 "description": "",
                 "operationId": "/public/profile/{profile_id}/candles/store",
                 "parameters": [
@@ -1094,7 +1094,7 @@
                     "Ceremony"
                 ],
                 "summary": "Get the public ceremonies list",
-                "description": "Return the list of public ceremonies associated with a specific profile",
+                "description": "Return list of public ceremonies associated with a specific profile",
                 "operationId": "/public/profile/{profile_id}/ceremonies",
                 "parameters": [
                     {
@@ -1140,8 +1140,8 @@
                 "tags": [
                     "Ceremony"
                 ],
-                "summary": "Get the public ceremonies list",
-                "description": "Return the list of public ceremonies associated with a specific profile",
+                "summary": "Get the ceremonies list",
+                "description": "Return list of public ceremonies associated with a specific profile",
                 "operationId": "/profile/{profile_id}/ceremonies",
                 "parameters": [
                     {
@@ -1250,7 +1250,7 @@
                 "tags": [
                     "Ceremony"
                 ],
-                "summary": "Store Ceremony",
+                "summary": "Create Ceremony",
                 "description": "",
                 "operationId": "/profile/{profile_id}/ceremonies/store",
                 "parameters": [
@@ -1441,8 +1441,8 @@
                 "tags": [
                     "Comment"
                 ],
-                "summary": "Get public comment",
-                "description": "Return list public comment",
+                "summary": "Get public comments",
+                "description": "Return list public comments",
                 "operationId": "/public/profile/{profile_id}/comments",
                 "parameters": [
                     {
@@ -1488,8 +1488,8 @@
                 "tags": [
                     "Comment"
                 ],
-                "summary": "Get public comment paginate",
-                "description": "Return paginate public comment",
+                "summary": "Get public comment pagination",
+                "description": "Return public comment pagination",
                 "operationId": "/public/profile/{profile_id}/comments/paginate",
                 "parameters": [
                     {
@@ -1703,7 +1703,7 @@
                 "tags": [
                     "Comment"
                 ],
-                "summary": "Store public comment",
+                "summary": ">Create public comment",
                 "description": "Return new public comment",
                 "operationId": "/public/profile/{profile_id}/comments/store",
                 "parameters": [
@@ -1753,7 +1753,7 @@
                 "tags": [
                     "Comment"
                 ],
-                "summary": "Store comment",
+                "summary": "Create comment",
                 "description": "Return new comment",
                 "operationId": "/profile/{profile_id}/comments/store",
                 "parameters": [
@@ -2018,8 +2018,8 @@
                 "tags": [
                     "Profile"
                 ],
-                "summary": "Get the public details of deseased profile",
-                "description": "Return the public details of a specific profile",
+                "summary": "Get the public profile details of the deceased",
+                "description": "Returns the public profile data of the deceased",
                 "operationId": "/public/profile/{profile_id}",
                 "parameters": [
                     {
@@ -2070,8 +2070,8 @@
                 "tags": [
                     "Profile"
                 ],
-                "summary": "Get the public details of deseased profile",
-                "description": "Return the public details of a specific profile",
+                "summary": "Update profile",
+                "description": "Return profile",
                 "operationId": "/profile/{profile_id}/update",
                 "parameters": [
                     {
