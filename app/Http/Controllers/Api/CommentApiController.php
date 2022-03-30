@@ -98,7 +98,7 @@ class CommentApiController extends Controller
                             ->where('approved', true)
                             ->with('user')
                             ->latest()
-                            ->paginate();
+                            ->paginate(15);
 
         $paginateComments->setCollection(CommentApiResource::collection($paginateComments->getCollection())->collection);
         return $this->sendResponse(null, new PaginationApiResource($paginateComments));
@@ -184,7 +184,7 @@ class CommentApiController extends Controller
                             ->where('approved', true)
                             ->with('user')
                             ->latest()
-                            ->paginate();
+                            ->paginate(15);
 
         $paginateComments->setCollection(CommentApiResource::collection($paginateComments->getCollection())->collection);
         return $this->sendResponse(null, new PaginationApiResource($paginateComments));
