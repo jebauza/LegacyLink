@@ -25,8 +25,8 @@ class CommentApiController extends Controller
      *      path="/public/profile/{profile_id}/comments",
      *      operationId="/public/profile/{profile_id}/comments",
      *      tags={"Comment"},
-     *      summary="Get public comment",
-     *      description="Return list public comment",
+     *      summary="Get public comments",
+     *      description="Return list public comments",
      *
      *      @OA\Parameter(ref="#/components/parameters/profile_id"),
      *
@@ -66,8 +66,8 @@ class CommentApiController extends Controller
      *      path="/public/profile/{profile_id}/comments/paginate",
      *      operationId="/public/profile/{profile_id}/comments/paginate",
      *      tags={"Comment"},
-     *      summary="Get public comment paginate",
-     *      description="Return paginate public comment",
+     *      summary="Get public comment pagination",
+     *      description="Return public comment pagination",
      *
      *      @OA\Parameter(ref="#/components/parameters/profile_id"),
      *      @OA\Parameter(ref="#/components/parameters/page"),
@@ -239,7 +239,7 @@ class CommentApiController extends Controller
      *      path="/public/profile/{profile_id}/comments/store",
      *      operationId="/public/profile/{profile_id}/comments/store",
      *      tags={"Comment"},
-     *      summary="Store public comment",
+     *      summary=">Create public comment",
      *      description="Return new public comment",
      *
      *      @OA\Parameter(ref="#/components/parameters/profile_id"),
@@ -298,7 +298,7 @@ class CommentApiController extends Controller
      *      path="/profile/{profile_id}/comments/store",
      *      operationId="/profile/{profile_id}/comments/store",
      *      tags={"Comment"},
-     *      summary="Store comment",
+     *      summary="Create comment",
      *      description="Return new comment",
      *      security={{"api_key": {}}},
      *
