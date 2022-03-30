@@ -89,7 +89,7 @@ class CandleApiController extends Controller
 
         $paginateCandles = $profile->candles()
                             ->latest()
-                            ->paginate();
+                            ->paginate(10);
 
         $paginateCandles->setCollection(CandleApiResource::collection($paginateCandles->getCollection())->collection);
         return $this->sendResponse(null, new PaginationApiResource($paginateCandles));

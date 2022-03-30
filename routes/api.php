@@ -107,12 +107,10 @@ Route::middleware(['auth:api','verified'])->name('api.')->group(function() {
             Route::put('/{comment_id}/approve', [CommentApiController::class, 'approve'])->name('approve');
         });
 
-
         // Candles
         Route::prefix('candles')->name('candles.')->middleware(['check_role:admin'])->group(function () {
             Route::delete('/{candle_id}/destroy', [CandleApiController::class, 'destroy'])->name('destroy');
         });
-
     });
 
 });
