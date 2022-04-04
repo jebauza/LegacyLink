@@ -56,7 +56,7 @@ class CommentApiResource extends JsonResource
      *      @OA\Property(property="from", type="integer", example=1),
      *      @OA\Property(property="to", type="integer", example=1),
      *      @OA\Property(property="last_page", type="integer", example=1),
-     *      @OA\Property(property="per_page", type="integer", example=15),
+     *      @OA\Property(property="per_page", type="integer", example=10),
      *      @OA\Property(property="count", type="integer", example=1),
      *      @OA\Property(property="total", type="integer", example=1),
      *      @OA\Property(property="items", type="array",
