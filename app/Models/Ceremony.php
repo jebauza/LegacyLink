@@ -56,7 +56,9 @@ class Ceremony extends Model
 
         static::updating(function ($ceremony) {
             if ($ceremony->main) {
-                DB::table('ceremonies')->where('profile_id', $ceremony->profile_id)->update(['main' => false]);
+                DB::table('ceremonies')->where('profile_id', $ceremony->profile_id)
+                                        ->where('id','!=',$ceremony->id)
+                                        ->update(['main' => false]);
             }
         });
 
