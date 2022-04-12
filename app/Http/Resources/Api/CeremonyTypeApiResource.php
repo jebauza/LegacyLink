@@ -25,7 +25,7 @@ class CeremonyTypeApiResource extends JsonResource
      * @OA\Schema(
      *      schema="CeremonyTypeApiResource",
      *      @OA\Property(property="id", type="integer", example=161),
-     *      @OA\Property(property="name", type="string", example="Incineración"),
+     *      @OA\Property(property="name", type="string", example="Cremación"),
      * )
      */
 }

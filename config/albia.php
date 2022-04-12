@@ -56,9 +56,9 @@ return [
 
     'ceremony_types' => [
         ['id' => 1, 'name' => 'Inhumación'],
-        ['id' => 2, 'name' => 'Ceremonia'],
+        ['id' => 2, 'name' => 'Velación'],
         ['id' => 3, 'name' => 'Sepultura'],
-        ['id' => 4, 'name' => 'Incineración']
+        ['id' => 4, 'name' => 'Cremación']
     ],
 
     'provinces' => ['Alava','Albacete','Alicante','Almería','Asturias','Avila','Badajoz','Barcelona','Burgos','Cáceres',

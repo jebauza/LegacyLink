@@ -2550,7 +2550,7 @@
                     },
                     "name": {
                         "type": "string",
-                        "example": "Incineración"
+                        "example": "Cremación"
                     }
                 },
                 "type": "object"
@@ -2639,7 +2639,7 @@
                     },
                     "per_page": {
                         "type": "integer",
-                        "example": 15
+                        "example": 10
                     },
                     "count": {
                         "type": "integer",
